@@ -2,9 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/04/14/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/</loc>
+    <loc>http://yoursite.com/2016/04/05/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/</loc>
     
-    <lastmod>2016-04-14T02:47:04.098Z</lastmod>
+    <lastmod>2016-04-14T07:38:10.120Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/search/index.html</loc>
+    
+    <lastmod>2016-04-14T07:29:11.561Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/project/index.html</loc>
+    
+    <lastmod>2016-04-14T06:35:57.040Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2016-04-14T06:35:10.356Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/link/index.html</loc>
+    
+    <lastmod>2016-04-14T06:33:39.169Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tag/index.html</loc>
+    
+    <lastmod>2016-04-14T05:25:51.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/category/index.html</loc>
+    
+    <lastmod>2016-04-14T05:24:15.822Z</lastmod>
     
   </url>
   
