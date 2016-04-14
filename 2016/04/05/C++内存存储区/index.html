@@ -53,7 +53,7 @@ new和m">
 
 
 new和m">
-<meta property="og:updated_time" content="2016-04-14T10:08:06.788Z">
+<meta property="og:updated_time" content="2016-04-14T10:10:07.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++内存存储区">
 <meta name="twitter:description" content="C++内存分配方式有五种：
@@ -198,7 +198,7 @@ new和m">
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-内存分配方式有五种："><span class="toc-text">C++内存分配方式有五种：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#new和malloc的区别："><span class="toc-text">new和malloc的区别：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#堆和栈的区别："><span class="toc-text">堆和栈的区别：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-内存分配方式有五种："><span class="toc-text">C++内存分配方式有五种：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new和malloc的区别："><span class="toc-text">new和malloc的区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆和栈的区别："><span class="toc-text">堆和栈的区别：</span></a></li></ol>
   </div>
 
 
@@ -241,7 +241,7 @@ new和m">
 
   <div class="article-content">
     
-      <h1 id="C-内存分配方式有五种："><a href="#C-内存分配方式有五种：" class="headerlink" title="C++内存分配方式有五种："></a>C++内存分配方式有五种：</h1><ol>
+      <h2 id="C-内存分配方式有五种："><a href="#C-内存分配方式有五种：" class="headerlink" title="C++内存分配方式有五种："></a>C++内存分配方式有五种：</h2><ol>
 <li>栈：局部变量、函数参数等<ul>
 <li>可以实现函数调用；</li>
 <li>动态扩展、收缩；</li>
@@ -257,13 +257,13 @@ new和m">
 </li>
 </ol>
 <hr>
-<h1 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h1><ol>
+<h2 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h2><ol>
 <li>new可以认为是malloc加构造函数的执行；</li>
 <li>new出来的指针是直接带类型信息的，malloc返回void指针；</li>
 <li>delete会相应调用对象的析构函数。</li>
 </ol>
 <hr>
-<h1 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h1><ol>
+<h2 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h2><ol>
 <li>管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；<ul>
 <li>内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。</li>
 </ul>
