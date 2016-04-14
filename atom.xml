@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-09T14:35:06.373Z</updated>
+  <updated>2016-04-14T02:47:04.098Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,29 +16,59 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2016/04/09/hello-world/"/>
-    <id>http://yoursite.com/2016/04/09/hello-world/</id>
-    <published>2016-04-09T14:28:12.997Z</published>
-    <updated>2016-04-09T14:35:06.373Z</updated>
+    <title>C++内存存储区</title>
+    <link href="http://yoursite.com/2016/04/14/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/"/>
+    <id>http://yoursite.com/2016/04/14/C++内存存储区/</id>
+    <published>2016-04-14T02:17:33.000Z</published>
+    <updated>2016-04-14T02:47:04.098Z</updated>
     
-    <content type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo new &lt;span class=&quot;string&quot;&gt;&quot;My New Post&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/deployment.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Deployment&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;h3 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
+&lt;li&gt;可以实现函数调用；&lt;/li&gt;
+&lt;li&gt;动态扩展、收缩；&lt;/li&gt;
+&lt;li&gt;位于用户虚拟地址空间顶部。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;堆：new分配的内存块，delete释放。&lt;/li&gt;
+&lt;li&gt;自由存储区：malloc分配，free释放。&lt;/li&gt;
+&lt;li&gt;全局/静态存储区：全局变量与静态变量&lt;/li&gt;
+&lt;li&gt;常量存储区：存放常量&lt;ul&gt;
+&lt;li&gt;如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;new可以认为是malloc加构造函数的执行；&lt;/li&gt;
+&lt;li&gt;new出来的指针是直接带类型信息的，malloc返回void指针；&lt;/li&gt;
+&lt;li&gt;delete会相应调用对象的析构函数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;堆和栈的区别：&quot;&gt;&lt;a href=&quot;#堆和栈的区别：&quot; class=&quot;headerlink&quot; title=&quot;堆和栈的区别：&quot;&gt;&lt;/a&gt;堆和栈的区别：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；&lt;ul&gt;
+&lt;li&gt;内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）&lt;/li&gt;
+&lt;li&gt;碎片问题：堆频繁new/delete会产生大量碎片（delete出来的空间几乎不可能恰好等于new的空间）；栈不会；&lt;/li&gt;
+&lt;li&gt;生长方向：堆向上；栈向下。&lt;/li&gt;
+&lt;li&gt;分配方式：堆动态；栈动态（alloca，但他不需人工释放）或静态（编译器完成）&lt;/li&gt;
+&lt;li&gt;分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;以上内容主要来自于&lt;a href=&quot;http://www.cnblogs.com/daocaoren/archive/2011/06/29/2092957.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;h3 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
+&lt;li&gt;可
     
     </summary>
     
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
     
   </entry>
   

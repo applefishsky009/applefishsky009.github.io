@@ -47,7 +47,7 @@
 				<h1 class="site-name"><a href="/" title="孤云两角，去天一握">孤云两角，去天一握</a></h1>
 				<h2 class="blog-motto">山在地下，地山谦</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -63,7 +63,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -81,28 +81,54 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/04/09/hello-world/" title="Hello World" itemprop="url">Hello World</a>
+      <a href="/2016/04/14/C++内存存储区/" title="C++内存存储区" itemprop="url">C++内存存储区</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="ryl" target="_blank" itemprop="author">ryl</a>
 		
   <p class="article-time">
-    <time datetime="2016-04-09T14:28:12.997Z" itemprop="datePublished"> 发表于 2016-04-09</time>
+    <time datetime="2016-04-14T02:17:33.000Z" itemprop="datePublished"> Published 2016-04-14</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="C-内存分配方式有五种："><a href="#C-内存分配方式有五种：" class="headerlink" title="C++内存分配方式有五种："></a>C++内存分配方式有五种：</h3><ol>
+<li>栈：局部变量、函数参数等<ul>
+<li>可以实现函数调用；</li>
+<li>动态扩展、收缩；</li>
+<li>位于用户虚拟地址空间顶部。</li>
+</ul>
+</li>
+<li>堆：new分配的内存块，delete释放。</li>
+<li>自由存储区：malloc分配，free释放。</li>
+<li>全局/静态存储区：全局变量与静态变量</li>
+<li>常量存储区：存放常量<ul>
+<li>如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h3><ol>
+<li>new可以认为是malloc加构造函数的执行；</li>
+<li>new出来的指针是直接带类型信息的，malloc返回void指针；</li>
+<li>delete会相应调用对象的析构函数。</li>
+</ol>
+<hr>
+<h3 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h3><ol>
+<li>管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；<ul>
+<li>内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。</li>
+</ul>
+</li>
+<li>空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）</li>
+<li>碎片问题：堆频繁new/delete会产生大量碎片（delete出来的空间几乎不可能恰好等于new的空间）；栈不会；</li>
+<li>生长方向：堆向上；栈向下。</li>
+<li>分配方式：堆动态；栈动态（alloca，但他不需人工释放）或静态（编译器完成）</li>
+<li>分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）</li>
+</ol>
+<hr>
+<p>以上内容主要来自于<a href="http://www.cnblogs.com/daocaoren/archive/2011/06/29/2092957.html" target="_blank" rel="external">这里</a>。</p>
 
         
         
@@ -113,6 +139,11 @@
     <footer class="article-footer clearfix">
 <div class="article-catetags">
 
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/C/">C++</a>
+  </div>
 
 </div>
 
@@ -135,10 +166,10 @@
 
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -147,9 +178,20 @@
   
 
   
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/C/" title="C++">C++<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -171,11 +213,11 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
   <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
+  <p class="asidetitle">Weibo</p>
     <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
 </div>
 
@@ -325,7 +367,7 @@ var _hmt = _hmt || [];
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
