@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>类的构造函数与析构函数初探 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++," />
+  
+
+  <meta name="description" content="##类的简介
+###类的规范由两部分组成：
+
+类声明（declaration） – 类的蓝图
+以数据成员的方式描述数据，以成员函数的方式描述公有接口；
+数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
+定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
+
+
+类方法定义 – 类的实现细节
+C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类的构造函数与析构函数初探">
+<meta property="og:url" content="http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="##类的简介
+###类的规范由两部分组成：
+
+类声明（declaration） – 类的蓝图
+以数据成员的方式描述数据，以成员函数的方式描述公有接口；
+数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
+定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
+
+
+类方法定义 – 类的实现细节
+C++">
+<meta property="og:updated_time" content="2016-04-14T11:42:21.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类的构造函数与析构函数初探">
+<meta name="twitter:description" content="##类的简介
+###类的规范由两部分组成：
+
+类声明（declaration） – 类的蓝图
+以数据成员的方式描述数据，以成员函数的方式描述公有接口；
+数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
+定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
+
+
+类方法定义 – 类的实现细节
+C++">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-类的构造函数与析构函数初探" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">类的构造函数与析构函数初探</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.07</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/类/">类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/07/类的构造函数与析构函数初探/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>##类的简介</p>
+<p>###类的规范由两部分组成：</p>
+<ol>
+<li>类声明（declaration） – 类的蓝图<ul>
+<li>以数据成员的方式描述数据，以成员函数的方式描述公有接口；</li>
+<li><strong>数据</strong>通常放在私有部分，组成类接口的<strong>成员函数</strong>放在公有部分，另外<strong>私有成员函数</strong>用来处理不属于公有接口的实现细节。</li>
+<li>定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。</li>
+</ul>
+</li>
+<li>类方法定义 – 类的实现细节<ul>
+<li>C++通常把接口（类声明）放在头文件中，并将实现（类方法代码）放在源代码中；</li>
+<li>定义成员函数时，使用作用域解析符（::）来表示函数所属的类；</li>
+<li>类方法可以访问类的private组件。</li>
+<li>只要类方法不修改调用对象，就应将其声明为const，如<code>void Stock::show() const</code>。</li>
+</ul>
+</li>
+</ol>
+<p>类所创建的每个新对象都有自己的存储空间，用于存储其内部变量和类成员；但同一个类的所有对象<strong>共享同一组类方法</strong>。</p>
+<p>###类成员的访问控制（封装）<br>数据隐藏：防止程序直接访问数据。</p>
+<ul>
+<li>例如<code>int a</code>是类的私有数据成员，<code>cout&lt;&lt;a</code>是不对的，只有公有成员函数或友元函数才能访问。可以定义一个show()方法访问a用来输出。</li>
+</ul>
+<p>数据封装：实现细节放在一起并与抽象分开。</p>
+<ul>
+<li>数据隐藏（数据放在类的私有部分）</li>
+<li>私有成员函数（实现细节隐藏在私有部分）</li>
+<li>类函数定义和类声明放在不同的文件中。</li>
+</ul>
+<hr>
+<p>##类的构造函数与析构函数</p>
+<p>###类的构造函数</p>
+<ol>
+<li>如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。</li>
+<li>构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。</li>
+</ol>
+<p>###类的析构函数</p>
+<ol>
+<li>对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。</li>
+<li>注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。</li>
+<li>若构造函数中有new，则析构函数必须delete。</li>
+</ol>
+<p>###<a href="https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array" target="_blank" rel="external">构造函数的语法</a></p>
+<pre><code>1. Num nums(initVector);
+2. nums = Num(initVector)。
+3. Num();
+4. Num nums = Num();
+5. Num nums = Num(initVector)；
+</code></pre><ul>
+<li>1一定不会创建一个临时对象并析构；</li>
+<li>2是赋值语句一定会创建临时对象并析构(虽然有匿名对象但作用域限制)；</li>
+<li>3也会创建一个临时对象并析构(因为没有匿名对象的载体)；</li>
+<li>4不会(因为有匿名对象载体)；</li>
+<li>5会。但是对于5这种创建<strong>有指定值的对象</strong>，是否有临时对象是不确定的(取决于具体的实现)。</li>
+<li>总之，1的效率最高。</li>
+</ul>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

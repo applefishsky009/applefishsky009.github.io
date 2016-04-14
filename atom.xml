@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T10:53:11.312Z</updated>
+  <updated>2016-04-14T12:59:34.603Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,345 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++溢出</title>
+    <link href="http://yoursite.com/2016/04/11/C++%E6%BA%A2%E5%87%BA/"/>
+    <id>http://yoursite.com/2016/04/11/C++溢出/</id>
+    <published>2016-04-11T12:35:24.000Z</published>
+    <updated>2016-04-14T12:59:34.603Z</updated>
+    
+    <content type="html">&lt;p&gt;##数值溢出原理&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/W3CYdOb.png&quot; alt=&quot;数值圆图&quot;&gt;&lt;br&gt;C++Plus在P44已经说的很清楚，如下。&lt;br&gt;有几点需要注意的地方：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上图下图中的圆在进行&lt;strong&gt;强制类型转化&lt;/strong&gt;时也是&lt;strong&gt;对应&lt;/strong&gt;的，这就是说&lt;code&gt;(uchar)-1 = 65535&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;无符号数没有溢出，只有&lt;strong&gt;进/借位&lt;/strong&gt;(微机原理CF标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。&lt;/li&gt;
+&lt;li&gt;有符号数没有进/借位，只有&lt;strong&gt;溢出&lt;/strong&gt;(微机原理OF标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##运算溢出&lt;/p&gt;
+&lt;p&gt;###判断加法溢出&lt;/p&gt;
+&lt;p&gt;可以像这里一样分情况或者根据圆图分析，会发现&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;所有上溢结果都小于任何一个操作数；&lt;/li&gt;
+&lt;li&gt;所有下溢结果都大于任何一个操作数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;###判断乘法溢出&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在这里提到，可以用检测a*b/b是否等于a来判断是否乘法溢出；&lt;/li&gt;
+&lt;li&gt;在这里提到，可以先扩展再强制类型转化到低位，在判断是否相等来判断。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;值得注意的是，在之前的帖子中提到过判断是否相等对&lt;strong&gt;浮点数&lt;/strong&gt;和整型的判断方式是不一样的。&lt;/p&gt;
+&lt;p&gt;###除零是不是溢出？&lt;br&gt;任何数除以零的计算“不是”算术溢出的一种。在数学上只能明显算是不明确的定义；它计算出来的结果只能当成是“没有”值，而不是非常大的无限数值。&lt;/p&gt;
+&lt;p&gt;应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，c = a*b一般都会选择c的长度为a的长度与b的长度之和。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;##&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;堆栈溢出&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;一般编译器默认的堆栈内存是1MB，若使用过多的堆栈内存时就会导致调用堆栈产生的溢出。一般产生于递归，或者静态申请过多的临时变量，比如&lt;code&gt;int a[1024[1024]&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若是静态内存导致的堆栈溢出，可以用动态申请使用堆内存。&lt;/li&gt;
+&lt;li&gt;若是递归调用导致递归堆栈无法容纳调用的返回地址，要添加错误检查机制。注意数据类型或用循环处理来避免堆栈溢出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##缓冲区溢出&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://jingyan.baidu.com/article/e9fb46e1acc1267521f76633.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;缓冲区溢出&lt;/a&gt;源于这样一个编程错误：复制一个内存区域的内容到另一个内存区域，而目标内存区域容量太小无法容纳。它允许传入函数的内存块以一种特定方式修改堆栈。&lt;/p&gt;
+&lt;p&gt;此外的溢出还包括&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%AE%97%E6%9C%AF%E4%B8%8B%E6%BA%A2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;算术下溢&lt;/a&gt;(浮点数溢出)等。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##数值溢出原理&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/W3CYdOb.png&quot; alt=&quot;数值圆图&quot;&gt;&lt;br&gt;C++Plus在P44已经说的很清楚，如下。&lt;br&gt;有几点需要注意的地方：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;上图下图中的圆在进行&lt;strong
+    
+    </summary>
+    
+      <category term="溢出" scheme="http://yoursite.com/categories/%E6%BA%A2%E5%87%BA/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据存储与二进制运算</title>
+    <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
+    <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
+    <published>2016-04-09T12:07:02.000Z</published>
+    <updated>2016-04-14T12:50:58.326Z</updated>
+    
+    <content type="html">&lt;p&gt;##数据存储&lt;/p&gt;
+&lt;p&gt;###原、反、补码&lt;br&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;数&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;原码&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;反码&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;补码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;正数&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;二进制表示&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;与原码相同&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;与原码相同&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;负数&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;对应正数符号位（最高位）置1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;负数原码&lt;strong&gt;非符号位&lt;/strong&gt;按位取反&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;负数反码加1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;举个例子，数据类型为char：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;原数字&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;原码&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;反码&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;补码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;+3&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-3&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;10000011&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111100&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111101&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;值得注意的是，如果这个数据为&lt;code&gt;unsigned char&lt;/code&gt;，&lt;code&gt;11111101&lt;/code&gt;对应的是253，这里涉及到溢出，详细讨论见下一博客。&lt;/p&gt;
+&lt;p&gt;###消失的原码&lt;br&gt;对于&lt;code&gt;unsigned char&lt;/code&gt;原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于&lt;code&gt;signed char&lt;/code&gt;，最高位是符号位，因此原码的取值范围是-127-127，只有&lt;strong&gt;255个编码&lt;/strong&gt;，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？&lt;/p&gt;
+&lt;p&gt;考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有&lt;code&gt;00000000&lt;/code&gt;、&lt;code&gt;10000000&lt;/code&gt;两个原码表示+0与-0，而这是没有意义的。我们保证&lt;code&gt;00000000&lt;/code&gt;这个原码与&lt;code&gt;00000000&lt;/code&gt;这个补码相对应来表示0就可以。这样找到了消失的原码：&lt;code&gt;10000000&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;在这个基于256的数值域中，观察补码的&lt;strong&gt;重置点（溢出中非常重要的概念）&lt;/strong&gt;127的补码&lt;code&gt;01111111&lt;/code&gt;，-127的补码&lt;code&gt;10000001&lt;/code&gt;，那么可以清楚的看到&lt;code&gt;127+1=？&lt;/code&gt;、&lt;code&gt;？+1=127&lt;/code&gt;。因此很好理解，多余的补码是&lt;code&gt;10000000&lt;/code&gt;（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即&lt;strong&gt;-128的原码&lt;/strong&gt;是&lt;code&gt;10000000&lt;/code&gt;，&lt;strong&gt;补码&lt;/strong&gt;也是&lt;code&gt;10000000&lt;/code&gt;（它的&lt;strong&gt;反码&lt;/strong&gt;是&lt;code&gt;11111111&lt;/code&gt;？）。&lt;/p&gt;
+&lt;p&gt;##二进制运算（移位得到&lt;code&gt;CHAR_MAX&lt;/code&gt;和&lt;code&gt;CHAR_MIN&lt;/code&gt;）&lt;/p&gt;
+&lt;p&gt;明白上述数据存储概念之后，可以通过位运算来获得&lt;code&gt;char&lt;/code&gt;的最大最小值。注意，其实在&lt;code&gt;climit&lt;/code&gt;文件中有各种宏定义的最大最小值，比如&lt;code&gt;CHAR_MAX = 127&lt;/code&gt;;&lt;code&gt;UCHAR_MAX = 0xff&lt;/code&gt;;等。但是这里想利用位运算来实现这一目标(注意重置点)：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;CHAR_MAX&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;CHAR_MIN&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;unsigned char max = 0-1&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;unsigned char min = 0&lt;/code&gt;;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;char max = (1&amp;lt;&amp;lt;7)-1&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;char min = 1&amp;lt;&amp;lt;7&lt;/code&gt;(得到&lt;code&gt;10000000&lt;/code&gt;);&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;上述表格中&lt;code&gt;unsigned char max&lt;/code&gt;本质为&lt;code&gt;signed char = -1&lt;/code&gt;的强制类型转化&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char max&lt;/code&gt; 是利用重置点&lt;code&gt;CHAR_MIN&lt;/code&gt;得到&lt;code&gt;01111111&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;char min&lt;/code&gt; 是利用-128的特殊补码(而且与原码相同)赋值的&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;运算的优先级是高于&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;、&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;的，因此&lt;code&gt;1&amp;lt;&amp;lt;7&lt;/code&gt;要加括号&lt;br&gt;注意右值中运算表达式中的数字默认都是&lt;code&gt;int&lt;/code&gt;类型的，这与C++整型提升有关，详情见另一篇博客。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;另，由以上解读可以很容易的得出&lt;code&gt;abs(int_X)&lt;/code&gt;的工作原理，正数不变，负数求得原码后符号位取反，即原码也是补码。但是有&lt;strong&gt;例外&lt;/strong&gt;：&lt;code&gt;abs(INT_MIN) = INT_MIN&lt;/code&gt;。他是不变的。&lt;/p&gt;
+&lt;p&gt;解读下边两式的区别（使用中&lt;code&gt;unsigned&lt;/code&gt;与&lt;code&gt;signed&lt;/code&gt;操作注意符号位扩充）：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;char a = abs((char)(1&amp;lt;&amp;lt;7)-1)&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;char b = abs((1&amp;lt;&amp;lt;7)-1)&lt;/code&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;(char)(1&amp;lt;&amp;lt;7)-1 = (int)-129&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;(1&amp;lt;&amp;lt;7)-1 = (int)127&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;1·&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;2·&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a = -127&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;b = 127&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;11111111 11111111 11111111 10000000&lt;/code&gt;+&lt;code&gt;11111111 11111111 11111111 11111111&lt;/code&gt;=&lt;code&gt;11111111 11111111 11111111 01111111&lt;/code&gt;(&lt;code&gt;char&lt;/code&gt; 原码&lt;code&gt;10000001&lt;/code&gt;)    &lt;/li&gt;
+&lt;li&gt;&lt;code&gt;00000000 00000000 00000000 1000000&lt;/code&gt;-&lt;code&gt;00000000 00000000 00000000 0000001&lt;/code&gt;=&lt;code&gt;00000000 00000000 00000000 01111111&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##数据存储&lt;/p&gt;
+&lt;p&gt;###原、反、补码&lt;br&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;数&lt;/th&gt;
+&lt;th style=&quot;text-al
+    
+    </summary>
+    
+      <category term="变量存储" scheme="http://yoursite.com/categories/%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>leetcode第一章：编程技巧说明</title>
+    <link href="http://yoursite.com/2016/04/08/leetcode%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/"/>
+    <id>http://yoursite.com/2016/04/08/leetcode第一章：编程技巧说明/</id>
+    <published>2016-04-08T11:44:02.000Z</published>
+    <updated>2016-04-14T12:06:16.225Z</updated>
+    
+    <content type="html">&lt;p&gt;##判断两个值a,b是否相等&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;若为浮点型，应该用&lt;code&gt;fabs(a-b)&amp;lt;1e-9&lt;/code&gt;。(因为&lt;a href=&quot;http://0.30000000000000004.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计算机中浮点型是不准确的&lt;/a&gt;，&lt;strong&gt;与因数有关&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;另外，对于&lt;code&gt;bool&lt;/code&gt;型，应该用&lt;code&gt;if(a)&lt;/code&gt;，&lt;code&gt;if(!b)&lt;/code&gt;这样的形式来强调变量&lt;code&gt;bool&lt;/code&gt;类型。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##判断一个整数是否为奇数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;x%2 != 0&lt;/code&gt;用来判断一个整数是否是奇数，&lt;strong&gt;不能用&lt;code&gt;x%2 = 1&lt;/code&gt;&lt;/strong&gt;，因为x可能是负数，余数就是-1。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-3 = 2*-1+(-1)&lt;/code&gt;，即&lt;code&gt;-3/2 = -1&lt;/code&gt;;&lt;code&gt;-3%2= -1&lt;/code&gt;;说明负奇数余数是-1。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##char值做数组下标的强制类型转化&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;应该强制转化为&lt;code&gt;uchar&lt;/code&gt;，作为数组下标。不能直接转化为&lt;code&gt;uint&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;因为高位扩充有两种，有符号数扩充，在高位补符号位；无符号数高位直接用0。例如&lt;code&gt;char c = -1&lt;/code&gt;。c在计算机中的补码是&lt;code&gt;11111111&lt;/code&gt;。&lt;code&gt;uint a = c&lt;/code&gt;，那么&lt;code&gt;a = 4294967295&lt;/code&gt;。因为c有符号，扩充后高位补1。&lt;code&gt;uint b = (uchar) c&lt;/code&gt;。那么&lt;code&gt;b = 255&lt;/code&gt;。因为&lt;code&gt;(uchar) c&lt;/code&gt;是无符号数，高位用0扩充。&lt;/li&gt;
+&lt;li&gt;二进制中有符号向无符号数的强制转化非常简单，将&lt;strong&gt;符号位置为0&lt;/strong&gt;。比如-2，原码是&lt;code&gt;10000010&lt;/code&gt;，反码是&lt;code&gt;11111101&lt;/code&gt;，补码是&lt;code&gt;11111110&lt;/code&gt;。将符号位置0，得到&lt;code&gt;01111110&lt;/code&gt;，为254。即&lt;code&gt;char -2&lt;/code&gt;强制转化成&lt;code&gt;uchar&lt;/code&gt;值为254。&lt;/li&gt;
+&lt;li&gt;参照维基百科和C++plusP44&lt;strong&gt;圆图&lt;/strong&gt;可以更清楚了解更多数据储存与二进制运算。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##vector和string优先于动态数组的分配&lt;/p&gt;
+&lt;p&gt;性能上，&lt;code&gt;vector&lt;/code&gt;保证内存（分配在堆）连续，一旦分配后，性能和原始数组相当；&lt;br&gt;用&lt;code&gt;new&lt;/code&gt;必须&lt;code&gt;delete&lt;/code&gt;，不然会&lt;code&gt;bug&lt;/code&gt;，代码行数不够短；&lt;br&gt;多维数组定义方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;new/delete:&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int** array = new int*[row];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(int i=0;i&amp;lt;row;i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	array[i] = new int [col];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;vector:    &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; = array(row,vector&amp;lt;int&amp;gt;(col,0));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;##使用reverse来避免&lt;a href=&quot;http://blog.csdn.net/bichenggui/article/details/4690175&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;不必要的重新分配&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;vector&lt;/code&gt;需要更多空间，以类似&lt;code&gt;realloc&lt;/code&gt;的思想来增长大小。分配，回收，拷贝和析构，这些步骤都很昂贵。并且每次这些步骤发生时，所有指向&lt;code&gt;vector&lt;/code&gt;或&lt;code&gt;string&lt;/code&gt;中的迭代器、指针和引用都会失效。&lt;/li&gt;
+&lt;li&gt;据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻1.5倍的。因此在1000次&lt;code&gt;push_back&lt;/code&gt;中导致了18次重新分配。&lt;img src=&quot;http://i.imgur.com/ooqb6by.png&quot; alt=&quot;reverse()&quot;&gt;&lt;/li&gt;
+&lt;li&gt;在&lt;strong&gt;容器被构造之后&lt;/strong&gt;进行&lt;strong&gt;&lt;code&gt;reserve&lt;/code&gt;设置容器容量&lt;/strong&gt;可以避免不必要的重新分配。&lt;code&gt;a.reserve(1000)&lt;/code&gt;即把a的容量设置为1000。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##判断两个值a,b是否相等&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;若为浮点型，应该用&lt;code&gt;fabs(a-b)&amp;lt;1e-9&lt;/code&gt;。(因为&lt;a href=&quot;http://0.300000000000
+    
+    </summary>
+    
+      <category term="leetcode" scheme="http://yoursite.com/categories/leetcode/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>类的构造函数与析构函数初探</title>
+    <link href="http://yoursite.com/2016/04/07/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%88%9D%E6%8E%A2/"/>
+    <id>http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/</id>
+    <published>2016-04-07T11:03:11.000Z</published>
+    <updated>2016-04-14T11:42:21.003Z</updated>
+    
+    <content type="html">&lt;p&gt;##类的简介&lt;/p&gt;
+&lt;p&gt;###类的规范由两部分组成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
+&lt;li&gt;以数据成员的方式描述数据，以成员函数的方式描述公有接口；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据&lt;/strong&gt;通常放在私有部分，组成类接口的&lt;strong&gt;成员函数&lt;/strong&gt;放在公有部分，另外&lt;strong&gt;私有成员函数&lt;/strong&gt;用来处理不属于公有接口的实现细节。&lt;/li&gt;
+&lt;li&gt;定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;类方法定义 – 类的实现细节&lt;ul&gt;
+&lt;li&gt;C++通常把接口（类声明）放在头文件中，并将实现（类方法代码）放在源代码中；&lt;/li&gt;
+&lt;li&gt;定义成员函数时，使用作用域解析符（::）来表示函数所属的类；&lt;/li&gt;
+&lt;li&gt;类方法可以访问类的private组件。&lt;/li&gt;
+&lt;li&gt;只要类方法不修改调用对象，就应将其声明为const，如&lt;code&gt;void Stock::show() const&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;类所创建的每个新对象都有自己的存储空间，用于存储其内部变量和类成员；但同一个类的所有对象&lt;strong&gt;共享同一组类方法&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;###类成员的访问控制（封装）&lt;br&gt;数据隐藏：防止程序直接访问数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如&lt;code&gt;int a&lt;/code&gt;是类的私有数据成员，&lt;code&gt;cout&amp;lt;&amp;lt;a&lt;/code&gt;是不对的，只有公有成员函数或友元函数才能访问。可以定义一个show()方法访问a用来输出。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据封装：实现细节放在一起并与抽象分开。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据隐藏（数据放在类的私有部分）&lt;/li&gt;
+&lt;li&gt;私有成员函数（实现细节隐藏在私有部分）&lt;/li&gt;
+&lt;li&gt;类函数定义和类声明放在不同的文件中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;##类的构造函数与析构函数&lt;/p&gt;
+&lt;p&gt;###类的构造函数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。&lt;/li&gt;
+&lt;li&gt;构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;###类的析构函数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。&lt;/li&gt;
+&lt;li&gt;注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。&lt;/li&gt;
+&lt;li&gt;若构造函数中有new，则析构函数必须delete。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;###&lt;a href=&quot;https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构造函数的语法&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1. Num nums(initVector);
+2. nums = Num(initVector)。
+3. Num();
+4. Num nums = Num();
+5. Num nums = Num(initVector)；
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;1一定不会创建一个临时对象并析构；&lt;/li&gt;
+&lt;li&gt;2是赋值语句一定会创建临时对象并析构(虽然有匿名对象但作用域限制)；&lt;/li&gt;
+&lt;li&gt;3也会创建一个临时对象并析构(因为没有匿名对象的载体)；&lt;/li&gt;
+&lt;li&gt;4不会(因为有匿名对象载体)；&lt;/li&gt;
+&lt;li&gt;5会。但是对于5这种创建&lt;strong&gt;有指定值的对象&lt;/strong&gt;，是否有临时对象是不确定的(取决于具体的实现)。&lt;/li&gt;
+&lt;li&gt;总之，1的效率最高。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##类的简介&lt;/p&gt;
+&lt;p&gt;###类的规范由两部分组成：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
+&lt;li&gt;以数据成员的方式描述数据，以成员函数的方式描述公有接口；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据&lt;/strong&gt;通常放在私有
+    
+    </summary>
+    
+      <category term="类" scheme="http://yoursite.com/categories/%E7%B1%BB/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C++五种变量存储方式与external关键字</title>
