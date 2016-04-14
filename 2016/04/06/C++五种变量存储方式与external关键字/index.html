@@ -15,7 +15,7 @@
     <meta name="keywords" content="C++," />
   
 
-  <meta name="description" content="五种变内容量存储方式
+  <meta name="description" content="五种变量存储方式
 
 
 存储描述
@@ -59,12 +59,17 @@
 静态
 文件
 内部
-不在任何代码块中，static">
+不在任何代码块中，static
+
+
+
+
+register用于显示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++五种变量存储方式与external关键字">
 <meta property="og:url" content="http://yoursite.com/2016/04/06/C++五种变量存储方式与external关键字/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="五种变内容量存储方式
+<meta property="og:description" content="五种变量存储方式
 
 
 存储描述
@@ -108,11 +113,16 @@
 静态
 文件
 内部
-不在任何代码块中，static">
-<meta property="og:updated_time" content="2016-04-14T09:44:45.734Z">
+不在任何代码块中，static
+
+
+
+
+register用于显示">
+<meta property="og:updated_time" content="2016-04-14T10:01:30.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++五种变量存储方式与external关键字">
-<meta name="twitter:description" content="五种变内容量存储方式
+<meta name="twitter:description" content="五种变量存储方式
 
 
 存储描述
@@ -156,7 +166,12 @@
 静态
 文件
 内部
-不在任何代码块中，static">
+不在任何代码块中，static
+
+
+
+
+register用于显示">
 
   
 
@@ -282,7 +297,7 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种变内容量存储方式"><span class="toc-text">五种变内容量存储方式</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#五种变量存储方式"><span class="toc-text">五种变量存储方式</span></a></li></ol>
   </div>
 
 
@@ -306,6 +321,11 @@
       
 
       
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/变量存储/">变量存储</a>
+  </span>
+
 
 
       
@@ -320,7 +340,7 @@
 
   <div class="article-content">
     
-      <h3 id="五种变内容量存储方式"><a href="#五种变内容量存储方式" class="headerlink" title="五种变内容量存储方式"></a>五种变<font color="red">内容</font>量存储方式</h3><table>
+      <h3 id="五种变量存储方式"><a href="#五种变量存储方式" class="headerlink" title="五种变量存储方式"></a>五种变量存储方式</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">存储描述</th>
@@ -368,6 +388,24 @@
 </tr>
 </tbody>
 </table>
+<ul>
+<li>register用于显示指出自动变量，没什么用处，C++11保留的目的是向下兼容；</li>
+<li>静态无链接性变量与自动变量的异同：<ul>
+<li>静态无链接性变量在编译器<strong>编译</strong>时，编译器在<strong>静态/全局存储区</strong>分配内存；</li>
+<li>自动变量在代码块<strong>运行</strong>时，编译器在<strong>栈</strong>中分配内存；<br>+二者均只能在代码块中运行。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>###external关键字</p>
+<p>变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用external关键字做<strong>引用声明</strong>。</p>
+<ol>
+<li>外部变量在main()前面或头文件中定义它，在文件中定义之后的任何位置使用它；</li>
+<li>单定义规则：变量只能定义声明一次；</li>
+<li>局部变量隐藏同名的全局变量。如果要访问全局变量，可用作用域解析符“：：”；</li>
+<li>静态变量将隐藏常规外部变量（使用external关键字引用）。<br>关于external关键字的测试是很简单的，这里不给出代码。另外提到单定义规则，有一点需要注意。任何一个包含头文件的cpp都要重新编译这个头文件，因此头文件绝对不能包含函数体与变量。不然，两个或两个以上cpp包含它会出现重定义错误。</li>
+</ol>
+<hr>
 
     
   </div>
