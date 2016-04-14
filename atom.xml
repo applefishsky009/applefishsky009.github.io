@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T09:08:21.866Z</updated>
+  <updated>2016-04-14T09:39:56.959Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,83 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>C++五种变量存储方式与external关键字</title>
+    <link href="http://yoursite.com/2016/04/06/C++%E4%BA%94%E7%A7%8D%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8Eexternal%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>http://yoursite.com/2016/04/06/C++五种变量存储方式与external关键字/</id>
+    <published>2016-04-06T09:15:14.000Z</published>
+    <updated>2016-04-14T09:39:56.959Z</updated>
+    
+    <content type="html">&lt;h3 id=&quot;五种变内容量存储方式&quot;&gt;&lt;a href=&quot;#五种变内容量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变内容量存储方式&quot;&gt;&lt;/a&gt;五种变&lt;font color=&quot;red&quot;&gt;内容&lt;/font&gt;量存储方式&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;存储描述&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;持续性&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;作用域&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;链接性&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;如何声明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块中&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;寄存器&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块中，register&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态，无链接性&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块中，static&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态，外部连接性&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;文件&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;外部&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，无关键字&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态，内部链接性&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;文件&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;内部&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，static&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;五种变内容量存储方式&quot;&gt;&lt;a href=&quot;#五种变内容量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变内容量存储方式&quot;&gt;&lt;/a&gt;五种变&lt;font color=&quot;red&quot;&gt;内容&lt;/font&gt;量存储方式&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>C++内存存储区</title>
     <link href="http://yoursite.com/2016/04/05/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/"/>
     <id>http://yoursite.com/2016/04/05/C++内存存储区/</id>
     <published>2016-04-05T02:17:33.000Z</published>
-    <updated>2016-04-14T09:08:21.866Z</updated>
+    <updated>2016-04-14T09:19:16.899Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
+    <content type="html">&lt;h3 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
 &lt;li&gt;可以实现函数调用；&lt;/li&gt;
 &lt;li&gt;动态扩展、收缩；&lt;/li&gt;
@@ -38,13 +108,13 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;new可以认为是malloc加构造函数的执行；&lt;/li&gt;
 &lt;li&gt;new出来的指针是直接带类型信息的，malloc返回void指针；&lt;/li&gt;
 &lt;li&gt;delete会相应调用对象的析构函数。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;堆和栈的区别：&quot;&gt;&lt;a href=&quot;#堆和栈的区别：&quot; class=&quot;headerlink&quot; title=&quot;堆和栈的区别：&quot;&gt;&lt;/a&gt;堆和栈的区别：&lt;/h2&gt;&lt;ol&gt;
+&lt;h3 id=&quot;堆和栈的区别：&quot;&gt;&lt;a href=&quot;#堆和栈的区别：&quot; class=&quot;headerlink&quot; title=&quot;堆和栈的区别：&quot;&gt;&lt;/a&gt;堆和栈的区别：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；&lt;ul&gt;
 &lt;li&gt;内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。&lt;/li&gt;
 &lt;/ul&gt;
@@ -61,7 +131,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
+      &lt;h3 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
 &lt;li&gt;可
     
