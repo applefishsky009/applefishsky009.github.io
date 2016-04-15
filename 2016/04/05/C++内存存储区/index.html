@@ -53,7 +53,7 @@ new和m">
 
 
 new和m">
-<meta property="og:updated_time" content="2016-04-14T10:10:07.595Z">
+<meta property="og:updated_time" content="2016-04-15T01:39:45.936Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++内存存储区">
 <meta name="twitter:description" content="C++内存分配方式有五种：
@@ -224,7 +224,7 @@ new和m">
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/内存存储/">内存存储</a>
+    <a class="article-category-link" href="/categories/存储/">存储</a>
   </span>
 
 
@@ -248,19 +248,19 @@ new和m">
 <li>位于用户虚拟地址空间顶部。</li>
 </ul>
 </li>
-<li>堆：new分配的内存块，delete释放。</li>
-<li>自由存储区：malloc分配，free释放。</li>
+<li>堆：<code>new</code>分配的内存块，<code>delete</code>释放。</li>
+<li>自由存储区：<code>malloc</code>分配，<code>free</code>释放。</li>
 <li>全局/静态存储区：全局变量与静态变量</li>
 <li>常量存储区：存放常量<ul>
-<li>如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。</li>
+<li>如 <code>string s1 = “abcd”</code>；<code>s1</code>是代码块中的指针，在栈中；<code>“abcd”</code>是常量，在常量存储区。</li>
 </ul>
 </li>
 </ol>
 <hr>
-<h2 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h2><ol>
-<li>new可以认为是malloc加构造函数的执行；</li>
-<li>new出来的指针是直接带类型信息的，malloc返回void指针；</li>
-<li>delete会相应调用对象的析构函数。</li>
+<h2 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a><code>new</code>和<code>malloc</code>的区别：</h2><ol>
+<li><code>new</code>可以认为是<code>malloc</code>加构造函数的执行；</li>
+<li><code>new</code>出来的指针是直接带类型信息的，<code>malloc</code>返回<code>void</code>指针；</li>
+<li><code>delete</code>会相应调用对象的析构函数。</li>
 </ol>
 <hr>
 <h2 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h2><ol>
@@ -269,9 +269,9 @@ new和m">
 </ul>
 </li>
 <li>空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）</li>
-<li>碎片问题：堆频繁new/delete会产生大量碎片（delete出来的空间几乎不可能恰好等于new的空间）；栈不会；</li>
+<li>碎片问题：堆频繁<code>new/delete</code>会产生大量碎片（<code>delete</code>出来的空间几乎不可能恰好等于<code>new</code>的空间）；栈不会；</li>
 <li>生长方向：堆向上；栈向下。</li>
-<li>分配方式：堆动态；栈动态（alloca，但他不需人工释放）或静态（编译器完成）</li>
+<li>分配方式：堆动态；栈动态（<code>alloca</code>，但他不需人工释放）或静态（编译器完成）</li>
 <li>分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）</li>
 </ol>
 <hr>

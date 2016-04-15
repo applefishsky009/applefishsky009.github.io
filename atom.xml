@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T01:21:47.848Z</updated>
+  <updated>2016-04-15T01:35:20.266Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/04/12/C++%E7%B1%BB%E7%9A%84this%E6%8C%87%E9%92%88/"/>
     <id>http://yoursite.com/2016/04/12/C++类的this指针/</id>
     <published>2016-04-12T01:08:44.000Z</published>
-    <updated>2016-04-15T01:21:47.848Z</updated>
+    <updated>2016-04-15T01:35:20.266Z</updated>
     
     <content type="html">&lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的&lt;code&gt;this&lt;/code&gt;指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -39,7 +39,7 @@
     
     </summary>
     
-      <category term="指针" scheme="http://yoursite.com/categories/%E6%8C%87%E9%92%88/"/>
+      <category term="类" scheme="http://yoursite.com/categories/%E7%B1%BB/"/>
     
     
       <category term="C++" scheme="http://yoursite.com/tags/C/"/>
@@ -51,13 +51,13 @@
     <link href="http://yoursite.com/2016/04/11/C++%E6%BA%A2%E5%87%BA/"/>
     <id>http://yoursite.com/2016/04/11/C++溢出/</id>
     <published>2016-04-11T12:35:24.000Z</published>
-    <updated>2016-04-15T01:23:52.319Z</updated>
+    <updated>2016-04-15T01:42:43.660Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数值溢出原理&quot;&gt;&lt;a href=&quot;#数值溢出原理&quot; class=&quot;headerlink&quot; title=&quot;数值溢出原理&quot;&gt;&lt;/a&gt;数值溢出原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/W3CYdOb.png&quot; alt=&quot;数值圆图&quot;&gt;&lt;br&gt;C++Plus在P44已经说的很清楚，如下。&lt;br&gt;有几点需要注意的地方：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;上图下图中的圆在进行&lt;strong&gt;强制类型转化&lt;/strong&gt;时也是&lt;strong&gt;对应&lt;/strong&gt;的，这就是说&lt;code&gt;(uchar)-1 = 65535&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;无符号数没有溢出，只有&lt;strong&gt;进/借位&lt;/strong&gt;(微机原理CF标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。&lt;/li&gt;
-&lt;li&gt;有符号数没有进/借位，只有&lt;strong&gt;溢出&lt;/strong&gt;(微机原理OF标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。&lt;/li&gt;
+&lt;li&gt;无符号数没有溢出，只有&lt;strong&gt;进/借位&lt;/strong&gt;(微机原理&lt;code&gt;CF&lt;/code&gt;标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。&lt;/li&gt;
+&lt;li&gt;有符号数没有进/借位，只有&lt;strong&gt;溢出&lt;/strong&gt;(微机原理&lt;code&gt;OF&lt;/code&gt;标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;运算溢出&quot;&gt;&lt;a href=&quot;#运算溢出&quot; class=&quot;headerlink&quot; title=&quot;运算溢出&quot;&gt;&lt;/a&gt;运算溢出&lt;/h2&gt;&lt;h3 id=&quot;判断加法溢出&quot;&gt;&lt;a href=&quot;#判断加法溢出&quot; class=&quot;headerlink&quot; title=&quot;判断加法溢出&quot;&gt;&lt;/a&gt;判断加法溢出&lt;/h3&gt;&lt;p&gt;可以像这里一样分情况或者根据圆图分析，会发现&lt;/p&gt;
@@ -66,12 +66,12 @@
 &lt;li&gt;所有下溢结果都大于任何一个操作数。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;判断乘法溢出&quot;&gt;&lt;a href=&quot;#判断乘法溢出&quot; class=&quot;headerlink&quot; title=&quot;判断乘法溢出&quot;&gt;&lt;/a&gt;判断乘法溢出&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;在这里提到，可以用检测a*b/b是否等于a来判断是否乘法溢出；&lt;/li&gt;
+&lt;li&gt;在这里提到，可以用检测&lt;code&gt;a*b/b&lt;/code&gt;是否等于a来判断是否乘法溢出；&lt;/li&gt;
 &lt;li&gt;在这里提到，可以先扩展再强制类型转化到低位，在判断是否相等来判断。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;值得注意的是，在之前的帖子中提到过判断是否相等对&lt;strong&gt;浮点数&lt;/strong&gt;和整型的判断方式是不一样的。&lt;/p&gt;
 &lt;h3 id=&quot;除零是不是溢出？&quot;&gt;&lt;a href=&quot;#除零是不是溢出？&quot; class=&quot;headerlink&quot; title=&quot;除零是不是溢出？&quot;&gt;&lt;/a&gt;除零是不是溢出？&lt;/h3&gt;&lt;p&gt;任何数除以零的计算“不是”算术溢出的一种。在数学上只能明显算是不明确的定义；它计算出来的结果只能当成是“没有”值，而不是非常大的无限数值。&lt;/p&gt;
-&lt;p&gt;应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，c = a*b一般都会选择c的长度为a的长度与b的长度之和。&lt;/p&gt;
+&lt;p&gt;应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，&lt;code&gt;c = a*b&lt;/code&gt;一般都会选择c的长度为a的长度与b的长度之和。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;堆栈溢出&quot;&gt;&lt;a href=&quot;#堆栈溢出&quot; class=&quot;headerlink&quot; title=&quot;堆栈溢出&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;堆栈溢出&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一般编译器默认的堆栈内存是1MB，若使用过多的堆栈内存时就会导致调用堆栈产生的溢出。一般产生于递归，或者静态申请过多的临时变量，比如&lt;code&gt;int a[1024[1024]&lt;/code&gt;。&lt;/p&gt;
 &lt;ol&gt;
@@ -101,7 +101,7 @@
     <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
     <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
     <published>2016-04-09T12:07:02.000Z</published>
-    <updated>2016-04-15T01:24:43.663Z</updated>
+    <updated>2016-04-15T01:40:07.424Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补码&quot;&gt;&lt;/a&gt;原、反、补码&lt;/h3&gt;&lt;p&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
 &lt;table&gt;
@@ -128,7 +128,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;p&gt;举个例子，数据类型为char：&lt;/p&gt;
+&lt;p&gt;举个例子，数据类型为&lt;code&gt;char&lt;/code&gt;：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -140,13 +140,13 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;+3&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;+3&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;-3&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;-3&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;10000011&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111100&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111101&lt;/code&gt;&lt;/td&gt;
@@ -201,8 +201,8 @@
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;2·&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a = -127&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;b = 127&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a = -127&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;b = 127&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
@@ -218,10 +218,10 @@
     
     </summary>
     
-      <category term="变量存储" scheme="http://yoursite.com/categories/%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8/"/>
+      <category term="存储" scheme="http://yoursite.com/categories/%E5%AD%98%E5%82%A8/"/>
     
     
-      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
     
   </entry>
   
@@ -230,7 +230,7 @@
     <link href="http://yoursite.com/2016/04/08/leetcode%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/"/>
     <id>http://yoursite.com/2016/04/08/leetcode第一章：编程技巧说明/</id>
     <published>2016-04-08T11:44:02.000Z</published>
-    <updated>2016-04-15T01:24:09.103Z</updated>
+    <updated>2016-04-15T01:42:20.311Z</updated>
     
     <content type="html">&lt;h2 id=&quot;判断两个值a-b是否相等&quot;&gt;&lt;a href=&quot;#判断两个值a-b是否相等&quot; class=&quot;headerlink&quot; title=&quot;判断两个值a,b是否相等&quot;&gt;&lt;/a&gt;判断两个值a,b是否相等&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code&gt;；&lt;/li&gt;
@@ -252,17 +252,17 @@
 &lt;hr&gt;
 &lt;h2 id=&quot;vector和string优先于动态数组的分配&quot;&gt;&lt;a href=&quot;#vector和string优先于动态数组的分配&quot; class=&quot;headerlink&quot; title=&quot;vector和string优先于动态数组的分配&quot;&gt;&lt;/a&gt;vector和string优先于动态数组的分配&lt;/h2&gt;&lt;p&gt;性能上，&lt;code&gt;vector&lt;/code&gt;保证内存（分配在堆）连续，一旦分配后，性能和原始数组相当；&lt;br&gt;用&lt;code&gt;new&lt;/code&gt;必须&lt;code&gt;delete&lt;/code&gt;，不然会&lt;code&gt;bug&lt;/code&gt;，代码行数不够短；&lt;br&gt;多维数组定义方法：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;new/delete:&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;new/delete&lt;/code&gt;:&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int** array = new int*[row];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(int i=0;i&amp;lt;row;i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	array[i] = new int [col];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;vector:    &lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;:    &lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; = array(row,vector&amp;lt;int&amp;gt;(col,0));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;使用reverse来避免不必要的重新分配&quot;&gt;&lt;a href=&quot;#使用reverse来避免不必要的重新分配&quot; class=&quot;headerlink&quot; title=&quot;使用reverse来避免不必要的重新分配&quot;&gt;&lt;/a&gt;使用reverse来避免&lt;a href=&quot;http://blog.csdn.net/bichenggui/article/details/4690175&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;不必要的重新分配&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;vector&lt;/code&gt;需要更多空间，以类似&lt;code&gt;realloc&lt;/code&gt;的思想来增长大小。分配，回收，拷贝和析构，这些步骤都很昂贵。并且每次这些步骤发生时，所有指向&lt;code&gt;vector&lt;/code&gt;或&lt;code&gt;string&lt;/code&gt;中的迭代器、指针和引用都会失效。&lt;/li&gt;
-&lt;li&gt;据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻1.5倍的。因此在1000次&lt;code&gt;push_back&lt;/code&gt;中导致了18次重新分配。&lt;img src=&quot;http://i.imgur.com/ooqb6by.png&quot; alt=&quot;reverse()&quot;&gt;&lt;/li&gt;
+&lt;li&gt;据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻&lt;em&gt;1.5&lt;/em&gt;倍的。因此在1000次&lt;code&gt;push_back&lt;/code&gt;中导致了18次重新分配。&lt;img src=&quot;http://i.imgur.com/ooqb6by.png&quot; alt=&quot;reverse()&quot;&gt;&lt;/li&gt;
 &lt;li&gt;在&lt;strong&gt;容器被构造之后&lt;/strong&gt;进行&lt;strong&gt;&lt;code&gt;reserve&lt;/code&gt;设置容器容量&lt;/strong&gt;可以避免不必要的重新分配。&lt;code&gt;a.reserve(1000)&lt;/code&gt;即把a的容量设置为1000。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
@@ -286,27 +286,27 @@
     <link href="http://yoursite.com/2016/04/07/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%88%9D%E6%8E%A2/"/>
     <id>http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/</id>
     <published>2016-04-07T11:03:11.000Z</published>
-    <updated>2016-04-15T01:24:26.927Z</updated>
+    <updated>2016-04-15T01:35:53.665Z</updated>
     
     <content type="html">&lt;h2 id=&quot;类的简介&quot;&gt;&lt;a href=&quot;#类的简介&quot; class=&quot;headerlink&quot; title=&quot;类的简介&quot;&gt;&lt;/a&gt;类的简介&lt;/h2&gt;&lt;h3 id=&quot;类的规范由两部分组成：&quot;&gt;&lt;a href=&quot;#类的规范由两部分组成：&quot; class=&quot;headerlink&quot; title=&quot;类的规范由两部分组成：&quot;&gt;&lt;/a&gt;类的规范由两部分组成：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
 &lt;li&gt;以数据成员的方式描述数据，以成员函数的方式描述公有接口；&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;数据&lt;/strong&gt;通常放在私有部分，组成类接口的&lt;strong&gt;成员函数&lt;/strong&gt;放在公有部分，另外&lt;strong&gt;私有成员函数&lt;/strong&gt;用来处理不属于公有接口的实现细节。&lt;/li&gt;
-&lt;li&gt;定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。&lt;/li&gt;
+&lt;li&gt;定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用&lt;code&gt;inline&lt;/code&gt;关键字成为内联函数。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;类方法定义 – 类的实现细节&lt;ul&gt;
 &lt;li&gt;C++通常把接口（类声明）放在头文件中，并将实现（类方法代码）放在源代码中；&lt;/li&gt;
-&lt;li&gt;定义成员函数时，使用作用域解析符（::）来表示函数所属的类；&lt;/li&gt;
-&lt;li&gt;类方法可以访问类的private组件。&lt;/li&gt;
-&lt;li&gt;只要类方法不修改调用对象，就应将其声明为const，如&lt;code&gt;void Stock::show() const&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;定义成员函数时，使用作用域解析符（&lt;code&gt;::&lt;/code&gt;）来表示函数所属的类；&lt;/li&gt;
+&lt;li&gt;类方法可以访问类的&lt;code&gt;private&lt;/code&gt;组件。&lt;/li&gt;
+&lt;li&gt;只要类方法不修改调用对象，就应将其声明为&lt;code&gt;const&lt;/code&gt;，如&lt;code&gt;void Stock::show() const&lt;/code&gt;。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;类所创建的每个新对象都有自己的存储空间，用于存储其内部变量和类成员；但同一个类的所有对象&lt;strong&gt;共享同一组类方法&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id=&quot;类成员的访问控制（封装）&quot;&gt;&lt;a href=&quot;#类成员的访问控制（封装）&quot; class=&quot;headerlink&quot; title=&quot;类成员的访问控制（封装）&quot;&gt;&lt;/a&gt;类成员的访问控制（封装）&lt;/h3&gt;&lt;p&gt;数据隐藏：防止程序直接访问数据。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;例如&lt;code&gt;int a&lt;/code&gt;是类的私有数据成员，&lt;code&gt;cout&amp;lt;&amp;lt;a&lt;/code&gt;是不对的，只有公有成员函数或友元函数才能访问。可以定义一个show()方法访问a用来输出。&lt;/li&gt;
+&lt;li&gt;例如&lt;code&gt;int a&lt;/code&gt;是类的私有数据成员，&lt;code&gt;cout&amp;lt;&amp;lt;a&lt;/code&gt;是不对的，只有公有成员函数或友元函数才能访问。可以定义一个&lt;code&gt;show()&lt;/code&gt;方法访问a用来输出。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;数据封装：实现细节放在一起并与抽象分开。&lt;/p&gt;
 &lt;ul&gt;
@@ -322,7 +322,7 @@
 &lt;h3 id=&quot;类的析构函数&quot;&gt;&lt;a href=&quot;#类的析构函数&quot; class=&quot;headerlink&quot; title=&quot;类的析构函数&quot;&gt;&lt;/a&gt;类的析构函数&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。&lt;/li&gt;
 &lt;li&gt;注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。&lt;/li&gt;
-&lt;li&gt;若构造函数中有new，则析构函数必须delete。&lt;/li&gt;
+&lt;li&gt;若构造函数中有&lt;code&gt;new&lt;/code&gt;，则析构函数必须&lt;code&gt;delete&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;构造函数的语法&quot;&gt;&lt;a href=&quot;#构造函数的语法&quot; class=&quot;headerlink&quot; title=&quot;构造函数的语法&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构造函数的语法&lt;/a&gt;&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. Num nums(initVector);
 2. nums = Num(initVector)。
@@ -357,7 +357,7 @@
     <link href="http://yoursite.com/2016/04/06/C++%E4%BA%94%E7%A7%8D%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8Eexternal%E5%85%B3%E9%94%AE%E5%AD%97/"/>
     <id>http://yoursite.com/2016/04/06/C++五种变量存储方式与external关键字/</id>
     <published>2016-04-06T09:15:14.000Z</published>
-    <updated>2016-04-14T10:53:11.312Z</updated>
+    <updated>2016-04-15T01:38:21.986Z</updated>
     
     <content type="html">&lt;h2 id=&quot;五种变量存储方式&quot;&gt;&lt;a href=&quot;#五种变量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变量存储方式&quot;&gt;&lt;/a&gt;五种变量存储方式&lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
@@ -382,14 +382,14 @@
 &lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块中，register&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块中，&lt;code&gt;register&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;静态，无链接性&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块中，static&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;代码块中，&lt;code&gt;static&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;静态，外部连接性&lt;/td&gt;
@@ -403,12 +403,12 @@
 &lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;文件&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;内部&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，static&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，&lt;code&gt;static&lt;/code&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;ul&gt;
-&lt;li&gt;register用于显示指出自动变量，没什么用处，C++11保留的目的是向下兼容；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;register&lt;/code&gt;用于显示指出自动变量，没什么用处，C++11保留的目的是向下兼容；&lt;/li&gt;
 &lt;li&gt;静态无链接性变量与自动变量的异同：&lt;ul&gt;
 &lt;li&gt;静态无链接性变量在编译器&lt;strong&gt;编译&lt;/strong&gt;时，编译器在&lt;strong&gt;静态/全局存储区&lt;/strong&gt;分配内存；&lt;/li&gt;
 &lt;li&gt;自动变量在代码块&lt;strong&gt;运行&lt;/strong&gt;时，编译器在&lt;strong&gt;栈&lt;/strong&gt;中分配内存；&lt;/li&gt;
@@ -417,14 +417,14 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;external关键字&quot;&gt;&lt;a href=&quot;#external关键字&quot; class=&quot;headerlink&quot; title=&quot;external关键字&quot;&gt;&lt;/a&gt;external关键字&lt;/h2&gt;&lt;p&gt;变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用external关键字做&lt;strong&gt;引用声明&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;external关键字&quot;&gt;&lt;a href=&quot;#external关键字&quot; class=&quot;headerlink&quot; title=&quot;external关键字&quot;&gt;&lt;/a&gt;&lt;code&gt;external&lt;/code&gt;关键字&lt;/h2&gt;&lt;p&gt;变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用&lt;code&gt;external&lt;/code&gt;关键字做&lt;strong&gt;引用声明&lt;/strong&gt;。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;外部变量在main()前面或头文件中定义它，在文件中定义之后的任何位置使用它；&lt;/li&gt;
+&lt;li&gt;外部变量在&lt;code&gt;main()&lt;/code&gt;前面或头文件中定义它，在文件中定义之后的任何位置使用它；&lt;/li&gt;
 &lt;li&gt;单定义规则：变量只能定义声明一次；&lt;/li&gt;
-&lt;li&gt;局部变量隐藏同名的全局变量。如果要访问全局变量，可用作用域解析符“：：”；&lt;/li&gt;
-&lt;li&gt;静态变量将隐藏常规外部变量（使用external关键字引用）。&lt;/li&gt;
+&lt;li&gt;局部变量隐藏同名的全局变量。如果要访问全局变量，可用作用域解析符&lt;code&gt;：：&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;静态变量将隐藏常规外部变量（使用&lt;code&gt;external&lt;/code&gt;关键字引用）。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;关于external关键字的测试是很简单的，这里不给出代码。另外提到单定义规则，有一点需要注意。任何一个包含头文件的cpp都要重新编译这个头文件，因此头文件绝对不能包含函数体与变量。不然，两个或两个以上cpp包含它会出现重定义错误。&lt;/p&gt;
+&lt;p&gt;关于&lt;code&gt;external&lt;/code&gt;关键字的测试是很简单的，这里不给出代码。另外提到单定义规则，有一点需要注意。任何一个包含头文件的cpp都要重新编译这个头文件，因此头文件绝对不能包含函数体与变量。不然，两个或两个以上cpp包含它会出现重定义错误。&lt;/p&gt;
 &lt;hr&gt;
 </content>
     
@@ -437,7 +437,7 @@
     
     </summary>
     
-      <category term="变量存储" scheme="http://yoursite.com/categories/%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8/"/>
+      <category term="存储" scheme="http://yoursite.com/categories/%E5%AD%98%E5%82%A8/"/>
     
     
       <category term="C++" scheme="http://yoursite.com/tags/C/"/>
@@ -449,7 +449,7 @@
     <link href="http://yoursite.com/2016/04/05/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/"/>
     <id>http://yoursite.com/2016/04/05/C++内存存储区/</id>
     <published>2016-04-05T02:17:33.000Z</published>
-    <updated>2016-04-14T10:10:07.595Z</updated>
+    <updated>2016-04-15T01:39:45.936Z</updated>
     
     <content type="html">&lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
@@ -458,19 +458,19 @@
 &lt;li&gt;位于用户虚拟地址空间顶部。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;堆：new分配的内存块，delete释放。&lt;/li&gt;
-&lt;li&gt;自由存储区：malloc分配，free释放。&lt;/li&gt;
+&lt;li&gt;堆：&lt;code&gt;new&lt;/code&gt;分配的内存块，&lt;code&gt;delete&lt;/code&gt;释放。&lt;/li&gt;
+&lt;li&gt;自由存储区：&lt;code&gt;malloc&lt;/code&gt;分配，&lt;code&gt;free&lt;/code&gt;释放。&lt;/li&gt;
 &lt;li&gt;全局/静态存储区：全局变量与静态变量&lt;/li&gt;
 &lt;li&gt;常量存储区：存放常量&lt;ul&gt;
-&lt;li&gt;如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。&lt;/li&gt;
+&lt;li&gt;如 &lt;code&gt;string s1 = “abcd”&lt;/code&gt;；&lt;code&gt;s1&lt;/code&gt;是代码块中的指针，在栈中；&lt;code&gt;“abcd”&lt;/code&gt;是常量，在常量存储区。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;new可以认为是malloc加构造函数的执行；&lt;/li&gt;
-&lt;li&gt;new出来的指针是直接带类型信息的，malloc返回void指针；&lt;/li&gt;
-&lt;li&gt;delete会相应调用对象的析构函数。&lt;/li&gt;
+&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;malloc&lt;/code&gt;的区别：&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;new&lt;/code&gt;可以认为是&lt;code&gt;malloc&lt;/code&gt;加构造函数的执行；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;new&lt;/code&gt;出来的指针是直接带类型信息的，&lt;code&gt;malloc&lt;/code&gt;返回&lt;code&gt;void&lt;/code&gt;指针；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;delete&lt;/code&gt;会相应调用对象的析构函数。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;堆和栈的区别：&quot;&gt;&lt;a href=&quot;#堆和栈的区别：&quot; class=&quot;headerlink&quot; title=&quot;堆和栈的区别：&quot;&gt;&lt;/a&gt;堆和栈的区别：&lt;/h2&gt;&lt;ol&gt;
@@ -479,9 +479,9 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）&lt;/li&gt;
-&lt;li&gt;碎片问题：堆频繁new/delete会产生大量碎片（delete出来的空间几乎不可能恰好等于new的空间）；栈不会；&lt;/li&gt;
+&lt;li&gt;碎片问题：堆频繁&lt;code&gt;new/delete&lt;/code&gt;会产生大量碎片（&lt;code&gt;delete&lt;/code&gt;出来的空间几乎不可能恰好等于&lt;code&gt;new&lt;/code&gt;的空间）；栈不会；&lt;/li&gt;
 &lt;li&gt;生长方向：堆向上；栈向下。&lt;/li&gt;
-&lt;li&gt;分配方式：堆动态；栈动态（alloca，但他不需人工释放）或静态（编译器完成）&lt;/li&gt;
+&lt;li&gt;分配方式：堆动态；栈动态（&lt;code&gt;alloca&lt;/code&gt;，但他不需人工释放）或静态（编译器完成）&lt;/li&gt;
 &lt;li&gt;分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -496,7 +496,7 @@
     
     </summary>
     
-      <category term="内存存储" scheme="http://yoursite.com/categories/%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8/"/>
+      <category term="存储" scheme="http://yoursite.com/categories/%E5%AD%98%E5%82%A8/"/>
     
     
       <category term="C++" scheme="http://yoursite.com/tags/C/"/>

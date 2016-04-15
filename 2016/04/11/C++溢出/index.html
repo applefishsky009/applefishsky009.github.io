@@ -30,7 +30,7 @@
 无符号数没有溢出，只有进/借位(微机原理CF标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。
 有符号数没有进/借位，只有溢出(微机原理OF标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在">
 <meta property="og:image" content="http://i.imgur.com/W3CYdOb.png">
-<meta property="og:updated_time" content="2016-04-15T01:23:52.319Z">
+<meta property="og:updated_time" content="2016-04-15T01:42:43.660Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++溢出">
 <meta name="twitter:description" content="数值溢出原理C++Plus在P44已经说的很清楚，如下。有几点需要注意的地方：
@@ -210,8 +210,8 @@
       <h2 id="数值溢出原理"><a href="#数值溢出原理" class="headerlink" title="数值溢出原理"></a>数值溢出原理</h2><p><img src="http://i.imgur.com/W3CYdOb.png" alt="数值圆图"><br>C++Plus在P44已经说的很清楚，如下。<br>有几点需要注意的地方：</p>
 <ol>
 <li>上图下图中的圆在进行<strong>强制类型转化</strong>时也是<strong>对应</strong>的，这就是说<code>(uchar)-1 = 65535</code>。</li>
-<li>无符号数没有溢出，只有<strong>进/借位</strong>(微机原理CF标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。</li>
-<li>有符号数没有进/借位，只有<strong>溢出</strong>(微机原理OF标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。</li>
+<li>无符号数没有溢出，只有<strong>进/借位</strong>(微机原理<code>CF</code>标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。</li>
+<li>有符号数没有进/借位，只有<strong>溢出</strong>(微机原理<code>OF</code>标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。</li>
 </ol>
 <hr>
 <h2 id="运算溢出"><a href="#运算溢出" class="headerlink" title="运算溢出"></a>运算溢出</h2><h3 id="判断加法溢出"><a href="#判断加法溢出" class="headerlink" title="判断加法溢出"></a>判断加法溢出</h3><p>可以像这里一样分情况或者根据圆图分析，会发现</p>
@@ -220,12 +220,12 @@
 <li>所有下溢结果都大于任何一个操作数。</li>
 </ol>
 <h3 id="判断乘法溢出"><a href="#判断乘法溢出" class="headerlink" title="判断乘法溢出"></a>判断乘法溢出</h3><ol>
-<li>在这里提到，可以用检测a*b/b是否等于a来判断是否乘法溢出；</li>
+<li>在这里提到，可以用检测<code>a*b/b</code>是否等于a来判断是否乘法溢出；</li>
 <li>在这里提到，可以先扩展再强制类型转化到低位，在判断是否相等来判断。</li>
 </ol>
 <p>值得注意的是，在之前的帖子中提到过判断是否相等对<strong>浮点数</strong>和整型的判断方式是不一样的。</p>
 <h3 id="除零是不是溢出？"><a href="#除零是不是溢出？" class="headerlink" title="除零是不是溢出？"></a>除零是不是溢出？</h3><p>任何数除以零的计算“不是”算术溢出的一种。在数学上只能明显算是不明确的定义；它计算出来的结果只能当成是“没有”值，而不是非常大的无限数值。</p>
-<p>应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，c = a*b一般都会选择c的长度为a的长度与b的长度之和。</p>
+<p>应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，<code>c = a*b</code>一般都会选择c的长度为a的长度与b的长度之和。</p>
 <hr>
 <h2 id="堆栈溢出"><a href="#堆栈溢出" class="headerlink" title="堆栈溢出"></a><a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D" target="_blank" rel="external">堆栈溢出</a></h2><p>一般编译器默认的堆栈内存是1MB，若使用过多的堆栈内存时就会导致调用堆栈产生的溢出。一般产生于递归，或者静态申请过多的临时变量，比如<code>int a[1024[1024]</code>。</p>
 <ol>

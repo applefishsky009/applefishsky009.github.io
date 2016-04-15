@@ -38,7 +38,7 @@ x%2 != 0用来判断一个整数是否是奇数，不能用x%2 = 1，因为x可�
 x%2 != 0用来判断一个整数是否是奇数，不能用x%2 = 1，因为x可能是负数，余数就是-1。
 -3 = 2*-1+(-1)，">
 <meta property="og:image" content="http://i.imgur.com/ooqb6by.png">
-<meta property="og:updated_time" content="2016-04-15T01:24:09.103Z">
+<meta property="og:updated_time" content="2016-04-15T01:42:20.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode第一章：编程技巧说明">
 <meta name="twitter:description" content="判断两个值a,b是否相等
@@ -239,17 +239,17 @@ x%2 != 0用来判断一个整数是否是奇数，不能用x%2 = 1，因为x可�
 <hr>
 <h2 id="vector和string优先于动态数组的分配"><a href="#vector和string优先于动态数组的分配" class="headerlink" title="vector和string优先于动态数组的分配"></a>vector和string优先于动态数组的分配</h2><p>性能上，<code>vector</code>保证内存（分配在堆）连续，一旦分配后，性能和原始数组相当；<br>用<code>new</code>必须<code>delete</code>，不然会<code>bug</code>，代码行数不够短；<br>多维数组定义方法：</p>
 <ol>
-<li><p>new/delete:</p>
+<li><p><code>new/delete</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int** array = new int*[row];</span><br><span class="line">for(int i=0;i&lt;row;i++)</span><br><span class="line">	array[i] = new int [col];</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>vector:    </p>
+<li><p><code>vector</code>:    </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt;&gt; = array(row,vector&lt;int&gt;(col,0));</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <hr>
 <h2 id="使用reverse来避免不必要的重新分配"><a href="#使用reverse来避免不必要的重新分配" class="headerlink" title="使用reverse来避免不必要的重新分配"></a>使用reverse来避免<a href="http://blog.csdn.net/bichenggui/article/details/4690175" target="_blank" rel="external">不必要的重新分配</a></h2><ol>
 <li><code>vector</code>需要更多空间，以类似<code>realloc</code>的思想来增长大小。分配，回收，拷贝和析构，这些步骤都很昂贵。并且每次这些步骤发生时，所有指向<code>vector</code>或<code>string</code>中的迭代器、指针和引用都会失效。</li>
-<li>据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻1.5倍的。因此在1000次<code>push_back</code>中导致了18次重新分配。<img src="http://i.imgur.com/ooqb6by.png" alt="reverse()"></li>
+<li>据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻<em>1.5</em>倍的。因此在1000次<code>push_back</code>中导致了18次重新分配。<img src="http://i.imgur.com/ooqb6by.png" alt="reverse()"></li>
 <li>在<strong>容器被构造之后</strong>进行<strong><code>reserve</code>设置容器容量</strong>可以避免不必要的重新分配。<code>a.reserve(1000)</code>即把a的容量设置为1000。</li>
 </ol>
 
