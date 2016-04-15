@@ -208,13 +208,13 @@
   
   <entry>
     <title>vector简介及非STL函数用法-持续更新</title>
-    <link href="http://yoursite.com/2016/04/13/vector%E7%AE%80%E4%BB%8B%E5%8F%8A%E9%9D%9ESTL%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-    <id>http://yoursite.com/2016/04/13/vector简介及非STL函数用法-持续更新/</id>
-    <published>2016-04-13T06:54:50.000Z</published>
-    <updated>2016-04-15T09:36:30.853Z</updated>
+    <link href="http://yoursite.com/2016/04/12/vector%E7%AE%80%E4%BB%8B%E5%8F%8A%E9%9D%9ESTL%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    <id>http://yoursite.com/2016/04/12/vector简介及非STL函数用法-持续更新/</id>
+    <published>2016-04-12T06:54:50.000Z</published>
+    <updated>2016-04-15T09:39:54.996Z</updated>
     
     <content type="html">&lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习，必要时会分析源码。&lt;/p&gt;
-&lt;p&gt;常见的方法有：&lt;br&gt;&lt;code&gt;.insert()&lt;/code&gt;，&lt;code&gt;a.emplace()&lt;/code&gt;，&lt;code&gt;.resize()&lt;/code&gt;，&lt;code&gt;.reverse()&lt;/code&gt;，&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;常见的方法有：&lt;br&gt;&lt;code&gt;.insert()&lt;/code&gt;，&lt;code&gt;a.emplace()&lt;/code&gt;，&lt;code&gt;.resize()&lt;/code&gt;，&lt;code&gt;.reverse()&lt;/code&gt;，&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;，&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;有&lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt;;&lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;;即a,b是&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的对象。&lt;code&gt;vector&amp;lt;int&amp;gt; ::iterator p&lt;/code&gt;;p是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。i、j、q均和p一样是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;sort-用于vector&quot;&gt;&lt;a href=&quot;#sort-用于vector&quot; class=&quot;headerlink&quot; title=&quot;sort()用于vector;&quot;&gt;&lt;/a&gt;sort()用于vector;&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;algorithm&amp;gt;&lt;/code&gt;头文件中提供了&lt;code&gt;sort&lt;/code&gt;的两个重载函数,查看源码可发现是用&lt;strong&gt;快排&lt;/strong&gt;实现的。&lt;/p&gt;
