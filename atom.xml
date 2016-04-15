@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-14T12:59:34.603Z</updated>
+  <updated>2016-04-15T01:19:12.289Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++类的this指针</title>
+    <link href="http://yoursite.com/2016/04/12/C++%E7%B1%BB%E7%9A%84this%E6%8C%87%E9%92%88/"/>
+    <id>http://yoursite.com/2016/04/12/C++类的this指针/</id>
+    <published>2016-04-12T01:08:44.000Z</published>
+    <updated>2016-04-15T01:19:12.289Z</updated>
+    
+    <content type="html">&lt;p&gt;##C++类的&lt;code&gt;this&lt;/code&gt;指针&lt;/p&gt;
+&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;一般来说，所有类方法都将&lt;code&gt;this&lt;/code&gt;指针设置为调用它的&lt;strong&gt;地址&lt;/strong&gt;。(因此返回对象使用&lt;strong&gt;&lt;code&gt;*this&lt;/code&gt;&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法返回类型是指针意味着返回的是调用对象本身，而不是其副本。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法的最后一个&lt;code&gt;const&lt;/code&gt;表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。&lt;/li&gt;
+&lt;li&gt;形参列表中的&lt;code&gt;const&lt;/code&gt;表示该函数不会修改被显示访问的对象(即图中的s)。&lt;/li&gt;
+&lt;li&gt;由于该函数返回了两个&lt;code&gt;const&lt;/code&gt;对象之一的引用，因此&lt;strong&gt;返回类型也应该是&lt;code&gt;const&lt;/code&gt;引用&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/CzuJ4fG.png&quot; alt=&quot;this的实例&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##C++类的&lt;code&gt;this&lt;/code&gt;指针&lt;/p&gt;
+&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compa
+    
+    </summary>
+    
+      <category term="指针" scheme="http://yoursite.com/categories/%E6%8C%87%E9%92%88/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C++溢出</title>

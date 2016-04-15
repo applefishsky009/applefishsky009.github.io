@@ -7,24 +7,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>tag | 孤云两角，去天一握</title>
+  <title>C++类的this指针 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="ryl,applefishsky009,C++,图像处理,Hexo主题," />
+    <meta name="keywords" content="C++," />
   
 
-  <meta name="description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tag">
-<meta property="og:url" content="http://yoursite.com/tag/index.html">
+  <meta name="description" content="##C++类的this指针
+如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++类的this指针">
+<meta property="og:url" content="http://yoursite.com/2016/04/12/C++类的this指针/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
-<meta property="og:updated_time" content="2016-04-14T05:25:51.536Z">
+<meta property="og:description" content="##C++类的this指针
+如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b">
+<meta property="og:image" content="http://i.imgur.com/qChOATG.png">
+<meta property="og:image" content="http://i.imgur.com/CzuJ4fG.png">
+<meta property="og:updated_time" content="2016-04-15T01:19:12.289Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tag">
-<meta name="twitter:description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
+<meta name="twitter:title" content="C++类的this指针">
+<meta name="twitter:description" content="##C++类的this指针
+如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b">
+<meta name="twitter:image" content="http://i.imgur.com/qChOATG.png">
 
   
 
@@ -61,17 +67,8 @@
     <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
-  <div class="content content-tag">
-  <div class="page-header">
-
-  
-    <div class="breadcrumb">
-      <div class="location">标签</div>
-      <i class="icon-location"></i>
-    </div>
-  
-
-  
+  <div class="post-header CENTER">
+   
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
       <span class="toolbox-entry-text">盒子</span>
@@ -154,111 +151,70 @@
   </div>
 
 
-
-  <div class="box-blog-info">
-    <a class="avatar" href="/">
-      <img src="/images/avatar.jpg" alt="" />
-    </a>
-    <div class="info">
-      <h3 class="name" style="font-family: calligraffittiregular">
-        孤云两角，去天一握
-      </h3>
-      <div class="slogan">
-        山在地下，地山谦
-      </div>
-    </div>
-  </div>
-
 </div>
 
-  <section class="tag-box">
-  <div class="tag-title">标签</div>
-  <div class="tag-list">
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-C++类的this指针" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">C++类的this指针</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/指针/">指针</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/12/C++类的this指针/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
     
-      <a class="tag-item" href="#C++">
-        <span class="tag-name">C++</span>
-        <span class="tag-size">( 6 )</span>
-      </a>
-    
-      <a class="tag-item" href="#c++">
-        <span class="tag-name">c++</span>
-        <span class="tag-size">( 1 )</span>
-      </a>
+      <p>##C++类的<code>this</code>指针</p>
+<p>如图，假设有一个类<code>Stock</code>，他有一个<code>private：int val</code>。他还有一个方法<code>const Stock&amp; Stock::compare(const Stock &amp;classIn) const</code>;这个方法要实现这样的功能：对于两个类<code>Stock</code>的对象a和b，比较a的<code>val</code>和b的<code>val</code>，返回<code>val</code>大的对象(a或者b)，可能性的写法如下：<code>a.compare(b)</code>。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法<code>compare</code>中，如何返回以后才初始化的对象本身(也就是a)？<br><img src="http://i.imgur.com/qChOATG.png" alt="为什么使用this指针"></p>
+<ol>
+<li>一般来说，所有类方法都将<code>this</code>指针设置为调用它的<strong>地址</strong>。(因此返回对象使用<strong><code>*this</code></strong>)</li>
+<li><code>compare</code>方法返回类型是指针意味着返回的是调用对象本身，而不是其副本。</li>
+<li><code>compare</code>方法的最后一个<code>const</code>表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。</li>
+<li>形参列表中的<code>const</code>表示该函数不会修改被显示访问的对象(即图中的s)。</li>
+<li>由于该函数返回了两个<code>const</code>对象之一的引用，因此<strong>返回类型也应该是<code>const</code>引用</strong>。</li>
+</ol>
+<p><img src="http://i.imgur.com/CzuJ4fG.png" alt="this的实例"></p>
+
     
   </div>
-</section>
+</article>
 
-  <ul class="list-post"><li id="C++" class="item-category-name item-title item-title-0">
-  <!--
-    <a href="" class="text-year">
-   -->
-    C++
-    <span class="category-count">( 6 )</span>
-  <!--
-  </a>
-   -->
-</li>
-<li class="item-post item">
-  <span class="post-date">04-12</span>
-
-  <a class="post-title" href="/2016/04/12/C++类的this指针/">C++类的this指针</a>
-
-</li>
-<li class="item-post item">
-  <span class="post-date">04-05</span>
-
-  <a class="post-title" href="/2016/04/05/C++内存存储区/">C++内存存储区</a>
-
-</li>
-<li class="item-post item">
-  <span class="post-date">04-08</span>
-
-  <a class="post-title" href="/2016/04/08/leetcode第一章：编程技巧说明/">leetcode第一章：编程技巧说明</a>
-
-</li>
-<li class="item-post item">
-  <span class="post-date">04-06</span>
-
-  <a class="post-title" href="/2016/04/06/C++五种变量存储方式与external关键字/">C++五种变量存储方式与external关键字</a>
-
-</li>
-<li class="item-post item">
-  <span class="post-date">04-11</span>
-
-  <a class="post-title" href="/2016/04/11/C++溢出/">C++溢出</a>
-
-</li>
-<li class="item-post item">
-  <span class="post-date">04-07</span>
-
-  <a class="post-title" href="/2016/04/07/类的构造函数与析构函数初探/">类的构造函数与析构函数初探</a>
-
-</li>
-<li id="c++" class="item-category-name item-title item-title-1">
-  <!--
-    <a href="" class="text-year">
-   -->
-    c++
-    <span class="category-count">( 1 )</span>
-  <!--
-  </a>
-   -->
-</li>
-<li class="item-post item">
-  <span class="post-date">04-09</span>
-
-  <a class="post-title" href="/2016/04/09/数据存储与二进制运算/">数据存储与二进制运算</a>
-
-</li>
-</ul>
 </div>
 
 
   <a id="backTop" class="back-top">
     <i class="icon-angle-up"></i>
   </a>
-
-
 
 
 
@@ -350,6 +306,40 @@
 </div>
 
 
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2016/04/12/C++类的this指针/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
 
   
 
