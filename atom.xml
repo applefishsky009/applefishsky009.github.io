@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T01:35:20.266Z</updated>
+  <updated>2016-04-15T01:48:02.149Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2016/04/12/C++%E7%B1%BB%E7%9A%84this%E6%8C%87%E9%92%88/"/>
     <id>http://yoursite.com/2016/04/12/C++类的this指针/</id>
     <published>2016-04-12T01:08:44.000Z</published>
-    <updated>2016-04-15T01:35:20.266Z</updated>
+    <updated>2016-04-15T01:48:02.149Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的&lt;code&gt;this&lt;/code&gt;指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的this指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一般来说，所有类方法都将&lt;code&gt;this&lt;/code&gt;指针设置为调用它的&lt;strong&gt;地址&lt;/strong&gt;。(因此返回对象使用&lt;strong&gt;&lt;code&gt;*this&lt;/code&gt;&lt;/strong&gt;)&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法返回类型是指针意味着返回的是调用对象本身，而不是其副本。&lt;/li&gt;
@@ -35,7 +35,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的&lt;code&gt;this&lt;/code&gt;指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/c
+      &lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的this指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;cod
     
     </summary>
     
@@ -101,7 +101,7 @@
     <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
     <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
     <published>2016-04-09T12:07:02.000Z</published>
-    <updated>2016-04-15T01:40:07.424Z</updated>
+    <updated>2016-04-15T01:50:16.766Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补码&quot;&gt;&lt;/a&gt;原、反、补码&lt;/h3&gt;&lt;p&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
 &lt;table&gt;
@@ -157,12 +157,12 @@
 &lt;h3 id=&quot;消失的原码&quot;&gt;&lt;a href=&quot;#消失的原码&quot; class=&quot;headerlink&quot; title=&quot;消失的原码&quot;&gt;&lt;/a&gt;消失的原码&lt;/h3&gt;&lt;p&gt;对于&lt;code&gt;unsigned char&lt;/code&gt;原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于&lt;code&gt;signed char&lt;/code&gt;，最高位是符号位，因此原码的取值范围是-127-127，只有&lt;strong&gt;255个编码&lt;/strong&gt;，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？&lt;/p&gt;
 &lt;p&gt;考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有&lt;code&gt;00000000&lt;/code&gt;、&lt;code&gt;10000000&lt;/code&gt;两个原码表示+0与-0，而这是没有意义的。我们保证&lt;code&gt;00000000&lt;/code&gt;这个原码与&lt;code&gt;00000000&lt;/code&gt;这个补码相对应来表示0就可以。这样找到了消失的原码：&lt;code&gt;10000000&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;在这个基于256的数值域中，观察补码的&lt;strong&gt;重置点（溢出中非常重要的概念）&lt;/strong&gt;127的补码&lt;code&gt;01111111&lt;/code&gt;，-127的补码&lt;code&gt;10000001&lt;/code&gt;，那么可以清楚的看到&lt;code&gt;127+1=？&lt;/code&gt;、&lt;code&gt;？+1=127&lt;/code&gt;。因此很好理解，多余的补码是&lt;code&gt;10000000&lt;/code&gt;（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即&lt;strong&gt;-128的原码&lt;/strong&gt;是&lt;code&gt;10000000&lt;/code&gt;，&lt;strong&gt;补码&lt;/strong&gt;也是&lt;code&gt;10000000&lt;/code&gt;（它的&lt;strong&gt;反码&lt;/strong&gt;是&lt;code&gt;11111111&lt;/code&gt;？）。&lt;/p&gt;
-&lt;h2 id=&quot;二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot;&gt;&lt;a href=&quot;#二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot; class=&quot;headerlink&quot; title=&quot;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&quot;&gt;&lt;/a&gt;二进制运算（移位得到&lt;code&gt;CHAR_MAX&lt;/code&gt;和&lt;code&gt;CHAR_MIN&lt;/code&gt;）&lt;/h2&gt;&lt;p&gt;明白上述数据存储概念之后，可以通过位运算来获得&lt;code&gt;char&lt;/code&gt;的最大最小值。注意，其实在&lt;code&gt;climit&lt;/code&gt;文件中有各种宏定义的最大最小值，比如&lt;code&gt;CHAR_MAX = 127&lt;/code&gt;;&lt;code&gt;UCHAR_MAX = 0xff&lt;/code&gt;;等。但是这里想利用位运算来实现这一目标(注意重置点)：&lt;/p&gt;
+&lt;h2 id=&quot;二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot;&gt;&lt;a href=&quot;#二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot; class=&quot;headerlink&quot; title=&quot;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&quot;&gt;&lt;/a&gt;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&lt;/h2&gt;&lt;p&gt;明白上述数据存储概念之后，可以通过位运算来获得&lt;code&gt;char&lt;/code&gt;的最大最小值。注意，其实在&lt;code&gt;climit&lt;/code&gt;文件中有各种宏定义的最大最小值，比如&lt;code&gt;CHAR_MAX = 127&lt;/code&gt;;&lt;code&gt;UCHAR_MAX = 0xff&lt;/code&gt;;等。但是这里想利用位运算来实现这一目标(注意重置点)：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;CHAR_MAX&lt;/code&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;CHAR_MIN&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;CHAR_MAX&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;CHAR_MIN&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -357,7 +357,7 @@
     <link href="http://yoursite.com/2016/04/06/C++%E4%BA%94%E7%A7%8D%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8Eexternal%E5%85%B3%E9%94%AE%E5%AD%97/"/>
     <id>http://yoursite.com/2016/04/06/C++五种变量存储方式与external关键字/</id>
     <published>2016-04-06T09:15:14.000Z</published>
-    <updated>2016-04-15T01:38:21.986Z</updated>
+    <updated>2016-04-15T01:49:06.028Z</updated>
     
     <content type="html">&lt;h2 id=&quot;五种变量存储方式&quot;&gt;&lt;a href=&quot;#五种变量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变量存储方式&quot;&gt;&lt;/a&gt;五种变量存储方式&lt;/h2&gt;&lt;table&gt;
 &lt;thead&gt;
@@ -417,7 +417,7 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;external关键字&quot;&gt;&lt;a href=&quot;#external关键字&quot; class=&quot;headerlink&quot; title=&quot;external关键字&quot;&gt;&lt;/a&gt;&lt;code&gt;external&lt;/code&gt;关键字&lt;/h2&gt;&lt;p&gt;变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用&lt;code&gt;external&lt;/code&gt;关键字做&lt;strong&gt;引用声明&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;external关键字&quot;&gt;&lt;a href=&quot;#external关键字&quot; class=&quot;headerlink&quot; title=&quot;external关键字&quot;&gt;&lt;/a&gt;external关键字&lt;/h2&gt;&lt;p&gt;变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用&lt;code&gt;external&lt;/code&gt;关键字做&lt;strong&gt;引用声明&lt;/strong&gt;。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;外部变量在&lt;code&gt;main()&lt;/code&gt;前面或头文件中定义它，在文件中定义之后的任何位置使用它；&lt;/li&gt;
 &lt;li&gt;单定义规则：变量只能定义声明一次；&lt;/li&gt;
@@ -449,7 +449,7 @@
     <link href="http://yoursite.com/2016/04/05/C++%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/"/>
     <id>http://yoursite.com/2016/04/05/C++内存存储区/</id>
     <published>2016-04-05T02:17:33.000Z</published>
-    <updated>2016-04-15T01:39:45.936Z</updated>
+    <updated>2016-04-15T01:49:19.732Z</updated>
     
     <content type="html">&lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
@@ -467,7 +467,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;malloc&lt;/code&gt;的区别：&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;new&lt;/code&gt;可以认为是&lt;code&gt;malloc&lt;/code&gt;加构造函数的执行；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;new&lt;/code&gt;出来的指针是直接带类型信息的，&lt;code&gt;malloc&lt;/code&gt;返回&lt;code&gt;void&lt;/code&gt;指针；&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;delete&lt;/code&gt;会相应调用对象的析构函数。&lt;/li&gt;
