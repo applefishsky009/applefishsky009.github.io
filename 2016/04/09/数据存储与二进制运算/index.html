@@ -15,8 +15,7 @@
     <meta name="keywords" content="c++," />
   
 
-  <meta name="description" content="##数据存储
-###原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
+  <meta name="description" content="数据存储原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
 
 
 
@@ -60,13 +59,12 @@
 
 
 -3
-1">
+1000001">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据存储与二进制运算">
 <meta property="og:url" content="http://yoursite.com/2016/04/09/数据存储与二进制运算/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="##数据存储
-###原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
+<meta property="og:description" content="数据存储原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
 
 
 
@@ -110,12 +108,11 @@
 
 
 -3
-1">
-<meta property="og:updated_time" content="2016-04-14T12:50:58.326Z">
+1000001">
+<meta property="og:updated_time" content="2016-04-15T01:24:43.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据存储与二进制运算">
-<meta name="twitter:description" content="##数据存储
-###原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
+<meta name="twitter:description" content="数据存储原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
 
 
 
@@ -159,7 +156,7 @@
 
 
 -3
-1">
+1000001">
 
   
 
@@ -283,6 +280,11 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储"><span class="toc-text">数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原、反、补码"><span class="toc-text">原、反、补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消失的原码"><span class="toc-text">消失的原码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><span class="toc-text">二进制运算（移位得到CHAR_MAX和CHAR_MIN）</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
@@ -323,8 +325,7 @@
 
   <div class="article-content">
     
-      <p>##数据存储</p>
-<p>###原、反、补码<br>计算机为方便计算，内存中的数据都是以补码的形式储存、运算。</p>
+      <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="原、反、补码"><a href="#原、反、补码" class="headerlink" title="原、反、补码"></a>原、反、补码</h3><p>计算机为方便计算，内存中的数据都是以补码的形式储存、运算。</p>
 <table>
 <thead>
 <tr>
@@ -375,11 +376,10 @@
 </tbody>
 </table>
 <p>值得注意的是，如果这个数据为<code>unsigned char</code>，<code>11111101</code>对应的是253，这里涉及到溢出，详细讨论见下一博客。</p>
-<p>###消失的原码<br>对于<code>unsigned char</code>原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于<code>signed char</code>，最高位是符号位，因此原码的取值范围是-127-127，只有<strong>255个编码</strong>，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？</p>
+<h3 id="消失的原码"><a href="#消失的原码" class="headerlink" title="消失的原码"></a>消失的原码</h3><p>对于<code>unsigned char</code>原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于<code>signed char</code>，最高位是符号位，因此原码的取值范围是-127-127，只有<strong>255个编码</strong>，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？</p>
 <p>考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有<code>00000000</code>、<code>10000000</code>两个原码表示+0与-0，而这是没有意义的。我们保证<code>00000000</code>这个原码与<code>00000000</code>这个补码相对应来表示0就可以。这样找到了消失的原码：<code>10000000</code>。</p>
 <p>在这个基于256的数值域中，观察补码的<strong>重置点（溢出中非常重要的概念）</strong>127的补码<code>01111111</code>，-127的补码<code>10000001</code>，那么可以清楚的看到<code>127+1=？</code>、<code>？+1=127</code>。因此很好理解，多余的补码是<code>10000000</code>（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即<strong>-128的原码</strong>是<code>10000000</code>，<strong>补码</strong>也是<code>10000000</code>（它的<strong>反码</strong>是<code>11111111</code>？）。</p>
-<p>##二进制运算（移位得到<code>CHAR_MAX</code>和<code>CHAR_MIN</code>）</p>
-<p>明白上述数据存储概念之后，可以通过位运算来获得<code>char</code>的最大最小值。注意，其实在<code>climit</code>文件中有各种宏定义的最大最小值，比如<code>CHAR_MAX = 127</code>;<code>UCHAR_MAX = 0xff</code>;等。但是这里想利用位运算来实现这一目标(注意重置点)：</p>
+<h2 id="二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><a href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）" class="headerlink" title="二进制运算（移位得到CHAR_MAX和CHAR_MIN）"></a>二进制运算（移位得到<code>CHAR_MAX</code>和<code>CHAR_MIN</code>）</h2><p>明白上述数据存储概念之后，可以通过位运算来获得<code>char</code>的最大最小值。注意，其实在<code>climit</code>文件中有各种宏定义的最大最小值，比如<code>CHAR_MAX = 127</code>;<code>UCHAR_MAX = 0xff</code>;等。但是这里想利用位运算来实现这一目标(注意重置点)：</p>
 <table>
 <thead>
 <tr>

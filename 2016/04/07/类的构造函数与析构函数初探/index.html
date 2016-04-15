@@ -15,9 +15,7 @@
     <meta name="keywords" content="C++," />
   
 
-  <meta name="description" content="##类的简介
-###类的规范由两部分组成：
-
+  <meta name="description" content="类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
@@ -25,14 +23,12 @@
 
 
 类方法定义 – 类的实现细节
-C++">
+C++通常把接口（类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类的构造函数与析构函数初探">
 <meta property="og:url" content="http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="##类的简介
-###类的规范由两部分组成：
-
+<meta property="og:description" content="类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
@@ -40,13 +36,11 @@ C++">
 
 
 类方法定义 – 类的实现细节
-C++">
-<meta property="og:updated_time" content="2016-04-14T11:42:21.003Z">
+C++通常把接口（类">
+<meta property="og:updated_time" content="2016-04-15T01:24:26.927Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类的构造函数与析构函数初探">
-<meta name="twitter:description" content="##类的简介
-###类的规范由两部分组成：
-
+<meta name="twitter:description" content="类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
@@ -54,7 +48,7 @@ C++">
 
 
 类方法定义 – 类的实现细节
-C++">
+C++通常把接口（类">
 
   
 
@@ -178,6 +172,11 @@ C++">
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的简介"><span class="toc-text">类的简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的规范由两部分组成："><span class="toc-text">类的规范由两部分组成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类成员的访问控制（封装）"><span class="toc-text">类成员的访问控制（封装）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的构造函数与析构函数"><span class="toc-text">类的构造函数与析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的构造函数"><span class="toc-text">类的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的析构函数"><span class="toc-text">类的析构函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的语法"><span class="toc-text">构造函数的语法</span></a></li></ol></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
@@ -218,9 +217,7 @@ C++">
 
   <div class="article-content">
     
-      <p>##类的简介</p>
-<p>###类的规范由两部分组成：</p>
-<ol>
+      <h2 id="类的简介"><a href="#类的简介" class="headerlink" title="类的简介"></a>类的简介</h2><h3 id="类的规范由两部分组成："><a href="#类的规范由两部分组成：" class="headerlink" title="类的规范由两部分组成："></a>类的规范由两部分组成：</h3><ol>
 <li>类声明（declaration） – 类的蓝图<ul>
 <li>以数据成员的方式描述数据，以成员函数的方式描述公有接口；</li>
 <li><strong>数据</strong>通常放在私有部分，组成类接口的<strong>成员函数</strong>放在公有部分，另外<strong>私有成员函数</strong>用来处理不属于公有接口的实现细节。</li>
@@ -236,7 +233,7 @@ C++">
 </li>
 </ol>
 <p>类所创建的每个新对象都有自己的存储空间，用于存储其内部变量和类成员；但同一个类的所有对象<strong>共享同一组类方法</strong>。</p>
-<p>###类成员的访问控制（封装）<br>数据隐藏：防止程序直接访问数据。</p>
+<h3 id="类成员的访问控制（封装）"><a href="#类成员的访问控制（封装）" class="headerlink" title="类成员的访问控制（封装）"></a>类成员的访问控制（封装）</h3><p>数据隐藏：防止程序直接访问数据。</p>
 <ul>
 <li>例如<code>int a</code>是类的私有数据成员，<code>cout&lt;&lt;a</code>是不对的，只有公有成员函数或友元函数才能访问。可以定义一个show()方法访问a用来输出。</li>
 </ul>
@@ -247,20 +244,16 @@ C++">
 <li>类函数定义和类声明放在不同的文件中。</li>
 </ul>
 <hr>
-<p>##类的构造函数与析构函数</p>
-<p>###类的构造函数</p>
-<ol>
+<h2 id="类的构造函数与析构函数"><a href="#类的构造函数与析构函数" class="headerlink" title="类的构造函数与析构函数"></a>类的构造函数与析构函数</h2><h3 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h3><ol>
 <li>如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。</li>
 <li>构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。</li>
 </ol>
-<p>###类的析构函数</p>
-<ol>
+<h3 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h3><ol>
 <li>对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。</li>
 <li>注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。</li>
 <li>若构造函数中有new，则析构函数必须delete。</li>
 </ol>
-<p>###<a href="https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array" target="_blank" rel="external">构造函数的语法</a></p>
-<pre><code>1. Num nums(initVector);
+<h3 id="构造函数的语法"><a href="#构造函数的语法" class="headerlink" title="构造函数的语法"></a><a href="https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array" target="_blank" rel="external">构造函数的语法</a></h3><pre><code>1. Num nums(initVector);
 2. nums = Num(initVector)。
 3. Num();
 4. Num nums = Num();
