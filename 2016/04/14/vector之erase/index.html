@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vector模板类-持续更新 | 孤云两角，去天一握</title>
+  <title>vector之erase | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,21 +15,89 @@
     <meta name="keywords" content="C++," />
   
 
-  <meta name="description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
-有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+  <meta name="description" content="a.erase();模板类提供了两个函数重载：
+
+
+
+表达式
+返回类型
+说明
+
+
+
+
+a.erase(p)
+迭代器
+删除p指向的元素
+
+
+a.erase(p,q)
+迭代器
+删除区间[p,q)中的元素
+
+
+
+思考:
+
+在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代码中可以看到传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vector模板类-持续更新">
-<meta property="og:url" content="http://yoursite.com/2016/04/15/vector模板类-持续更新/index.html">
+<meta property="og:title" content="vector之erase">
+<meta property="og:url" content="http://yoursite.com/2016/04/14/vector之erase/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
-有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+<meta property="og:description" content="a.erase();模板类提供了两个函数重载：
+
+
+
+表达式
+返回类型
+说明
+
+
+
+
+a.erase(p)
+迭代器
+删除p指向的元素
+
+
+a.erase(p,q)
+迭代器
+删除区间[p,q)中的元素
+
+
+
+思考:
+
+在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代码中可以看到传">
 <meta property="og:image" content="http://i.imgur.com/TZxRRb6.png">
-<meta property="og:image" content="http://i.imgur.com/b0yBZZw.png">
-<meta property="og:updated_time" content="2016-04-15T03:31:27.738Z">
+<meta property="og:updated_time" content="2016-04-15T09:10:11.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="vector模板类-持续更新">
-<meta name="twitter:description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
-有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+<meta name="twitter:title" content="vector之erase">
+<meta name="twitter:description" content="a.erase();模板类提供了两个函数重载：
+
+
+
+表达式
+返回类型
+说明
+
+
+
+
+a.erase(p)
+迭代器
+删除p指向的元素
+
+
+a.erase(p,q)
+迭代器
+删除区间[p,q)中的元素
+
+
+
+思考:
+
+在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代码中可以看到传">
 <meta name="twitter:image" content="http://i.imgur.com/TZxRRb6.png">
 
   
@@ -156,20 +224,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-insert"><span class="toc-text">a.insert();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-erase"><span class="toc-text">a.erase();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-resize-和a-reverse"><span class="toc-text">a.resize()和a.reverse();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort-用于vector"><span class="toc-text">sort()用于vector;</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-erase"><span class="toc-text">a.erase();</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-vector模板类-持续更新" class="article article-type-post" itemprop="blogPost">
+   <article id="post-vector之erase" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">vector模板类-持续更新</h1>
+    <h1 class="post-title">vector之erase</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.15</span>
+        <span>2016.04.14</span>
       </span>
 
       
@@ -182,7 +250,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/STL/">STL</a>
+    <a class="article-category-link" href="/categories/STL-vector/">STL-vector</a>
   </span>
 
 
@@ -190,7 +258,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/15/vector模板类-持续更新/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/14/vector之erase/#disqus_thread"></a>
         </span>
       
 
@@ -199,36 +267,7 @@
 
   <div class="article-content">
     
-      <p><code>vector</code>模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的<code>vector</code>方法作为笔记以便不时复习。</p>
-<p>有<code>vector&lt;int&gt; a</code>;<code>vector&lt;int&gt; b</code>;即a,b是<code>vector&lt;int&gt;</code>的对象。<code>vector&lt;int&gt; ::iterator p</code>;p是指向<code>vector&lt;int&gt;</code>的迭代器。i、j、q均和p一样是指向<code>vector&lt;int&gt;</code>的迭代器。<br><code>.begin()</code>，<code>a.end()</code>(<strong>超尾</strong>)，<code>a.rbegin()</code>，<code>a.rend()</code>，<code>a.size()</code>，<code>a.swap(b)</code>，<code>a.empty()</code>，<code>a.front()</code>，<code>a.back()</code>，<code>a.clear()</code>，<code>a.push_back(t)</code>，<code>a.popback(t)</code>，<code>a[n]</code>，<code>a.at(n)</code>都比较简单，不详细讨论。</p>
-<h3 id="a-insert"><a href="#a-insert" class="headerlink" title="a.insert();"></a>a.insert();</h3><p>模板类提供了三个函数重载：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">表达式</th>
-<th style="text-align:center">返回类型</th>
-<th style="text-align:center">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">a.insert(p,t)</td>
-<td style="text-align:center">迭代器</td>
-<td style="text-align:center">指向原本指向的元素,将t插入到p前面</td>
-</tr>
-<tr>
-<td style="text-align:center">a.insert(p, n,t)</td>
-<td style="text-align:center">void</td>
-<td style="text-align:center">将n个t插入到p前面</td>
-</tr>
-<tr>
-<td style="text-align:center">a.insert(p,i,j)</td>
-<td style="text-align:center">void</td>
-<td style="text-align:center">将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾</td>
-</tr>
-</tbody>
-</table>
-<h3 id="a-erase"><a href="#a-erase" class="headerlink" title="a.erase();"></a>a.erase();</h3><p>模板类提供了两个函数重载：</p>
+      <h2 id="a-erase"><a href="#a-erase" class="headerlink" title="a.erase();"></a>a.erase();</h2><p>模板类提供了两个函数重载：</p>
 <table>
 <thead>
 <tr>
@@ -239,12 +278,12 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">a.erase(p)</td>
+<td style="text-align:center"><code>a.erase(p)</code></td>
 <td style="text-align:center"><strong>迭代器</strong></td>
 <td style="text-align:center">删除p指向的元素</td>
 </tr>
 <tr>
-<td style="text-align:center">a.erase(p,q)</td>
+<td style="text-align:center"><code>a.erase(p,q)</code></td>
 <td style="text-align:center"><strong>迭代器</strong></td>
 <td style="text-align:center">删除区间[p,q)中的元素</td>
 </tr>
@@ -252,17 +291,18 @@
 </table>
 <p><strong>思考</strong>:</p>
 <ol>
-<li>在之前内存之中讨论过，<code>vector</code>是保证内存连续的，那么<code>erase</code>之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在<code>erase()</code>方法的代码中可以看到传入的p的形参是<code>const</code>类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：<img src="http://i.imgur.com/TZxRRb6.png" alt="STL的迭代器"></li>
-<li>注意到<code>erase</code>返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的<strong>地址不变</strong>，值是删除之后可用的下一个元素，因此<strong>给人感觉是p指向了下一个元素</strong>。那么在这里有一个值得注意的问题，如下图： <img src="http://i.imgur.com/b0yBZZw.png" alt="错误的迭代器用法"><br>这是错误的，<code>b.erase(p)</code>没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为<code>p = b.erase(p)</code>也是不正确的。迭代器在进行删除的这一个循环里会<code>++</code>两次（<code>erase</code>可以当做<code>++</code>一次）。但如果在<code>if</code>语句中执行一次<code>p--</code>，这是正确的。即<code>p = b.erase(p--);</code></li>
+<li>在之前内存之中讨论过，<code>vector</code>是保证内存连续的，那么<code>erase</code>之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在<code>erase()</code>方法的代码中可以看到传入的p的形参是<code>const</code>类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：<br><img src="http://i.imgur.com/TZxRRb6.png" alt="STL的迭代器"></li>
+<li>注意到<code>erase</code>返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的<strong>地址不变</strong>，值是删除之后可用的下一个元素，因此<strong>给人感觉是p指向了下一个元素</strong>。那么在这里有一个值得注意的问题，如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt;::iterator p = b.begin();</span><br><span class="line">for (;p!=b.end();p++)</span><br><span class="line">&#123;</span><br><span class="line">	if (*p == 2)</span><br><span class="line">		b.erase(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这是错误的，<code>b.erase(p)</code>没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为<code>p = b.erase(p)</code>也是不正确的。迭代器在进行删除的这一个循环里会<code>++</code>两次（<code>erase</code>可以当做<code>++</code>一次）。但如果在<code>if</code>语句中执行一次<code>p--</code>，这是正确的。即<code>p = b.erase(p--);</code></p>
+<ol>
 <li>迭代器的循环使用<code>while</code>可以降低错误率。</li>
 </ol>
-<h3 id="a-resize-和a-reverse"><a href="#a-resize-和a-reverse" class="headerlink" title="a.resize()和a.reverse();"></a>a.resize()和a.reverse();</h3><ol>
-<li>首先介绍容器的两个属性<code>capacity</code>和<code>size</code>。<code>capacity</code>存储区的大小；<code>size</code>容器的大小。</li>
-<li>‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。</li>
-<li>‘resize()’是改变容器大小，容器中一定有容器对象。</li>
-<li><code>a.resize(100)</code>这个语句首先会检查<code>a.size()</code>。如果大于100,编译器会<code>a.erase()</code>多余的部分；如果小于100，</li>
-</ol>
-<h3 id="sort-用于vector"><a href="#sort-用于vector" class="headerlink" title="sort()用于vector;"></a>sort()用于vector;</h3>
+<hr>
+<p>为简单，分析第一个表达式的源码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">iterator erase(const_iterator _Where)</span><br><span class="line">&#123;	// erase element at where</span><br><span class="line">	if (_VICONT(_Where) != this</span><br><span class="line">		|| _VIPTR(_Where) &lt; this-&gt;_Myfirst</span><br><span class="line">		|| this-&gt;_Mylast &lt;= _VIPTR(_Where))</span><br><span class="line">		_DEBUG_ERROR(&quot;vector erase iterator outside range&quot;);</span><br><span class="line">	_Move(_VIPTR(_Where) + 1, this-&gt;_Mylast, _VIPTR(_Where));</span><br><span class="line">	_Destroy(this-&gt;_Mylast - 1, this-&gt;_Mylast);</span><br><span class="line">	_Orphan_range(_VIPTR(_Where), this-&gt;_Mylast);</span><br><span class="line">	--this-&gt;_Mylast;</span><br><span class="line">	return (_Make_iter(_Where));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(<code>capacity</code>不变)，之后<font color="red">_Orphan_range发生了什么？</font>,接下来指针指向正确的位置，最后返回指向原地址的迭代器。</p>
+
     
   </div>
 </article>
@@ -377,7 +417,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2016/04/15/vector模板类-持续更新/';
+    var disqus_url = 'http://yoursite.com/2016/04/14/vector之erase/';
     
     (function(){
       var dsq = document.createElement('script');

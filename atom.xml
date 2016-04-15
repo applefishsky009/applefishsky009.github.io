@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T03:31:27.738Z</updated>
+  <updated>2016-04-15T09:28:09.169Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,42 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vector模板类-持续更新</title>
-    <link href="http://yoursite.com/2016/04/15/vector%E6%A8%A1%E6%9D%BF%E7%B1%BB-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-    <id>http://yoursite.com/2016/04/15/vector模板类-持续更新/</id>
-    <published>2016-04-15T02:52:25.000Z</published>
-    <updated>2016-04-15T03:31:27.738Z</updated>
+    <title>vector之resize和reverse</title>
+    <link href="http://yoursite.com/2016/04/15/vector%E4%B9%8Bresize%E5%92%8Creverse/"/>
+    <id>http://yoursite.com/2016/04/15/vector之resize和reverse/</id>
+    <published>2016-04-15T06:39:13.000Z</published>
+    <updated>2016-04-15T09:28:09.169Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习。&lt;/p&gt;
-&lt;p&gt;有&lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt;;&lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;;即a,b是&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的对象。&lt;code&gt;vector&amp;lt;int&amp;gt; ::iterator p&lt;/code&gt;;p是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。i、j、q均和p一样是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。&lt;br&gt;&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;(&lt;strong&gt;超尾&lt;/strong&gt;)，&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;都比较简单，不详细讨论。&lt;/p&gt;
-&lt;h3 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h3&gt;&lt;p&gt;模板类提供了三个函数重载：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;返回类型&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p,t)&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;迭代器&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;指向原本指向的元素,将t插入到p前面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p, n,t)&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;将n个t插入到p前面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p,i,j)&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h3&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
+&lt;li&gt;‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。&lt;/li&gt;
+&lt;li&gt;‘resize()’是改变容器大小，容器中一定有容器对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;a-reverse&quot;&gt;&lt;a href=&quot;#a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.reverse();&quot;&gt;&lt;/a&gt;a.reverse();&lt;/h3&gt;&lt;p&gt;看源码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void reserve(size_type _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new minimum length of allocated storage&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (capacity() &amp;lt; _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;// something to do, check and reallocate&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (max_size() &amp;lt; _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			Xlen();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Reallocate(_Count);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ol&gt;
+&lt;li&gt;没有&lt;code&gt;else&lt;/code&gt;，说明若当前的&lt;code&gt;capacity&lt;/code&gt;大于传入的值，&lt;strong&gt;&lt;code&gt;capacity&lt;/code&gt;是不会减小的&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;里层的if是错误检测机制；&lt;/li&gt;
+&lt;li&gt;验证&lt;code&gt;vector&lt;/code&gt;的&lt;code&gt;reallocate&lt;/code&gt;原理，实际上每次新的&lt;code&gt;capacity&lt;/code&gt;是之前的1.5倍。因此在&lt;strong&gt;循环之前一定要&lt;code&gt;reserve&lt;/code&gt;保证效率&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;a-resize&quot;&gt;&lt;a href=&quot;#a-resize&quot; class=&quot;headerlink&quot; title=&quot;a.resize();&quot;&gt;&lt;/a&gt;a.resize();&lt;/h3&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
@@ -62,12 +47,73 @@
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a.erase(p)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.resize(n)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;容器大小设为n&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.resize(n,t)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;容器大小设为n，必要时用t填充&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;####a.resize(n)&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void resize(size_type _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new length, padding as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_Newsize &amp;lt; size())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		erase(begin() + _Newsize, end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else if (size() &amp;lt; _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;	// pad as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Alty _Alval(this-&amp;gt;_Getal());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Reserve(_Newsize - size());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_TRY_BEGIN&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Uninitialized_default_fill_n(this-&amp;gt;_Mylast, _Newsize - size(),_Alval);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_CATCH_ALL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Tidy();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_RERAISE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_CATCH_END&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		this-&amp;gt;_Mylast += _Newsize - size();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若容器新大小小于现在的大小，毁掉多余的对象；&lt;/li&gt;
+&lt;li&gt;新大小大于现在的大小：&lt;ul&gt;
+&lt;li&gt;注意&lt;code&gt;_Reserve&lt;/code&gt;和&lt;code&gt;.reverse&lt;/code&gt;是两个不同的方法，一个比较&lt;code&gt;capacity&lt;/code&gt;，一个比较&lt;code&gt;_Unused_capacity&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;检查空间，不够则&lt;code&gt;reverse&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;填充未初始化的对象&lt;/li&gt;
+&lt;li&gt;修改尾指针&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;####a.resize(n,t)&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void resize(size_type _Newsize, const value_type&amp;amp; _Val)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new length, padding with _Val elements as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_Newsize &amp;lt; size())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		erase(begin() + _Newsize, end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else if (size() &amp;lt; _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Insert_n(end(), _Newsize - size(), _Val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若容器新大小小于现在的大小，毁掉多余的对象；&lt;/li&gt;
+&lt;li&gt;新大小大于现在的大小，直接执行&lt;code&gt;insert&lt;/code&gt;;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/
+    
+    </summary>
+    
+      <category term="STL-vector" scheme="http://yoursite.com/categories/STL-vector/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vector之erase</title>
+    <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase/"/>
+    <id>http://yoursite.com/2016/04/14/vector之erase/</id>
+    <published>2016-04-14T02:52:25.000Z</published>
+    <updated>2016-04-15T09:10:11.082Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.erase(p)&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;删除p指向的元素&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;a.erase(p,q)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.erase(p,q)&lt;/code&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
 &lt;td style=&quot;text-align:center&quot;&gt;删除区间[p,q)中的元素&lt;/td&gt;
 &lt;/tr&gt;
@@ -75,26 +121,143 @@
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;思考&lt;/strong&gt;:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;在之前内存之中讨论过，&lt;code&gt;vector&lt;/code&gt;是保证内存连续的，那么&lt;code&gt;erase&lt;/code&gt;之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在&lt;code&gt;erase()&lt;/code&gt;方法的代码中可以看到传入的p的形参是&lt;code&gt;const&lt;/code&gt;类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：&lt;img src=&quot;http://i.imgur.com/TZxRRb6.png&quot; alt=&quot;STL的迭代器&quot;&gt;&lt;/li&gt;
-&lt;li&gt;注意到&lt;code&gt;erase&lt;/code&gt;返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的&lt;strong&gt;地址不变&lt;/strong&gt;，值是删除之后可用的下一个元素，因此&lt;strong&gt;给人感觉是p指向了下一个元素&lt;/strong&gt;。那么在这里有一个值得注意的问题，如下图： &lt;img src=&quot;http://i.imgur.com/b0yBZZw.png&quot; alt=&quot;错误的迭代器用法&quot;&gt;&lt;br&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = b.erase(p--);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在之前内存之中讨论过，&lt;code&gt;vector&lt;/code&gt;是保证内存连续的，那么&lt;code&gt;erase&lt;/code&gt;之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在&lt;code&gt;erase()&lt;/code&gt;方法的代码中可以看到传入的p的形参是&lt;code&gt;const&lt;/code&gt;类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/TZxRRb6.png&quot; alt=&quot;STL的迭代器&quot;&gt;&lt;/li&gt;
+&lt;li&gt;注意到&lt;code&gt;erase&lt;/code&gt;返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的&lt;strong&gt;地址不变&lt;/strong&gt;，值是删除之后可用的下一个元素，因此&lt;strong&gt;给人感觉是p指向了下一个元素&lt;/strong&gt;。那么在这里有一个值得注意的问题，如下：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt;::iterator p = b.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for (;p!=b.end();p++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (*p == 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		b.erase(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = b.erase(p--);&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
 &lt;li&gt;迭代器的循环使用&lt;code&gt;while&lt;/code&gt;可以降低错误率。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
-&lt;li&gt;‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。&lt;/li&gt;
-&lt;li&gt;‘resize()’是改变容器大小，容器中一定有容器对象。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;a.resize(100)&lt;/code&gt;这个语句首先会检查&lt;code&gt;a.size()&lt;/code&gt;。如果大于100,编译器会&lt;code&gt;a.erase()&lt;/code&gt;多余的部分；如果小于100，&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;sort-用于vector&quot;&gt;&lt;a href=&quot;#sort-用于vector&quot; class=&quot;headerlink&quot; title=&quot;sort()用于vector;&quot;&gt;&lt;/a&gt;sort()用于vector;&lt;/h3&gt;</content>
+&lt;hr&gt;
+&lt;p&gt;为简单，分析第一个表达式的源码如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;iterator erase(const_iterator _Where)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// erase element at where&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_VICONT(_Where) != this&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| _VIPTR(_Where) &amp;lt; this-&amp;gt;_Myfirst&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| this-&amp;gt;_Mylast &amp;lt;= _VIPTR(_Where))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_DEBUG_ERROR(&amp;quot;vector erase iterator outside range&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Move(_VIPTR(_Where) + 1, this-&amp;gt;_Mylast, _VIPTR(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Destroy(this-&amp;gt;_Mylast - 1, this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Orphan_range(_VIPTR(_Where), this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	--this-&amp;gt;_Mylast;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return (_Make_iter(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(&lt;code&gt;capacity&lt;/code&gt;不变)，之后&lt;font color=&quot;red&quot;&gt;_Orphan_range发生了什么？&lt;/font&gt;,接下来指针指向正确的位置，最后返回指向原地址的迭代器。&lt;/p&gt;
+</content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习。&lt;/p&gt;
-&lt;p&gt;有&lt;code&gt;vector&amp;lt
+      &lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th s
     
     </summary>
     
-      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
+      <category term="STL-vector" scheme="http://yoursite.com/categories/STL-vector/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vector之insert和emplace</title>
+    <link href="http://yoursite.com/2016/04/13/vector%E4%B9%8Binsert%E5%92%8Cemplace/"/>
+    <id>http://yoursite.com/2016/04/13/vector之insert和emplace/</id>
+    <published>2016-04-13T12:39:29.000Z</published>
+    <updated>2016-04-15T08:42:26.084Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;返回类型&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p,t)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;迭代器&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;指向原本指向的元素,将t插入到p前面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p, n,t)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;将n个t插入到p前面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p,i,j)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;a-emplace&quot;&gt;&lt;a href=&quot;#a-emplace&quot; class=&quot;headerlink&quot; title=&quot;a.emplace();&quot;&gt;&lt;/a&gt;a.emplace();&lt;/h2&gt;&lt;p&gt;新标准引入的&lt;code&gt;emplace_front&lt;/code&gt;,&lt;code&gt;emplace&lt;/code&gt;,&lt;code&gt;emplace_back&lt;/code&gt;这些操作是构造而不是拷贝元素。当插入一个对象时，将会比&lt;code&gt;insert&lt;/code&gt;少拷贝构造，析构的步骤。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;注：&quot;&gt;&lt;a href=&quot;#注：&quot; class=&quot;headerlink&quot; title=&quot;注：&quot;&gt;&lt;/a&gt;注：&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;调用&lt;code&gt;push&lt;/code&gt;或&lt;code&gt;insert&lt;/code&gt;成员函数，将元素类型对象传递进去，这些对象被拷贝到容器中；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;emplace()&lt;/code&gt;在容器中构造元素，因此效率更高；&lt;/li&gt;
+&lt;li&gt;注意&lt;code&gt;a.insert(p,t)&lt;/code&gt;的源码提供了一个重载，若t是普通类型，则调用&lt;code&gt;a.emplace(p，t)&lt;/code&gt;，若t是&lt;code&gt;const&lt;/code&gt;类型，则调用&lt;code&gt;a.insert(p,t)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法
+    
+    </summary>
+    
+      <category term="STL-vector" scheme="http://yoursite.com/categories/STL-vector/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vector简介及非STL函数用法-持续更新</title>
+    <link href="http://yoursite.com/2016/04/13/vector%E7%AE%80%E4%BB%8B%E5%8F%8A%E9%9D%9ESTL%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    <id>http://yoursite.com/2016/04/13/vector简介及非STL函数用法-持续更新/</id>
+    <published>2016-04-13T06:54:50.000Z</published>
+    <updated>2016-04-15T09:03:19.044Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习，必要时会分析源码。&lt;/p&gt;
+&lt;p&gt;常见的方法有&lt;code&gt;.insert()&lt;/code&gt;，&lt;code&gt;.resize()&lt;/code&gt;，&lt;code&gt;.reverse()&lt;/code&gt;，&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;(&lt;strong&gt;超尾&lt;/strong&gt;)，&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;有&lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt;;&lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;;即a,b是&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的对象。&lt;code&gt;vector&amp;lt;int&amp;gt; ::iterator p&lt;/code&gt;;p是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。i、j、q均和p一样是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;sort-用于vector&quot;&gt;&lt;a href=&quot;#sort-用于vector&quot; class=&quot;headerlink&quot; title=&quot;sort()用于vector;&quot;&gt;&lt;/a&gt;sort()用于vector;&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;algorithm&amp;gt;&lt;/code&gt;头文件中提供了&lt;code&gt;sort&lt;/code&gt;的两个重载函数,查看源码可发现是用&lt;strong&gt;快排&lt;/strong&gt;实现的。&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;sort(p,q)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;对[p,q)升序排序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;sort(p,q,cmp)&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;对[p,q)使用&lt;code&gt;cmp&lt;/code&gt;方法排序，&lt;code&gt;cmp&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol&gt;
+&lt;li&gt;右闭左开区间，一般来讲&lt;code&gt;p = a.begin()&lt;/code&gt;;&lt;code&gt;q = a.end()&lt;/code&gt;完成了对容器的排序。&lt;/li&gt;
+&lt;li&gt;升序排序直接用第一个方法，系统默认&lt;code&gt;a&amp;lt;b&lt;/code&gt;返回真，因此是升序。&lt;/li&gt;
+&lt;li&gt;降序排序需要自定义&lt;code&gt;cmp&lt;/code&gt;方法,方法如下，只需要将默认值改为&lt;code&gt;a&amp;gt;b&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bool comp(const int &amp;amp;a,const int &amp;amp;b)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		return a&amp;gt;b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;hr&gt;
+&lt;p&gt;以上参考了&lt;a href=&quot;http://www.cnblogs.com/cj695/p/3863142.html&quot; title=&quot;这里&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否
+    
+    </summary>
+    
+      <category term="STL-vector" scheme="http://yoursite.com/categories/STL-vector/"/>
     
     
       <category term="C++" scheme="http://yoursite.com/tags/C/"/>
@@ -187,7 +350,7 @@
     <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
     <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
     <published>2016-04-09T12:07:02.000Z</published>
-    <updated>2016-04-15T01:50:16.766Z</updated>
+    <updated>2016-04-15T06:59:46.184Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补码&quot;&gt;&lt;/a&gt;原、反、补码&lt;/h3&gt;&lt;p&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
 &lt;table&gt;
@@ -243,6 +406,7 @@
 &lt;h3 id=&quot;消失的原码&quot;&gt;&lt;a href=&quot;#消失的原码&quot; class=&quot;headerlink&quot; title=&quot;消失的原码&quot;&gt;&lt;/a&gt;消失的原码&lt;/h3&gt;&lt;p&gt;对于&lt;code&gt;unsigned char&lt;/code&gt;原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于&lt;code&gt;signed char&lt;/code&gt;，最高位是符号位，因此原码的取值范围是-127-127，只有&lt;strong&gt;255个编码&lt;/strong&gt;，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？&lt;/p&gt;
 &lt;p&gt;考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有&lt;code&gt;00000000&lt;/code&gt;、&lt;code&gt;10000000&lt;/code&gt;两个原码表示+0与-0，而这是没有意义的。我们保证&lt;code&gt;00000000&lt;/code&gt;这个原码与&lt;code&gt;00000000&lt;/code&gt;这个补码相对应来表示0就可以。这样找到了消失的原码：&lt;code&gt;10000000&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;在这个基于256的数值域中，观察补码的&lt;strong&gt;重置点（溢出中非常重要的概念）&lt;/strong&gt;127的补码&lt;code&gt;01111111&lt;/code&gt;，-127的补码&lt;code&gt;10000001&lt;/code&gt;，那么可以清楚的看到&lt;code&gt;127+1=？&lt;/code&gt;、&lt;code&gt;？+1=127&lt;/code&gt;。因此很好理解，多余的补码是&lt;code&gt;10000000&lt;/code&gt;（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即&lt;strong&gt;-128的原码&lt;/strong&gt;是&lt;code&gt;10000000&lt;/code&gt;，&lt;strong&gt;补码&lt;/strong&gt;也是&lt;code&gt;10000000&lt;/code&gt;（它的&lt;strong&gt;反码&lt;/strong&gt;是&lt;code&gt;11111111&lt;/code&gt;？）。&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id=&quot;二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot;&gt;&lt;a href=&quot;#二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot; class=&quot;headerlink&quot; title=&quot;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&quot;&gt;&lt;/a&gt;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&lt;/h2&gt;&lt;p&gt;明白上述数据存储概念之后，可以通过位运算来获得&lt;code&gt;char&lt;/code&gt;的最大最小值。注意，其实在&lt;code&gt;climit&lt;/code&gt;文件中有各种宏定义的最大最小值，比如&lt;code&gt;CHAR_MAX = 127&lt;/code&gt;;&lt;code&gt;UCHAR_MAX = 0xff&lt;/code&gt;;等。但是这里想利用位运算来实现这一目标(注意重置点)：&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
