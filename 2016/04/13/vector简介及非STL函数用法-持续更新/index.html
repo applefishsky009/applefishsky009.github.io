@@ -16,18 +16,18 @@
   
 
   <meta name="description" content="vectorvector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的vector方法作为笔记以便不时复习，必要时会分析源码。
-常见的方法有.insert()，.resize()，.reverse()，.begin()，a.end()(超尾)，a.rbegin()，a.rend()，a.size()，a.swap(b)">
+常见的方法有：.insert()，a.emplace()，.resize()，.reverse()，.begin()，a.end()，a.rbegin()，a.rend()，a.size()，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vector简介及非STL函数用法-持续更新">
 <meta property="og:url" content="http://yoursite.com/2016/04/13/vector简介及非STL函数用法-持续更新/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="vectorvector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的vector方法作为笔记以便不时复习，必要时会分析源码。
-常见的方法有.insert()，.resize()，.reverse()，.begin()，a.end()(超尾)，a.rbegin()，a.rend()，a.size()，a.swap(b)">
-<meta property="og:updated_time" content="2016-04-15T09:03:19.044Z">
+常见的方法有：.insert()，a.emplace()，.resize()，.reverse()，.begin()，a.end()，a.rbegin()，a.rend()，a.size()，">
+<meta property="og:updated_time" content="2016-04-15T09:36:30.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vector简介及非STL函数用法-持续更新">
 <meta name="twitter:description" content="vectorvector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的vector方法作为笔记以便不时复习，必要时会分析源码。
-常见的方法有.insert()，.resize()，.reverse()，.begin()，a.end()(超尾)，a.rbegin()，a.rend()，a.size()，a.swap(b)">
+常见的方法有：.insert()，a.emplace()，.resize()，.reverse()，.begin()，a.end()，a.rbegin()，a.rend()，a.size()，">
 
   
 
@@ -197,7 +197,7 @@
   <div class="article-content">
     
       <h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p><code>vector</code>模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的<code>vector</code>方法作为笔记以便不时复习，必要时会分析源码。</p>
-<p>常见的方法有<code>.insert()</code>，<code>.resize()</code>，<code>.reverse()</code>，<code>.begin()</code>，<code>a.end()</code>(<strong>超尾</strong>)，<code>a.rbegin()</code>，<code>a.rend()</code>，<code>a.size()</code>，<code>a.swap(b)</code>，<code>a.empty()</code>，<code>a.front()</code>，<code>a.back()</code>，<code>a.clear()</code>，<code>a.push_back(t)</code>，<code>a.popback(t)</code>，<code>a[n]</code>，<code>a.at(n)</code></p>
+<p>常见的方法有：<br><code>.insert()</code>，<code>a.emplace()</code>，<code>.resize()</code>，<code>.reverse()</code>，<code>.begin()</code>，<code>a.end()</code>，<br><code>a.rbegin()</code>，<code>a.rend()</code>，<code>a.size()</code>，<code>a.swap(b)</code>，<code>a.empty()</code>，<code>a.front()</code>，<br><code>a.back()</code>，<code>a.clear()</code>，<code>a.push_back(t)</code>，<code>a.popback(t)</code>，<code>a[n]</code>，<code>a.at(n)</code>。</p>
 <p>有<code>vector&lt;int&gt; a</code>;<code>vector&lt;int&gt; b</code>;即a,b是<code>vector&lt;int&gt;</code>的对象。<code>vector&lt;int&gt; ::iterator p</code>;p是指向<code>vector&lt;int&gt;</code>的迭代器。i、j、q均和p一样是指向<code>vector&lt;int&gt;</code>的迭代器。</p>
 <hr>
 <h2 id="sort-用于vector"><a href="#sort-用于vector" class="headerlink" title="sort()用于vector;"></a>sort()用于vector;</h2><p>在<code>algorithm&gt;</code>头文件中提供了<code>sort</code>的两个重载函数,查看源码可发现是用<strong>快排</strong>实现的。</p>

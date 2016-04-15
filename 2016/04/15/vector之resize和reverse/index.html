@@ -35,7 +35,7 @@ a.reverse();看源码：
 
 a.reverse();看源码：
 123456789void reserve(size_type _">
-<meta property="og:updated_time" content="2016-04-15T09:28:09.169Z">
+<meta property="og:updated_time" content="2016-04-15T09:33:24.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vector之resize和reverse">
 <meta name="twitter:description" content="a.resize()和a.reverse();
@@ -171,7 +171,7 @@ a.reverse();看源码：
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-resize-和a-reverse"><span class="toc-text">a.resize()和a.reverse();</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-reverse"><span class="toc-text">a.reverse();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-resize"><span class="toc-text">a.resize();</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-resize-和a-reverse"><span class="toc-text">a.resize()和a.reverse();</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-reverse"><span class="toc-text">a.reverse();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-resize"><span class="toc-text">a.resize();</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-resize-n"><span class="toc-text">a.resize(n)</span></a></li></ol></li></ol></li></ol>
   </div>
 
 
@@ -250,7 +250,7 @@ a.reverse();看源码：
 </tr>
 </tbody>
 </table>
-<p>####a.resize(n)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void resize(size_type _Newsize)</span><br><span class="line">&#123;	// determine new length, padding as needed</span><br><span class="line">	if (_Newsize &lt; size())</span><br><span class="line">		erase(begin() + _Newsize, end());</span><br><span class="line">	else if (size() &lt; _Newsize)</span><br><span class="line">	&#123;	// pad as needed</span><br><span class="line">		_Alty _Alval(this-&gt;_Getal());</span><br><span class="line">		_Reserve(_Newsize - size());</span><br><span class="line">		_TRY_BEGIN</span><br><span class="line">		_Uninitialized_default_fill_n(this-&gt;_Mylast, _Newsize - size(),_Alval);</span><br><span class="line">		_CATCH_ALL</span><br><span class="line">		_Tidy();</span><br><span class="line">		_RERAISE;</span><br><span class="line">		_CATCH_END</span><br><span class="line">		this-&gt;_Mylast += _Newsize - size();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="a-resize-n"><a href="#a-resize-n" class="headerlink" title="a.resize(n)"></a>a.resize(n)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void resize(size_type _Newsize)</span><br><span class="line">&#123;	// determine new length, padding as needed</span><br><span class="line">	if (_Newsize &lt; size())</span><br><span class="line">		erase(begin() + _Newsize, end());</span><br><span class="line">	else if (size() &lt; _Newsize)</span><br><span class="line">	&#123;	// pad as needed</span><br><span class="line">		_Alty _Alval(this-&gt;_Getal());</span><br><span class="line">		_Reserve(_Newsize - size());</span><br><span class="line">		_TRY_BEGIN</span><br><span class="line">		_Uninitialized_default_fill_n(this-&gt;_Mylast, _Newsize - size(),_Alval);</span><br><span class="line">		_CATCH_ALL</span><br><span class="line">		_Tidy();</span><br><span class="line">		_RERAISE;</span><br><span class="line">		_CATCH_END</span><br><span class="line">		this-&gt;_Mylast += _Newsize - size();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>若容器新大小小于现在的大小，毁掉多余的对象；</li>
 <li>新大小大于现在的大小：<ul>
