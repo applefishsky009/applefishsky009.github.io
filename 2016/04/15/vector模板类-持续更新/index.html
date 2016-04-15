@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>vector模板类-持续更新 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++," />
+  
+
+  <meta name="description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
+有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector模板类-持续更新">
+<meta property="og:url" content="http://yoursite.com/2016/04/15/vector模板类-持续更新/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
+有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+<meta property="og:image" content="http://i.imgur.com/TZxRRb6.png">
+<meta property="og:image" content="http://i.imgur.com/b0yBZZw.png">
+<meta property="og:updated_time" content="2016-04-15T03:31:27.738Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vector模板类-持续更新">
+<meta name="twitter:description" content="vector模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的vector方法作为笔记以便不时复习。
+有vector&amp;lt;int&amp;gt; a;vector&amp;lt;int&amp;gt; b;即a,b是vector&amp;lt;int&amp;gt;的对象。vector&amp;lt;int&amp;gt; ::iterator p;p是指向vector&amp;lt;">
+<meta name="twitter:image" content="http://i.imgur.com/TZxRRb6.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#a-insert"><span class="toc-text">a.insert();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-erase"><span class="toc-text">a.erase();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a-resize-和a-reverse"><span class="toc-text">a.resize()和a.reverse();</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sort-用于vector"><span class="toc-text">sort()用于vector;</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-vector模板类-持续更新" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">vector模板类-持续更新</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.15</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/15/vector模板类-持续更新/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p><code>vector</code>模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的<code>vector</code>方法作为笔记以便不时复习。</p>
+<p>有<code>vector&lt;int&gt; a</code>;<code>vector&lt;int&gt; b</code>;即a,b是<code>vector&lt;int&gt;</code>的对象。<code>vector&lt;int&gt; ::iterator p</code>;p是指向<code>vector&lt;int&gt;</code>的迭代器。i、j、q均和p一样是指向<code>vector&lt;int&gt;</code>的迭代器。<br><code>.begin()</code>，<code>a.end()</code>(<strong>超尾</strong>)，<code>a.rbegin()</code>，<code>a.rend()</code>，<code>a.size()</code>，<code>a.swap(b)</code>，<code>a.empty()</code>，<code>a.front()</code>，<code>a.back()</code>，<code>a.clear()</code>，<code>a.push_back(t)</code>，<code>a.popback(t)</code>，<code>a[n]</code>，<code>a.at(n)</code>都比较简单，不详细讨论。</p>
+<h3 id="a-insert"><a href="#a-insert" class="headerlink" title="a.insert();"></a>a.insert();</h3><p>模板类提供了三个函数重载：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">返回类型</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a.insert(p,t)</td>
+<td style="text-align:center">迭代器</td>
+<td style="text-align:center">指向原本指向的元素,将t插入到p前面</td>
+</tr>
+<tr>
+<td style="text-align:center">a.insert(p, n,t)</td>
+<td style="text-align:center">void</td>
+<td style="text-align:center">将n个t插入到p前面</td>
+</tr>
+<tr>
+<td style="text-align:center">a.insert(p,i,j)</td>
+<td style="text-align:center">void</td>
+<td style="text-align:center">将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a-erase"><a href="#a-erase" class="headerlink" title="a.erase();"></a>a.erase();</h3><p>模板类提供了两个函数重载：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center"><strong>返回类型</strong></th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a.erase(p)</td>
+<td style="text-align:center"><strong>迭代器</strong></td>
+<td style="text-align:center">删除p指向的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">a.erase(p,q)</td>
+<td style="text-align:center"><strong>迭代器</strong></td>
+<td style="text-align:center">删除区间[p,q)中的元素</td>
+</tr>
+</tbody>
+</table>
+<p><strong>思考</strong>:</p>
+<ol>
+<li>在之前内存之中讨论过，<code>vector</code>是保证内存连续的，那么<code>erase</code>之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在<code>erase()</code>方法的代码中可以看到传入的p的形参是<code>const</code>类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：<img src="http://i.imgur.com/TZxRRb6.png" alt="STL的迭代器"></li>
+<li>注意到<code>erase</code>返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的<strong>地址不变</strong>，值是删除之后可用的下一个元素，因此<strong>给人感觉是p指向了下一个元素</strong>。那么在这里有一个值得注意的问题，如下图： <img src="http://i.imgur.com/b0yBZZw.png" alt="错误的迭代器用法"><br>这是错误的，<code>b.erase(p)</code>没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为<code>p = b.erase(p)</code>也是不正确的。迭代器在进行删除的这一个循环里会<code>++</code>两次（<code>erase</code>可以当做<code>++</code>一次）。但如果在<code>if</code>语句中执行一次<code>p--</code>，这是正确的。即<code>p = b.erase(p--);</code></li>
+<li>迭代器的循环使用<code>while</code>可以降低错误率。</li>
+</ol>
+<h3 id="a-resize-和a-reverse"><a href="#a-resize-和a-reverse" class="headerlink" title="a.resize()和a.reverse();"></a>a.resize()和a.reverse();</h3><ol>
+<li>首先介绍容器的两个属性<code>capacity</code>和<code>size</code>。<code>capacity</code>存储区的大小；<code>size</code>容器的大小。</li>
+<li>‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。</li>
+<li>‘resize()’是改变容器大小，容器中一定有容器对象。</li>
+<li><code>a.resize(100)</code>这个语句首先会检查<code>a.size()</code>。如果大于100,编译器会<code>a.erase()</code>多余的部分；如果小于100，</li>
+</ol>
+<h3 id="sort-用于vector"><a href="#sort-用于vector" class="headerlink" title="sort()用于vector;"></a>sort()用于vector;</h3>
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2016/04/15/vector模板类-持续更新/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

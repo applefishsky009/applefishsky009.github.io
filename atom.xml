@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T01:48:02.149Z</updated>
+  <updated>2016-04-15T03:31:27.738Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,92 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vector模板类-持续更新</title>
+    <link href="http://yoursite.com/2016/04/15/vector%E6%A8%A1%E6%9D%BF%E7%B1%BB-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
+    <id>http://yoursite.com/2016/04/15/vector模板类-持续更新/</id>
+    <published>2016-04-15T02:52:25.000Z</published>
+    <updated>2016-04-15T03:31:27.738Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习。&lt;/p&gt;
+&lt;p&gt;有&lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt;;&lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;;即a,b是&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的对象。&lt;code&gt;vector&amp;lt;int&amp;gt; ::iterator p&lt;/code&gt;;p是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。i、j、q均和p一样是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。&lt;br&gt;&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;(&lt;strong&gt;超尾&lt;/strong&gt;)，&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;都比较简单，不详细讨论。&lt;/p&gt;
+&lt;h3 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h3&gt;&lt;p&gt;模板类提供了三个函数重载：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;返回类型&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p,t)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;迭代器&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;指向原本指向的元素,将t插入到p前面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p, n,t)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;将n个t插入到p前面&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a.insert(p,i,j)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h3&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a.erase(p)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;删除p指向的元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;a.erase(p,q)&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;删除区间[p,q)中的元素&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;思考&lt;/strong&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在之前内存之中讨论过，&lt;code&gt;vector&lt;/code&gt;是保证内存连续的，那么&lt;code&gt;erase&lt;/code&gt;之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在&lt;code&gt;erase()&lt;/code&gt;方法的代码中可以看到传入的p的形参是&lt;code&gt;const&lt;/code&gt;类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：&lt;img src=&quot;http://i.imgur.com/TZxRRb6.png&quot; alt=&quot;STL的迭代器&quot;&gt;&lt;/li&gt;
+&lt;li&gt;注意到&lt;code&gt;erase&lt;/code&gt;返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的&lt;strong&gt;地址不变&lt;/strong&gt;，值是删除之后可用的下一个元素，因此&lt;strong&gt;给人感觉是p指向了下一个元素&lt;/strong&gt;。那么在这里有一个值得注意的问题，如下图： &lt;img src=&quot;http://i.imgur.com/b0yBZZw.png&quot; alt=&quot;错误的迭代器用法&quot;&gt;&lt;br&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = b.erase(p--);&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;迭代器的循环使用&lt;code&gt;while&lt;/code&gt;可以降低错误率。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
+&lt;li&gt;‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。&lt;/li&gt;
+&lt;li&gt;‘resize()’是改变容器大小，容器中一定有容器对象。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;a.resize(100)&lt;/code&gt;这个语句首先会检查&lt;code&gt;a.size()&lt;/code&gt;。如果大于100,编译器会&lt;code&gt;a.erase()&lt;/code&gt;多余的部分；如果小于100，&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;sort-用于vector&quot;&gt;&lt;a href=&quot;#sort-用于vector&quot; class=&quot;headerlink&quot; title=&quot;sort()用于vector;&quot;&gt;&lt;/a&gt;sort()用于vector;&lt;/h3&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。下面记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习。&lt;/p&gt;
+&lt;p&gt;有&lt;code&gt;vector&amp;lt
+    
+    </summary>
+    
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>C++类的this指针</title>
