@@ -7,27 +7,72 @@
 <head>
   <meta charset="utf-8">
   
-  <title>C++类的this指针 | 孤云两角，去天一握</title>
+  <title>内存存储区 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="C++," />
+    <meta name="keywords" content="存储," />
   
 
-  <meta name="description" content="C++类的this指针如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b)。由">
+  <meta name="description" content="C++内存分配方式有五种：
+栈：局部变量、函数参数等
+可以实现函数调用；
+动态扩展、收缩；
+位于用户虚拟地址空间顶部。
+
+
+堆：new分配的内存块，delete释放。
+自由存储区：malloc分配，free释放。
+全局/静态存储区：全局变量与静态变量
+常量存储区：存放常量
+如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+
+
+
+
+new和m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++类的this指针">
-<meta property="og:url" content="http://yoursite.com/2016/04/12/C++类的this指针/index.html">
+<meta property="og:title" content="内存存储区">
+<meta property="og:url" content="http://yoursite.com/2016/04/05/内存存储区/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="C++类的this指针如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b)。由">
-<meta property="og:image" content="http://i.imgur.com/qChOATG.png">
-<meta property="og:image" content="http://i.imgur.com/CzuJ4fG.png">
-<meta property="og:updated_time" content="2016-04-18T08:43:25.517Z">
+<meta property="og:description" content="C++内存分配方式有五种：
+栈：局部变量、函数参数等
+可以实现函数调用；
+动态扩展、收缩；
+位于用户虚拟地址空间顶部。
+
+
+堆：new分配的内存块，delete释放。
+自由存储区：malloc分配，free释放。
+全局/静态存储区：全局变量与静态变量
+常量存储区：存放常量
+如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+
+
+
+
+new和m">
+<meta property="og:updated_time" content="2016-04-18T08:58:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++类的this指针">
-<meta name="twitter:description" content="C++类的this指针如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b)。由">
-<meta name="twitter:image" content="http://i.imgur.com/qChOATG.png">
+<meta name="twitter:title" content="内存存储区">
+<meta name="twitter:description" content="C++内存分配方式有五种：
+栈：局部变量、函数参数等
+可以实现函数调用；
+动态扩展、收缩；
+位于用户虚拟地址空间顶部。
+
+
+堆：new分配的内存块，delete释放。
+自由存储区：malloc分配，free释放。
+全局/静态存储区：全局变量与静态变量
+常量存储区：存放常量
+如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+
+
+
+
+new和m">
 
   
 
@@ -153,20 +198,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-类的this指针"><span class="toc-text">C++类的this指针</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-内存分配方式有五种："><span class="toc-text">C++内存分配方式有五种：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new和malloc的区别："><span class="toc-text">new和malloc的区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆和栈的区别："><span class="toc-text">堆和栈的区别：</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-C++类的this指针" class="article article-type-post" itemprop="blogPost">
+   <article id="post-内存存储区" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">C++类的this指针</h1>
+    <h1 class="post-title">内存存储区</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.12</span>
+        <span>2016.04.05</span>
       </span>
 
       
@@ -179,7 +224,7 @@
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/类/">类</a>
+    <a class="article-category-link" href="/categories/C/">C++</a>
   </span>
 
 
@@ -187,7 +232,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/12/C++类的this指针/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/05/内存存储区/#disqus_thread"></a>
         </span>
       
 
@@ -196,15 +241,41 @@
 
   <div class="article-content">
     
-      <h2 id="C-类的this指针"><a href="#C-类的this指针" class="headerlink" title="C++类的this指针"></a>C++类的this指针</h2><p>如图，假设有一个类<code>Stock</code>，他有一个<code>private：int val</code>。他还有一个方法<code>const Stock&amp; Stock::compare(const Stock &amp;classIn) const</code>;这个方法要实现这样的功能：对于两个类<code>Stock</code>的对象a和b，比较a的<code>val</code>和b的<code>val</code>，返回<code>val</code>大的对象(a或者b)，可能性的写法如下：<code>a.compare(b)</code>。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法<code>compare</code>中，如何返回以后才初始化的对象本身(也就是a)？<br><img src="http://i.imgur.com/qChOATG.png" alt="为什么使用this指针"></p>
-<ol>
-<li>一般来说，所有类方法都将<code>this</code>指针设置为调用它的<strong>地址</strong>。(因此返回对象使用<strong><code>*this</code></strong>)</li>
-<li><code>compare</code>方法返回类型是<em>指针意味着返回的是调用对象本身，而不是其副本</em>。</li>
-<li><code>compare</code>方法的最后一个<code>const</code>表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。</li>
-<li>形参列表中的<code>const</code>表示该函数不会修改被显示访问的对象(即图中的s)。</li>
-<li>由于该函数返回了两个<code>const</code>对象之一的引用，因此<strong>返回类型也应该是<code>const</code>引用</strong>。</li>
+      <h2 id="C-内存分配方式有五种："><a href="#C-内存分配方式有五种：" class="headerlink" title="C++内存分配方式有五种："></a>C++内存分配方式有五种：</h2><ol>
+<li>栈：局部变量、函数参数等<ul>
+<li>可以实现函数调用；</li>
+<li>动态扩展、收缩；</li>
+<li>位于用户虚拟地址空间顶部。</li>
+</ul>
+</li>
+<li>堆：<code>new</code>分配的内存块，<code>delete</code>释放。</li>
+<li>自由存储区：<code>malloc</code>分配，<code>free</code>释放。</li>
+<li>全局/静态存储区：全局变量与静态变量</li>
+<li>常量存储区：存放常量<ul>
+<li>如 <code>string s1 = “abcd”</code>；<code>s1</code>是代码块中的指针，在栈中；<code>“abcd”</code>是常量，在常量存储区。</li>
+</ul>
+</li>
 </ol>
-<p><img src="http://i.imgur.com/CzuJ4fG.png" alt="this的实例"></p>
+<hr>
+<h2 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h2><ol>
+<li><code>new</code>可以认为是<code>malloc</code>加构造函数的执行；</li>
+<li><code>new</code>出来的指针是直接带类型信息的，<code>malloc</code>返回<code>void</code>指针；</li>
+<li><code>delete</code>会相应调用对象的析构函数。</li>
+</ol>
+<hr>
+<h2 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h2><ol>
+<li>管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；<ul>
+<li>内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。</li>
+</ul>
+</li>
+<li>空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）</li>
+<li>碎片问题：堆频繁<code>new/delete</code>会产生大量碎片（<code>delete</code>出来的空间几乎不可能恰好等于<code>new</code>的空间）；栈不会；</li>
+<li>生长方向：堆向上；栈向下。</li>
+<li>分配方式：堆动态；栈动态（<code>alloca</code>，但他不需人工释放）或静态（编译器完成）</li>
+<li>分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）</li>
+</ol>
+<hr>
+<p>以上内容主要来自于<a href="http://www.cnblogs.com/daocaoren/archive/2011/06/29/2092957.html" target="_blank" rel="external">这里</a>。</p>
 
     
   </div>
@@ -320,7 +391,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2016/04/12/C++类的this指针/';
+    var disqus_url = 'http://yoursite.com/2016/04/05/内存存储区/';
     
     (function(){
       var dsq = document.createElement('script');

@@ -7,72 +7,171 @@
 <head>
   <meta charset="utf-8">
   
-  <title>C++内存存储区 | 孤云两角，去天一握</title>
+  <title>五种变量存储方式与external关键字 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="C++," />
+    <meta name="keywords" content="存储," />
   
 
-  <meta name="description" content="C++内存分配方式有五种：
-栈：局部变量、函数参数等
-可以实现函数调用；
-动态扩展、收缩；
-位于用户虚拟地址空间顶部。
+  <meta name="description" content="五种变量存储方式
 
 
-堆：new分配的内存块，delete释放。
-自由存储区：malloc分配，free释放。
-全局/静态存储区：全局变量与静态变量
-常量存储区：存放常量
-如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+存储描述
+持续性
+作用域
+链接性
+如何声明
 
 
 
 
-new和m">
+自动
+自动
+代码块
+无
+代码块中
+
+
+寄存器
+自动
+代码块
+无
+代码块中，register
+
+
+静态，无链接性
+静态
+代码块
+无
+代码块中，static
+
+
+静态，外部连接性
+静态
+文件
+外部
+不在任何代码块中，无关键字
+
+
+静态，内部链接性
+静态
+文件
+内部
+不在任何代码块中，static
+
+
+
+
+register用于显示">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++内存存储区">
-<meta property="og:url" content="http://yoursite.com/2016/04/05/C++内存存储区/index.html">
+<meta property="og:title" content="五种变量存储方式与external关键字">
+<meta property="og:url" content="http://yoursite.com/2016/04/06/五种变量存储方式与external关键字/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="C++内存分配方式有五种：
-栈：局部变量、函数参数等
-可以实现函数调用；
-动态扩展、收缩；
-位于用户虚拟地址空间顶部。
+<meta property="og:description" content="五种变量存储方式
 
 
-堆：new分配的内存块，delete释放。
-自由存储区：malloc分配，free释放。
-全局/静态存储区：全局变量与静态变量
-常量存储区：存放常量
-如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+存储描述
+持续性
+作用域
+链接性
+如何声明
 
 
 
 
-new和m">
-<meta property="og:updated_time" content="2016-04-15T01:49:19.732Z">
+自动
+自动
+代码块
+无
+代码块中
+
+
+寄存器
+自动
+代码块
+无
+代码块中，register
+
+
+静态，无链接性
+静态
+代码块
+无
+代码块中，static
+
+
+静态，外部连接性
+静态
+文件
+外部
+不在任何代码块中，无关键字
+
+
+静态，内部链接性
+静态
+文件
+内部
+不在任何代码块中，static
+
+
+
+
+register用于显示">
+<meta property="og:updated_time" content="2016-04-18T08:58:58.184Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++内存存储区">
-<meta name="twitter:description" content="C++内存分配方式有五种：
-栈：局部变量、函数参数等
-可以实现函数调用；
-动态扩展、收缩；
-位于用户虚拟地址空间顶部。
+<meta name="twitter:title" content="五种变量存储方式与external关键字">
+<meta name="twitter:description" content="五种变量存储方式
 
 
-堆：new分配的内存块，delete释放。
-自由存储区：malloc分配，free释放。
-全局/静态存储区：全局变量与静态变量
-常量存储区：存放常量
-如 string s1 = “abcd”；s1是代码块中的指针，在栈中；“abcd”是常量，在常量存储区。
+存储描述
+持续性
+作用域
+链接性
+如何声明
 
 
 
 
-new和m">
+自动
+自动
+代码块
+无
+代码块中
+
+
+寄存器
+自动
+代码块
+无
+代码块中，register
+
+
+静态，无链接性
+静态
+代码块
+无
+代码块中，static
+
+
+静态，外部连接性
+静态
+文件
+外部
+不在任何代码块中，无关键字
+
+
+静态，内部链接性
+静态
+文件
+内部
+不在任何代码块中，static
+
+
+
+
+register用于显示">
 
   
 
@@ -198,20 +297,20 @@ new和m">
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-内存分配方式有五种："><span class="toc-text">C++内存分配方式有五种：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new和malloc的区别："><span class="toc-text">new和malloc的区别：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆和栈的区别："><span class="toc-text">堆和栈的区别：</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#五种变量存储方式"><span class="toc-text">五种变量存储方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#external关键字"><span class="toc-text">external关键字</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-C++内存存储区" class="article article-type-post" itemprop="blogPost">
+   <article id="post-五种变量存储方式与external关键字" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">C++内存存储区</h1>
+    <h1 class="post-title">五种变量存储方式与external关键字</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.05</span>
+        <span>2016.04.06</span>
       </span>
 
       
@@ -224,7 +323,7 @@ new和m">
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/存储/">存储</a>
+    <a class="article-category-link" href="/categories/C/">C++</a>
   </span>
 
 
@@ -232,7 +331,7 @@ new和m">
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/05/C++内存存储区/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/06/五种变量存储方式与external关键字/#disqus_thread"></a>
         </span>
       
 
@@ -241,41 +340,73 @@ new和m">
 
   <div class="article-content">
     
-      <h2 id="C-内存分配方式有五种："><a href="#C-内存分配方式有五种：" class="headerlink" title="C++内存分配方式有五种："></a>C++内存分配方式有五种：</h2><ol>
-<li>栈：局部变量、函数参数等<ul>
-<li>可以实现函数调用；</li>
-<li>动态扩展、收缩；</li>
-<li>位于用户虚拟地址空间顶部。</li>
+      <h2 id="五种变量存储方式"><a href="#五种变量存储方式" class="headerlink" title="五种变量存储方式"></a>五种变量存储方式</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">存储描述</th>
+<th style="text-align:center">持续性</th>
+<th style="text-align:center">作用域</th>
+<th style="text-align:center">链接性</th>
+<th style="text-align:center">如何声明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">自动</td>
+<td style="text-align:center">自动</td>
+<td style="text-align:center">代码块</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">代码块中</td>
+</tr>
+<tr>
+<td style="text-align:center">寄存器</td>
+<td style="text-align:center">自动</td>
+<td style="text-align:center">代码块</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">代码块中，<code>register</code></td>
+</tr>
+<tr>
+<td style="text-align:center">静态，无链接性</td>
+<td style="text-align:center">静态</td>
+<td style="text-align:center">代码块</td>
+<td style="text-align:center">无</td>
+<td style="text-align:center">代码块中，<code>static</code></td>
+</tr>
+<tr>
+<td style="text-align:center">静态，外部连接性</td>
+<td style="text-align:center">静态</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">外部</td>
+<td style="text-align:center">不在任何代码块中，无关键字</td>
+</tr>
+<tr>
+<td style="text-align:center">静态，内部链接性</td>
+<td style="text-align:center">静态</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">内部</td>
+<td style="text-align:center">不在任何代码块中，<code>static</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>register</code>用于显示指出自动变量，没什么用处，C++11保留的目的是向下兼容；</li>
+<li>静态无链接性变量与自动变量的异同：<ul>
+<li>静态无链接性变量在编译器<strong>编译</strong>时，编译器在<strong>静态/全局存储区</strong>分配内存；</li>
+<li>自动变量在代码块<strong>运行</strong>时，编译器在<strong>栈</strong>中分配内存；</li>
+<li>二者均只能在代码块中运行。</li>
 </ul>
 </li>
-<li>堆：<code>new</code>分配的内存块，<code>delete</code>释放。</li>
-<li>自由存储区：<code>malloc</code>分配，<code>free</code>释放。</li>
-<li>全局/静态存储区：全局变量与静态变量</li>
-<li>常量存储区：存放常量<ul>
-<li>如 <code>string s1 = “abcd”</code>；<code>s1</code>是代码块中的指针，在栈中；<code>“abcd”</code>是常量，在常量存储区。</li>
 </ul>
-</li>
-</ol>
 <hr>
-<h2 id="new和malloc的区别："><a href="#new和malloc的区别：" class="headerlink" title="new和malloc的区别："></a>new和malloc的区别：</h2><ol>
-<li><code>new</code>可以认为是<code>malloc</code>加构造函数的执行；</li>
-<li><code>new</code>出来的指针是直接带类型信息的，<code>malloc</code>返回<code>void</code>指针；</li>
-<li><code>delete</code>会相应调用对象的析构函数。</li>
+<h2 id="external关键字"><a href="#external关键字" class="headerlink" title="external关键字"></a>external关键字</h2><p>变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用<code>external</code>关键字做<strong>引用声明</strong>。</p>
+<ol>
+<li>外部变量在<code>main()</code>前面或头文件中定义它，在文件中定义之后的任何位置使用它；</li>
+<li>单定义规则：变量只能定义声明一次；</li>
+<li>局部变量隐藏同名的全局变量。如果要访问全局变量，可用作用域解析符<code>：：</code>；</li>
+<li>静态变量将隐藏常规外部变量（使用<code>external</code>关键字引用）。</li>
 </ol>
+<p>关于<code>external</code>关键字的测试是很简单的，这里不给出代码。另外提到单定义规则，有一点需要注意。任何一个包含头文件的cpp都要重新编译这个头文件，因此头文件绝对不能包含函数体与变量。不然，两个或两个以上cpp包含它会出现重定义错误。</p>
 <hr>
-<h2 id="堆和栈的区别："><a href="#堆和栈的区别：" class="headerlink" title="堆和栈的区别："></a>堆和栈的区别：</h2><ol>
-<li>管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；<ul>
-<li>内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。</li>
-</ul>
-</li>
-<li>空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）</li>
-<li>碎片问题：堆频繁<code>new/delete</code>会产生大量碎片（<code>delete</code>出来的空间几乎不可能恰好等于<code>new</code>的空间）；栈不会；</li>
-<li>生长方向：堆向上；栈向下。</li>
-<li>分配方式：堆动态；栈动态（<code>alloca</code>，但他不需人工释放）或静态（编译器完成）</li>
-<li>分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）</li>
-</ol>
-<hr>
-<p>以上内容主要来自于<a href="http://www.cnblogs.com/daocaoren/archive/2011/06/29/2092957.html" target="_blank" rel="external">这里</a>。</p>
 
     
   </div>
@@ -391,7 +522,7 @@ new和m">
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2016/04/05/C++内存存储区/';
+    var disqus_url = 'http://yoursite.com/2016/04/06/五种变量存储方式与external关键字/';
     
     (function(){
       var dsq = document.createElement('script');
