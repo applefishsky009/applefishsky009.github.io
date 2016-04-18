@@ -23,7 +23,7 @@
 <meta property="og:description" content="C++类的this指针如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b)。由">
 <meta property="og:image" content="http://i.imgur.com/qChOATG.png">
 <meta property="og:image" content="http://i.imgur.com/CzuJ4fG.png">
-<meta property="og:updated_time" content="2016-04-15T01:48:02.149Z">
+<meta property="og:updated_time" content="2016-04-18T08:43:25.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++类的this指针">
 <meta name="twitter:description" content="C++类的this指针如图，假设有一个类Stock，他有一个private：int val。他还有一个方法const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const;这个方法要实现这样的功能：对于两个类Stock的对象a和b，比较a的val和b的val，返回val大的对象(a或者b)，可能性的写法如下：a.compare(b)。由">
@@ -87,10 +87,10 @@
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/category/"
+            href="/tag/"
             target="_self"
             >
-            分类
+            标签
           </a>
         </li>
       
@@ -107,10 +107,10 @@
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/tag/"
+            href="/category/"
             target="_self"
             >
-            标签
+            分类
           </a>
         </li>
       
@@ -199,7 +199,7 @@
       <h2 id="C-类的this指针"><a href="#C-类的this指针" class="headerlink" title="C++类的this指针"></a>C++类的this指针</h2><p>如图，假设有一个类<code>Stock</code>，他有一个<code>private：int val</code>。他还有一个方法<code>const Stock&amp; Stock::compare(const Stock &amp;classIn) const</code>;这个方法要实现这样的功能：对于两个类<code>Stock</code>的对象a和b，比较a的<code>val</code>和b的<code>val</code>，返回<code>val</code>大的对象(a或者b)，可能性的写法如下：<code>a.compare(b)</code>。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法<code>compare</code>中，如何返回以后才初始化的对象本身(也就是a)？<br><img src="http://i.imgur.com/qChOATG.png" alt="为什么使用this指针"></p>
 <ol>
 <li>一般来说，所有类方法都将<code>this</code>指针设置为调用它的<strong>地址</strong>。(因此返回对象使用<strong><code>*this</code></strong>)</li>
-<li><code>compare</code>方法返回类型是指针意味着返回的是调用对象本身，而不是其副本。</li>
+<li><code>compare</code>方法返回类型是<em>指针意味着返回的是调用对象本身，而不是其副本</em>。</li>
 <li><code>compare</code>方法的最后一个<code>const</code>表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。</li>
 <li>形参列表中的<code>const</code>表示该函数不会修改被显示访问的对象(即图中的s)。</li>
 <li>由于该函数返回了两个<code>const</code>对象之一的引用，因此<strong>返回类型也应该是<code>const</code>引用</strong>。</li>
@@ -243,10 +243,10 @@
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/category/"
+              href="/tag/"
               target="_self"
               >
-              分类
+              标签
             </a>
           </li>
         
@@ -263,10 +263,10 @@
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/tag/"
+              href="/category/"
               target="_self"
               >
-              标签
+              分类
             </a>
           </li>
         

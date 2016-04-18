@@ -37,7 +37,7 @@ C++通常把接口（类">
 
 类方法定义 – 类的实现细节
 C++通常把接口（类">
-<meta property="og:updated_time" content="2016-04-15T01:35:53.665Z">
+<meta property="og:updated_time" content="2016-04-18T07:14:21.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类的构造函数与析构函数初探">
 <meta name="twitter:description" content="类的简介类的规范由两部分组成：
@@ -108,10 +108,10 @@ C++通常把接口（类">
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/category/"
+            href="/tag/"
             target="_self"
             >
-            分类
+            标签
           </a>
         </li>
       
@@ -128,10 +128,10 @@ C++通常把接口（类">
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/tag/"
+            href="/category/"
             target="_self"
             >
-            标签
+            分类
           </a>
         </li>
       
@@ -245,7 +245,7 @@ C++通常把接口（类">
 </ul>
 <hr>
 <h2 id="类的构造函数与析构函数"><a href="#类的构造函数与析构函数" class="headerlink" title="类的构造函数与析构函数"></a>类的构造函数与析构函数</h2><h3 id="类的构造函数"><a href="#类的构造函数" class="headerlink" title="类的构造函数"></a>类的构造函数</h3><ol>
-<li>如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。</li>
+<li>如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作，也就是说<strong>他的值在初始化时是未知的</strong>；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。</li>
 <li>构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。</li>
 </ol>
 <h3 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h3><ol>
@@ -260,10 +260,10 @@ C++通常把接口（类">
 5. Num nums = Num(initVector)；
 </code></pre><ul>
 <li>1一定不会创建一个临时对象并析构；</li>
-<li>2是赋值语句一定会创建临时对象并析构(虽然有匿名对象但作用域限制)；</li>
+<li>2是赋值语句一定会创建临时对象并析构(<strong>虽然有匿名对象但作用域限制</strong>)；</li>
 <li>3也会创建一个临时对象并析构(因为没有匿名对象的载体)；</li>
 <li>4不会(因为有匿名对象载体)；</li>
-<li>5会。但是对于5这种创建<strong>有指定值的对象</strong>，是否有临时对象是不确定的(取决于具体的实现)。</li>
+<li>5在本人编译器上会（这是<strong>拷贝构造</strong>）。但是对于5这种创建<strong>有指定值的对象</strong>，是否有临时对象是不确定的(取决于具体的实现)。</li>
 <li>总之，1的效率最高。</li>
 </ul>
 
@@ -304,10 +304,10 @@ C++通常把接口（类">
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/category/"
+              href="/tag/"
               target="_self"
               >
-              分类
+              标签
             </a>
           </li>
         
@@ -324,10 +324,10 @@ C++通常把接口（类">
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/tag/"
+              href="/category/"
               target="_self"
               >
-              标签
+              分类
             </a>
           </li>
         

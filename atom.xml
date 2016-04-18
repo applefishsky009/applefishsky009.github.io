@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-15T09:33:24.810Z</updated>
+  <updated>2016-04-18T08:54:33.333Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,77 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类的复制构造函数和赋值运算符重载</title>
+    <link href="http://yoursite.com/2016/04/18/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
+    <id>http://yoursite.com/2016/04/18/类的复制构造函数和赋值运算符重载/</id>
+    <published>2016-04-18T03:51:12.000Z</published>
+    <updated>2016-04-18T08:54:33.333Z</updated>
+    
+    <content type="html">&lt;p&gt;C++会自动提供以下成员函数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;默认构造函数；&lt;/li&gt;
+&lt;li&gt;默认析构函数&lt;/li&gt;
+&lt;li&gt;复制构造函数&lt;/li&gt;
+&lt;li&gt;赋值运算符&lt;/li&gt;
+&lt;li&gt;地址运算符&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之前讨论过构造函数与析构函数，今天讨论复制构造函数与赋值运算符。&lt;/p&gt;
+&lt;h2 id=&quot;类的复制构造函数&quot;&gt;&lt;a href=&quot;#类的复制构造函数&quot; class=&quot;headerlink&quot; title=&quot;类的复制构造函数&quot;&gt;&lt;/a&gt;类的复制构造函数&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;作用：复制构造函数用于将一个对象复制到新创建的对象中。也就是用于初始化过程（包括按值传递）,而不是常规的赋值过程。&lt;strong&gt;隐式构造函数&lt;font color=&quot;red&quot;&gt;按值&lt;/font&gt;逐个复制非静态成员&lt;/strong&gt;,静态成员属于整个类，不属于某一个对象，因此不受影响。&lt;/li&gt;
+&lt;li&gt;何时调用：新建一个对象并将其初始化为同类现有对象。有以下四种可能语法：&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;StringBad ditto(motto)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;StringBad *pStringBad = new StringBad(motto)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;StringBad metoo = motto&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;StringBad also = StringBad(motto)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;1、2两种声明没有临时匿名对象(或者说临时匿名对象有外部载体);3、4两种声明值是接创建metoo和also还是用复制构造函数构造临时对象然后对象赋值给metoo和also，取决于具体实现。&lt;font color=&quot;red&quot;&gt;特点是有赋值运算符的非指针构造&lt;/font&gt;，在本人的编译器上(VS2012 32)是有临时对象并析构的。&lt;/p&gt;
+&lt;h4 id=&quot;注：&quot;&gt;&lt;a href=&quot;#注：&quot; class=&quot;headerlink&quot; title=&quot;注：&quot;&gt;&lt;/a&gt;注：&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;无论哪种编译器，按值传递和返回对象时，都将调用复制构造函数。&lt;/li&gt;
+&lt;li&gt;由于1，复制构造函数必须&lt;strong&gt;接受类对象的常量引用&lt;/strong&gt;作为参数，否则会无限递归调用自身导致堆栈溢出。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;默认复制构造函数的缺陷-浅复制&quot;&gt;&lt;a href=&quot;#默认复制构造函数的缺陷-浅复制&quot; class=&quot;headerlink&quot; title=&quot;默认复制构造函数的缺陷(浅复制)&quot;&gt;&lt;/a&gt;默认复制构造函数的缺陷(浅复制)&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;对象计数器：默认构造函数+显式构造函数+显式构造函数=析构函数。&lt;/li&gt;
+&lt;li&gt;隐式复制构造函数是&lt;strong&gt;按值复制&lt;/strong&gt;，对于指针指向的new出来的空间，它会使两个指针指向同一块内容，因此在析构时，编译器尝试两次释放同一块内存，这会导致不确定的可能有害的结果。必须定义一个显式复制构造函数给指针开辟新的内存、&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;类的复制运算符重载-深度复制&quot;&gt;&lt;a href=&quot;#类的复制运算符重载-深度复制&quot; class=&quot;headerlink&quot; title=&quot;类的复制运算符重载(深度复制)&quot;&gt;&lt;/a&gt;类的复制运算符重载(深度复制)&lt;/h2&gt;&lt;p&gt;C++的类对象赋值通过自动为类重载赋值运算符实现。赋值运算符是只能由类成员函数重载的运算符之一。&lt;br&gt;如上所说四种新建对象方法，&lt;em&gt;8初始化时总会调用复制构造函数，而是用&lt;code&gt;=&lt;/code&gt;运算符也允许调用赋值运算符。&lt;/em&gt;但是！赋值运算符的隐式实现也是对成员逐个赋值。那么如上也有两次析构的问题，因此应该提供赋值运算符进行深度复制。&lt;br&gt;其与复制构造函数的差别：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;应该首先检查自我复制，相同返回自身。否则未复制前释放了自身；&lt;/li&gt;
+&lt;li&gt;释放拷贝对象之前引用的数据，否则会内存泄露(因为要深度复制会申请新的内存空间并指向他进行数据拷贝，之前的内存指针就丢失了)。&lt;/li&gt;
+&lt;li&gt;返回一个指向调用对象的引用以便连续赋值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;下面这个例子同时犯了复制构造函数和赋值运算符重载的浅复制错误：&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/OwHR2qp.png&quot; alt=&quot;典型的浅复制错误&quot;&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;为什么赋值运算符重载返回类型是引用？之前在&lt;code&gt;*this&lt;/code&gt;指针中提过，返回类型为引用意味着返回对象本身而不是其副本。这样在一些含有赋值运算符的初始化中也可以防止递归调用。&lt;/li&gt;
+&lt;li&gt;为什么参数类型为引用？对&lt;em&gt;复制构造函数&lt;/em&gt;和&lt;em&gt;赋值运算符重载&lt;/em&gt;，都是为了防止递归调用。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C++会自动提供以下成员函数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;默认构造函数；&lt;/li&gt;
+&lt;li&gt;默认析构函数&lt;/li&gt;
+&lt;li&gt;复制构造函数&lt;/li&gt;
+&lt;li&gt;赋值运算符&lt;/li&gt;
+&lt;li&gt;地址运算符&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;之前讨论过构造函数与析构函数，今天讨论复制构造函
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>vector之resize和reverse</title>
@@ -267,12 +338,12 @@
     <link href="http://yoursite.com/2016/04/12/C++%E7%B1%BB%E7%9A%84this%E6%8C%87%E9%92%88/"/>
     <id>http://yoursite.com/2016/04/12/C++类的this指针/</id>
     <published>2016-04-12T01:08:44.000Z</published>
-    <updated>2016-04-15T01:48:02.149Z</updated>
+    <updated>2016-04-18T08:43:25.517Z</updated>
     
     <content type="html">&lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的this指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;一般来说，所有类方法都将&lt;code&gt;this&lt;/code&gt;指针设置为调用它的&lt;strong&gt;地址&lt;/strong&gt;。(因此返回对象使用&lt;strong&gt;&lt;code&gt;*this&lt;/code&gt;&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法返回类型是指针意味着返回的是调用对象本身，而不是其副本。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法返回类型是&lt;em&gt;指针意味着返回的是调用对象本身，而不是其副本&lt;/em&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法的最后一个&lt;code&gt;const&lt;/code&gt;表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。&lt;/li&gt;
 &lt;li&gt;形参列表中的&lt;code&gt;const&lt;/code&gt;表示该函数不会修改被显示访问的对象(即图中的s)。&lt;/li&gt;
 &lt;li&gt;由于该函数返回了两个&lt;code&gt;const&lt;/code&gt;对象之一的引用，因此&lt;strong&gt;返回类型也应该是&lt;code&gt;const&lt;/code&gt;引用&lt;/strong&gt;。&lt;/li&gt;
@@ -534,7 +605,7 @@
     <link href="http://yoursite.com/2016/04/07/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%88%9D%E6%8E%A2/"/>
     <id>http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/</id>
     <published>2016-04-07T11:03:11.000Z</published>
-    <updated>2016-04-15T01:35:53.665Z</updated>
+    <updated>2016-04-18T07:14:21.422Z</updated>
     
     <content type="html">&lt;h2 id=&quot;类的简介&quot;&gt;&lt;a href=&quot;#类的简介&quot; class=&quot;headerlink&quot; title=&quot;类的简介&quot;&gt;&lt;/a&gt;类的简介&lt;/h2&gt;&lt;h3 id=&quot;类的规范由两部分组成：&quot;&gt;&lt;a href=&quot;#类的规范由两部分组成：&quot; class=&quot;headerlink&quot; title=&quot;类的规范由两部分组成：&quot;&gt;&lt;/a&gt;类的规范由两部分组成：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
@@ -564,7 +635,7 @@
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;类的构造函数与析构函数&quot;&gt;&lt;a href=&quot;#类的构造函数与析构函数&quot; class=&quot;headerlink&quot; title=&quot;类的构造函数与析构函数&quot;&gt;&lt;/a&gt;类的构造函数与析构函数&lt;/h2&gt;&lt;h3 id=&quot;类的构造函数&quot;&gt;&lt;a href=&quot;#类的构造函数&quot; class=&quot;headerlink&quot; title=&quot;类的构造函数&quot;&gt;&lt;/a&gt;类的构造函数&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。&lt;/li&gt;
+&lt;li&gt;如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作，也就是说&lt;strong&gt;他的值在初始化时是未知的&lt;/strong&gt;；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。&lt;/li&gt;
 &lt;li&gt;构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h3 id=&quot;类的析构函数&quot;&gt;&lt;a href=&quot;#类的析构函数&quot; class=&quot;headerlink&quot; title=&quot;类的析构函数&quot;&gt;&lt;/a&gt;类的析构函数&lt;/h3&gt;&lt;ol&gt;
@@ -579,10 +650,10 @@
 5. Num nums = Num(initVector)；
 &lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
 &lt;li&gt;1一定不会创建一个临时对象并析构；&lt;/li&gt;
-&lt;li&gt;2是赋值语句一定会创建临时对象并析构(虽然有匿名对象但作用域限制)；&lt;/li&gt;
+&lt;li&gt;2是赋值语句一定会创建临时对象并析构(&lt;strong&gt;虽然有匿名对象但作用域限制&lt;/strong&gt;)；&lt;/li&gt;
 &lt;li&gt;3也会创建一个临时对象并析构(因为没有匿名对象的载体)；&lt;/li&gt;
 &lt;li&gt;4不会(因为有匿名对象载体)；&lt;/li&gt;
-&lt;li&gt;5会。但是对于5这种创建&lt;strong&gt;有指定值的对象&lt;/strong&gt;，是否有临时对象是不确定的(取决于具体的实现)。&lt;/li&gt;
+&lt;li&gt;5在本人编译器上会（这是&lt;strong&gt;拷贝构造&lt;/strong&gt;）。但是对于5这种创建&lt;strong&gt;有指定值的对象&lt;/strong&gt;，是否有临时对象是不确定的(取决于具体的实现)。&lt;/li&gt;
 &lt;li&gt;总之，1的效率最高。&lt;/li&gt;
 &lt;/ul&gt;
 </content>
