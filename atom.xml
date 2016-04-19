@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-18T08:54:33.333Z</updated>
+  <updated>2016-04-19T03:34:29.362Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,123 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>整型提升</title>
+    <link href="http://yoursite.com/2016/04/19/%E6%95%B4%E5%9E%8B%E6%8F%90%E5%8D%87/"/>
+    <id>http://yoursite.com/2016/04/19/整型提升/</id>
+    <published>2016-04-19T03:15:41.000Z</published>
+    <updated>2016-04-19T03:34:29.362Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>默认参数与内联函数</title>
+    <link href="http://yoursite.com/2016/04/19/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
+    <id>http://yoursite.com/2016/04/19/默认参数与内联函数/</id>
+    <published>2016-04-19T03:15:10.000Z</published>
+    <updated>2016-04-19T07:08:55.502Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 &lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;内联函数&quot;&gt;&lt;a href=&quot;#内联函数&quot; class=&quot;headerlink&quot; title=&quot;内联函数&quot;&gt;&lt;/a&gt;内联函数&lt;/h2&gt;&lt;p&gt;常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。&lt;/p&gt;
+&lt;h3 id=&quot;C语言的宏&quot;&gt;&lt;a href=&quot;#C语言的宏&quot; class=&quot;headerlink&quot; title=&quot;C语言的宏&quot;&gt;&lt;/a&gt;C语言的宏&lt;/h3&gt;&lt;p&gt;宏是内联代码的原始实现，它的本质是&lt;strong&gt;文本替换&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;普通宏定义中，预处理器将空格解释成分段标志；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;##&lt;/code&gt;是一种分隔连接方式，作用是先分隔后强制连接；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;#&lt;/code&gt;表示变量替换后加双引号括起来。&lt;/li&gt;
+&lt;li&gt;另外一些分隔符、操作符如&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;、&lt;code&gt;*&lt;/code&gt;、&lt;code&gt;/&lt;/code&gt;、&lt;code&gt;[&lt;/code&gt;、&lt;code&gt;]&lt;/code&gt;依然有意义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#define A1(name,type) type name_##type##_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A1(a1,int) &amp;lt;=&amp;gt; int name_int_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#define A1(name,type) type name##_##type##_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A1(a1,int) &amp;lt;=&amp;gt; int a1_int_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#define stringify(x) #x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	stringify(linux) &amp;lt;=&amp;gt; &amp;quot;linux&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;C-内联函数&quot;&gt;&lt;a href=&quot;#C-内联函数&quot; class=&quot;headerlink&quot; title=&quot;C++内联函数&quot;&gt;&lt;/a&gt;C++内联函数&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;编译器将使用相应的函数代码替换函数调用(省略了来回跳跃并记录跳跃位置的过程)；&lt;/li&gt;
+&lt;li&gt;运行速度较快，但占用更多的内存(同一个内联函数调用多少次，就有多少次副本)；&lt;/li&gt;
+&lt;li&gt;一般省略原型(但原型特性仍在起作用)，将整个定义放在原本该提供原型的地方(这是首次使用前的函数定义，充当原型)，并使用&lt;code&gt;inline&lt;/code&gt;关键字&lt;/li&gt;
+&lt;li&gt;编译器并不一定满足程序员内联函数的请求，比如函数过大或者函数调用了自己(递归不能内联)。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>函数原型与函数调用</title>
+    <link href="http://yoursite.com/2016/04/18/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
+    <id>http://yoursite.com/2016/04/18/函数原型与函数调用/</id>
+    <published>2016-04-18T11:25:05.000Z</published>
+    <updated>2016-04-19T07:04:42.318Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么需要原型&quot;&gt;&lt;/a&gt;为什么需要原型&lt;/h3&gt;&lt;p&gt;原型是函数到编译器的接口，他将函数返回值的类型以及参数的类型和数量告诉编译器。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;原型告诉编译器函数参数类型和数量，如果不准确，它让编译器捕获这种错误&lt;/li&gt;
+&lt;li&gt;函数完成计算后，将返回值放在指定的位置(&lt;strong&gt;CPU寄存器或者内存&lt;/strong&gt;)以供调用函数取得。&lt;/li&gt;
+&lt;li&gt;原型指出返回类型，让编译器知道应检索多少字节以及如何&lt;em&gt;解释&lt;/em&gt;他们。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;原型语法&quot;&gt;&lt;a href=&quot;#原型语法&quot; class=&quot;headerlink&quot; title=&quot;原型语法&quot;&gt;&lt;/a&gt;原型语法&lt;/h3&gt;&lt;p&gt;以&lt;code&gt;void cheers(int);&lt;/code&gt;为例，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;函数原型是一条语句，必须以分号结尾；&lt;/li&gt;
+&lt;li&gt;函数原型不要求提供变量名，有类型列表就够了(这与函数调用有关，原型中的变量名其实就是栈中的占位符)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;原型功能&quot;&gt;&lt;a href=&quot;#原型功能&quot; class=&quot;headerlink&quot; title=&quot;原型功能&quot;&gt;&lt;/a&gt;原型功能&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;编译器正确处理函数返回值(就是说在&lt;strong&gt;指定位置如何解释&lt;/strong&gt;)；&lt;/li&gt;
+&lt;li&gt;编译器检查使用的参数数目是否正确(&lt;strong&gt;不正确让编译器捕获错误&lt;/strong&gt;)；&lt;/li&gt;
+&lt;li&gt;编译器检查参数类型是否正确，如果不正确，可能的话转换为正确类型(编译阶段进行的原型化，静态类型检查)。如下&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/5aaLwcA.png&quot; alt=&quot;函数原型进行类型转化&quot;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;函数调用&quot;&gt;&lt;a href=&quot;#函数调用&quot; class=&quot;headerlink&quot; title=&quot;函数调用&quot;&gt;&lt;/a&gt;函数调用&lt;/h2&gt;&lt;p&gt;详细过程见&lt;a href=&quot;http://www.zhihu.com/question/22444939#answer-4080329&quot; title=&quot;函数调用中栈的变化&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;相关寄存器&quot;&gt;&lt;a href=&quot;#相关寄存器&quot; class=&quot;headerlink&quot; title=&quot;相关寄存器&quot;&gt;&lt;/a&gt;相关寄存器&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;栈指针寄存器：指向系统栈最上面一个帧栈栈底的指针；&lt;/li&gt;
+&lt;li&gt;基址指针寄存器：指向系统栈最上面一个帧栈栈底的指针；&lt;/li&gt;
+&lt;li&gt;指令寄存器：指向下一条待执行的指令地址。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;函数调用步骤&quot;&gt;&lt;a href=&quot;#函数调用步骤&quot; class=&quot;headerlink&quot; title=&quot;函数调用步骤&quot;&gt;&lt;/a&gt;函数调用步骤&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;参数入栈：C++将参数从右向左依次入栈；&lt;/li&gt;
+&lt;li&gt;返回地址入栈：将&lt;em&gt;当前&lt;/em&gt;代码区调用指令的&lt;em&gt;下一条&lt;/em&gt;指令地址压入栈，函数返回时继续执行；&lt;/li&gt;
+&lt;li&gt;代码区跳转：从当前代码区跳转到被调函数入口处；&lt;/li&gt;
+&lt;li&gt;栈帧调整：&lt;ul&gt;
+&lt;li&gt;当前栈帧的EPB入栈；&lt;/li&gt;
+&lt;li&gt;切换到新栈帧,ESP装入EBP；&lt;/li&gt;
+&lt;li&gt;给新栈帧分配空间；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h3&gt;&lt;h4 id=&quot;为什么参数要入栈？&quot;&gt;&lt;a href=&quot;#为什么参数要入栈？&quot; class=&quot;headerlink&quot; title=&quot;为什么参数要入栈？&quot;&gt;&lt;/a&gt;为什么参数要入栈？&lt;/h4&gt;&lt;p&gt;为了保存现场，例如一个递归：&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int sum(int n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (n == 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return sum(n-1)+n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;当&lt;code&gt;sum(n-1)&lt;/code&gt;返回，他的栈帧被释放，还原到&lt;code&gt;sum(n)&lt;/code&gt;的栈帧，那么n的值怎么获得？假如&lt;code&gt;sum&lt;/code&gt;是在&lt;code&gt;main()&lt;/code&gt;调用的，n在调用时压入了&lt;code&gt;main()&lt;/code&gt;的栈帧，并对一个匿名对象拷贝了n的值供&lt;code&gt;sum()&lt;/code&gt;计算，如果传地址或者引用就可以直接修改栈帧中的值。&lt;br&gt;这就可以解释为什么按值传递时不能修改上一级函数的数值，因为栈帧会还原，按值传递修改的也不是栈帧中的值。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>类的复制构造函数和赋值运算符重载</title>
