@@ -231,11 +231,11 @@
   </entry>
   
   <entry>
-    <title>vector之resize和reverse</title>
-    <link href="http://yoursite.com/2016/04/15/vector%E4%B9%8Bresize%E5%92%8Creverse/"/>
-    <id>http://yoursite.com/2016/04/15/vector之resize和reverse/</id>
+    <title>vector之resize方法和reverse方法</title>
+    <link href="http://yoursite.com/2016/04/15/vector%E4%B9%8Bresize%E6%96%B9%E6%B3%95%E5%92%8Creverse%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/04/15/vector之resize方法和reverse方法/</id>
     <published>2016-04-15T06:39:13.000Z</published>
-    <updated>2016-04-18T09:00:33.029Z</updated>
+    <updated>2016-04-19T12:59:02.834Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
@@ -306,11 +306,11 @@
   </entry>
   
   <entry>
-    <title>vector之erase</title>
-    <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase/"/>
-    <id>http://yoursite.com/2016/04/14/vector之erase/</id>
+    <title>vector之erase方法</title>
+    <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/04/14/vector之erase方法/</id>
     <published>2016-04-14T02:52:25.000Z</published>
-    <updated>2016-04-18T09:00:06.352Z</updated>
+    <updated>2016-04-19T12:58:01.742Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
 &lt;table&gt;
@@ -365,11 +365,11 @@
   </entry>
   
   <entry>
-    <title>vector之insert和emplace</title>
-    <link href="http://yoursite.com/2016/04/13/vector%E4%B9%8Binsert%E5%92%8Cemplace/"/>
-    <id>http://yoursite.com/2016/04/13/vector之insert和emplace/</id>
+    <title>vector之insert方法和emplace方法</title>
+    <link href="http://yoursite.com/2016/04/13/vector%E4%B9%8Binsert%E6%96%B9%E6%B3%95%E5%92%8Cemplace%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/04/13/vector之insert方法和emplace方法/</id>
     <published>2016-04-13T12:39:29.000Z</published>
-    <updated>2016-04-18T09:00:20.158Z</updated>
+    <updated>2016-04-19T12:58:59.205Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法：&lt;/p&gt;
 &lt;table&gt;
@@ -689,11 +689,11 @@
   </entry>
   
   <entry>
-    <title>leetcode第一章：编程技巧说明</title>
-    <link href="http://yoursite.com/2016/04/08/leetcode%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/"/>
-    <id>http://yoursite.com/2016/04/08/leetcode第一章：编程技巧说明/</id>
+    <title>LeetCode第一章：编程技巧说明</title>
+    <link href="http://yoursite.com/2016/04/08/LeetCode%E7%AC%AC%E4%B8%80%E7%AB%A0%EF%BC%9A%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/"/>
+    <id>http://yoursite.com/2016/04/08/LeetCode第一章：编程技巧说明/</id>
     <published>2016-04-08T11:44:02.000Z</published>
-    <updated>2016-04-18T08:59:35.061Z</updated>
+    <updated>2016-04-19T12:57:32.437Z</updated>
     
     <content type="html">&lt;h2 id=&quot;判断两个值a-b是否相等&quot;&gt;&lt;a href=&quot;#判断两个值a-b是否相等&quot; class=&quot;headerlink&quot; title=&quot;判断两个值a,b是否相等&quot;&gt;&lt;/a&gt;判断两个值a,b是否相等&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code&gt;；&lt;/li&gt;
@@ -740,7 +740,7 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="leetcode" scheme="http://yoursite.com/tags/leetcode/"/>
+      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
     
   </entry>
   
