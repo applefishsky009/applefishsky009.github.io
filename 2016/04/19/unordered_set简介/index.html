@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>unordered_set简介 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="unordered_set," />
+  
+
+  <meta name="description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
+
+unordered_set与STL的异同
+_Pairib insert(const value_t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unordered_set简介">
+<meta property="og:url" content="http://yoursite.com/2016/04/19/unordered_set简介/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
+
+unordered_set与STL的异同
+_Pairib insert(const value_t">
+<meta property="og:updated_time" content="2016-04-19T12:54:21.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unordered_set简介">
+<meta name="twitter:description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
+
+unordered_set与STL的异同
+_Pairib insert(const value_t">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set简介"><span class="toc-text">unordered_set简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set与STL的异同"><span class="toc-text">unordered_set与STL的异同</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-unordered_set简介" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">unordered_set简介</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.19</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/19/unordered_set简介/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="unordered-set简介"><a href="#unordered-set简介" class="headerlink" title="unordered_set简介"></a>unordered_set简介</h2><p>MSDN上有对<a href="https://msdn.microsoft.com/zh-cn/library/bb982739.aspx" target="_blank" rel="external">unordered_set</a>描述，CSDN上有博客对<a href="http://blog.csdn.net/oabid/article/details/4562577" target="_blank" rel="external">unordered_set</a>描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：<code>insert()</code>、<font color="red"><code>find()</code></font>、<code>erase()</code>、<code>size()</code>、<code>empty()</code>、<code>begin()</code>、<code>end()</code>。</p>
+<hr>
+<h2 id="unordered-set与STL的异同"><a href="#unordered-set与STL的异同" class="headerlink" title="unordered_set与STL的异同"></a>unordered_set与STL的异同</h2><ol>
+<li><code>_Pairib insert(const value_type&amp; _Val)</code>;基本与<code>vector</code>用法相同，参数为要插入的值。</li>
+<li><code>iterator find(const key_type&amp; _Keyval)</code>;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即<code>end()</code>。与<code>size_type find(_Elem _Ch, size_type _Off = 0) const</code>有区别，后者会返回下标(<code>size_type</code>可以看做一种足够大的<code>unsigned</code>类型来表示下标)，如果没找到，返回<code>string::npos</code>。而</li>
+<li><code>size_type erase(const key_type&amp; _Keyval)</code>;擦除指定值，返回该指定值的位置。<code>iterator erase(const_iterator _Where)</code>擦除指针指向的值，容器重排，指针不变。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://yoursite.com/2016/04/19/unordered_set简介/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>

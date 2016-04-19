@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-19T03:34:29.362Z</updated>
+  <updated>2016-04-19T12:54:21.229Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>unordered_set简介</title>
+    <link href="http://yoursite.com/2016/04/19/unordered_set%E7%AE%80%E4%BB%8B/"/>
+    <id>http://yoursite.com/2016/04/19/unordered_set简介/</id>
+    <published>2016-04-19T11:42:25.000Z</published>
+    <updated>2016-04-19T12:54:21.229Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;MSDN上有对&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/bb982739.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，CSDN上有博客对&lt;a href=&quot;http://blog.csdn.net/oabid/article/details/4562577&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：&lt;code&gt;insert()&lt;/code&gt;、&lt;font color=&quot;red&quot;&gt;&lt;code&gt;find()&lt;/code&gt;&lt;/font&gt;、&lt;code&gt;erase()&lt;/code&gt;、&lt;code&gt;size()&lt;/code&gt;、&lt;code&gt;empty()&lt;/code&gt;、&lt;code&gt;begin()&lt;/code&gt;、&lt;code&gt;end()&lt;/code&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;unordered-set与STL的异同&quot;&gt;&lt;a href=&quot;#unordered-set与STL的异同&quot; class=&quot;headerlink&quot; title=&quot;unordered_set与STL的异同&quot;&gt;&lt;/a&gt;unordered_set与STL的异同&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;_Pairib insert(const value_type&amp;amp; _Val)&lt;/code&gt;;基本与&lt;code&gt;vector&lt;/code&gt;用法相同，参数为要插入的值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iterator find(const key_type&amp;amp; _Keyval)&lt;/code&gt;;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即&lt;code&gt;end()&lt;/code&gt;。与&lt;code&gt;size_type find(_Elem _Ch, size_type _Off = 0) const&lt;/code&gt;有区别，后者会返回下标(&lt;code&gt;size_type&lt;/code&gt;可以看做一种足够大的&lt;code&gt;unsigned&lt;/code&gt;类型来表示下标)，如果没找到，返回&lt;code&gt;string::npos&lt;/code&gt;。而&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;size_type erase(const key_type&amp;amp; _Keyval)&lt;/code&gt;;擦除指定值，返回该指定值的位置。&lt;code&gt;iterator erase(const_iterator _Where)&lt;/code&gt;擦除指针指向的值，容器重排，指针不变。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;MSDN上有对&lt;a href=&quot;ht
+    
+    </summary>
+    
+    
+      <category term="unordered_set" scheme="http://yoursite.com/tags/unordered-set/"/>
+    
+  </entry>
   
   <entry>
     <title>整型提升</title>
