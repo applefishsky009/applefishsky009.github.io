@@ -722,7 +722,7 @@
     <link href="http://yoursite.com/2016/04/07/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%88%9D%E6%8E%A2/"/>
     <id>http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/</id>
     <published>2016-04-07T11:03:11.000Z</published>
-    <updated>2016-04-18T09:00:46.739Z</updated>
+    <updated>2016-04-19T11:28:38.979Z</updated>
     
     <content type="html">&lt;h2 id=&quot;类的简介&quot;&gt;&lt;a href=&quot;#类的简介&quot; class=&quot;headerlink&quot; title=&quot;类的简介&quot;&gt;&lt;/a&gt;类的简介&lt;/h2&gt;&lt;h3 id=&quot;类的规范由两部分组成：&quot;&gt;&lt;a href=&quot;#类的规范由两部分组成：&quot; class=&quot;headerlink&quot; title=&quot;类的规范由两部分组成：&quot;&gt;&lt;/a&gt;类的规范由两部分组成：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
@@ -760,7 +760,7 @@
 &lt;li&gt;注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。&lt;/li&gt;
 &lt;li&gt;若构造函数中有&lt;code&gt;new&lt;/code&gt;，则析构函数必须&lt;code&gt;delete&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id=&quot;构造函数的语法&quot;&gt;&lt;a href=&quot;#构造函数的语法&quot; class=&quot;headerlink&quot; title=&quot;构造函数的语法&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/Leetcode/tree/master/2.1.1%20-%20Remove%20Duplicates%20from%20Sorted%20Array&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构造函数的语法&lt;/a&gt;&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. Num nums(initVector);
+&lt;h3 id=&quot;构造函数的语法&quot;&gt;&lt;a href=&quot;#构造函数的语法&quot; class=&quot;headerlink&quot; title=&quot;构造函数的语法&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/Leetcode/blob/master/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构造函数的语法&lt;/a&gt;&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. Num nums(initVector);
 2. nums = Num(initVector)。
 3. Num();
 4. Num nums = Num();
