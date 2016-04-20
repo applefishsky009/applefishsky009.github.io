@@ -7,24 +7,72 @@
 <head>
   <meta charset="utf-8">
   
-  <title>整型提升 | 孤云两角，去天一握</title>
+  <title>类型转换 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="函数原型," />
+    <meta name="keywords" content="类型转换；函数原型," />
   
 
-  <meta name="description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
+  <meta name="description" content="C++自动执行以下类型转换：
+
+不同算术类型的赋值；
+包含不同类型的表达式；
+函数调用
+
+
+初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
+
+精度降低(double-&amp;gt;float等);
+数字截短(float-&amp;gt;int等);
+数据丢失(long-&amp;gt;short等)。
+
+
+列表初始化时的转换不允许缩窄。
+
+表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="整型提升">
-<meta property="og:url" content="http://yoursite.com/2016/04/19/整型提升/index.html">
+<meta property="og:title" content="类型转换">
+<meta property="og:url" content="http://yoursite.com/2016/04/20/类型转换/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
-<meta property="og:updated_time" content="2016-04-19T03:34:29.362Z">
+<meta property="og:description" content="C++自动执行以下类型转换：
+
+不同算术类型的赋值；
+包含不同类型的表达式；
+函数调用
+
+
+初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
+
+精度降低(double-&amp;gt;float等);
+数字截短(float-&amp;gt;int等);
+数据丢失(long-&amp;gt;short等)。
+
+
+列表初始化时的转换不允许缩窄。
+
+表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
+<meta property="og:updated_time" content="2016-04-20T03:45:20.342Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="整型提升">
-<meta name="twitter:description" content="三省吾身：不图虚名不避缺点不吝赞美，真诚。不轻诺，不定论，不臆断，有始有终，拥抱未来。">
+<meta name="twitter:title" content="类型转换">
+<meta name="twitter:description" content="C++自动执行以下类型转换：
+
+不同算术类型的赋值；
+包含不同类型的表达式；
+函数调用
+
+
+初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
+
+精度降低(double-&amp;gt;float等);
+数字截短(float-&amp;gt;int等);
+数据丢失(long-&amp;gt;short等)。
+
+
+列表初始化时的转换不允许缩窄。
+
+表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
 
   
 
@@ -148,17 +196,22 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化和赋值进行的转换"><span class="toc-text">初始化和赋值进行的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表初始化时的转换"><span class="toc-text">列表初始化时的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表达式的转换"><span class="toc-text">表达式的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转化"><span class="toc-text">自动转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术运算的转化"><span class="toc-text">算术运算的转化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传递参数时的转换"><span class="toc-text">传递参数时的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制类型转换"><span class="toc-text">强制类型转换</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
-   <article id="post-整型提升" class="article article-type-post" itemprop="blogPost">
+   <article id="post-类型转换" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">整型提升</h1>
+    <h1 class="post-title">类型转换</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.19</span>
+        <span>2016.04.20</span>
       </span>
 
       
@@ -179,7 +232,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/19/整型提升/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/20/类型转换/#disqus_thread"></a>
         </span>
       
 
@@ -188,7 +241,44 @@
 
   <div class="article-content">
     
-      
+      <p>C++自动执行以下类型转换：</p>
+<ul>
+<li>不同算术类型的赋值；</li>
+<li>包含不同类型的表达式；</li>
+<li>函数调用</li>
+</ul>
+<hr>
+<h2 id="初始化和赋值进行的转换"><a href="#初始化和赋值进行的转换" class="headerlink" title="初始化和赋值进行的转换"></a>初始化和赋值进行的转换</h2><p>扩展没有问题；缩窄可能会有一些问题:</p>
+<ul>
+<li>精度降低(double-&gt;float等);</li>
+<li>数字截短(float-&gt;int等);</li>
+<li>数据丢失(long-&gt;short等)。</li>
+</ul>
+<hr>
+<h2 id="列表初始化时的转换"><a href="#列表初始化时的转换" class="headerlink" title="列表初始化时的转换"></a>列表初始化时的转换</h2><p>不允许缩窄。</p>
+<hr>
+<h2 id="表达式的转换"><a href="#表达式的转换" class="headerlink" title="表达式的转换"></a>表达式的转换</h2><h3 id="自动转化"><a href="#自动转化" class="headerlink" title="自动转化"></a>自动转化</h3><p><code>int</code>型是计算机最自然的语言，运算速度最快。整型提升(integral promotion)规则如下:</p>
+<ol>
+<li>计算表达式时，C++将<code>bool</code>，<code>char</code>，<code>unsigned char</code>，<code>signed char</code>，<code>short</code>都转换为<code>int</code>；</li>
+<li>如果<code>short</code>和<code>int</code>一样长，<code>unsigned short</code>转换为<code>unsigned int</code>，如果<code>short</code>比<code>int</code>短，<code>unsigned short</code>转换为<code>int</code>。总之，以不损失数据为原则。</li>
+<li>在不损失数据的原则下，同级别有符号数比无符号数优先。</li>
+</ol>
+<h3 id="算术运算的转化"><a href="#算术运算的转化" class="headerlink" title="算术运算的转化"></a>算术运算的转化</h3><p>将较小的类型转换成较大的类型。依次判断long double?-&gt;double?-&gt;float?-&gt;integral promotion!可以看到浮点型优先于整型。具体过程可以查看C++11版本的效验表。</p>
+<hr>
+<h2 id="传递参数时的转换"><a href="#传递参数时的转换" class="headerlink" title="传递参数时的转换"></a>传递参数时的转换</h2><p>由C++函数原型控制，若取消函数原型的控制:</p>
+<ul>
+<li>将对<code>char</code>和<code>short</code>整型提升;</li>
+<li>将<code>float</code>参数提升为<code>double</code>。</li>
+</ul>
+<hr>
+<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p>C++设计新格式，让强制类型转换像函数一样调用:<code>typename (value)</code>更严格的限制允许的类型转换，以下4个类型转换符：</p>
+<ul>
+<li><code>dynamic_cast</code>;</li>
+<li><code>const_cast</code>;</li>
+<li><code>static_cast</code>;</li>
+<li><code>reinterpret_cast</code>;</li>
+</ul>
+
     
   </div>
 </article>
@@ -303,7 +393,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://yoursite.com/2016/04/19/整型提升/';
+    var disqus_url = 'http://yoursite.com/2016/04/20/类型转换/';
     
     (function(){
       var dsq = document.createElement('script');

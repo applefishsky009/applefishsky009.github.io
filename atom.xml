@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-19T12:54:21.229Z</updated>
+  <updated>2016-04-20T03:45:20.342Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,108 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类型转换</title>
+    <link href="http://yoursite.com/2016/04/20/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
+    <id>http://yoursite.com/2016/04/20/类型转换/</id>
+    <published>2016-04-20T02:53:34.000Z</published>
+    <updated>2016-04-20T03:45:20.342Z</updated>
+    
+    <content type="html">&lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不同算术类型的赋值；&lt;/li&gt;
+&lt;li&gt;包含不同类型的表达式；&lt;/li&gt;
+&lt;li&gt;函数调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;初始化和赋值进行的转换&quot;&gt;&lt;a href=&quot;#初始化和赋值进行的转换&quot; class=&quot;headerlink&quot; title=&quot;初始化和赋值进行的转换&quot;&gt;&lt;/a&gt;初始化和赋值进行的转换&lt;/h2&gt;&lt;p&gt;扩展没有问题；缩窄可能会有一些问题:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;精度降低(double-&amp;gt;float等);&lt;/li&gt;
+&lt;li&gt;数字截短(float-&amp;gt;int等);&lt;/li&gt;
+&lt;li&gt;数据丢失(long-&amp;gt;short等)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;列表初始化时的转换&quot;&gt;&lt;a href=&quot;#列表初始化时的转换&quot; class=&quot;headerlink&quot; title=&quot;列表初始化时的转换&quot;&gt;&lt;/a&gt;列表初始化时的转换&lt;/h2&gt;&lt;p&gt;不允许缩窄。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;表达式的转换&quot;&gt;&lt;a href=&quot;#表达式的转换&quot; class=&quot;headerlink&quot; title=&quot;表达式的转换&quot;&gt;&lt;/a&gt;表达式的转换&lt;/h2&gt;&lt;h3 id=&quot;自动转化&quot;&gt;&lt;a href=&quot;#自动转化&quot; class=&quot;headerlink&quot; title=&quot;自动转化&quot;&gt;&lt;/a&gt;自动转化&lt;/h3&gt;&lt;p&gt;&lt;code&gt;int&lt;/code&gt;型是计算机最自然的语言，运算速度最快。整型提升(integral promotion)规则如下:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;计算表达式时，C++将&lt;code&gt;bool&lt;/code&gt;，&lt;code&gt;char&lt;/code&gt;，&lt;code&gt;unsigned char&lt;/code&gt;，&lt;code&gt;signed char&lt;/code&gt;，&lt;code&gt;short&lt;/code&gt;都转换为&lt;code&gt;int&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;如果&lt;code&gt;short&lt;/code&gt;和&lt;code&gt;int&lt;/code&gt;一样长，&lt;code&gt;unsigned short&lt;/code&gt;转换为&lt;code&gt;unsigned int&lt;/code&gt;，如果&lt;code&gt;short&lt;/code&gt;比&lt;code&gt;int&lt;/code&gt;短，&lt;code&gt;unsigned short&lt;/code&gt;转换为&lt;code&gt;int&lt;/code&gt;。总之，以不损失数据为原则。&lt;/li&gt;
+&lt;li&gt;在不损失数据的原则下，同级别有符号数比无符号数优先。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;算术运算的转化&quot;&gt;&lt;a href=&quot;#算术运算的转化&quot; class=&quot;headerlink&quot; title=&quot;算术运算的转化&quot;&gt;&lt;/a&gt;算术运算的转化&lt;/h3&gt;&lt;p&gt;将较小的类型转换成较大的类型。依次判断long double?-&amp;gt;double?-&amp;gt;float?-&amp;gt;integral promotion!可以看到浮点型优先于整型。具体过程可以查看C++11版本的效验表。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;传递参数时的转换&quot;&gt;&lt;a href=&quot;#传递参数时的转换&quot; class=&quot;headerlink&quot; title=&quot;传递参数时的转换&quot;&gt;&lt;/a&gt;传递参数时的转换&lt;/h2&gt;&lt;p&gt;由C++函数原型控制，若取消函数原型的控制:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将对&lt;code&gt;char&lt;/code&gt;和&lt;code&gt;short&lt;/code&gt;整型提升;&lt;/li&gt;
+&lt;li&gt;将&lt;code&gt;float&lt;/code&gt;参数提升为&lt;code&gt;double&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;强制类型转换&quot;&gt;&lt;a href=&quot;#强制类型转换&quot; class=&quot;headerlink&quot; title=&quot;强制类型转换&quot;&gt;&lt;/a&gt;强制类型转换&lt;/h2&gt;&lt;p&gt;C++设计新格式，让强制类型转换像函数一样调用:&lt;code&gt;typename (value)&lt;/code&gt;更严格的限制允许的类型转换，以下4个类型转换符：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;dynamic_cast&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;const_cast&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;static_cast&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;reinterpret_cast&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不同算术类型的赋值；&lt;/li&gt;
+&lt;li&gt;包含不同类型的表达式；&lt;/li&gt;
+&lt;li&gt;函数调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;初始化和赋值进行的转换&quot;&gt;&lt;a href=&quot;#初始化和赋值进行的转换&quot; cla
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="类型转换；函数原型" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%EF%BC%9B%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>栈与字符型变量的地址</title>
+    <link href="http://yoursite.com/2016/04/20/%E6%A0%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2016/04/20/栈与字符型变量的地址/</id>
+    <published>2016-04-20T01:15:59.000Z</published>
+    <updated>2016-04-20T02:44:11.001Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;栈的存储机制&quot;&gt;&lt;a href=&quot;#栈的存储机制&quot; class=&quot;headerlink&quot; title=&quot;栈的存储机制&quot;&gt;&lt;/a&gt;栈的存储机制&lt;/h2&gt;&lt;p&gt;在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int a[4] = &amp;#123;1,2,3,4&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int b[4] = &amp;#123;5,6,7,8&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int c[4] = &amp;#123;9,10,11,12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/r0E1t24.jpg&quot; alt=&quot;栈&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;数组名称是一个指针，指向数组的第一个元素；&lt;/li&gt;
+&lt;li&gt;a[-2]指的是a指针向栈的地址低位移动2个数据元素大小(例子中是int型)，即访问到b[2]，&lt;strong&gt;但是&lt;/strong&gt;实际情况与编译器相关，他会做一些对准或者优化，明白访问原理即可；&lt;/li&gt;
+&lt;li&gt;每一个元素在栈中的字节序是Little Endian，即低位字节排放在地址的低地址端，高位字节排放在地址的高地址端。与之对应的还有Big Endian，排放次序相反。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;字符型变量的地址&quot;&gt;&lt;a href=&quot;#字符型变量的地址&quot; class=&quot;headerlink&quot; title=&quot;字符型变量的地址&quot;&gt;&lt;/a&gt;字符型变量的地址&lt;/h2&gt;&lt;p&gt;字符型变量&lt;code&gt;char c&lt;/code&gt;的地址不能用&lt;code&gt;cout&amp;lt;&amp;lt;&amp;amp;c；&lt;/code&gt;来表示，因为&lt;code&gt;&amp;amp;c&lt;/code&gt;实际上是一个&lt;code&gt;char *&lt;/code&gt;型的变量，它输出字符串的值，而字符串只有在内存中读到&lt;code&gt;\0&lt;/code&gt;才会终止，因此会出现乱码。所以要输出字符变量的地址，应该用以下语句告诉编译器如何解释：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;(int *)&amp;amp;c&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;(static_cast&amp;lt;void *&amp;gt;(&amp;amp;jc)&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上述的&lt;code&gt;static_cast&lt;/code&gt;用于显式类型转换。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;栈的存储机制&quot;&gt;&lt;a href=&quot;#栈的存储机制&quot; class=&quot;headerlink&quot; title=&quot;栈的存储机制&quot;&gt;&lt;/a&gt;栈的存储机制&lt;/h2&gt;&lt;p&gt;在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>unordered_set简介</title>
@@ -39,26 +141,6 @@
     
     
       <category term="unordered_set" scheme="http://yoursite.com/tags/unordered-set/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>整型提升</title>
-    <link href="http://yoursite.com/2016/04/19/%E6%95%B4%E5%9E%8B%E6%8F%90%E5%8D%87/"/>
-    <id>http://yoursite.com/2016/04/19/整型提升/</id>
-    <published>2016-04-19T03:15:41.000Z</published>
-    <updated>2016-04-19T03:34:29.362Z</updated>
-    
-    <content type="html"></content>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
     
   </entry>
   
