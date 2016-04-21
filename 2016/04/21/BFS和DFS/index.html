@@ -7,24 +7,45 @@
 <head>
   <meta charset="utf-8">
   
-  <title>string类与结构体 | 孤云两角，去天一握</title>
+  <title>BFS和DFS | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="数据类型,存储," />
+    <meta name="keywords" content="算法," />
   
 
-  <meta name="description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
+  <meta name="description" content="该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。
+
+BFS(广度优先搜索)
+BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，步长加一；队列为空，结束搜寻。分析见这里
+
+
+DFS(深度优先搜索)
+DFS需要用递归或者借助栈来记录走过的路径；每遍历完这条分支，便要回溯到上一层；在递归之前可以记录深度。分析见这里">
 <meta property="og:type" content="article">
-<meta property="og:title" content="string类与结构体">
-<meta property="og:url" content="http://yoursite.com/2016/04/21/string类与结构体/index.html">
+<meta property="og:title" content="BFS和DFS">
+<meta property="og:url" content="http://yoursite.com/2016/04/21/BFS和DFS/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
-<meta property="og:updated_time" content="2016-04-21T07:11:54.961Z">
+<meta property="og:description" content="该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。
+
+BFS(广度优先搜索)
+BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，步长加一；队列为空，结束搜寻。分析见这里
+
+
+DFS(深度优先搜索)
+DFS需要用递归或者借助栈来记录走过的路径；每遍历完这条分支，便要回溯到上一层；在递归之前可以记录深度。分析见这里">
+<meta property="og:updated_time" content="2016-04-21T09:41:04.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="string类与结构体">
-<meta name="twitter:description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
+<meta name="twitter:title" content="BFS和DFS">
+<meta name="twitter:description" content="该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。
+
+BFS(广度优先搜索)
+BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，步长加一；队列为空，结束搜寻。分析见这里
+
+
+DFS(深度优先搜索)
+DFS需要用递归或者借助栈来记录走过的路径；每遍历完这条分支，便要回溯到上一层；在递归之前可以记录深度。分析见这里">
 
   
 
@@ -151,15 +172,15 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#string类"><span class="toc-text">string类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string运算符"><span class="toc-text">string运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-find"><span class="toc-text">string.find()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-substr"><span class="toc-text">string.substr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BFS-广度优先搜索"><span class="toc-text">BFS(广度优先搜索)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DFS-深度优先搜索"><span class="toc-text">DFS(深度优先搜索)</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-string类与结构体" class="article article-type-post" itemprop="blogPost">
+   <article id="post-BFS和DFS" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">string类与结构体</h1>
+    <h1 class="post-title">BFS和DFS</h1>
 
     <div class="article-meta">
       <span>
@@ -185,7 +206,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/21/string类与结构体/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/21/BFS和DFS/#disqus_thread"></a>
         </span>
       
 
@@ -194,23 +215,14 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h2><h3 id="string运算符"><a href="#string运算符" class="headerlink" title="string运算符"></a>string运算符</h3><p><code>string</code>类的运算符重载在头文件<code>string</code>里,如<code>+</code>,<code>&lt;&lt;</code>。注意<code>&quot;a&quot;+&quot;b&quot; = &quot;ab&quot;</code>,<code>&#39;a&#39;+&#39;b&#39; = 195</code>,前者是字符串拼接，后者是字符常量相加。但是<code>cout&lt;&lt;&quot;a&quot;+&quot;b&quot;;</code>这个语句是错误的，必须至少声明两个<code>string</code>类型。</p>
-<h3 id="string-find"><a href="#string-find" class="headerlink" title="string.find()"></a>string.find()</h3><p><code>string</code>类的<code>find()</code>方法，可以用于找子串，返回子串在原串出现的下标。<a href="http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html" target="_blank" rel="external">这里</a>和<a href="http://www.cplusplus.com/reference/string/string/find/" target="_blank" rel="external">这里</a>有详细解释，使用时注意以下三点：</p>
-<pre><code>+ 接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；
-+ 如果没有找到，返回值是`string::npos`，他是一个很大的正数；
-+ 返回值是`size_t`，一般可用`auto`来代替。
-</code></pre><p>以下代码可以输出全部的匹配位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string s1 = &quot;abcdbcgbcdbjjkklbcdbcdbcdghjbcd&quot;;</span><br><span class="line">string s2 = &quot;bcd&quot;;</span><br><span class="line">auto k  = s1.find(s2);</span><br><span class="line">while (k != string::npos)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;k&lt;&lt;endl;</span><br><span class="line">	k = s1.find(s2,k+1);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="string-substr"><a href="#string-substr" class="headerlink" title="string.substr()"></a>string.substr()</h3><p>函数声明如下：<code>_Myt substr(size_type _Off = 0, size_type _Count = npos) const</code>，返回从指定位置(_Off)开始的长度为(_Count)的子字符串。</p>
+      <p>该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。</p>
 <hr>
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><ol>
-<li>基本项，可以列表化，提倡外部结构声明，可以使用赋值运算符。</li>
-<li>结构体对准：<ul>
-<li>结构体首地址能被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量(offset)都是成员大小整数倍；</li>
-<li>结构体的总大小是结构体最宽基本类型成员大小的整数倍。</li>
-</ul>
-</li>
-<li>与此相关还有栈对准，某些编译器(x64?)按大小对准，<code>char</code>位于栈底，<code>double</code>位于栈顶排列。找不到相关资料了，需要深入了解。</li>
+<h2 id="BFS-广度优先搜索"><a href="#BFS-广度优先搜索" class="headerlink" title="BFS(广度优先搜索)"></a>BFS(广度优先搜索)</h2><ol>
+<li>BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，<strong>步长</strong>加一；队列为空，结束搜寻。分析见<a href="https://github.com/applefishsky009/LeetCode/blob/master/127%20-%20World%20Ladder/127%20-%20World%20Ladder.cpp" target="_blank" rel="external">这里</a></li>
+</ol>
+<hr>
+<h2 id="DFS-深度优先搜索"><a href="#DFS-深度优先搜索" class="headerlink" title="DFS(深度优先搜索)"></a>DFS(深度优先搜索)</h2><ol>
+<li>DFS需要用递归或者借助栈来<strong>记录</strong>走过的路径；每遍历完这条分支，便要回溯到上一层；在递归之前可以记录深度。分析见<a href="https://github.com/applefishsky009/LeetCode/blob/master/131%20-%20Palindrome%20Partitioning/131%20-%20Palindrome%20Partitioning.cpp" target="_blank" rel="external">这里</a></li>
 </ol>
 
     
@@ -327,7 +339,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://yoursite.com/2016/04/21/string类与结构体/';
+    var disqus_url = 'http://yoursite.com/2016/04/21/BFS和DFS/';
     
     (function(){
       var dsq = document.createElement('script');

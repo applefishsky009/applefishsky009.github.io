@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-21T03:53:15.085Z</updated>
+  <updated>2016-04-21T09:41:04.640Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BFS和DFS</title>
+    <link href="http://yoursite.com/2016/04/21/BFS%E5%92%8CDFS/"/>
+    <id>http://yoursite.com/2016/04/21/BFS和DFS/</id>
+    <published>2016-04-21T07:28:51.000Z</published>
+    <updated>2016-04-21T09:41:04.640Z</updated>
+    
+    <content type="html">&lt;p&gt;该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;&lt;/a&gt;BFS(广度优先搜索)&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，&lt;strong&gt;步长&lt;/strong&gt;加一；队列为空，结束搜寻。分析见&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/127%20-%20World%20Ladder/127%20-%20World%20Ladder.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;DFS-深度优先搜索&quot;&gt;&lt;a href=&quot;#DFS-深度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;DFS(深度优先搜索)&quot;&gt;&lt;/a&gt;DFS(深度优先搜索)&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;DFS需要用递归或者借助栈来&lt;strong&gt;记录&lt;/strong&gt;走过的路径；每遍历完这条分支，便要回溯到上一层；在递归之前可以记录深度。分析见&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/131%20-%20Palindrome%20Partitioning/131%20-%20Palindrome%20Partitioning.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>共用体、枚举和浮点数存储</title>
@@ -99,18 +132,15 @@
     <link href="http://yoursite.com/2016/04/21/string%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     <id>http://yoursite.com/2016/04/21/string类与结构体/</id>
     <published>2016-04-21T02:36:21.000Z</published>
-    <updated>2016-04-21T02:47:24.321Z</updated>
+    <updated>2016-04-21T07:11:54.961Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;string&lt;/code&gt;类的运算符重载在头文件&lt;code&gt;string&lt;/code&gt;里,如&lt;code&gt;+&lt;/code&gt;,&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;。注意&lt;code&gt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;&lt;/code&gt;,&lt;code&gt;&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195&lt;/code&gt;,前者是字符串拼接，后者是字符常量相加。但是&lt;code&gt;cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;&lt;/code&gt;这个语句是错误的，必须至少声明两个&lt;code&gt;string&lt;/code&gt;类型。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;string&lt;/code&gt;类的&lt;code&gt;find()&lt;/code&gt;方法，可以用于找子串，返回子串在原串出现的下标。&lt;a href=&quot;http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;和&lt;a href=&quot;http://www.cplusplus.com/reference/string/string/find/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有详细解释，使用时注意以下三点：&lt;ul&gt;
-&lt;li&gt;接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；&lt;/li&gt;
-&lt;li&gt;如果没有找到，返回值是&lt;code&gt;string::npos&lt;/code&gt;，他是一个很大的正数；&lt;/li&gt;
-&lt;li&gt;返回值是&lt;code&gt;size_t&lt;/code&gt;，一般可用&lt;code&gt;auto&lt;/code&gt;来代替。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;以下代码可以输出全部的匹配位置：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s1 = &amp;quot;abcdbcgbcdbjjkklbcdbcdbcdghjbcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2 = &amp;quot;bcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto k  = s1.find(s2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while (k != string::npos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;k&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	k = s1.find(s2,k+1);	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;h3 id=&quot;string运算符&quot;&gt;&lt;a href=&quot;#string运算符&quot; class=&quot;headerlink&quot; title=&quot;string运算符&quot;&gt;&lt;/a&gt;string运算符&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的运算符重载在头文件&lt;code&gt;string&lt;/code&gt;里,如&lt;code&gt;+&lt;/code&gt;,&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;。注意&lt;code&gt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;&lt;/code&gt;,&lt;code&gt;&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195&lt;/code&gt;,前者是字符串拼接，后者是字符常量相加。但是&lt;code&gt;cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;&lt;/code&gt;这个语句是错误的，必须至少声明两个&lt;code&gt;string&lt;/code&gt;类型。&lt;/p&gt;
+&lt;h3 id=&quot;string-find&quot;&gt;&lt;a href=&quot;#string-find&quot; class=&quot;headerlink&quot; title=&quot;string.find()&quot;&gt;&lt;/a&gt;string.find()&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的&lt;code&gt;find()&lt;/code&gt;方法，可以用于找子串，返回子串在原串出现的下标。&lt;a href=&quot;http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;和&lt;a href=&quot;http://www.cplusplus.com/reference/string/string/find/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有详细解释，使用时注意以下三点：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;+ 接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；
++ 如果没有找到，返回值是`string::npos`，他是一个很大的正数；
++ 返回值是`size_t`，一般可用`auto`来代替。
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以下代码可以输出全部的匹配位置：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s1 = &amp;quot;abcdbcgbcdbjjkklbcdbcdbcdghjbcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2 = &amp;quot;bcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto k  = s1.find(s2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while (k != string::npos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;k&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	k = s1.find(s2,k+1);	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;string-substr&quot;&gt;&lt;a href=&quot;#string-substr&quot; class=&quot;headerlink&quot; title=&quot;string.substr()&quot;&gt;&lt;/a&gt;string.substr()&lt;/h3&gt;&lt;p&gt;函数声明如下：&lt;code&gt;_Myt substr(size_type _Off = 0, size_type _Count = npos) const&lt;/code&gt;，返回从指定位置(_Off)开始的长度为(_Count)的子字符串。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;结构体&quot;&gt;&lt;a href=&quot;#结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;基本项，可以列表化，提倡外部结构声明，可以使用赋值运算符。&lt;/li&gt;
@@ -126,8 +156,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;string&lt;/code&gt;类的运算符重载在头文件&lt;code&gt;string&lt;/
+      &lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;h3 id=&quot;string运算符&quot;&gt;&lt;a href=&quot;#string运算符&quot; class=&quot;header
     
     </summary>
     
@@ -187,7 +216,7 @@
     <link href="http://yoursite.com/2016/04/20/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
     <id>http://yoursite.com/2016/04/20/类型转换/</id>
     <published>2016-04-20T02:53:34.000Z</published>
-    <updated>2016-04-21T02:49:23.433Z</updated>
+    <updated>2016-04-21T04:24:52.513Z</updated>
     
     <content type="html">&lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
 &lt;ul&gt;
@@ -226,6 +255,7 @@
 &lt;li&gt;&lt;code&gt;static_cast&lt;/code&gt;;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;reinterpret_cast&lt;/code&gt;;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;相关：因为指针大小固定(指针的本质是一个存放地址的内存，32位编译器是4字节),任意指针之间可以进行强制转化。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -1146,65 +1176,6 @@
 &lt;thead&gt;
 &lt;tr&gt;
 &lt;th style=&quot;text-align:center
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>内存存储区</title>
-    <link href="http://yoursite.com/2016/04/05/%E5%86%85%E5%AD%98%E5%AD%98%E5%82%A8%E5%8C%BA/"/>
-    <id>http://yoursite.com/2016/04/05/内存存储区/</id>
-    <published>2016-04-05T02:17:33.000Z</published>
-    <updated>2016-04-18T08:58:39.000Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
-&lt;li&gt;可以实现函数调用；&lt;/li&gt;
-&lt;li&gt;动态扩展、收缩；&lt;/li&gt;
-&lt;li&gt;位于用户虚拟地址空间顶部。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;堆：&lt;code&gt;new&lt;/code&gt;分配的内存块，&lt;code&gt;delete&lt;/code&gt;释放。&lt;/li&gt;
-&lt;li&gt;自由存储区：&lt;code&gt;malloc&lt;/code&gt;分配，&lt;code&gt;free&lt;/code&gt;释放。&lt;/li&gt;
-&lt;li&gt;全局/静态存储区：全局变量与静态变量&lt;/li&gt;
-&lt;li&gt;常量存储区：存放常量&lt;ul&gt;
-&lt;li&gt;如 &lt;code&gt;string s1 = “abcd”&lt;/code&gt;；&lt;code&gt;s1&lt;/code&gt;是代码块中的指针，在栈中；&lt;code&gt;“abcd”&lt;/code&gt;是常量，在常量存储区。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;new和malloc的区别：&quot;&gt;&lt;a href=&quot;#new和malloc的区别：&quot; class=&quot;headerlink&quot; title=&quot;new和malloc的区别：&quot;&gt;&lt;/a&gt;new和malloc的区别：&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;new&lt;/code&gt;可以认为是&lt;code&gt;malloc&lt;/code&gt;加构造函数的执行；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;new&lt;/code&gt;出来的指针是直接带类型信息的，&lt;code&gt;malloc&lt;/code&gt;返回&lt;code&gt;void&lt;/code&gt;指针；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;delete&lt;/code&gt;会相应调用对象的析构函数。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;堆和栈的区别：&quot;&gt;&lt;a href=&quot;#堆和栈的区别：&quot; class=&quot;headerlink&quot; title=&quot;堆和栈的区别：&quot;&gt;&lt;/a&gt;堆和栈的区别：&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;管理方式：栈是编译器自助管理；堆是程序员控制，容易内存泄漏；&lt;ul&gt;
-&lt;li&gt;内存泄漏：申请指针，指针指向内存，作用域或生命周期到了，指针释 放，但内存并没有释放，也无法访问，变成“死内存”。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;空间大小：堆内存几乎没有限制；栈一般有一定大小（编译器有默认值，可修改）&lt;/li&gt;
-&lt;li&gt;碎片问题：堆频繁&lt;code&gt;new/delete&lt;/code&gt;会产生大量碎片（&lt;code&gt;delete&lt;/code&gt;出来的空间几乎不可能恰好等于&lt;code&gt;new&lt;/code&gt;的空间）；栈不会；&lt;/li&gt;
-&lt;li&gt;生长方向：堆向上；栈向下。&lt;/li&gt;
-&lt;li&gt;分配方式：堆动态；栈动态（&lt;code&gt;alloca&lt;/code&gt;，但他不需人工释放）或静态（编译器完成）&lt;/li&gt;
-&lt;li&gt;分配效率：栈高于堆（栈：计算机系统提供，有底层支持；堆：C/C++库提供）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt;以上内容主要来自于&lt;a href=&quot;http://www.cnblogs.com/daocaoren/archive/2011/06/29/2092957.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;C-内存分配方式有五种：&quot;&gt;&lt;a href=&quot;#C-内存分配方式有五种：&quot; class=&quot;headerlink&quot; title=&quot;C++内存分配方式有五种：&quot;&gt;&lt;/a&gt;C++内存分配方式有五种：&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;栈：局部变量、函数参数等&lt;ul&gt;
-&lt;li&gt;可
     
     </summary>
     
