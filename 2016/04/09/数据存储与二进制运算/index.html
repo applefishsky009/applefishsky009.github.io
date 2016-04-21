@@ -109,7 +109,7 @@
 
 -3
 1000001">
-<meta property="og:updated_time" content="2016-04-18T09:01:30.103Z">
+<meta property="og:updated_time" content="2016-04-21T13:26:08.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据存储与二进制运算">
 <meta name="twitter:description" content="数据存储原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
@@ -283,7 +283,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储"><span class="toc-text">数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原、反、补码"><span class="toc-text">原、反、补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消失的原码"><span class="toc-text">消失的原码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><span class="toc-text">二进制运算（移位得到CHAR_MAX和CHAR_MIN）</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储"><span class="toc-text">数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原、反、补码"><span class="toc-text">原、反、补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消失的原码"><span class="toc-text">消失的原码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><span class="toc-text">二进制运算（移位得到CHAR_MAX和CHAR_MIN）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器的困惑"><span class="toc-text">编译器的困惑</span></a></li></ol>
   </div>
 
 
@@ -434,6 +434,19 @@ ga('send', 'pageview');
 <li><code>11111111 11111111 11111111 10000000</code>+<code>11111111 11111111 11111111 11111111</code>=<code>11111111 11111111 11111111 01111111</code>(<code>char</code> 原码<code>10000001</code>)    </li>
 <li><code>00000000 00000000 00000000 1000000</code>-<code>00000000 00000000 00000000 0000001</code>=<code>00000000 00000000 00000000 01111111</code></li>
 </ol>
+<hr>
+<h2 id="编译器的困惑"><a href="#编译器的困惑" class="headerlink" title="编译器的困惑"></a>编译器的困惑</h2><p>在编程过程中碰到了<a href="http://www.hankcs.com/program/cpp/error-c4146-%E4%B8%80%E5%85%83%E8%B4%9F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%BA%94%E7%94%A8%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%BB%8D%E4%B8%BA%E6%97%A0.html" target="_blank" rel="external">这个疑惑</a>,后来发现，明明 int 最小值是 -2147483648，但我们就是<strong>无法</strong>用<code>int n = -2147483648</code>;表示。这是因为这个语句会让编译器产生困惑：</p>
+<ol>
+<li>判断2147483648 &gt; INT_MAX，编译器决定用unsigned int;</li>
+<li>编译器发现负号，对2147483648取反来尝试表达-2147483648；</li>
+<li>那么在圆图中可以发现，取反操作对2147483648来说依然表达原值。</li>
+</ol>
+<p>因此编译器会提示error:一元负运算符应用于无符号类型，结果仍为无符号类型。那么对-2147483648有两种可用的赋值：</p>
+<ol>
+<li>int n = INT_MIN;</li>
+<li>int n = (-2147483647 - 1);</li>
+</ol>
+<p><font color="red">但是</font>，如果涉及到取反操作<code>-n</code>的计算,对于<code>n=INT_MIN</code>依然存在这个问题，因此需要分解’-n = INT_MAX+1’来分别计算<code>INT_MAX</code>与1的情况并组合。例如<a href="https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp" target="_blank" rel="external">这里</a></p>
 
     
   </div>

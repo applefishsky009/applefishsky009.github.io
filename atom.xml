@@ -843,7 +843,7 @@
     <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
     <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
     <published>2016-04-09T12:07:02.000Z</published>
-    <updated>2016-04-18T09:01:30.103Z</updated>
+    <updated>2016-04-21T13:26:08.120Z</updated>
     
     <content type="html">&lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补码&quot;&gt;&lt;/a&gt;原、反、补码&lt;/h3&gt;&lt;p&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
 &lt;table&gt;
@@ -953,6 +953,19 @@
 &lt;li&gt;&lt;code&gt;11111111 11111111 11111111 10000000&lt;/code&gt;+&lt;code&gt;11111111 11111111 11111111 11111111&lt;/code&gt;=&lt;code&gt;11111111 11111111 11111111 01111111&lt;/code&gt;(&lt;code&gt;char&lt;/code&gt; 原码&lt;code&gt;10000001&lt;/code&gt;)    &lt;/li&gt;
 &lt;li&gt;&lt;code&gt;00000000 00000000 00000000 1000000&lt;/code&gt;-&lt;code&gt;00000000 00000000 00000000 0000001&lt;/code&gt;=&lt;code&gt;00000000 00000000 00000000 01111111&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;编译器的困惑&quot;&gt;&lt;a href=&quot;#编译器的困惑&quot; class=&quot;headerlink&quot; title=&quot;编译器的困惑&quot;&gt;&lt;/a&gt;编译器的困惑&lt;/h2&gt;&lt;p&gt;在编程过程中碰到了&lt;a href=&quot;http://www.hankcs.com/program/cpp/error-c4146-%E4%B8%80%E5%85%83%E8%B4%9F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%BA%94%E7%94%A8%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%BB%8D%E4%B8%BA%E6%97%A0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这个疑惑&lt;/a&gt;,后来发现，明明 int 最小值是 -2147483648，但我们就是&lt;strong&gt;无法&lt;/strong&gt;用&lt;code&gt;int n = -2147483648&lt;/code&gt;;表示。这是因为这个语句会让编译器产生困惑：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;判断2147483648 &amp;gt; INT_MAX，编译器决定用unsigned int;&lt;/li&gt;
+&lt;li&gt;编译器发现负号，对2147483648取反来尝试表达-2147483648；&lt;/li&gt;
+&lt;li&gt;那么在圆图中可以发现，取反操作对2147483648来说依然表达原值。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;因此编译器会提示error:一元负运算符应用于无符号类型，结果仍为无符号类型。那么对-2147483648有两种可用的赋值：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;int n = INT_MIN;&lt;/li&gt;
+&lt;li&gt;int n = (-2147483647 - 1);&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;font color=&quot;red&quot;&gt;但是&lt;/font&gt;，如果涉及到取反操作&lt;code&gt;-n&lt;/code&gt;的计算,对于&lt;code&gt;n=INT_MIN&lt;/code&gt;依然存在这个问题，因此需要分解’-n = INT_MAX+1’来分别计算&lt;code&gt;INT_MAX&lt;/code&gt;与1的情况并组合。例如&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
