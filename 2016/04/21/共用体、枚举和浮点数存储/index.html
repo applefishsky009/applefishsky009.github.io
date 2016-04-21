@@ -7,72 +7,48 @@
 <head>
   <meta charset="utf-8">
   
-  <title>类型转换 | 孤云两角，去天一握</title>
+  <title>共用体、枚举和浮点数存储 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="类型转换," />
+    <meta name="keywords" content="数据类型," />
   
 
-  <meta name="description" content="C++自动执行以下类型转换：
+  <meta name="description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：
 
-不同算术类型的赋值；
-包含不同类型的表达式；
-函数调用
-
-
-初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
-
-精度降低(double-&amp;gt;float等);
-数字截短(float-&amp;gt;int等);
-数据丢失(long-&amp;gt;short等)。
+它的长度是最大数据类型长度，可以节省空间；
+数据不共存；
+关键字union，声明方式与结构体相同；
+他没有算术运算，一般常用于swith语句中的标签。
 
 
-列表初始化时的转换不允许缩窄。
-
-表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
+枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="类型转换">
-<meta property="og:url" content="http://yoursite.com/2016/04/20/类型转换/index.html">
+<meta property="og:title" content="共用体、枚举和浮点数存储">
+<meta property="og:url" content="http://yoursite.com/2016/04/21/共用体、枚举和浮点数存储/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="C++自动执行以下类型转换：
+<meta property="og:description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：
 
-不同算术类型的赋值；
-包含不同类型的表达式；
-函数调用
-
-
-初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
-
-精度降低(double-&amp;gt;float等);
-数字截短(float-&amp;gt;int等);
-数据丢失(long-&amp;gt;short等)。
+它的长度是最大数据类型长度，可以节省空间；
+数据不共存；
+关键字union，声明方式与结构体相同；
+他没有算术运算，一般常用于swith语句中的标签。
 
 
-列表初始化时的转换不允许缩窄。
-
-表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
-<meta property="og:updated_time" content="2016-04-21T02:49:23.433Z">
+枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：">
+<meta property="og:updated_time" content="2016-04-21T03:53:15.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="类型转换">
-<meta name="twitter:description" content="C++自动执行以下类型转换：
+<meta name="twitter:title" content="共用体、枚举和浮点数存储">
+<meta name="twitter:description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：
 
-不同算术类型的赋值；
-包含不同类型的表达式；
-函数调用
-
-
-初始化和赋值进行的转换扩展没有问题；缩窄可能会有一些问题:
-
-精度降低(double-&amp;gt;float等);
-数字截短(float-&amp;gt;int等);
-数据丢失(long-&amp;gt;short等)。
+它的长度是最大数据类型长度，可以节省空间；
+数据不共存；
+关键字union，声明方式与结构体相同；
+他没有算术运算，一般常用于swith语句中的标签。
 
 
-列表初始化时的转换不允许缩窄。
-
-表达式的转换自动转化int型是计算机最自然的语言，运算速度最快。整型">
+枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：">
 
   
 
@@ -199,20 +175,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化和赋值进行的转换"><span class="toc-text">初始化和赋值进行的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#列表初始化时的转换"><span class="toc-text">列表初始化时的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表达式的转换"><span class="toc-text">表达式的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动转化"><span class="toc-text">自动转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术运算的转化"><span class="toc-text">算术运算的转化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传递参数时的转换"><span class="toc-text">传递参数时的转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制类型转换"><span class="toc-text">强制类型转换</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数存储方式"><span class="toc-text">浮点数存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-类型转换" class="article article-type-post" itemprop="blogPost">
+   <article id="post-共用体、枚举和浮点数存储" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">类型转换</h1>
+    <h1 class="post-title">共用体、枚举和浮点数存储</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.20</span>
+        <span>2016.04.21</span>
       </span>
 
       
@@ -233,7 +209,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/20/类型转换/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/21/共用体、枚举和浮点数存储/#disqus_thread"></a>
         </span>
       
 
@@ -242,43 +218,63 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>C++自动执行以下类型转换：</p>
-<ul>
-<li>不同算术类型的赋值；</li>
-<li>包含不同类型的表达式；</li>
-<li>函数调用</li>
-</ul>
-<hr>
-<h2 id="初始化和赋值进行的转换"><a href="#初始化和赋值进行的转换" class="headerlink" title="初始化和赋值进行的转换"></a>初始化和赋值进行的转换</h2><p>扩展没有问题；缩窄可能会有一些问题:</p>
-<ul>
-<li>精度降低(double-&gt;float等);</li>
-<li>数字截短(float-&gt;int等);</li>
-<li>数据丢失(long-&gt;short等)。</li>
-</ul>
-<hr>
-<h2 id="列表初始化时的转换"><a href="#列表初始化时的转换" class="headerlink" title="列表初始化时的转换"></a>列表初始化时的转换</h2><p>不允许缩窄。</p>
-<hr>
-<h2 id="表达式的转换"><a href="#表达式的转换" class="headerlink" title="表达式的转换"></a>表达式的转换</h2><h3 id="自动转化"><a href="#自动转化" class="headerlink" title="自动转化"></a>自动转化</h3><p><code>int</code>型是计算机最自然的语言，运算速度最快。整型提升(integral promotion)规则如下:</p>
+      <h2 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h2><p>是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：</p>
 <ol>
-<li>计算表达式时，C++将<code>bool</code>，<code>char</code>，<code>unsigned char</code>，<code>signed char</code>，<code>short</code>都转换为<code>int</code>；</li>
-<li>如果<code>short</code>和<code>int</code>一样长，<code>unsigned short</code>转换为<code>unsigned int</code>，如果<code>short</code>比<code>int</code>短，<code>unsigned short</code>转换为<code>int</code>。总之，以不损失数据为原则。</li>
-<li>在不损失数据的原则下，同级别有符号数比无符号数优先。</li>
+<li>它的长度是最大数据类型长度，可以节省空间；</li>
+<li>数据不共存；</li>
+<li>关键字<code>union</code>，声明方式与结构体相同；</li>
+<li>他没有算术运算，一般常用于<code>swith</code>语句中的标签。</li>
 </ol>
-<h3 id="算术运算的转化"><a href="#算术运算的转化" class="headerlink" title="算术运算的转化"></a>算术运算的转化</h3><p>将较小的类型转换成较大的类型。依次判断long double?-&gt;double?-&gt;float?-&gt;integral promotion!可以看到浮点型优先于整型。具体过程可以查看C++11版本的效验表。</p>
 <hr>
-<h2 id="传递参数时的转换"><a href="#传递参数时的转换" class="headerlink" title="传递参数时的转换"></a>传递参数时的转换</h2><p>由C++函数原型控制，若取消函数原型的控制:</p>
-<ul>
-<li>将对<code>char</code>和<code>short</code>整型提升;</li>
-<li>将<code>float</code>参数提升为<code>double</code>。</li>
-</ul>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：</p>
+<ol>
+<li>可以提升(常到<code>int</code>)，但<code>int</code>不能缩窄到它；</li>
+<li>可以显示设置枚举量；</li>
+<li>枚举范围内即使没有枚举量，也合法；</li>
+<li></li>
+</ol>
 <hr>
-<h2 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h2><p>C++设计新格式，让强制类型转换像函数一样调用:<code>typename (value)</code>更严格的限制允许的类型转换，以下4个类型转换符：</p>
-<ul>
-<li><code>dynamic_cast</code>;</li>
-<li><code>const_cast</code>;</li>
-<li><code>static_cast</code>;</li>
-<li><code>reinterpret_cast</code>;</li>
-</ul>
+<h2 id="浮点数存储方式"><a href="#浮点数存储方式" class="headerlink" title="浮点数存储方式"></a>浮点数存储方式</h2><p>不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？<br>首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">数据</th>
+<th style="text-align:center">符号位</th>
+<th style="text-align:center">阶码</th>
+<th style="text-align:center">尾数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>float</code></td>
+<td style="text-align:center">1位</td>
+<td style="text-align:center">8位</td>
+<td style="text-align:center">23位</td>
+</tr>
+<tr>
+<td style="text-align:center">内存位</td>
+<td style="text-align:center">31</td>
+<td style="text-align:center">30-23</td>
+<td style="text-align:center">22-0</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>double</code></td>
+<td style="text-align:center">1位</td>
+<td style="text-align:center">11位</td>
+<td style="text-align:center">52位</td>
+</tr>
+<tr>
+<td style="text-align:center">内存位</td>
+<td style="text-align:center">63</td>
+<td style="text-align:center">62-52</td>
+<td style="text-align:center">51-0</td>
+</tr>
+</tbody>
+</table>
+<p>其次，阶码使用中间偏置(固定量为2^N-1)的移码表示的,M的整数部分为1,不存储，只存储尾数即可。<br>例如，125.5f = <code>1111101.1</code> = 1.1111011*2^6 =&gt;移码127+6 = 133 = <code>10000101</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000010 10000000 00000000 01111011</code>。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ol>
+<li>整型常量默认情况下是int型,浮点常量在默认情况下是<code>double</code>型,如果需要<code>float</code>型，需要这样表示：<code>3.25f</code>；</li>
+</ol>
 
     
   </div>
@@ -394,7 +390,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://yoursite.com/2016/04/20/类型转换/';
+    var disqus_url = 'http://yoursite.com/2016/04/21/共用体、枚举和浮点数存储/';
     
     (function(){
       var dsq = document.createElement('script');
