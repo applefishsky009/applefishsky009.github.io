@@ -53,22 +53,21 @@
     <link href="http://yoursite.com/2016/04/21/%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
     <id>http://yoursite.com/2016/04/21/共用体、枚举和浮点数存储/</id>
     <published>2016-04-21T02:38:14.000Z</published>
-    <updated>2016-04-21T09:46:12.303Z</updated>
+    <updated>2016-04-21T09:48:36.335Z</updated>
     
     <content type="html">&lt;h2 id=&quot;共用体&quot;&gt;&lt;a href=&quot;#共用体&quot; class=&quot;headerlink&quot; title=&quot;共用体&quot;&gt;&lt;/a&gt;共用体&lt;/h2&gt;&lt;p&gt;是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;它的长度是最大数据类型长度，可以节省空间；&lt;/li&gt;
 &lt;li&gt;数据不共存；&lt;/li&gt;
 &lt;li&gt;关键字&lt;code&gt;union&lt;/code&gt;，声明方式与结构体相同；&lt;/li&gt;
-&lt;li&gt;他没有算术运算，一般常用于&lt;code&gt;swith&lt;/code&gt;语句中的标签。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h2&gt;&lt;p&gt;创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;可以提升(常到&lt;code&gt;int&lt;/code&gt;)，但&lt;code&gt;int&lt;/code&gt;不能缩窄到它；&lt;/li&gt;
-&lt;li&gt;可以显示设置枚举量；&lt;/li&gt;
-&lt;li&gt;枚举范围内即使没有枚举量，也合法；&lt;/li&gt;
-&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;可以显式设置枚举量，枚举范围内即使没有枚举量，也合法；&lt;/li&gt;
+&lt;li&gt;关键词&lt;code&gt;enum&lt;/code&gt;，声明方式与结构体相似；&lt;/li&gt;
+&lt;li&gt;他没有算术运算，一般常用于&lt;code&gt;swith&lt;/code&gt;语句中的标签。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;浮点数存储方式&quot;&gt;&lt;a href=&quot;#浮点数存储方式&quot; class=&quot;headerlink&quot; title=&quot;浮点数存储方式&quot;&gt;&lt;/a&gt;浮点数存储方式&lt;/h2&gt;&lt;p&gt;不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？&lt;br&gt;首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；&lt;/p&gt;
