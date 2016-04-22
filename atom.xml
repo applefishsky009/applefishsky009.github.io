@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-21T09:41:04.640Z</updated>
+  <updated>2016-04-22T02:58:45.012Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数参数的传递</title>
+    <link href="http://yoursite.com/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
+    <id>http://yoursite.com/2016/04/22/函数参数的传递/</id>
+    <published>2016-04-22T01:42:40.000Z</published>
+    <updated>2016-04-22T02:58:45.012Z</updated>
+    
+    <content type="html">&lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;h3 id=&quot;引用的本质&quot;&gt;&lt;a href=&quot;#引用的本质&quot; class=&quot;headerlink&quot; title=&quot;引用的本质&quot;&gt;&lt;/a&gt;引用的本质&lt;/h3&gt;&lt;p&gt;C++将&lt;code&gt;&amp;amp;&lt;/code&gt;符号赋予了另一个含义，用来声明引用。引用是已定义变量的别名(同一块内存)。引用的主要作用是用作函数形参。&lt;br&gt;引用的本质是&lt;font color=&quot;red&quot;&gt;指针常量&lt;/font&gt;，例如&lt;code&gt;int &amp;amp;pr = rats;&lt;/code&gt;是&lt;code&gt;int* const pr = &amp;amp;rats;&lt;/code&gt;的伪装。它的含义是他是一个指针，指向一个常量地址。因此他有以下特性也就很好理解了：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;必须在声明引用是将其初始化；(因为指向常量地址)&lt;/li&gt;
+&lt;li&gt;初始化时，省略了取地址符的操作&lt;code&gt;&amp;amp;&lt;/code&gt;,给我们感觉是别名；&lt;/li&gt;
+&lt;li&gt;声明引用时，隐藏了对指针常量的自动间接引用，让我们看不到指针。&lt;/li&gt;
+&lt;li&gt;使用引用时，隐藏了解除引用&lt;code&gt;*&lt;/code&gt;,让我们觉得是在直接修改(别名)变量。&lt;br&gt;如下：&lt;img src=&quot;http://i.imgur.com/idRXQZy.png&quot; alt=&quot;这里&quot;&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;返回引用&quot;&gt;&lt;a href=&quot;#返回引用&quot; class=&quot;headerlink&quot; title=&quot;返回引用&quot;&gt;&lt;/a&gt;返回引用&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;返回引用比传统返回机制烧了拷贝复制，效率更高。&lt;/li&gt;
+&lt;li&gt;返回引用本质是返回“别名”,因此要注意保证返回后这个内存依然存在。(变量持续性)&lt;/li&gt;
+&lt;li&gt;返回类型&lt;strong&gt;一般&lt;/strong&gt;用&lt;font color=&quot;red&quot;&gt;&lt;code&gt;const&lt;/code&gt;标识&lt;/font&gt;，将其设置为不可修改的左值，避免数据损失。&lt;ul&gt;
+&lt;li&gt;赋值语句，左边必须是可修改的左值；&lt;/li&gt;
+&lt;li&gt;常规返回类型是右值(因为其位于临时内存单元)-&amp;gt;不能通过地址访问。(可以出现在表达式右边，但不能出现在左边，如字面值&lt;code&gt;10.0&lt;/code&gt;,表达式&lt;code&gt;x+y&lt;/code&gt;) &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;C-C-中的左值和右值&quot;&gt;&lt;a href=&quot;#C-C-中的左值和右值&quot; class=&quot;headerlink&quot; title=&quot;C/C++中的左值和右值&quot;&gt;&lt;/a&gt;C/C++中的左值和右值&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;左值是一个引用到对象的表达式，因此可以取址(可以赋值)；&lt;/li&gt;
+&lt;li&gt;右值强调的不是表达式本身，而是该表达式运算后的结果。这个结果往往并不引用到某一对象，可以看成计算的中间结果(临时内存单元)；（当然它也可能引用到某一对象，但是通过该右值表达式我们不能直接修改该对象—）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;按值传递&quot;&gt;&lt;a href=&quot;#按值传递&quot; class=&quot;headerlink&quot; title=&quot;按值传递&quot;&gt;&lt;/a&gt;按值传递&lt;/h2&gt;&lt;p&gt;C++将数值参数传递给函数，函数将其赋给一个新的变量，新变量与旧变量在赋值之后没有任何关系。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;按址传递&quot;&gt;&lt;a href=&quot;#按址传递&quot; class=&quot;headerlink&quot; title=&quot;按址传递&quot;&gt;&lt;/a&gt;按址传递&lt;/h2&gt;&lt;p&gt;C++将参数地址传递给函数，函数原型用指针(一般用&lt;code&gt;const&lt;/code&gt;修饰表示指针不会乱指)指向这个地址&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;数组传递&quot;&gt;&lt;a href=&quot;#数组传递&quot; class=&quot;headerlink&quot; title=&quot;数组传递&quot;&gt;&lt;/a&gt;数组传递&lt;/h2&gt;&lt;p&gt;数组在传递时，编译器将数组名解释为第一个元素的地址，因此传递实参为数组时，形参应该是一个指针指向这个地址。&lt;br&gt;在用多维数组名作为形参时，可以指定所有维数的大小，也可以省略第一位的大小(高维大小必须指定)，这与编译器寻址有关，比如&lt;code&gt;int p[m][n]&lt;/code&gt;如果要取&lt;code&gt;p[i][j]&lt;/code&gt;的值，编译器会计算地址为&lt;code&gt;p+i*n+j;&lt;/code&gt;，因此编译器可以不知道m的值，但必须知道n的值。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;h3 id=&quot;引用的本质&quot;&gt;&lt;a href=&quot;#引
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="函数" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>BFS和DFS</title>
@@ -1105,98 +1157,6 @@
     
     
       <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>五种变量存储方式与external关键字</title>
-    <link href="http://yoursite.com/2016/04/06/%E4%BA%94%E7%A7%8D%E5%8F%98%E9%87%8F%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E4%B8%8Eexternal%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-    <id>http://yoursite.com/2016/04/06/五种变量存储方式与external关键字/</id>
-    <published>2016-04-06T09:15:14.000Z</published>
-    <updated>2016-04-18T08:58:58.184Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;五种变量存储方式&quot;&gt;&lt;a href=&quot;#五种变量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变量存储方式&quot;&gt;&lt;/a&gt;五种变量存储方式&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;存储描述&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;持续性&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;作用域&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;链接性&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;如何声明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块中&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;寄存器&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;自动&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块中，&lt;code&gt;register&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态，无链接性&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;无&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;代码块中，&lt;code&gt;static&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态，外部连接性&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;文件&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;外部&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，无关键字&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态，内部链接性&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;静态&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;文件&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;内部&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;不在任何代码块中，&lt;code&gt;static&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;register&lt;/code&gt;用于显示指出自动变量，没什么用处，C++11保留的目的是向下兼容；&lt;/li&gt;
-&lt;li&gt;静态无链接性变量与自动变量的异同：&lt;ul&gt;
-&lt;li&gt;静态无链接性变量在编译器&lt;strong&gt;编译&lt;/strong&gt;时，编译器在&lt;strong&gt;静态/全局存储区&lt;/strong&gt;分配内存；&lt;/li&gt;
-&lt;li&gt;自动变量在代码块&lt;strong&gt;运行&lt;/strong&gt;时，编译器在&lt;strong&gt;栈&lt;/strong&gt;中分配内存；&lt;/li&gt;
-&lt;li&gt;二者均只能在代码块中运行。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;external关键字&quot;&gt;&lt;a href=&quot;#external关键字&quot; class=&quot;headerlink&quot; title=&quot;external关键字&quot;&gt;&lt;/a&gt;external关键字&lt;/h2&gt;&lt;p&gt;变量的声明有两种：定义声明（简称为定义）与引用声明（简称为声明）。如果要在一个文件中使用另一个文件中定义声明的变量，仅仅将这个变量储存为外部链接性的静态变量是不够的，还要在引用的文件中使用&lt;code&gt;external&lt;/code&gt;关键字做&lt;strong&gt;引用声明&lt;/strong&gt;。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;外部变量在&lt;code&gt;main()&lt;/code&gt;前面或头文件中定义它，在文件中定义之后的任何位置使用它；&lt;/li&gt;
-&lt;li&gt;单定义规则：变量只能定义声明一次；&lt;/li&gt;
-&lt;li&gt;局部变量隐藏同名的全局变量。如果要访问全局变量，可用作用域解析符&lt;code&gt;：：&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;静态变量将隐藏常规外部变量（使用&lt;code&gt;external&lt;/code&gt;关键字引用）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;关于&lt;code&gt;external&lt;/code&gt;关键字的测试是很简单的，这里不给出代码。另外提到单定义规则，有一点需要注意。任何一个包含头文件的cpp都要重新编译这个头文件，因此头文件绝对不能包含函数体与变量。不然，两个或两个以上cpp包含它会出现重定义错误。&lt;/p&gt;
-&lt;hr&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;五种变量存储方式&quot;&gt;&lt;a href=&quot;#五种变量存储方式&quot; class=&quot;headerlink&quot; title=&quot;五种变量存储方式&quot;&gt;&lt;/a&gt;五种变量存储方式&lt;/h2&gt;&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
