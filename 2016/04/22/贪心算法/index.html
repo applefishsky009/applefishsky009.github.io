@@ -7,24 +7,57 @@
 <head>
   <meta charset="utf-8">
   
-  <title>string类与结构体 | 孤云两角，去天一握</title>
+  <title>贪心算法 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="存储,数据类型," />
+    <meta name="keywords" content="贪心," />
   
 
-  <meta name="description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
+  <meta name="description" content="持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是选择当前最优解，虽然不一定是全局最优解。贪心算法主要应用有
+
+活动选择问题
+霍夫曼编码
+最小生成树
+单元最短路径的Dijkstra算法
+集合覆盖问题的贪心启发式算法
+
+贪心算法的形式一般有递归贪心算法，迭代贪心算法。
+
+活动选择问题
+调度竞争共享资源的多个活动问题，选出最大的互相兼容的活动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="string类与结构体">
-<meta property="og:url" content="http://yoursite.com/2016/04/21/string类与结构体/index.html">
+<meta property="og:title" content="贪心算法">
+<meta property="og:url" content="http://yoursite.com/2016/04/22/贪心算法/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
-<meta property="og:updated_time" content="2016-04-21T09:44:57.462Z">
+<meta property="og:description" content="持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是选择当前最优解，虽然不一定是全局最优解。贪心算法主要应用有
+
+活动选择问题
+霍夫曼编码
+最小生成树
+单元最短路径的Dijkstra算法
+集合覆盖问题的贪心启发式算法
+
+贪心算法的形式一般有递归贪心算法，迭代贪心算法。
+
+活动选择问题
+调度竞争共享资源的多个活动问题，选出最大的互相兼容的活动">
+<meta property="og:updated_time" content="2016-04-22T09:04:01.920Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="string类与结构体">
-<meta name="twitter:description" content="string类string运算符string类的运算符重载在头文件string里,如+,&amp;lt;&amp;lt;。注意&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;,&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195,前者是字符串拼接，后者是字符常量相加。但是cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;这个语句是错误的，">
+<meta name="twitter:title" content="贪心算法">
+<meta name="twitter:description" content="持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是选择当前最优解，虽然不一定是全局最优解。贪心算法主要应用有
+
+活动选择问题
+霍夫曼编码
+最小生成树
+单元最短路径的Dijkstra算法
+集合覆盖问题的贪心启发式算法
+
+贪心算法的形式一般有递归贪心算法，迭代贪心算法。
+
+活动选择问题
+调度竞争共享资源的多个活动问题，选出最大的互相兼容的活动">
 
   
 
@@ -151,20 +184,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#string类"><span class="toc-text">string类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string运算符"><span class="toc-text">string运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-find"><span class="toc-text">string.find()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-substr"><span class="toc-text">string.substr()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#活动选择问题"><span class="toc-text">活动选择问题</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-string类与结构体" class="article article-type-post" itemprop="blogPost">
+   <article id="post-贪心算法" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">string类与结构体</h1>
+    <h1 class="post-title">贪心算法</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.21</span>
+        <span>2016.04.22</span>
       </span>
 
       
@@ -177,7 +210,7 @@ ga('send', 'pageview');
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/C/">C++</a>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
   </span>
 
 
@@ -185,7 +218,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/21/string类与结构体/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/22/贪心算法/#disqus_thread"></a>
         </span>
       
 
@@ -194,25 +227,26 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h2><h3 id="string运算符"><a href="#string运算符" class="headerlink" title="string运算符"></a>string运算符</h3><p><code>string</code>类的运算符重载在头文件<code>string</code>里,如<code>+</code>,<code>&lt;&lt;</code>。注意<code>&quot;a&quot;+&quot;b&quot; = &quot;ab&quot;</code>,<code>&#39;a&#39;+&#39;b&#39; = 195</code>,前者是字符串拼接，后者是字符常量相加。但是<code>cout&lt;&lt;&quot;a&quot;+&quot;b&quot;;</code>这个语句是错误的，必须至少声明两个<code>string</code>类型。</p>
-<h3 id="string-find"><a href="#string-find" class="headerlink" title="string.find()"></a>string.find()</h3><p><code>string</code>类的<code>find()</code>方法，可以用于找子串，返回子串在原串出现的下标。<a href="http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html" target="_blank" rel="external">这里</a>和<a href="http://www.cplusplus.com/reference/string/string/find/" target="_blank" rel="external">这里</a>有详细解释，使用时注意以下三点：</p>
-<ul>
-<li>接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；</li>
-<li>如果没有找到，返回值是<code>string::npos</code>，他是一个很大的正数；</li>
-<li>返回值是<code>size_t</code>，一般可用<code>auto</code>来代替。</li>
-</ul>
-<p>以下代码可以输出全部的匹配位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">string s1 = &quot;abcdbcgbcdbjjkklbcdbcdbcdghjbcd&quot;;</span><br><span class="line">string s2 = &quot;bcd&quot;;</span><br><span class="line">auto k  = s1.find(s2);</span><br><span class="line">while (k != string::npos)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;k&lt;&lt;endl;</span><br><span class="line">	k = s1.find(s2,k+1);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="string-substr"><a href="#string-substr" class="headerlink" title="string.substr()"></a>string.substr()</h3><p>函数声明如下：<code>_Myt substr(size_type _Off = 0, size_type _Count = npos) const</code>，返回从指定位置(_Off)开始的长度为(_Count)的子字符串。</p>
+      <p>持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是<font color="red">选择当前最优解</font>，虽然不一定是全局最优解。贪心算法主要应用有</p>
+<ol>
+<li>活动选择问题</li>
+<li>霍夫曼编码</li>
+<li>最小生成树</li>
+<li>单元最短路径的Dijkstra算法</li>
+<li>集合覆盖问题的贪心启发式算法</li>
+</ol>
+<p>贪心算法的形式一般有<strong>递归贪心算法</strong>，<strong>迭代贪心算法</strong>。</p>
 <hr>
-<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><ol>
-<li>基本项，可以列表化，提倡外部结构声明，可以使用赋值运算符。</li>
-<li>结构体对准：<ul>
-<li>结构体首地址能被其最宽基本类型成员的大小所整除；</li>
-<li>结构体每个成员相对于结构体首地址的偏移量(offset)都是成员大小整数倍；</li>
-<li>结构体的总大小是结构体最宽基本类型成员大小的整数倍。</li>
+<h2 id="活动选择问题"><a href="#活动选择问题" class="headerlink" title="活动选择问题"></a>活动选择问题</h2><ol>
+<li>调度竞争共享资源的多个活动问题，选出最大的互相兼容的活动集合；<ul>
+<li>选择一个活动，选出他后剩下的资源能尽量多的被其他任务所用(算法导论16.1)；</li>
 </ul>
 </li>
-<li>与此相关还有栈对准，某些编译器(x64?)按大小对准，<code>char</code>位于栈底，<code>double</code>位于栈顶排列。找不到相关资料了，需要深入了解。</li>
+<li>LeetCode跳跃游戏；<ul>
+<li>Jump Game,选择当前最优解,更新当前最优解。</li>
+<li>Jump GameⅡ, 在选择当前最优解的时候统计步数(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。</li>
+</ul>
+</li>
 </ol>
 
     
@@ -329,7 +363,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://yoursite.com/2016/04/21/string类与结构体/';
+    var disqus_url = 'http://yoursite.com/2016/04/22/贪心算法/';
     
     (function(){
       var dsq = document.createElement('script');

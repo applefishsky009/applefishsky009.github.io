@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-22T02:58:45.012Z</updated>
+  <updated>2016-04-22T09:21:39.287Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>动态规划</title>
+    <link href="http://yoursite.com/2016/04/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    <id>http://yoursite.com/2016/04/22/动态规划/</id>
+    <published>2016-04-22T09:07:05.000Z</published>
+    <updated>2016-04-22T09:21:39.287Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+    
+    
+      <category term="动规" scheme="http://yoursite.com/tags/%E5%8A%A8%E8%A7%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>贪心算法</title>
+    <link href="http://yoursite.com/2016/04/22/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/04/22/贪心算法/</id>
+    <published>2016-04-22T07:54:31.000Z</published>
+    <updated>2016-04-22T09:04:01.920Z</updated>
+    
+    <content type="html">&lt;p&gt;持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是&lt;font color=&quot;red&quot;&gt;选择当前最优解&lt;/font&gt;，虽然不一定是全局最优解。贪心算法主要应用有&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;活动选择问题&lt;/li&gt;
+&lt;li&gt;霍夫曼编码&lt;/li&gt;
+&lt;li&gt;最小生成树&lt;/li&gt;
+&lt;li&gt;单元最短路径的Dijkstra算法&lt;/li&gt;
+&lt;li&gt;集合覆盖问题的贪心启发式算法&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;贪心算法的形式一般有&lt;strong&gt;递归贪心算法&lt;/strong&gt;，&lt;strong&gt;迭代贪心算法&lt;/strong&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;活动选择问题&quot;&gt;&lt;a href=&quot;#活动选择问题&quot; class=&quot;headerlink&quot; title=&quot;活动选择问题&quot;&gt;&lt;/a&gt;活动选择问题&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;调度竞争共享资源的多个活动问题，选出最大的互相兼容的活动集合；&lt;ul&gt;
+&lt;li&gt;选择一个活动，选出他后剩下的资源能尽量多的被其他任务所用(算法导论16.1)；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;LeetCode跳跃游戏；&lt;ul&gt;
+&lt;li&gt;Jump Game,选择当前最优解,更新当前最优解。&lt;/li&gt;
+&lt;li&gt;Jump GameⅡ, 在选择当前最优解的时候统计步数(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。比动态规划更为简洁高效.其思想核心是&lt;font color=&quot;red&quot;&gt;选择当前最优解&lt;/font&gt;，虽然不一定是全局最优解。贪心算法主要应用有&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;活动选择问题&lt;/li&gt;
+&lt;l
+    
+    </summary>
+    
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+    
+    
+      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
   
   <entry>
     <title>函数参数的传递</title>
@@ -72,9 +138,9 @@
     <link href="http://yoursite.com/2016/04/21/BFS%E5%92%8CDFS/"/>
     <id>http://yoursite.com/2016/04/21/BFS和DFS/</id>
     <published>2016-04-21T07:28:51.000Z</published>
-    <updated>2016-04-21T09:41:04.640Z</updated>
+    <updated>2016-04-22T09:04:32.439Z</updated>
     
-    <content type="html">&lt;p&gt;该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。&lt;/p&gt;
+    <content type="html">&lt;p&gt;持续更新,该贴记录一些BFS和DFS在使用过程中的心得体会，以加深对BFS与DFS的理解。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;&lt;/a&gt;BFS(广度优先搜索)&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，&lt;strong&gt;步长&lt;/strong&gt;加一；队列为空，结束搜寻。分析见&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/127%20-%20World%20Ladder/127%20-%20World%20Ladder.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/li&gt;
@@ -87,16 +153,16 @@
     
     <summary type="html">
     
-      &lt;p&gt;该贴记录一些BFS和DFS在使用过程中的心得体会，会持续更新，以加深对BFS与DFS的理解。&lt;/p&gt;
+      &lt;p&gt;持续更新,该贴记录一些BFS和DFS在使用过程中的心得体会，以加深对BFS与DFS的理解。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;
+&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;&lt;
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
     
     
-      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+      <category term="搜索" scheme="http://yoursite.com/tags/%E6%90%9C%E7%B4%A2/"/>
     
   </entry>
   
@@ -216,9 +282,9 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="数据类型" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    
       <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
+    
+      <category term="数据类型" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
     
   </entry>
   
@@ -1030,133 +1096,6 @@
     
     
       <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LeetCodeC1编程技巧说明</title>
-    <link href="http://yoursite.com/2016/04/08/LeetCodeC1%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/"/>
-    <id>http://yoursite.com/2016/04/08/LeetCodeC1编程技巧说明/</id>
-    <published>2016-04-08T11:44:02.000Z</published>
-    <updated>2016-04-20T04:53:26.013Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;判断两个值a-b是否相等&quot;&gt;&lt;a href=&quot;#判断两个值a-b是否相等&quot; class=&quot;headerlink&quot; title=&quot;判断两个值a,b是否相等&quot;&gt;&lt;/a&gt;判断两个值a,b是否相等&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;若为浮点型，应该用&lt;code&gt;fabs(a-b)&amp;lt;1e-9&lt;/code&gt;。(因为&lt;a href=&quot;http://0.30000000000000004.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;计算机中浮点型是不准确的&lt;/a&gt;，&lt;strong&gt;与因数有关&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;另外，对于&lt;code&gt;bool&lt;/code&gt;型，应该用&lt;code&gt;if(a)&lt;/code&gt;，&lt;code&gt;if(!b)&lt;/code&gt;这样的形式来强调变量&lt;code&gt;bool&lt;/code&gt;类型。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;判断一个整数是否为奇数&quot;&gt;&lt;a href=&quot;#判断一个整数是否为奇数&quot; class=&quot;headerlink&quot; title=&quot;判断一个整数是否为奇数&quot;&gt;&lt;/a&gt;判断一个整数是否为奇数&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;x%2 != 0&lt;/code&gt;用来判断一个整数是否是奇数，&lt;strong&gt;不能用&lt;code&gt;x%2 = 1&lt;/code&gt;&lt;/strong&gt;，因为x可能是负数，余数就是-1。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;-3 = 2*-1+(-1)&lt;/code&gt;，即&lt;code&gt;-3/2 = -1&lt;/code&gt;;&lt;code&gt;-3%2= -1&lt;/code&gt;;说明负奇数余数是-1。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;char值做数组下标的强制类型转化&quot;&gt;&lt;a href=&quot;#char值做数组下标的强制类型转化&quot; class=&quot;headerlink&quot; title=&quot;char值做数组下标的强制类型转化&quot;&gt;&lt;/a&gt;char值做数组下标的强制类型转化&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;应该强制转化为&lt;code&gt;uchar&lt;/code&gt;，作为数组下标。不能直接转化为&lt;code&gt;uint&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;因为高位扩充有两种，有符号数扩充，在高位补符号位；无符号数高位直接用0。例如&lt;code&gt;char c = -1&lt;/code&gt;。c在计算机中的补码是&lt;code&gt;11111111&lt;/code&gt;。&lt;code&gt;uint a = c&lt;/code&gt;，那么&lt;code&gt;a = 4294967295&lt;/code&gt;。因为c有符号，扩充后高位补1。&lt;code&gt;uint b = (uchar) c&lt;/code&gt;。那么&lt;code&gt;b = 255&lt;/code&gt;。因为&lt;code&gt;(uchar) c&lt;/code&gt;是无符号数，高位用0扩充。&lt;/li&gt;
-&lt;li&gt;二进制中有符号向无符号数的强制转化非常简单，将&lt;strong&gt;符号位置为0&lt;/strong&gt;。比如-2，原码是&lt;code&gt;10000010&lt;/code&gt;，反码是&lt;code&gt;11111101&lt;/code&gt;，补码是&lt;code&gt;11111110&lt;/code&gt;。将符号位置0，得到&lt;code&gt;01111110&lt;/code&gt;，为254。即&lt;code&gt;char -2&lt;/code&gt;强制转化成&lt;code&gt;uchar&lt;/code&gt;值为254。&lt;/li&gt;
-&lt;li&gt;参照维基百科和C++plusP44&lt;strong&gt;圆图&lt;/strong&gt;可以更清楚了解更多数据储存与二进制运算。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;vector和string优先于动态数组的分配&quot;&gt;&lt;a href=&quot;#vector和string优先于动态数组的分配&quot; class=&quot;headerlink&quot; title=&quot;vector和string优先于动态数组的分配&quot;&gt;&lt;/a&gt;vector和string优先于动态数组的分配&lt;/h2&gt;&lt;p&gt;性能上，&lt;code&gt;vector&lt;/code&gt;保证内存（分配在堆）连续，一旦分配后，性能和原始数组相当；&lt;br&gt;用&lt;code&gt;new&lt;/code&gt;必须&lt;code&gt;delete&lt;/code&gt;，不然会&lt;code&gt;bug&lt;/code&gt;，代码行数不够短；&lt;br&gt;多维数组定义方法：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;new/delete&lt;/code&gt;:&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int** array = new int*[row];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for(int i=0;i&amp;lt;row;i++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	array[i] = new int [col];&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;:    &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;vector&amp;lt;int&amp;gt;&amp;gt; = array(row,vector&amp;lt;int&amp;gt;(col,0));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;使用reverse来避免不必要的重新分配&quot;&gt;&lt;a href=&quot;#使用reverse来避免不必要的重新分配&quot; class=&quot;headerlink&quot; title=&quot;使用reverse来避免不必要的重新分配&quot;&gt;&lt;/a&gt;使用reverse来避免&lt;a href=&quot;http://blog.csdn.net/bichenggui/article/details/4690175&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;不必要的重新分配&lt;/a&gt;&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;vector&lt;/code&gt;需要更多空间，以类似&lt;code&gt;realloc&lt;/code&gt;的思想来增长大小。分配，回收，拷贝和析构，这些步骤都很昂贵。并且每次这些步骤发生时，所有指向&lt;code&gt;vector&lt;/code&gt;或&lt;code&gt;string&lt;/code&gt;中的迭代器、指针和引用都会失效。&lt;/li&gt;
-&lt;li&gt;据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻&lt;em&gt;1.5&lt;/em&gt;倍的。因此在1000次&lt;code&gt;push_back&lt;/code&gt;中导致了18次重新分配。&lt;img src=&quot;http://i.imgur.com/ooqb6by.png&quot; alt=&quot;reverse()&quot;&gt;&lt;/li&gt;
-&lt;li&gt;在&lt;strong&gt;容器被构造之后&lt;/strong&gt;进行&lt;strong&gt;&lt;code&gt;reserve&lt;/code&gt;设置容器容量&lt;/strong&gt;可以避免不必要的重新分配。&lt;code&gt;a.reserve(1000)&lt;/code&gt;即把a的容量设置为1000。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;判断两个值a-b是否相等&quot;&gt;&lt;a href=&quot;#判断两个值a-b是否相等&quot; class=&quot;headerlink&quot; title=&quot;判断两个值a,b是否相等&quot;&gt;&lt;/a&gt;判断两个值a,b是否相等&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;若为整型，应该为&lt;code&gt;a==b&lt;/code
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="LeetCode" scheme="http://yoursite.com/tags/LeetCode/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类的构造函数与析构函数初探</title>
-    <link href="http://yoursite.com/2016/04/07/%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E5%88%9D%E6%8E%A2/"/>
-    <id>http://yoursite.com/2016/04/07/类的构造函数与析构函数初探/</id>
-    <published>2016-04-07T11:03:11.000Z</published>
-    <updated>2016-04-19T11:28:38.979Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;类的简介&quot;&gt;&lt;a href=&quot;#类的简介&quot; class=&quot;headerlink&quot; title=&quot;类的简介&quot;&gt;&lt;/a&gt;类的简介&lt;/h2&gt;&lt;h3 id=&quot;类的规范由两部分组成：&quot;&gt;&lt;a href=&quot;#类的规范由两部分组成：&quot; class=&quot;headerlink&quot; title=&quot;类的规范由两部分组成：&quot;&gt;&lt;/a&gt;类的规范由两部分组成：&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;类声明（declaration） – 类的蓝图&lt;ul&gt;
-&lt;li&gt;以数据成员的方式描述数据，以成员函数的方式描述公有接口；&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;数据&lt;/strong&gt;通常放在私有部分，组成类接口的&lt;strong&gt;成员函数&lt;/strong&gt;放在公有部分，另外&lt;strong&gt;私有成员函数&lt;/strong&gt;用来处理不属于公有接口的实现细节。&lt;/li&gt;
-&lt;li&gt;定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用&lt;code&gt;inline&lt;/code&gt;关键字成为内联函数。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;类方法定义 – 类的实现细节&lt;ul&gt;
-&lt;li&gt;C++通常把接口（类声明）放在头文件中，并将实现（类方法代码）放在源代码中；&lt;/li&gt;
-&lt;li&gt;定义成员函数时，使用作用域解析符（&lt;code&gt;::&lt;/code&gt;）来表示函数所属的类；&lt;/li&gt;
-&lt;li&gt;类方法可以访问类的&lt;code&gt;private&lt;/code&gt;组件。&lt;/li&gt;
-&lt;li&gt;只要类方法不修改调用对象，就应将其声明为&lt;code&gt;const&lt;/code&gt;，如&lt;code&gt;void Stock::show() const&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;类所创建的每个新对象都有自己的存储空间，用于存储其内部变量和类成员；但同一个类的所有对象&lt;strong&gt;共享同一组类方法&lt;/strong&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;类成员的访问控制（封装）&quot;&gt;&lt;a href=&quot;#类成员的访问控制（封装）&quot; class=&quot;headerlink&quot; title=&quot;类成员的访问控制（封装）&quot;&gt;&lt;/a&gt;类成员的访问控制（封装）&lt;/h3&gt;&lt;p&gt;数据隐藏：防止程序直接访问数据。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;例如&lt;code&gt;int a&lt;/code&gt;是类的私有数据成员，&lt;code&gt;cout&amp;lt;&amp;lt;a&lt;/code&gt;是不对的，只有公有成员函数或友元函数才能访问。可以定义一个&lt;code&gt;show()&lt;/code&gt;方法访问a用来输出。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;数据封装：实现细节放在一起并与抽象分开。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;数据隐藏（数据放在类的私有部分）&lt;/li&gt;
-&lt;li&gt;私有成员函数（实现细节隐藏在私有部分）&lt;/li&gt;
-&lt;li&gt;类函数定义和类声明放在不同的文件中。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;类的构造函数与析构函数&quot;&gt;&lt;a href=&quot;#类的构造函数与析构函数&quot; class=&quot;headerlink&quot; title=&quot;类的构造函数与析构函数&quot;&gt;&lt;/a&gt;类的构造函数与析构函数&lt;/h2&gt;&lt;h3 id=&quot;类的构造函数&quot;&gt;&lt;a href=&quot;#类的构造函数&quot; class=&quot;headerlink&quot; title=&quot;类的构造函数&quot;&gt;&lt;/a&gt;类的构造函数&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作，也就是说&lt;strong&gt;他的值在初始化时是未知的&lt;/strong&gt;；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。&lt;/li&gt;
-&lt;li&gt;构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;类的析构函数&quot;&gt;&lt;a href=&quot;#类的析构函数&quot; class=&quot;headerlink&quot; title=&quot;类的析构函数&quot;&gt;&lt;/a&gt;类的析构函数&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。&lt;/li&gt;
-&lt;li&gt;注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。&lt;/li&gt;
-&lt;li&gt;若构造函数中有&lt;code&gt;new&lt;/code&gt;，则析构函数必须&lt;code&gt;delete&lt;/code&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;构造函数的语法&quot;&gt;&lt;a href=&quot;#构造函数的语法&quot; class=&quot;headerlink&quot; title=&quot;构造函数的语法&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/Leetcode/blob/master/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构造函数的语法&lt;/a&gt;&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;1. Num nums(initVector);
-2. nums = Num(initVector)。
-3. Num();
-4. Num nums = Num();
-5. Num nums = Num(initVector)；
-&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
-&lt;li&gt;1一定不会创建一个临时对象并析构；&lt;/li&gt;
-&lt;li&gt;2是赋值语句一定会创建临时对象并析构(&lt;strong&gt;虽然有匿名对象但作用域限制&lt;/strong&gt;)；&lt;/li&gt;
-&lt;li&gt;3也会创建一个临时对象并析构(因为没有匿名对象的载体)；&lt;/li&gt;
-&lt;li&gt;4不会(因为有匿名对象载体)；&lt;/li&gt;
-&lt;li&gt;5在本人编译器上会（这是&lt;strong&gt;拷贝构造&lt;/strong&gt;）。但是对于5这种创建&lt;strong&gt;有指定值的对象&lt;/strong&gt;，是否有临时对象是不确定的(取决于具体的实现)。&lt;/li&gt;
-&lt;li&gt;总之，1的效率最高。&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;类的简介&quot;&gt;&lt;a href=&quot;#类的简介&quot; class=&quot;headerlink&quot; title=&quot;类的简介&quot;&gt;&lt;/a&gt;类的简介&lt;/h2&gt;&lt;h3 id=&quot;类的规范由两部分组成：&quot;&gt;&lt;a href=&quot;#类的规范由两部分组成：&quot; class=&quot;headerlink&quot; ti
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
     
   </entry>
   
