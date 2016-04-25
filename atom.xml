@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-22T09:21:39.287Z</updated>
+  <updated>2016-04-25T01:49:05.831Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>野指针与内存泄漏</title>
+    <link href="http://yoursite.com/2016/04/25/%E9%87%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
+    <id>http://yoursite.com/2016/04/25/野指针与内存泄漏/</id>
+    <published>2016-04-25T01:36:10.000Z</published>
+    <updated>2016-04-25T01:49:05.831Z</updated>
+    
+    <content type="html">&lt;p&gt;野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;野指针&quot;&gt;&lt;a href=&quot;#野指针&quot; class=&quot;headerlink&quot; title=&quot;野指针&quot;&gt;&lt;/a&gt;野指针&lt;/h2&gt;&lt;p&gt;野指针指向一个已删除对象或未申请访问受限内存区域的指针，一般来说野指针有三个成因：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;指针变量未初始化；&lt;/li&gt;
+&lt;li&gt;指针释放后未置空；&lt;/li&gt;
+&lt;li&gt;指针操作超越变量作用域。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;值得注意的是，如果有多个指针指向同一块内存，释放其中一个指针后，应将包含这个指针在内的指向这一块内存的所有指针都置空，否则都会成为野指针。&lt;/p&gt;
+&lt;h2 id=&quot;内存泄漏&quot;&gt;&lt;a href=&quot;#内存泄漏&quot; class=&quot;headerlink&quot; title=&quot;内存泄漏&quot;&gt;&lt;/a&gt;内存泄漏&lt;/h2&gt;&lt;p&gt;在某一块内存的生命周期内，指向它的指针全部指向别处时，用户无法访问，也无法申请到这一块内存。这就是内存泄露。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;野指针&quot;&gt;&lt;a href=&quot;#野指针&quot; class=&quot;h
+    
+    </summary>
+    
+      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+    
+    
+      <category term="基本概念" scheme="http://yoursite.com/tags/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git命令</title>
+    <link href="http://yoursite.com/2016/04/23/Git%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2016/04/23/Git命令/</id>
+    <published>2016-04-23T06:27:10.000Z</published>
+    <updated>2016-04-23T06:37:10.733Z</updated>
+    
+    <content type="html">&lt;p&gt;初学git，记录当时的一些解决方法。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/22132675&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;删除不想要的git历史&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://segmentfault.com/q/1010000000115900&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;删除版本库中的提交&lt;/a&gt;注意，他将HEAD指向某一个commit，之后的commit和文件都被擦除了，删除前做好备份……&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;初学git，记录当时的一些解决方法。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/22132675&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;删除不想要的git历史&lt;/a&gt;&lt;/li&gt;
+&lt;li
+    
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
+    
+    
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+  </entry>
   
   <entry>
     <title>动态规划</title>
@@ -86,7 +150,7 @@
     <link href="http://yoursite.com/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
     <id>http://yoursite.com/2016/04/22/函数参数的传递/</id>
     <published>2016-04-22T01:42:40.000Z</published>
-    <updated>2016-04-22T02:58:45.012Z</updated>
+    <updated>2016-04-25T01:54:06.846Z</updated>
     
     <content type="html">&lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
 &lt;hr&gt;
@@ -106,6 +170,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;如果返回局部变量(运算符重载中)，不能返回引用。&lt;/p&gt;
 &lt;h3 id=&quot;C-C-中的左值和右值&quot;&gt;&lt;a href=&quot;#C-C-中的左值和右值&quot; class=&quot;headerlink&quot; title=&quot;C/C++中的左值和右值&quot;&gt;&lt;/a&gt;C/C++中的左值和右值&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;左值是一个引用到对象的表达式，因此可以取址(可以赋值)；&lt;/li&gt;
 &lt;li&gt;右值强调的不是表达式本身，而是该表达式运算后的结果。这个结果往往并不引用到某一对象，可以看成计算的中间结果(临时内存单元)；（当然它也可能引用到某一对象，但是通过该右值表达式我们不能直接修改该对象—）。&lt;/li&gt;
@@ -293,7 +358,7 @@
     <link href="http://yoursite.com/2016/04/21/cctype%E4%B8%8E%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E5%8C%96/"/>
     <id>http://yoursite.com/2016/04/21/cctype与进制数转化/</id>
     <published>2016-04-21T01:16:59.000Z</published>
-    <updated>2016-04-21T03:13:39.494Z</updated>
+    <updated>2016-04-25T01:34:12.549Z</updated>
     
     <content type="html">&lt;h2 id=&quot;进制转化&quot;&gt;&lt;a href=&quot;#进制转化&quot; class=&quot;headerlink&quot; title=&quot;进制转化&quot;&gt;&lt;/a&gt;进制转化&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：&lt;code&gt;cout&amp;lt;&amp;lt;dec;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;hex;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;oct&lt;/code&gt;。&lt;/li&gt;
@@ -326,7 +391,9 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="使用心得" scheme="http://yoursite.com/tags/%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
+      <category term="cctype" scheme="http://yoursite.com/tags/cctype/"/>
+    
+      <category term="进制" scheme="http://yoursite.com/tags/%E8%BF%9B%E5%88%B6/"/>
     
   </entry>
   
@@ -465,7 +532,7 @@
     <link href="http://yoursite.com/2016/04/19/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
     <id>http://yoursite.com/2016/04/19/默认参数与内联函数/</id>
     <published>2016-04-19T03:15:10.000Z</published>
-    <updated>2016-04-21T02:49:23.463Z</updated>
+    <updated>2016-04-25T02:46:46.728Z</updated>
     
     <content type="html">&lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 &lt;/p&gt;
 &lt;hr&gt;
@@ -484,6 +551,7 @@
 &lt;li&gt;一般省略原型(但原型特性仍在起作用)，将整个定义放在原本该提供原型的地方(这是首次使用前的函数定义，充当原型)，并使用&lt;code&gt;inline&lt;/code&gt;关键字&lt;/li&gt;
 &lt;li&gt;编译器并不一定满足程序员内联函数的请求，比如函数过大或者函数调用了自己(递归不能内联)。&lt;/li&gt;
 &lt;/ol&gt;
+&lt;p&gt;注意类成员函数中的内联函数并不一定使用&lt;code&gt;inline&lt;/code&gt;关键字。定义位于类声明中自动成为内联函数；否则使用&lt;code&gt;inline&lt;/code&gt;关键字作为内联函数。&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -903,199 +971,6 @@
     
     
       <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>溢出</title>
-    <link href="http://yoursite.com/2016/04/11/%E6%BA%A2%E5%87%BA/"/>
-    <id>http://yoursite.com/2016/04/11/溢出/</id>
-    <published>2016-04-11T12:35:24.000Z</published>
-    <updated>2016-04-18T08:59:18.191Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;数值溢出原理&quot;&gt;&lt;a href=&quot;#数值溢出原理&quot; class=&quot;headerlink&quot; title=&quot;数值溢出原理&quot;&gt;&lt;/a&gt;数值溢出原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/W3CYdOb.png&quot; alt=&quot;数值圆图&quot;&gt;&lt;br&gt;C++Plus在P44已经说的很清楚，如下。&lt;br&gt;有几点需要注意的地方：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;上图下图中的圆在进行&lt;strong&gt;强制类型转化&lt;/strong&gt;时也是&lt;strong&gt;对应&lt;/strong&gt;的，这就是说&lt;code&gt;(uchar)-1 = 65535&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;无符号数没有溢出，只有&lt;strong&gt;进/借位&lt;/strong&gt;(微机原理&lt;code&gt;CF&lt;/code&gt;标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。&lt;/li&gt;
-&lt;li&gt;有符号数没有进/借位，只有&lt;strong&gt;溢出&lt;/strong&gt;(微机原理&lt;code&gt;OF&lt;/code&gt;标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;运算溢出&quot;&gt;&lt;a href=&quot;#运算溢出&quot; class=&quot;headerlink&quot; title=&quot;运算溢出&quot;&gt;&lt;/a&gt;运算溢出&lt;/h2&gt;&lt;h3 id=&quot;判断加法溢出&quot;&gt;&lt;a href=&quot;#判断加法溢出&quot; class=&quot;headerlink&quot; title=&quot;判断加法溢出&quot;&gt;&lt;/a&gt;判断加法溢出&lt;/h3&gt;&lt;p&gt;可以像这里一样分情况或者根据圆图分析，会发现&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;所有上溢结果都小于任何一个操作数；&lt;/li&gt;
-&lt;li&gt;所有下溢结果都大于任何一个操作数。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;判断乘法溢出&quot;&gt;&lt;a href=&quot;#判断乘法溢出&quot; class=&quot;headerlink&quot; title=&quot;判断乘法溢出&quot;&gt;&lt;/a&gt;判断乘法溢出&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;在这里提到，可以用检测&lt;code&gt;a*b/b&lt;/code&gt;是否等于a来判断是否乘法溢出；&lt;/li&gt;
-&lt;li&gt;在这里提到，可以先扩展再强制类型转化到低位，在判断是否相等来判断。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;值得注意的是，在之前的帖子中提到过判断是否相等对&lt;strong&gt;浮点数&lt;/strong&gt;和整型的判断方式是不一样的。&lt;/p&gt;
-&lt;h3 id=&quot;除零是不是溢出？&quot;&gt;&lt;a href=&quot;#除零是不是溢出？&quot; class=&quot;headerlink&quot; title=&quot;除零是不是溢出？&quot;&gt;&lt;/a&gt;除零是不是溢出？&lt;/h3&gt;&lt;p&gt;任何数除以零的计算“不是”算术溢出的一种。在数学上只能明显算是不明确的定义；它计算出来的结果只能当成是“没有”值，而不是非常大的无限数值。&lt;/p&gt;
-&lt;p&gt;应付溢出最佳的方法还是防范，充分了解数据类型，选择恰当的变量类型。比如，&lt;code&gt;c = a*b&lt;/code&gt;一般都会选择c的长度为a的长度与b的长度之和。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;堆栈溢出&quot;&gt;&lt;a href=&quot;#堆栈溢出&quot; class=&quot;headerlink&quot; title=&quot;堆栈溢出&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A%E6%BA%A2%E4%BD%8D&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;堆栈溢出&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;一般编译器默认的堆栈内存是1MB，若使用过多的堆栈内存时就会导致调用堆栈产生的溢出。一般产生于递归，或者静态申请过多的临时变量，比如&lt;code&gt;int a[1024[1024]&lt;/code&gt;。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;若是静态内存导致的堆栈溢出，可以用动态申请使用堆内存。&lt;/li&gt;
-&lt;li&gt;若是递归调用导致递归堆栈无法容纳调用的返回地址，要添加错误检查机制。注意数据类型或用循环处理来避免堆栈溢出。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;缓冲区溢出&quot;&gt;&lt;a href=&quot;#缓冲区溢出&quot; class=&quot;headerlink&quot; title=&quot;缓冲区溢出&quot;&gt;&lt;/a&gt;缓冲区溢出&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://jingyan.baidu.com/article/e9fb46e1acc1267521f76633.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;缓冲区溢出&lt;/a&gt;源于这样一个编程错误：复制一个内存区域的内容到另一个内存区域，而目标内存区域容量太小无法容纳。它允许传入函数的内存块以一种特定方式修改堆栈。&lt;/p&gt;
-&lt;p&gt;此外的溢出还包括&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%AE%97%E6%9C%AF%E4%B8%8B%E6%BA%A2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;算术下溢&lt;/a&gt;(浮点数溢出)等。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;数值溢出原理&quot;&gt;&lt;a href=&quot;#数值溢出原理&quot; class=&quot;headerlink&quot; title=&quot;数值溢出原理&quot;&gt;&lt;/a&gt;数值溢出原理&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/W3CYdOb.png&quot; alt=&quot;数值圆图&quot;&gt;&lt;
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="溢出" scheme="http://yoursite.com/tags/%E6%BA%A2%E5%87%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据存储与二进制运算</title>
-    <link href="http://yoursite.com/2016/04/09/%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E4%B8%8E%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97/"/>
-    <id>http://yoursite.com/2016/04/09/数据存储与二进制运算/</id>
-    <published>2016-04-09T12:07:02.000Z</published>
-    <updated>2016-04-21T13:26:08.120Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补码&quot;&gt;&lt;/a&gt;原、反、补码&lt;/h3&gt;&lt;p&gt;计算机为方便计算，内存中的数据都是以补码的形式储存、运算。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;数&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;原码&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;反码&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;补码&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;正数&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;二进制表示&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;与原码相同&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;与原码相同&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;负数&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;对应正数符号位（最高位）置1&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;负数原码&lt;strong&gt;非符号位&lt;/strong&gt;按位取反&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;负数反码加1&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;举个例子，数据类型为&lt;code&gt;char&lt;/code&gt;：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;原数字&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;原码&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;反码&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;补码&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;+3&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;00000011&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;-3&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;10000011&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111100&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;11111101&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;值得注意的是，如果这个数据为&lt;code&gt;unsigned char&lt;/code&gt;，&lt;code&gt;11111101&lt;/code&gt;对应的是253，这里涉及到溢出，详细讨论见下一博客。&lt;/p&gt;
-&lt;h3 id=&quot;消失的原码&quot;&gt;&lt;a href=&quot;#消失的原码&quot; class=&quot;headerlink&quot; title=&quot;消失的原码&quot;&gt;&lt;/a&gt;消失的原码&lt;/h3&gt;&lt;p&gt;对于&lt;code&gt;unsigned char&lt;/code&gt;原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于&lt;code&gt;signed char&lt;/code&gt;，最高位是符号位，因此原码的取值范围是-127-127，只有&lt;strong&gt;255个编码&lt;/strong&gt;，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？&lt;/p&gt;
-&lt;p&gt;考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有&lt;code&gt;00000000&lt;/code&gt;、&lt;code&gt;10000000&lt;/code&gt;两个原码表示+0与-0，而这是没有意义的。我们保证&lt;code&gt;00000000&lt;/code&gt;这个原码与&lt;code&gt;00000000&lt;/code&gt;这个补码相对应来表示0就可以。这样找到了消失的原码：&lt;code&gt;10000000&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;在这个基于256的数值域中，观察补码的&lt;strong&gt;重置点（溢出中非常重要的概念）&lt;/strong&gt;127的补码&lt;code&gt;01111111&lt;/code&gt;，-127的补码&lt;code&gt;10000001&lt;/code&gt;，那么可以清楚的看到&lt;code&gt;127+1=？&lt;/code&gt;、&lt;code&gt;？+1=127&lt;/code&gt;。因此很好理解，多余的补码是&lt;code&gt;10000000&lt;/code&gt;（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即&lt;strong&gt;-128的原码&lt;/strong&gt;是&lt;code&gt;10000000&lt;/code&gt;，&lt;strong&gt;补码&lt;/strong&gt;也是&lt;code&gt;10000000&lt;/code&gt;（它的&lt;strong&gt;反码&lt;/strong&gt;是&lt;code&gt;11111111&lt;/code&gt;？）。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot;&gt;&lt;a href=&quot;#二进制运算（移位得到CHAR-MAX和CHAR-MIN）&quot; class=&quot;headerlink&quot; title=&quot;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&quot;&gt;&lt;/a&gt;二进制运算（移位得到CHAR_MAX和CHAR_MIN）&lt;/h2&gt;&lt;p&gt;明白上述数据存储概念之后，可以通过位运算来获得&lt;code&gt;char&lt;/code&gt;的最大最小值。注意，其实在&lt;code&gt;climit&lt;/code&gt;文件中有各种宏定义的最大最小值，比如&lt;code&gt;CHAR_MAX = 127&lt;/code&gt;;&lt;code&gt;UCHAR_MAX = 0xff&lt;/code&gt;;等。但是这里想利用位运算来实现这一目标(注意重置点)：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;CHAR_MAX&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;CHAR_MIN&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;unsigned char max = 0-1&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;unsigned char min = 0&lt;/code&gt;;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;char max = (1&amp;lt;&amp;lt;7)-1&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;char min = 1&amp;lt;&amp;lt;7&lt;/code&gt;(得到&lt;code&gt;10000000&lt;/code&gt;);&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ol&gt;
-&lt;li&gt;上述表格中&lt;code&gt;unsigned char max&lt;/code&gt;本质为&lt;code&gt;signed char = -1&lt;/code&gt;的强制类型转化&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;char max&lt;/code&gt; 是利用重置点&lt;code&gt;CHAR_MIN&lt;/code&gt;得到&lt;code&gt;01111111&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;char min&lt;/code&gt; 是利用-128的特殊补码(而且与原码相同)赋值的&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;运算的优先级是高于&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;、&lt;code&gt;&amp;gt;&amp;gt;&lt;/code&gt;的，因此&lt;code&gt;1&amp;lt;&amp;lt;7&lt;/code&gt;要加括号&lt;br&gt;注意右值中运算表达式中的数字默认都是&lt;code&gt;int&lt;/code&gt;类型的，这与C++整型提升有关，详情见另一篇博客。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;另，由以上解读可以很容易的得出&lt;code&gt;abs(int_X)&lt;/code&gt;的工作原理，正数不变，负数求得原码后符号位取反，即原码也是补码。但是有&lt;strong&gt;例外&lt;/strong&gt;：&lt;code&gt;abs(INT_MIN) = INT_MIN&lt;/code&gt;。他是不变的。&lt;/p&gt;
-&lt;p&gt;解读下边两式的区别（使用中&lt;code&gt;unsigned&lt;/code&gt;与&lt;code&gt;signed&lt;/code&gt;操作注意符号位扩充）：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;char a = abs((char)(1&amp;lt;&amp;lt;7)-1)&lt;/code&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;char b = abs((1&amp;lt;&amp;lt;7)-1)&lt;/code&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;(char)(1&amp;lt;&amp;lt;7)-1 = (int)-129&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;(1&amp;lt;&amp;lt;7)-1 = (int)127&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;1·&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;2·&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a = -127&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;b = 127&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;11111111 11111111 11111111 10000000&lt;/code&gt;+&lt;code&gt;11111111 11111111 11111111 11111111&lt;/code&gt;=&lt;code&gt;11111111 11111111 11111111 01111111&lt;/code&gt;(&lt;code&gt;char&lt;/code&gt; 原码&lt;code&gt;10000001&lt;/code&gt;)    &lt;/li&gt;
-&lt;li&gt;&lt;code&gt;00000000 00000000 00000000 1000000&lt;/code&gt;-&lt;code&gt;00000000 00000000 00000000 0000001&lt;/code&gt;=&lt;code&gt;00000000 00000000 00000000 01111111&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;编译器的困惑&quot;&gt;&lt;a href=&quot;#编译器的困惑&quot; class=&quot;headerlink&quot; title=&quot;编译器的困惑&quot;&gt;&lt;/a&gt;编译器的困惑&lt;/h2&gt;&lt;p&gt;在编程过程中碰到了&lt;a href=&quot;http://www.hankcs.com/program/cpp/error-c4146-%E4%B8%80%E5%85%83%E8%B4%9F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%BA%94%E7%94%A8%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%BB%8D%E4%B8%BA%E6%97%A0.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这个疑惑&lt;/a&gt;,后来发现，明明 int 最小值是 -2147483648，但我们就是&lt;strong&gt;无法&lt;/strong&gt;用&lt;code&gt;int n = -2147483648&lt;/code&gt;;表示。这是因为这个语句会让编译器产生困惑：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;判断2147483648 &amp;gt; INT_MAX，编译器决定用unsigned int;&lt;/li&gt;
-&lt;li&gt;编译器发现负号，对2147483648取反来尝试表达-2147483648；&lt;/li&gt;
-&lt;li&gt;那么在圆图中可以发现，取反操作对2147483648来说依然表达原值。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;因此编译器会提示error:一元负运算符应用于无符号类型，结果仍为无符号类型。那么对-2147483648有两种可用的赋值：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;int n = INT_MIN;&lt;/li&gt;
-&lt;li&gt;int n = (-2147483647 - 1);&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;font color=&quot;red&quot;&gt;但是&lt;/font&gt;，如果涉及到取反操作&lt;code&gt;-n&lt;/code&gt;的计算,对于&lt;code&gt;n=INT_MIN&lt;/code&gt;依然存在这个问题，因此需要分解’-n = INT_MAX+1’来分别计算&lt;code&gt;INT_MAX&lt;/code&gt;与1的情况并组合。例如&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;数据存储&quot;&gt;&lt;a href=&quot;#数据存储&quot; class=&quot;headerlink&quot; title=&quot;数据存储&quot;&gt;&lt;/a&gt;数据存储&lt;/h2&gt;&lt;h3 id=&quot;原、反、补码&quot;&gt;&lt;a href=&quot;#原、反、补码&quot; class=&quot;headerlink&quot; title=&quot;原、反、补
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   

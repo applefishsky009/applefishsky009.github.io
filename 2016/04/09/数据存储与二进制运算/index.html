@@ -109,7 +109,7 @@
 
 -3
 1000001">
-<meta property="og:updated_time" content="2016-04-21T13:26:08.120Z">
+<meta property="og:updated_time" content="2016-04-25T01:10:47.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据存储与二进制运算">
 <meta name="twitter:description" content="数据存储原、反、补码计算机为方便计算，内存中的数据都是以补码的形式储存、运算。
@@ -438,7 +438,7 @@ ga('send', 'pageview');
 <h2 id="编译器的困惑"><a href="#编译器的困惑" class="headerlink" title="编译器的困惑"></a>编译器的困惑</h2><p>在编程过程中碰到了<a href="http://www.hankcs.com/program/cpp/error-c4146-%E4%B8%80%E5%85%83%E8%B4%9F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%BA%94%E7%94%A8%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%BB%8D%E4%B8%BA%E6%97%A0.html" target="_blank" rel="external">这个疑惑</a>,后来发现，明明 int 最小值是 -2147483648，但我们就是<strong>无法</strong>用<code>int n = -2147483648</code>;表示。这是因为这个语句会让编译器产生困惑：</p>
 <ol>
 <li>判断2147483648 &gt; INT_MAX，编译器决定用unsigned int;</li>
-<li>编译器发现负号，对2147483648取反来尝试表达-2147483648；</li>
+<li>编译器发现负号，对2147483648取反(<em>编译器取反原理是将从高位到第一个1之间的位取反</em>)来尝试表达-2147483648；</li>
 <li>那么在圆图中可以发现，取反操作对2147483648来说依然表达原值。</li>
 </ol>
 <p>因此编译器会提示error:一元负运算符应用于无符号类型，结果仍为无符号类型。那么对-2147483648有两种可用的赋值：</p>

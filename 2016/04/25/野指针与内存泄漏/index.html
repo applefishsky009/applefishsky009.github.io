@@ -7,36 +7,48 @@
 <head>
   <meta charset="utf-8">
   
-  <title>cctype与进制数转化 | 孤云两角，去天一握</title>
+  <title>野指针与内存泄漏 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="cctype,进制," />
+    <meta name="keywords" content="基本概念," />
   
 
-  <meta name="description" content="进制转化
-控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：cout&amp;lt;&amp;lt;dec;,cout&amp;lt;&amp;lt;hex;,cout&amp;lt;&amp;lt;oct。
-头文件cstdlib中的char *_itoa(int value,char string,int radix)可以设置任一进制的输出。
-参数一：要转换的数据；
-参数二：存放结果的字符串地址；">
+  <meta name="description" content="野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。
+
+野指针野指针指向一个已删除对象或未申请访问受限内存区域的指针，一般来说野指针有三个成因：
+
+指针变量未初始化；
+指针释放后未置空；
+指针操作超越变量作用域。
+
+值得注意的是，如果有多个指针指向同一块内存，释放其中一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="cctype与进制数转化">
-<meta property="og:url" content="http://yoursite.com/2016/04/21/cctype与进制数转化/index.html">
+<meta property="og:title" content="野指针与内存泄漏">
+<meta property="og:url" content="http://yoursite.com/2016/04/25/野指针与内存泄漏/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="进制转化
-控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：cout&amp;lt;&amp;lt;dec;,cout&amp;lt;&amp;lt;hex;,cout&amp;lt;&amp;lt;oct。
-头文件cstdlib中的char *_itoa(int value,char string,int radix)可以设置任一进制的输出。
-参数一：要转换的数据；
-参数二：存放结果的字符串地址；">
-<meta property="og:updated_time" content="2016-04-25T01:34:12.549Z">
+<meta property="og:description" content="野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。
+
+野指针野指针指向一个已删除对象或未申请访问受限内存区域的指针，一般来说野指针有三个成因：
+
+指针变量未初始化；
+指针释放后未置空；
+指针操作超越变量作用域。
+
+值得注意的是，如果有多个指针指向同一块内存，释放其中一">
+<meta property="og:updated_time" content="2016-04-25T01:49:05.831Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cctype与进制数转化">
-<meta name="twitter:description" content="进制转化
-控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：cout&amp;lt;&amp;lt;dec;,cout&amp;lt;&amp;lt;hex;,cout&amp;lt;&amp;lt;oct。
-头文件cstdlib中的char *_itoa(int value,char string,int radix)可以设置任一进制的输出。
-参数一：要转换的数据；
-参数二：存放结果的字符串地址；">
+<meta name="twitter:title" content="野指针与内存泄漏">
+<meta name="twitter:description" content="野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。
+
+野指针野指针指向一个已删除对象或未申请访问受限内存区域的指针，一般来说野指针有三个成因：
+
+指针变量未初始化；
+指针释放后未置空；
+指针操作超越变量作用域。
+
+值得注意的是，如果有多个指针指向同一块内存，释放其中一">
 
   
 
@@ -163,20 +175,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进制转化"><span class="toc-text">进制转化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cctype"><span class="toc-text">cctype</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#野指针"><span class="toc-text">野指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内存泄漏"><span class="toc-text">内存泄漏</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-cctype与进制数转化" class="article article-type-post" itemprop="blogPost">
+   <article id="post-野指针与内存泄漏" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">cctype与进制数转化</h1>
+    <h1 class="post-title">野指针与内存泄漏</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.21</span>
+        <span>2016.04.25</span>
       </span>
 
       
@@ -197,7 +209,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/21/cctype与进制数转化/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/25/野指针与内存泄漏/#disqus_thread"></a>
         </span>
       
 
@@ -206,25 +218,16 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h2><ol>
-<li>控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：<code>cout&lt;&lt;dec;</code>,<code>cout&lt;&lt;hex;</code>,<code>cout&lt;&lt;oct</code>。</li>
-<li>头文件<code>cstdlib</code>中的<code>char *_itoa(int value,char string,int radix)</code>可以设置任一进制的输出。<ul>
-<li>参数一：要转换的数据；</li>
-<li>参数二：存放结果的字符串地址；</li>
-<li>参数三：进制数；</li>
-<li>返回值：指向结果字符串的指针。</li>
-</ul>
-</li>
-</ol>
+      <p>野指针和内存泄漏是两个相联系的概念，一般来讲指针&lt;-&gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。</p>
 <hr>
-<h2 id="cctype"><a href="#cctype" class="headerlink" title="cctype"></a>cctype</h2><p>主要是<code>cctype</code>头文件中的字符函数在编程过程中可以带来很多便利，常用的总结如下：</p>
+<h2 id="野指针"><a href="#野指针" class="headerlink" title="野指针"></a>野指针</h2><p>野指针指向一个已删除对象或未申请访问受限内存区域的指针，一般来说野指针有三个成因：</p>
 <ol>
-<li><code>isalpha()</code>,<code>isdigit()</code>,<code>isalnum()</code>可以用于判断是字符、数字、字母或数字。返回<code>true</code>或<code>false</code>。</li>
-<li><code>islower()</code>,<code>isupper()</code>,<code>isprint()</code>可以用于判断是小写字母、大写字符、可显示字符。返回<code>true</code>或<code>false</code>。<a href="https://zh.wikipedia.org/wiki/ASCII#.E5.8F.AF.E6.98.BE.E7.A4.BA.E5.AD.97.E7.AC.A6" target="_blank" rel="external">可显示字符</a>从32到126一共95个。</li>
-<li><code>tolower()</code>,<code>toupper()</code>用于大小写字母的转换，如果不需要转换，字符不变。</li>
-<li>另外一些不常用的字符函数,<code>isgraph()</code>(除空格之外的打印字符),<code>ispunct()</code>(标点符号),<code>isspace()</code>(标准空白字符),<code>iscntrl()</code>(控制字符),<code>isxdigit()</code>(16进制,即1-9,a-f,A-F)。</li>
+<li>指针变量未初始化；</li>
+<li>指针释放后未置空；</li>
+<li>指针操作超越变量作用域。</li>
 </ol>
-<hr>
+<p>值得注意的是，如果有多个指针指向同一块内存，释放其中一个指针后，应将包含这个指针在内的指向这一块内存的所有指针都置空，否则都会成为野指针。</p>
+<h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>在某一块内存的生命周期内，指向它的指针全部指向别处时，用户无法访问，也无法申请到这一块内存。这就是内存泄露。</p>
 
     
   </div>
@@ -340,7 +343,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://yoursite.com/2016/04/21/cctype与进制数转化/';
+    var disqus_url = 'http://yoursite.com/2016/04/25/野指针与内存泄漏/';
     
     (function(){
       var dsq = document.createElement('script');
