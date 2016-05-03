@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-04-25T01:49:05.831Z</updated>
+  <updated>2016-05-03T09:15:05.890Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,138 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BP、KMP、改进的KMP</title>
+    <link href="http://yoursite.com/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/"/>
+    <id>http://yoursite.com/2016/05/03/BP、KMP、改进的KMP/</id>
+    <published>2016-05-03T06:57:41.000Z</published>
+    <updated>2016-05-03T09:15:05.890Z</updated>
+    
+    <content type="html">&lt;p&gt;在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;BF(Brute-Force)算法(暴力破解);&lt;/li&gt;
+&lt;li&gt;KMP算法;&lt;/li&gt;
+&lt;li&gt;改进的KMP算法。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这三种算法的代码&lt;a href=&quot;https://github.com/applefishsky009/Interface/blob/master/BF%E5%92%8CKMP/BF%E5%92%8CKMP.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;在这里&lt;/a&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;BF算法&quot;&gt;&lt;a href=&quot;#BF算法&quot; class=&quot;headerlink&quot; title=&quot;BF算法&quot;&gt;&lt;/a&gt;BF算法&lt;/h2&gt;&lt;p&gt;设主串从i位开始与子串(从0开始)判断是否匹配;到子串的j位置，对应主串的i+j位置失配;将主串左移一位(&lt;code&gt;i++&lt;/code&gt;),j回到0位继续匹配。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;KMP算法&quot;&gt;&lt;a href=&quot;#KMP算法&quot; class=&quot;headerlink&quot; title=&quot;KMP算法&quot;&gt;&lt;/a&gt;KMP算法&lt;/h2&gt;&lt;h3 id=&quot;为什么是next-j&quot;&gt;&lt;a href=&quot;#为什么是next-j&quot; class=&quot;headerlink&quot; title=&quot;为什么是next[j]&quot;&gt;&lt;/a&gt;为什么是next[j]&lt;/h3&gt;&lt;p&gt;每次失配将i右移一位显然是低效的。&lt;strong&gt;主观上来考虑，如果在失配之前子串有相等的真后缀，那么就可以右移更多的位。&lt;/strong&gt;考虑在i+j位失配时将主串左移k位(子串右移k位)，而不是一位。容易得到，这个k只与子串的性质有关。&lt;br&gt;我们使用next[j]来标识当j位失配时子串应向右移j-next[j]位。示例:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;abcdefg&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;0 1 2 3 4 5 6&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;next[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-1 0 0 0 0 0 0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;offset&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1 1 2 3 4 5 6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;abcabcabc&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;0 1 2 3 4 5 6 7 8&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;next[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-1 0 0 0 1 2 3 4 5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;offset&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1 1 2 3 3 3 3 3 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&quot;如何求得next-j&quot;&gt;&lt;a href=&quot;#如何求得next-j&quot; class=&quot;headerlink&quot; title=&quot;如何求得next[j]&quot;&gt;&lt;/a&gt;如何求得next[j]&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/qc2eynB.png&quot; alt=&quot;这里&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在计算公式中第二行指的是:j位&lt;strong&gt;以前&lt;/strong&gt;字串中真前后缀的最大&lt;strong&gt;公共&lt;/strong&gt;元素长度。真前缀、真后缀指的不包含串本身的子串。那么我们可以这样来计算j:&lt;br&gt;tempNext[j]表示j位及以前子串真前缀最大公共元素长度。将tempNext[j]右移一位，初值赋为-1,得到next[j]&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;xyxyyxxyx&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;0 1 2 3 4 5 6 7 8&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;tempNext[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;0 0 1 2 0 1 1 2 3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;next[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-1 0 0 1 2 0 1 1 2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;offset&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1 1 2 2 2 5 5 6 6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;tempNext[j]的计算:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//计算j位及之前真前缀以及真后缀的最大公共元素长度&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void calTempNext(vector&amp;lt;int&amp;gt;&amp;amp;next)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (s2.size() == 1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	next[0] = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int k = 0;//前缀指针,j就是后缀指针&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	for (int j = 1;j &amp;lt; s2.size();j++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while(k &amp;gt; 0 &amp;amp;&amp;amp; s2[j] != s2[k])//k位失配，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			k = next[k-1];//k-1是可靠匹配，next[k-1]记录了上一个真后缀出现的地方&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (s2[j] == s2[k])//匹配，k++,j++，next[j]赋值&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			k++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		next[j] = k;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h3 id=&quot;如何在编程中求得next-j&quot;&gt;&lt;a href=&quot;#如何在编程中求得next-j&quot; class=&quot;headerlink&quot; title=&quot;如何在编程中求得next[j]&quot;&gt;&lt;/a&gt;如何在编程中求得next[j]&lt;/h3&gt;&lt;p&gt;如果使用上述计算过程，先计算tempNext[j]再计算next[j]，需要两次遍历。将tempNext[j]右移初值赋-1的过程可以直接融入程序中，使用一次遍历就可以得到next[j]，&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//直接计算next(时间复杂度O(n))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;void cal2Next(vector&amp;lt;int&amp;gt;&amp;amp;next)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int j = -1;		//j,偏移指针&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int i = 0;		//i,next下标（实际上是要计算的next下标-1,因为是先加后赋值）&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	next[0] = -1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	while (i &amp;lt; s2.size()-1)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (j == -1 || s2[i]==s2[j])&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			i++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			j++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			next[i] = j;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			j = next[j];&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;改进的KMP算法&quot;&gt;&lt;a href=&quot;#改进的KMP算法&quot; class=&quot;headerlink&quot; title=&quot;改进的KMP算法&quot;&gt;&lt;/a&gt;改进的KMP算法&lt;/h2&gt;&lt;p&gt;next[j]值越小，模式匹配所需比较次数越少。next[j]的计算中先判断匹配，i,j自加再赋值。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;若自加之后失配，这时候i失配并不代表j失配，因此留给下次循环回溯后来判断。&lt;/li&gt;
+&lt;li&gt;若自加之后匹配，说明i与j位置完全等效，i失配，j一定失配。，而朴素的KMP算法在失配之后要一次一次回溯。因此可以&lt;font color=&quot;red&quot;&gt;一次回溯到底&lt;/font&gt;节约比较次数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;&lt;code&gt;abcaabbabcaac&lt;/code&gt;&lt;/th&gt;
+&lt;th style=&quot;text-align:center&quot;&gt;0 1 2  3 4 5 6  7 8 9 10 11 12&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;next[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-1 0 0  0 1 1 2  0 1 2  3  4  5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;offset1&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1 1 2  3 3 4 4  7 7 7  7  7  7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;nextVal[j]&lt;/code&gt;&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;-1 0 0 -1 1 0 2 -1 0 0 -1  1  5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;offset2&lt;/td&gt;
+&lt;td style=&quot;text-align:center&quot;&gt;1 1 2  4 3 5 4  8 8 9 11 10  7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/28%20-%20Implement%20strStr()/28%20-%20Implement%20strStr().cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode代码&lt;/a&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;BF(Brute-Force)算法(暴力破解);&lt;/li&gt;
+&lt;li&gt;KMP算法;&lt;/li&gt;
+&lt;li&gt;改进的KMP算
+    
+    </summary>
+    
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+    
+    
+      <category term="字符串匹配" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>野指针与内存泄漏</title>
@@ -794,7 +926,7 @@
     <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/14/vector之erase方法/</id>
     <published>2016-04-14T02:52:25.000Z</published>
-    <updated>2016-04-19T12:58:01.742Z</updated>
+    <updated>2016-04-26T08:27:42.210Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
 &lt;table&gt;
@@ -824,8 +956,13 @@
 &lt;li&gt;注意到&lt;code&gt;erase&lt;/code&gt;返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的&lt;strong&gt;地址不变&lt;/strong&gt;，值是删除之后可用的下一个元素，因此&lt;strong&gt;给人感觉是p指向了下一个元素&lt;/strong&gt;。那么在这里有一个值得注意的问题，如下：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt;::iterator p = b.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for (;p!=b.end();p++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (*p == 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		b.erase(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = b.erase(p--);&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt; &lt;strong&gt;迭代器的循环使用&lt;code&gt;while&lt;/code&gt;可以降低错误率。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = --b.erase(p);&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不能用&lt;code&gt;p-- = b.erase(p);&lt;/code&gt;，因为&lt;code&gt;p--&lt;/code&gt;是表达式，不能为左值；&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不能用&lt;code&gt;p = b.erase(p--);&lt;/code&gt;，也是因为&lt;code&gt;p--&lt;/code&gt;是一个表达式，强调计算结果，不能作为左值，也不能取址。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;迭代器的循环使用&lt;code&gt;while&lt;/code&gt;可以降低错误率。&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
 &lt;hr&gt;
 &lt;p&gt;为简单，分析第一个表达式的源码如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;iterator erase(const_iterator _Where)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// erase element at where&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_VICONT(_Where) != this&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| _VIPTR(_Where) &amp;lt; this-&amp;gt;_Myfirst&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| this-&amp;gt;_Mylast &amp;lt;= _VIPTR(_Where))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_DEBUG_ERROR(&amp;quot;vector erase iterator outside range&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Move(_VIPTR(_Where) + 1, this-&amp;gt;_Mylast, _VIPTR(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Destroy(this-&amp;gt;_Mylast - 1, this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Orphan_range(_VIPTR(_Where), this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	--this-&amp;gt;_Mylast;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return (_Make_iter(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(&lt;code&gt;capacity&lt;/code&gt;不变)，之后&lt;font color=&quot;red&quot;&gt;_Orphan_range发生了什么？&lt;/font&gt;,接下来指针指向正确的位置，最后返回指向原地址的迭代器。&lt;/p&gt;
@@ -958,37 +1095,6 @@
     
     
       <category term="STL-vector" scheme="http://yoursite.com/tags/STL-vector/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类的this指针</title>
-    <link href="http://yoursite.com/2016/04/12/%E7%B1%BB%E7%9A%84this%E6%8C%87%E9%92%88/"/>
-    <id>http://yoursite.com/2016/04/12/类的this指针/</id>
-    <published>2016-04-12T01:08:44.000Z</published>
-    <updated>2016-04-18T08:58:12.335Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的this指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;code&gt;private：int val&lt;/code&gt;。他还有一个方法&lt;code&gt;const Stock&amp;amp; Stock::compare(const Stock &amp;amp;classIn) const&lt;/code&gt;;这个方法要实现这样的功能：对于两个类&lt;code&gt;Stock&lt;/code&gt;的对象a和b，比较a的&lt;code&gt;val&lt;/code&gt;和b的&lt;code&gt;val&lt;/code&gt;，返回&lt;code&gt;val&lt;/code&gt;大的对象(a或者b)，可能性的写法如下：&lt;code&gt;a.compare(b)&lt;/code&gt;。由于在类的方法定义中，还没有具体对象(a)。那么有这样一个问题，在方法&lt;code&gt;compare&lt;/code&gt;中，如何返回以后才初始化的对象本身(也就是a)？&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/qChOATG.png&quot; alt=&quot;为什么使用this指针&quot;&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;一般来说，所有类方法都将&lt;code&gt;this&lt;/code&gt;指针设置为调用它的&lt;strong&gt;地址&lt;/strong&gt;。(因此返回对象使用&lt;strong&gt;&lt;code&gt;*this&lt;/code&gt;&lt;/strong&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法返回类型是&lt;em&gt;指针意味着返回的是调用对象本身，而不是其副本&lt;/em&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;compare&lt;/code&gt;方法的最后一个&lt;code&gt;const&lt;/code&gt;表示该方法不会修改隐式访问对象(即调用该方法的对象本身)，这在之前的博客中提到过。&lt;/li&gt;
-&lt;li&gt;形参列表中的&lt;code&gt;const&lt;/code&gt;表示该函数不会修改被显示访问的对象(即图中的s)。&lt;/li&gt;
-&lt;li&gt;由于该函数返回了两个&lt;code&gt;const&lt;/code&gt;对象之一的引用，因此&lt;strong&gt;返回类型也应该是&lt;code&gt;const&lt;/code&gt;引用&lt;/strong&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/CzuJ4fG.png&quot; alt=&quot;this的实例&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;C-类的this指针&quot;&gt;&lt;a href=&quot;#C-类的this指针&quot; class=&quot;headerlink&quot; title=&quot;C++类的this指针&quot;&gt;&lt;/a&gt;C++类的this指针&lt;/h2&gt;&lt;p&gt;如图，假设有一个类&lt;code&gt;Stock&lt;/code&gt;，他有一个&lt;cod
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
     
   </entry>
   
