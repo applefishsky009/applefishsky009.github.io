@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-03T09:15:05.890Z</updated>
+  <updated>2016-05-06T03:31:21.844Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,45 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>二叉树的递归遍历与栈遍历</title>
+    <link href="http://yoursite.com/2016/05/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E4%B8%8E%E6%A0%88%E9%81%8D%E5%8E%86/"/>
+    <id>http://yoursite.com/2016/05/06/二叉树的递归遍历与栈遍历/</id>
+    <published>2016-05-06T02:43:22.000Z</published>
+    <updated>2016-05-06T03:31:21.844Z</updated>
+    
+    <content type="html">&lt;p&gt;二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。&lt;br&gt;二叉树节点的定义如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode(int x) : val(x), left(nullptr), right(nullptr) &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;二叉树的递归遍历&quot;&gt;&lt;a href=&quot;#二叉树的递归遍历&quot; class=&quot;headerlink&quot; title=&quot;二叉树的递归遍历&quot;&gt;&lt;/a&gt;二叉树的递归遍历&lt;/h2&gt;&lt;p&gt;没什么技巧，方式如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	void Traversal(TreeNode* root,vector&amp;lt;int&amp;gt; &amp;amp;result) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (!root)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			return;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//result.push(root-&amp;gt;val);	//preorderTraversal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Traversal(root-&amp;gt;left,result);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//result.push(root-&amp;gt;val);	//inorderTraversal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		Traversal(root-&amp;gt;right,result);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		//result.push(root-&amp;gt;val);	//postorderTraversal&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;二叉树的栈遍历&quot;&gt;&lt;a href=&quot;#二叉树的栈遍历&quot; class=&quot;headerlink&quot; title=&quot;二叉树的栈遍历&quot;&gt;&lt;/a&gt;二叉树的栈遍历&lt;/h2&gt;&lt;p&gt;前序和中序可以用同一段代码来实现(用栈记忆所有左子树(while)，回溯一位(if)访问右子树)：&lt;br&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/144%20-%20Binary%20Tree%20Preorder%20Traversal/144%20-%20Binary%20Tree%20Preorder%20Traversal.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;前序遍历&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/94%20-%20Binary%20Tree%20Inorder%20Traversal/94%20-%20Binary%20Tree%20Inorder%20Traversal.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中序遍历&lt;/a&gt;&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	vector&amp;lt;int&amp;gt; inorderTraversal(TreeNode* root) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		vector&amp;lt;int&amp;gt; result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		stack&amp;lt;TreeNode*&amp;gt; sS1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while (root||!sS1.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			while (root)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				//result.push_back(root-&amp;gt;val);	//先序遍历的位置&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sS1.push(root);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root = root-&amp;gt;left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			if (!sS1.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root = sS1.top();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sS1.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				result.push_back(root-&amp;gt;val);	//中序遍历的位置&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root = root-&amp;gt;right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return result;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;后序遍历稍微复杂一点，有两种思路：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;左子树-&amp;gt;右子树-&amp;gt;节点(后序)    转化为    节点-&amp;gt;右子树-&amp;gt;左子树(前序) 的翻转(栈)&lt;/li&gt;
+&lt;li&gt;对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它。或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈。这样就保证了每次取栈顶元素的时候，左孩子和右孩子都在根结点前面被访问。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/145%20-%20Binary%20Tree%20Postorder%20Traversal/145%20-%20Binary%20Tree%20Postorder%20Traversal.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;后序遍历&lt;/a&gt;&lt;br&gt;第一种(变异的前序)：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution1 &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		vector&amp;lt;int&amp;gt; outTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		stack&amp;lt;TreeNode*&amp;gt; sTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		stack&amp;lt;int&amp;gt; sInt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while (root||!sTreeNode.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			while (root)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sInt.push(root-&amp;gt;val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sTreeNode.push(root);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root=root-&amp;gt;right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			if (!sTreeNode.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root=sTreeNode.top();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sTreeNode.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				root=root-&amp;gt;left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while (!sInt.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			outTreeNode.push_back(sInt.top());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			sInt.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return outTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;第二种(利用pre指针的后序)：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;class Solution &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;public:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	vector&amp;lt;int&amp;gt; postorderTraversal(TreeNode* root) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		vector&amp;lt;int&amp;gt; outTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		stack&amp;lt;TreeNode*&amp;gt; sTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		TreeNode* pre=nullptr;	//指向之前访问的节点&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (root)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			sTreeNode.push(root);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		while (!sTreeNode.empty())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			root=sTreeNode.top();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			if ((root-&amp;gt;left==nullptr&amp;amp;&amp;amp;root-&amp;gt;right==nullptr)||(pre!=nullptr&amp;amp;&amp;amp;(pre==root-&amp;gt;left||pre==root-&amp;gt;right)))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				outTreeNode.push_back(root-&amp;gt;val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				pre=root;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				sTreeNode.pop();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			else&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				if (root-&amp;gt;right)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					sTreeNode.push(root-&amp;gt;right);//右孩子先入栈，后访问&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;				if (root-&amp;gt;left)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;					sTreeNode.push(root-&amp;gt;left);//左孩子后入栈，先访问&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return outTreeNode;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。&lt;br&gt;二叉树节点的定义如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;
+    
+    </summary>
+    
+      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+    
+    
+      <category term="二叉树" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>BP、KMP、改进的KMP</title>
     <link href="http://yoursite.com/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/"/>
     <id>http://yoursite.com/2016/05/03/BP、KMP、改进的KMP/</id>
     <published>2016-05-03T06:57:41.000Z</published>
-    <updated>2016-05-03T09:15:05.890Z</updated>
+    <updated>2016-05-06T02:46:40.519Z</updated>
     
     <content type="html">&lt;p&gt;在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:&lt;/p&gt;
 &lt;ol&gt;
@@ -143,7 +177,7 @@
       <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
     
     
-      <category term="字符串匹配" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/"/>
+      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
@@ -497,9 +531,9 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="数据类型" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
-    
       <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
+    
+      <category term="数据类型" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
     
   </entry>
   
@@ -508,7 +542,7 @@
     <link href="http://yoursite.com/2016/04/21/cctype%E4%B8%8E%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E5%8C%96/"/>
     <id>http://yoursite.com/2016/04/21/cctype与进制数转化/</id>
     <published>2016-04-21T01:16:59.000Z</published>
-    <updated>2016-04-25T01:34:12.549Z</updated>
+    <updated>2016-05-06T03:35:13.082Z</updated>
     
     <content type="html">&lt;h2 id=&quot;进制转化&quot;&gt;&lt;a href=&quot;#进制转化&quot; class=&quot;headerlink&quot; title=&quot;进制转化&quot;&gt;&lt;/a&gt;进制转化&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：&lt;code&gt;cout&amp;lt;&amp;lt;dec;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;hex;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;oct&lt;/code&gt;。&lt;/li&gt;
@@ -541,9 +575,7 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="cctype" scheme="http://yoursite.com/tags/cctype/"/>
-    
-      <category term="进制" scheme="http://yoursite.com/tags/%E8%BF%9B%E5%88%B6/"/>
+      <category term="基本概念" scheme="http://yoursite.com/tags/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   
@@ -552,7 +584,7 @@
     <link href="http://yoursite.com/2016/04/20/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
     <id>http://yoursite.com/2016/04/20/类型转换/</id>
     <published>2016-04-20T02:53:34.000Z</published>
-    <updated>2016-04-21T04:24:52.513Z</updated>
+    <updated>2016-05-06T03:35:14.597Z</updated>
     
     <content type="html">&lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
 &lt;ul&gt;
@@ -610,7 +642,7 @@
       <category term="C++" scheme="http://yoursite.com/categories/C/"/>
     
     
-      <category term="类型转换" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
+      <category term="基本概念" scheme="http://yoursite.com/tags/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
     
   </entry>
   
@@ -1032,62 +1064,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法
-    
-    </summary>
-    
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
-    
-    
-      <category term="STL-vector" scheme="http://yoursite.com/tags/STL-vector/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vector简介及非STL函数用法-持续更新</title>
-    <link href="http://yoursite.com/2016/04/12/vector%E7%AE%80%E4%BB%8B%E5%8F%8A%E9%9D%9ESTL%E5%87%BD%E6%95%B0%E7%94%A8%E6%B3%95-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0/"/>
-    <id>http://yoursite.com/2016/04/12/vector简介及非STL函数用法-持续更新/</id>
-    <published>2016-04-12T06:54:50.000Z</published>
-    <updated>2016-04-18T08:59:53.542Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否则应该默认使用这种类型。以后将记录一些在编程过程中常用的&lt;code&gt;vector&lt;/code&gt;方法作为笔记以便不时复习，必要时会分析源码。&lt;/p&gt;
-&lt;p&gt;常见的方法有：&lt;br&gt;&lt;code&gt;.insert()&lt;/code&gt;，&lt;code&gt;a.emplace()&lt;/code&gt;，&lt;code&gt;.resize()&lt;/code&gt;，&lt;code&gt;.reverse()&lt;/code&gt;，&lt;code&gt;.begin()&lt;/code&gt;，&lt;code&gt;a.end()&lt;/code&gt;，&lt;code&gt;a.rbegin()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.rend()&lt;/code&gt;，&lt;code&gt;a.size()&lt;/code&gt;，&lt;code&gt;a.swap(b)&lt;/code&gt;，&lt;code&gt;a.empty()&lt;/code&gt;，&lt;code&gt;a.front()&lt;/code&gt;，&lt;code&gt;a.back()&lt;/code&gt;，&lt;code&gt;a.clear()&lt;/code&gt;，&lt;br&gt;&lt;code&gt;a.push_back(t)&lt;/code&gt;，&lt;code&gt;a.popback(t)&lt;/code&gt;，&lt;code&gt;a[n]&lt;/code&gt;，&lt;code&gt;a.at(n)&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;有&lt;code&gt;vector&amp;lt;int&amp;gt; a&lt;/code&gt;;&lt;code&gt;vector&amp;lt;int&amp;gt; b&lt;/code&gt;;即a,b是&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的对象。&lt;code&gt;vector&amp;lt;int&amp;gt; ::iterator p&lt;/code&gt;;p是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。i、j、q均和p一样是指向&lt;code&gt;vector&amp;lt;int&amp;gt;&lt;/code&gt;的迭代器。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;sort-用于vector&quot;&gt;&lt;a href=&quot;#sort-用于vector&quot; class=&quot;headerlink&quot; title=&quot;sort()用于vector;&quot;&gt;&lt;/a&gt;sort()用于vector;&lt;/h2&gt;&lt;p&gt;在&lt;code&gt;algorithm&amp;gt;&lt;/code&gt;头文件中提供了&lt;code&gt;sort&lt;/code&gt;的两个重载函数,查看源码可发现是用&lt;strong&gt;快排&lt;/strong&gt;实现的。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;sort(p,q)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;对[p,q)升序排序&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;sort(p,q,cmp)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;对[p,q)使用&lt;code&gt;cmp&lt;/code&gt;方法排序，&lt;code&gt;cmp&lt;/code&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;ol&gt;
-&lt;li&gt;右闭左开区间，一般来讲&lt;code&gt;p = a.begin()&lt;/code&gt;;&lt;code&gt;q = a.end()&lt;/code&gt;完成了对容器的排序。&lt;/li&gt;
-&lt;li&gt;升序排序直接用第一个方法，系统默认&lt;code&gt;a&amp;lt;b&lt;/code&gt;返回真，因此是升序。&lt;/li&gt;
-&lt;li&gt;降序排序需要自定义&lt;code&gt;cmp&lt;/code&gt;方法,方法如下，只需要将默认值改为&lt;code&gt;a&amp;gt;b&lt;/code&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;bool comp(const int &amp;amp;a,const int &amp;amp;b)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  		return a&amp;gt;b;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;hr&gt;
-&lt;p&gt;以上参考了&lt;a href=&quot;http://www.cnblogs.com/cj695/p/3863142.html&quot; title=&quot;这里&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;vector&quot;&gt;&lt;a href=&quot;#vector&quot; class=&quot;headerlink&quot; title=&quot;vector&quot;&gt;&lt;/a&gt;vector&lt;/h2&gt;&lt;p&gt;&lt;code&gt;vector&lt;/code&gt;模板类是最简单的序列类型，除非其他类型的特殊有点能够满足程序的要求，否
     
     </summary>
     

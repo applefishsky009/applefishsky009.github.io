@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>二叉树的递归遍历与栈遍历 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="二叉树," />
+  
+
+  <meta name="description" content="二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。二叉树节点的定义如下：123456struct TreeNode &amp;#123;	int val;	TreeNode *left;	TreeNode *right;	TreeNode(int x) : val(x), left(nullptr)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉树的递归遍历与栈遍历">
+<meta property="og:url" content="http://yoursite.com/2016/05/06/二叉树的递归遍历与栈遍历/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。二叉树节点的定义如下：123456struct TreeNode &amp;#123;	int val;	TreeNode *left;	TreeNode *right;	TreeNode(int x) : val(x), left(nullptr)">
+<meta property="og:updated_time" content="2016-05-06T03:31:21.844Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二叉树的递归遍历与栈遍历">
+<meta name="twitter:description" content="二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。二叉树节点的定义如下：123456struct TreeNode &amp;#123;	int val;	TreeNode *left;	TreeNode *right;	TreeNode(int x) : val(x), left(nullptr)">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树的递归遍历"><span class="toc-text">二叉树的递归遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树的栈遍历"><span class="toc-text">二叉树的栈遍历</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-二叉树的递归遍历与栈遍历" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">二叉树的递归遍历与栈遍历</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.06</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Algorithms/">Algorithms</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/06/二叉树的递归遍历与栈遍历/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。<br>二叉树节点的定义如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct TreeNode &#123;</span><br><span class="line">	int val;</span><br><span class="line">	TreeNode *left;</span><br><span class="line">	TreeNode *right;</span><br><span class="line">	TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="二叉树的递归遍历"><a href="#二叉树的递归遍历" class="headerlink" title="二叉树的递归遍历"></a>二叉树的递归遍历</h2><p>没什么技巧，方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	void Traversal(TreeNode* root,vector&lt;int&gt; &amp;result) &#123;</span><br><span class="line">		if (!root)</span><br><span class="line">			return;</span><br><span class="line">		//result.push(root-&gt;val);	//preorderTraversal</span><br><span class="line">		Traversal(root-&gt;left,result);</span><br><span class="line">		//result.push(root-&gt;val);	//inorderTraversal</span><br><span class="line">		Traversal(root-&gt;right,result);</span><br><span class="line">		//result.push(root-&gt;val);	//postorderTraversal</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="二叉树的栈遍历"><a href="#二叉树的栈遍历" class="headerlink" title="二叉树的栈遍历"></a>二叉树的栈遍历</h2><p>前序和中序可以用同一段代码来实现(用栈记忆所有左子树(while)，回溯一位(if)访问右子树)：<br><a href="https://github.com/applefishsky009/LeetCode/blob/master/144%20-%20Binary%20Tree%20Preorder%20Traversal/144%20-%20Binary%20Tree%20Preorder%20Traversal.cpp" target="_blank" rel="external">前序遍历</a><br><a href="https://github.com/applefishsky009/LeetCode/blob/master/94%20-%20Binary%20Tree%20Inorder%20Traversal/94%20-%20Binary%20Tree%20Inorder%20Traversal.cpp" target="_blank" rel="external">中序遍历</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123;</span><br><span class="line">		vector&lt;int&gt; result;</span><br><span class="line">		stack&lt;TreeNode*&gt; sS1;</span><br><span class="line">		while (root||!sS1.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			</span><br><span class="line">			while (root)</span><br><span class="line">			&#123;</span><br><span class="line">				//result.push_back(root-&gt;val);	//先序遍历的位置</span><br><span class="line">				sS1.push(root);</span><br><span class="line">				root = root-&gt;left;</span><br><span class="line">			&#125;</span><br><span class="line">			if (!sS1.empty())</span><br><span class="line">			&#123;</span><br><span class="line">				root = sS1.top();</span><br><span class="line">				sS1.pop();</span><br><span class="line">				result.push_back(root-&gt;val);	//中序遍历的位置</span><br><span class="line">				root = root-&gt;right;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>后序遍历稍微复杂一点，有两种思路：</p>
+<ol>
+<li>左子树-&gt;右子树-&gt;节点(后序)    转化为    节点-&gt;右子树-&gt;左子树(前序) 的翻转(栈)</li>
+<li>对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它。或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈。这样就保证了每次取栈顶元素的时候，左孩子和右孩子都在根结点前面被访问。</li>
+</ol>
+<p><a href="https://github.com/applefishsky009/LeetCode/blob/master/145%20-%20Binary%20Tree%20Postorder%20Traversal/145%20-%20Binary%20Tree%20Postorder%20Traversal.cpp" target="_blank" rel="external">后序遍历</a><br>第一种(变异的前序)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution1 &#123;</span><br><span class="line">public:</span><br><span class="line">	vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123;</span><br><span class="line">		vector&lt;int&gt; outTreeNode;</span><br><span class="line">		stack&lt;TreeNode*&gt; sTreeNode;</span><br><span class="line">		stack&lt;int&gt; sInt;</span><br><span class="line">		while (root||!sTreeNode.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			while (root)</span><br><span class="line">			&#123;</span><br><span class="line">				sInt.push(root-&gt;val);</span><br><span class="line">				sTreeNode.push(root);</span><br><span class="line">				root=root-&gt;right;</span><br><span class="line">			&#125;</span><br><span class="line">			if (!sTreeNode.empty())</span><br><span class="line">			&#123;</span><br><span class="line">				root=sTreeNode.top();</span><br><span class="line">				sTreeNode.pop();</span><br><span class="line">				root=root-&gt;left;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		while (!sInt.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			outTreeNode.push_back(sInt.top());</span><br><span class="line">			sInt.pop();</span><br><span class="line">		&#125;</span><br><span class="line">		return outTreeNode;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>第二种(利用pre指针的后序)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">	vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123;</span><br><span class="line">		vector&lt;int&gt; outTreeNode;</span><br><span class="line">		stack&lt;TreeNode*&gt; sTreeNode;</span><br><span class="line">		TreeNode* pre=nullptr;	//指向之前访问的节点</span><br><span class="line">		if (root)</span><br><span class="line">			sTreeNode.push(root);</span><br><span class="line">		while (!sTreeNode.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			root=sTreeNode.top();</span><br><span class="line">			if ((root-&gt;left==nullptr&amp;&amp;root-&gt;right==nullptr)||(pre!=nullptr&amp;&amp;(pre==root-&gt;left||pre==root-&gt;right)))</span><br><span class="line">			&#123;</span><br><span class="line">				outTreeNode.push_back(root-&gt;val);</span><br><span class="line">				pre=root;</span><br><span class="line">				sTreeNode.pop();</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				if (root-&gt;right)</span><br><span class="line">					sTreeNode.push(root-&gt;right);//右孩子先入栈，后访问</span><br><span class="line">				if (root-&gt;left)</span><br><span class="line">					sTreeNode.push(root-&gt;left);//左孩子后入栈，先访问</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		return outTreeNode;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://yoursite.com/2016/05/06/二叉树的递归遍历与栈遍历/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
