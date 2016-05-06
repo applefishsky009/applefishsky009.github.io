@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-06T04:44:10.888Z</updated>
+  <updated>2016-05-06T07:08:58.310Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>i++与++i的区别</title>
+    <link href="http://yoursite.com/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://yoursite.com/2016/05/06/i++与++i的区别/</id>
+    <published>2016-05-06T06:22:46.000Z</published>
+    <updated>2016-05-06T07:08:58.310Z</updated>
+    
+    <content type="html">&lt;p&gt;一直以来对&lt;code&gt;++i&lt;/code&gt;与&lt;code&gt;i++&lt;/code&gt;，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了&lt;a href=&quot;http://falldog7.blogspot.jp/2007/10/programmer-i-i.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里的博客&lt;/a&gt;才恍然大悟，原来是其实现的机制不同。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;++i&lt;/code&gt;先加再用，其对i类型(假设为INT)的++运算符重载如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//++i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;INT operator ++()&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	this-&amp;gt;_value++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return *this;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;i++&lt;/code&gt;先用再加，创建临时变量保存原有值用来返回，后调用++i语句，重载如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//i++&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;INT operator ++(int t)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	INT temp(_value);//!!! 必須create出一個temp的變數!!!&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	this-&amp;gt;_value++;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return temp;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;在这个函数中参数n是没有任何意义的，它的存在只是为了区分是前置形式还是后置形式。&lt;/p&gt;
+&lt;p&gt;可以看到&lt;code&gt;i++&lt;/code&gt;所必须付出的代价，就是多create出一个temp的变量，以及temp变量的的constructor()。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一直以来对&lt;code&gt;++i&lt;/code&gt;与&lt;code&gt;i++&lt;/code&gt;，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了&lt;a href=&quot;http://falldog7.blogspot.jp/2007/10/pro
+    
+    </summary>
+    
+      <category term="C++的类" scheme="http://yoursite.com/categories/C-%E7%9A%84%E7%B1%BB/"/>
+    
+    
+      <category term="自增减运算符重载" scheme="http://yoursite.com/tags/%E8%87%AA%E5%A2%9E%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
+    
+  </entry>
   
   <entry>
     <title>二叉树的递归遍历与栈遍历</title>
@@ -340,7 +367,7 @@
     <link href="http://yoursite.com/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
     <id>http://yoursite.com/2016/04/22/函数参数的传递/</id>
     <published>2016-04-22T01:42:40.000Z</published>
-    <updated>2016-05-06T04:54:14.676Z</updated>
+    <updated>2016-05-06T06:20:28.808Z</updated>
     
     <content type="html">&lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
 &lt;hr&gt;
@@ -381,7 +408,7 @@
     
     </summary>
     
-      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
       <category term="引用" scheme="http://yoursite.com/tags/%E5%BC%95%E7%94%A8/"/>
@@ -739,7 +766,7 @@
     <link href="http://yoursite.com/2016/04/19/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
     <id>http://yoursite.com/2016/04/19/默认参数与内联函数/</id>
     <published>2016-04-19T03:15:10.000Z</published>
-    <updated>2016-05-06T04:52:19.772Z</updated>
+    <updated>2016-05-06T06:20:28.812Z</updated>
     
     <content type="html">&lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 &lt;/p&gt;
 &lt;hr&gt;
@@ -767,7 +794,7 @@
     
     </summary>
     
-      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
       <category term="默认参数" scheme="http://yoursite.com/tags/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/"/>
@@ -781,7 +808,7 @@
     <link href="http://yoursite.com/2016/04/18/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
     <id>http://yoursite.com/2016/04/18/函数原型与函数调用/</id>
     <published>2016-04-18T11:25:05.000Z</published>
-    <updated>2016-05-06T05:01:24.280Z</updated>
+    <updated>2016-05-06T06:20:28.811Z</updated>
     
     <content type="html">&lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么需要原型&quot;&gt;&lt;/a&gt;为什么需要原型&lt;/h3&gt;&lt;p&gt;原型是函数到编译器的接口，他将函数返回值的类型以及参数的类型和数量告诉编译器。&lt;/p&gt;
 &lt;ol&gt;
@@ -827,7 +854,7 @@
     
     </summary>
     
-      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
       <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
@@ -1051,67 +1078,6 @@
       <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
     
       <category term="erase()" scheme="http://yoursite.com/tags/erase/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vector之insert方法和emplace方法</title>
-    <link href="http://yoursite.com/2016/04/13/vector%E4%B9%8Binsert%E6%96%B9%E6%B3%95%E5%92%8Cemplace%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/04/13/vector之insert方法和emplace方法/</id>
-    <published>2016-04-13T12:39:29.000Z</published>
-    <updated>2016-05-06T05:04:35.735Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;返回类型&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p,t)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;迭代器&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;指向原本指向的元素,将t插入到p前面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p, n,t)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;将n个t插入到p前面&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.insert(p,i,j)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;void&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;将区间[i,j)插入到p的前面，注意是左闭右开区间，j可以是超尾&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;a-emplace&quot;&gt;&lt;a href=&quot;#a-emplace&quot; class=&quot;headerlink&quot; title=&quot;a.emplace();&quot;&gt;&lt;/a&gt;a.emplace();&lt;/h2&gt;&lt;p&gt;新标准引入的&lt;code&gt;emplace_front&lt;/code&gt;,&lt;code&gt;emplace&lt;/code&gt;,&lt;code&gt;emplace_back&lt;/code&gt;这些操作是构造而不是拷贝元素。当插入一个对象时，将会比&lt;code&gt;insert&lt;/code&gt;少拷贝构造，析构的步骤。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h3 id=&quot;注：&quot;&gt;&lt;a href=&quot;#注：&quot; class=&quot;headerlink&quot; title=&quot;注：&quot;&gt;&lt;/a&gt;注：&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;调用&lt;code&gt;push&lt;/code&gt;或&lt;code&gt;insert&lt;/code&gt;成员函数，将元素类型对象传递进去，这些对象被拷贝到容器中；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;emplace()&lt;/code&gt;在容器中构造元素，因此效率更高；&lt;/li&gt;
-&lt;li&gt;注意&lt;code&gt;a.insert(p,t)&lt;/code&gt;的源码提供了一个重载，若t是普通类型，则调用&lt;code&gt;a.emplace(p，t)&lt;/code&gt;，若t是&lt;code&gt;const&lt;/code&gt;类型，则调用&lt;code&gt;a.insert(p,t)&lt;/code&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法
-    
-    </summary>
-    
-      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
-    
-    
-      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
-    
-      <category term="insert()" scheme="http://yoursite.com/tags/insert/"/>
-    
-      <category term="emplace()" scheme="http://yoursite.com/tags/emplace/"/>
     
   </entry>
   

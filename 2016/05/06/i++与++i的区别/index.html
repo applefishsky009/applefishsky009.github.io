@@ -7,45 +7,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>默认参数与内联函数 | 孤云两角，去天一握</title>
+  <title>i++与++i的区别 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="默认参数,内联函数," />
+    <meta name="keywords" content="自增减运算符重载," />
   
 
-  <meta name="description" content="默认参数省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 
-
-内联函数常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。
-C语言的宏宏是内联代码的原始实现，它的本质是文本替换
-
-普通宏定义中，预处理器将空格解释成分段标志；
-##是一种分隔连接方式，作用是先分隔后强制连接；
-#表示变">
+  <meta name="description" content="一直以来对++i与i++，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了这里的博客才恍然大悟，原来是其实现的机制不同。
+++i先加再用，其对i类型(假设为INT)的++运算符重载如下：12345//++iINT operator ++()&amp;#123;	this-&amp;gt;_value++;	return *this;&amp;#125;
+i++先用再加，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="默认参数与内联函数">
-<meta property="og:url" content="http://yoursite.com/2016/04/19/默认参数与内联函数/index.html">
+<meta property="og:title" content="i++与++i的区别">
+<meta property="og:url" content="http://yoursite.com/2016/05/06/i++与++i的区别/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="默认参数省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 
-
-内联函数常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。
-C语言的宏宏是内联代码的原始实现，它的本质是文本替换
-
-普通宏定义中，预处理器将空格解释成分段标志；
-##是一种分隔连接方式，作用是先分隔后强制连接；
-#表示变">
-<meta property="og:updated_time" content="2016-05-06T06:20:28.812Z">
+<meta property="og:description" content="一直以来对++i与i++，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了这里的博客才恍然大悟，原来是其实现的机制不同。
+++i先加再用，其对i类型(假设为INT)的++运算符重载如下：12345//++iINT operator ++()&amp;#123;	this-&amp;gt;_value++;	return *this;&amp;#125;
+i++先用再加，">
+<meta property="og:updated_time" content="2016-05-06T07:08:58.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="默认参数与内联函数">
-<meta name="twitter:description" content="默认参数省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 
-
-内联函数常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。
-C语言的宏宏是内联代码的原始实现，它的本质是文本替换
-
-普通宏定义中，预处理器将空格解释成分段标志；
-##是一种分隔连接方式，作用是先分隔后强制连接；
-#表示变">
+<meta name="twitter:title" content="i++与++i的区别">
+<meta name="twitter:description" content="一直以来对++i与i++，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了这里的博客才恍然大悟，原来是其实现的机制不同。
+++i先加再用，其对i类型(假设为INT)的++运算符重载如下：12345//++iINT operator ++()&amp;#123;	this-&amp;gt;_value++;	return *this;&amp;#125;
+i++先用再加，">
 
   
 
@@ -170,22 +155,17 @@ ga('send', 'pageview');
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#默认参数"><span class="toc-text">默认参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联函数"><span class="toc-text">内联函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言的宏"><span class="toc-text">C语言的宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C-内联函数"><span class="toc-text">C++内联函数</span></a></li></ol></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-默认参数与内联函数" class="article article-type-post" itemprop="blogPost">
+   <article id="post-i++与++i的区别" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">默认参数与内联函数</h1>
+    <h1 class="post-title">i++与++i的区别</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.04.19</span>
+        <span>2016.05.06</span>
       </span>
 
       
@@ -198,7 +178,7 @@ ga('send', 'pageview');
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
   </span>
 
 
@@ -206,7 +186,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/04/19/默认参数与内联函数/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/05/06/i++与++i的区别/#disqus_thread"></a>
         </span>
       
 
@@ -215,24 +195,11 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h2><p>省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 </p>
-<hr>
-<h2 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h2><p>常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。</p>
-<h3 id="C语言的宏"><a href="#C语言的宏" class="headerlink" title="C语言的宏"></a>C语言的宏</h3><p>宏是内联代码的原始实现，它的本质是<strong>文本替换</strong></p>
-<ol>
-<li>普通宏定义中，预处理器将空格解释成分段标志；</li>
-<li><code>##</code>是一种分隔连接方式，作用是先分隔后强制连接；</li>
-<li><code>#</code>表示变量替换后加双引号括起来。</li>
-<li>另外一些分隔符、操作符如<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>[</code>、<code>]</code>依然有意义。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define A1(name,type) type name_##type##_type</span><br><span class="line">	A1(a1,int) &lt;=&gt; int name_int_type</span><br><span class="line">#define A1(name,type) type name##_##type##_type</span><br><span class="line">	A1(a1,int) &lt;=&gt; int a1_int_type</span><br><span class="line">#define stringify(x) #x</span><br><span class="line">	stringify(linux) &lt;=&gt; &quot;linux&quot;</span><br></pre></td></tr></table></figure>
-<h3 id="C-内联函数"><a href="#C-内联函数" class="headerlink" title="C++内联函数"></a>C++内联函数</h3><ol>
-<li>编译器将使用相应的函数代码替换函数调用(省略了来回跳跃并记录跳跃位置的过程)；</li>
-<li>运行速度较快，但占用更多的内存(同一个内联函数调用多少次，就有多少次副本)；</li>
-<li>一般省略原型(但原型特性仍在起作用)，将整个定义放在原本该提供原型的地方(这是首次使用前的函数定义，充当原型)，并使用<code>inline</code>关键字</li>
-<li>编译器并不一定满足程序员内联函数的请求，比如函数过大或者函数调用了自己(递归不能内联)。</li>
-</ol>
-<p>注意类成员函数中的内联函数并不一定使用<code>inline</code>关键字。定义位于类声明中自动成为内联函数；否则使用<code>inline</code>关键字作为内联函数。</p>
+      <p>一直以来对<code>++i</code>与<code>i++</code>，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了<a href="http://falldog7.blogspot.jp/2007/10/programmer-i-i.html" target="_blank" rel="external">这里的博客</a>才恍然大悟，原来是其实现的机制不同。</p>
+<p><code>++i</code>先加再用，其对i类型(假设为INT)的++运算符重载如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//++i</span><br><span class="line">INT operator ++()&#123;</span><br><span class="line">	this-&gt;_value++;</span><br><span class="line">	return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>i++</code>先用再加，创建临时变量保存原有值用来返回，后调用++i语句，重载如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//i++</span><br><span class="line">INT operator ++(int t)&#123;</span><br><span class="line">	INT temp(_value);//!!! 必須create出一個temp的變數!!!</span><br><span class="line">	this-&gt;_value++;</span><br><span class="line">	return temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个函数中参数n是没有任何意义的，它的存在只是为了区分是前置形式还是后置形式。</p>
+<p>可以看到<code>i++</code>所必须付出的代价，就是多create出一个temp的变量，以及temp变量的的constructor()。</p>
 
     
   </div>
@@ -348,7 +315,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://yoursite.com/2016/04/19/默认参数与内联函数/';
+    var disqus_url = 'http://yoursite.com/2016/05/06/i++与++i的区别/';
     
     (function(){
       var dsq = document.createElement('script');
