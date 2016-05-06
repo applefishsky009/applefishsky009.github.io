@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-06T03:31:21.844Z</updated>
+  <updated>2016-05-06T04:44:10.888Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/05/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E4%B8%8E%E6%A0%88%E9%81%8D%E5%8E%86/"/>
     <id>http://yoursite.com/2016/05/06/二叉树的递归遍历与栈遍历/</id>
     <published>2016-05-06T02:43:22.000Z</published>
-    <updated>2016-05-06T03:31:21.844Z</updated>
+    <updated>2016-05-06T04:44:10.888Z</updated>
     
     <content type="html">&lt;p&gt;二叉树的遍历算法有三种，最简单的递归遍历，还有两种非递归遍历，分别是使用栈的遍历和Morris遍历。每一种遍历根据访问根节点的时机又分为前序，中序，后序三种。&lt;br&gt;二叉树节点的定义如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;struct TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode(int x) : val(x), left(nullptr), right(nullptr) &amp;#123;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -42,10 +42,12 @@
     
     </summary>
     
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
       <category term="二叉树" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    
+      <category term="非递归遍历" scheme="http://yoursite.com/tags/%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/"/>
     
   </entry>
   
@@ -54,7 +56,7 @@
     <link href="http://yoursite.com/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/"/>
     <id>http://yoursite.com/2016/05/03/BP、KMP、改进的KMP/</id>
     <published>2016-05-03T06:57:41.000Z</published>
-    <updated>2016-05-06T02:46:40.519Z</updated>
+    <updated>2016-05-06T04:44:53.510Z</updated>
     
     <content type="html">&lt;p&gt;在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:&lt;/p&gt;
 &lt;ol&gt;
@@ -174,10 +176,12 @@
     
     </summary>
     
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="字符串" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <category term="字符串匹配" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/"/>
+    
+      <category term="KMP" scheme="http://yoursite.com/tags/KMP/"/>
     
   </entry>
   
@@ -186,7 +190,7 @@
     <link href="http://yoursite.com/2016/04/25/%E9%87%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
     <id>http://yoursite.com/2016/04/25/野指针与内存泄漏/</id>
     <published>2016-04-25T01:36:10.000Z</published>
-    <updated>2016-05-06T03:50:59.731Z</updated>
+    <updated>2016-05-06T04:55:02.316Z</updated>
     
     <content type="html">&lt;p&gt;野指针和内存泄漏是两个相联系的概念，一般来讲指针&amp;lt;-&amp;gt;内存相互对应，如果有一个指针但没有指向任何内存，就是野指针；如果有一块未释放的内存，但没有指针指向他，就是内存泄露。&lt;/p&gt;
 &lt;hr&gt;
@@ -208,10 +212,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="C++基本概念" scheme="http://yoursite.com/tags/C-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <category term="野指针" scheme="http://yoursite.com/tags/%E9%87%8E%E6%8C%87%E9%92%88/"/>
+    
+      <category term="内存泄漏" scheme="http://yoursite.com/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
     
   </entry>
   
@@ -250,9 +256,9 @@
     <link href="http://yoursite.com/2016/04/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     <id>http://yoursite.com/2016/04/22/动态规划/</id>
     <published>2016-04-22T09:07:05.000Z</published>
-    <updated>2016-04-25T09:29:39.604Z</updated>
+    <updated>2016-05-06T04:49:21.926Z</updated>
     
-    <content type="html">&lt;p&gt;持续更新，记录在编程过程中关于动态规划的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：&lt;/p&gt;
+    <content type="html">&lt;p&gt;持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;子问题的状态转移方程；&lt;/li&gt;
 &lt;li&gt;保存子问题的解用于递归;&lt;/li&gt;
@@ -270,17 +276,17 @@
     
     <summary type="html">
     
-      &lt;p&gt;持续更新，记录在编程过程中关于动态规划的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：&lt;/p&gt;
+      &lt;p&gt;持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;子问题的状态转移方程；&lt;/li&gt;
-&lt;li&gt;保存
+&lt;l
     
     </summary>
     
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="动规" scheme="http://yoursite.com/tags/%E5%8A%A8%E8%A7%84/"/>
+      <category term="动态规划" scheme="http://yoursite.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
@@ -289,7 +295,7 @@
     <link href="http://yoursite.com/2016/04/22/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/22/贪心算法/</id>
     <published>2016-04-22T07:54:31.000Z</published>
-    <updated>2016-04-25T09:19:56.952Z</updated>
+    <updated>2016-05-06T04:51:46.812Z</updated>
     
     <content type="html">&lt;p&gt;持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。求解最优化问题比动态规划更为简洁高效。其思想核心是&lt;font color=&quot;red&quot;&gt;选择当前最优解&lt;/font&gt;，虽然不一定是全局最优解。贪心算法主要应用有&lt;/p&gt;
 &lt;ol&gt;
@@ -322,7 +328,7 @@
     
     </summary>
     
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
       <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
@@ -334,7 +340,7 @@
     <link href="http://yoursite.com/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
     <id>http://yoursite.com/2016/04/22/函数参数的传递/</id>
     <published>2016-04-22T01:42:40.000Z</published>
-    <updated>2016-04-25T01:54:06.846Z</updated>
+    <updated>2016-05-06T04:54:14.676Z</updated>
     
     <content type="html">&lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
 &lt;hr&gt;
@@ -375,10 +381,14 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
     
     
-      <category term="函数" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0/"/>
+      <category term="引用" scheme="http://yoursite.com/tags/%E5%BC%95%E7%94%A8/"/>
+    
+      <category term="参数传递" scheme="http://yoursite.com/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
+    
+      <category term="左值和右值" scheme="http://yoursite.com/tags/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/"/>
     
   </entry>
   
@@ -387,7 +397,7 @@
     <link href="http://yoursite.com/2016/04/21/BFS%E5%92%8CDFS/"/>
     <id>http://yoursite.com/2016/04/21/BFS和DFS/</id>
     <published>2016-04-21T07:28:51.000Z</published>
-    <updated>2016-04-22T09:04:32.439Z</updated>
+    <updated>2016-05-06T04:57:42.178Z</updated>
     
     <content type="html">&lt;p&gt;持续更新,该贴记录一些BFS和DFS在使用过程中的心得体会，以加深对BFS与DFS的理解。&lt;/p&gt;
 &lt;hr&gt;
@@ -408,10 +418,12 @@
     
     </summary>
     
-      <category term="Algorithms" scheme="http://yoursite.com/categories/Algorithms/"/>
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="搜索" scheme="http://yoursite.com/tags/%E6%90%9C%E7%B4%A2/"/>
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
     
   </entry>
   
@@ -420,7 +432,7 @@
     <link href="http://yoursite.com/2016/04/21/%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
     <id>http://yoursite.com/2016/04/21/共用体、枚举和浮点数存储/</id>
     <published>2016-04-21T02:38:14.000Z</published>
-    <updated>2016-05-06T03:39:04.608Z</updated>
+    <updated>2016-05-06T04:58:24.186Z</updated>
     
     <content type="html">&lt;h2 id=&quot;共用体&quot;&gt;&lt;a href=&quot;#共用体&quot; class=&quot;headerlink&quot; title=&quot;共用体&quot;&gt;&lt;/a&gt;共用体&lt;/h2&gt;&lt;p&gt;是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：&lt;/p&gt;
 &lt;ol&gt;
@@ -486,10 +498,14 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="C++基本概念" scheme="http://yoursite.com/tags/C-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <category term="共用体" scheme="http://yoursite.com/tags/%E5%85%B1%E7%94%A8%E4%BD%93/"/>
+    
+      <category term="枚举" scheme="http://yoursite.com/tags/%E6%9E%9A%E4%B8%BE/"/>
+    
+      <category term="浮点数存储" scheme="http://yoursite.com/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
@@ -498,7 +514,7 @@
     <link href="http://yoursite.com/2016/04/21/string%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     <id>http://yoursite.com/2016/04/21/string类与结构体/</id>
     <published>2016-04-21T02:36:21.000Z</published>
-    <updated>2016-05-06T03:48:51.143Z</updated>
+    <updated>2016-05-06T04:59:55.241Z</updated>
     
     <content type="html">&lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;h3 id=&quot;string运算符&quot;&gt;&lt;a href=&quot;#string运算符&quot; class=&quot;headerlink&quot; title=&quot;string运算符&quot;&gt;&lt;/a&gt;string运算符&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的运算符重载在头文件&lt;code&gt;string&lt;/code&gt;里,如&lt;code&gt;+&lt;/code&gt;,&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;。注意&lt;code&gt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;&lt;/code&gt;,&lt;code&gt;&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195&lt;/code&gt;,前者是字符串拼接，后者是字符常量相加。但是&lt;code&gt;cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;&lt;/code&gt;这个语句是错误的，必须至少声明两个&lt;code&gt;string&lt;/code&gt;类型。&lt;/p&gt;
 &lt;h3 id=&quot;string-find&quot;&gt;&lt;a href=&quot;#string-find&quot; class=&quot;headerlink&quot; title=&quot;string.find()&quot;&gt;&lt;/a&gt;string.find()&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的&lt;code&gt;find()&lt;/code&gt;方法，可以用于找子串，返回子串在原串出现的下标。&lt;a href=&quot;http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;和&lt;a href=&quot;http://www.cplusplus.com/reference/string/string/find/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有详细解释，使用时注意以下三点：&lt;/p&gt;
@@ -529,10 +545,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="C++基本概念" scheme="http://yoursite.com/tags/C-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <category term="string.find()" scheme="http://yoursite.com/tags/string-find/"/>
+    
+      <category term="结构体" scheme="http://yoursite.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     
   </entry>
   
@@ -541,7 +559,7 @@
     <link href="http://yoursite.com/2016/04/21/cctype%E4%B8%8E%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E5%8C%96/"/>
     <id>http://yoursite.com/2016/04/21/cctype与进制数转化/</id>
     <published>2016-04-21T01:16:59.000Z</published>
-    <updated>2016-05-06T03:50:59.727Z</updated>
+    <updated>2016-05-06T04:55:45.555Z</updated>
     
     <content type="html">&lt;h2 id=&quot;进制转化&quot;&gt;&lt;a href=&quot;#进制转化&quot; class=&quot;headerlink&quot; title=&quot;进制转化&quot;&gt;&lt;/a&gt;进制转化&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;控制符dec，hex，oct用于设置整数显式的进制数，分别对应十进制，16进制，八进制，语法：&lt;code&gt;cout&amp;lt;&amp;lt;dec;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;hex;&lt;/code&gt;,&lt;code&gt;cout&amp;lt;&amp;lt;oct&lt;/code&gt;。&lt;/li&gt;
@@ -571,10 +589,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="C++基本概念" scheme="http://yoursite.com/tags/C-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <category term="进制转化" scheme="http://yoursite.com/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/"/>
+    
+      <category term="cctype" scheme="http://yoursite.com/tags/cctype/"/>
     
   </entry>
   
@@ -583,7 +603,7 @@
     <link href="http://yoursite.com/2016/04/20/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
     <id>http://yoursite.com/2016/04/20/类型转换/</id>
     <published>2016-04-20T02:53:34.000Z</published>
-    <updated>2016-05-06T03:50:59.729Z</updated>
+    <updated>2016-05-06T05:00:51.097Z</updated>
     
     <content type="html">&lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
 &lt;ul&gt;
@@ -638,10 +658,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="C++基本概念" scheme="http://yoursite.com/tags/C-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <category term="类型转换" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
+    
+      <category term="整型提升" scheme="http://yoursite.com/tags/%E6%95%B4%E5%9E%8B%E6%8F%90%E5%8D%87/"/>
     
   </entry>
   
@@ -650,7 +672,7 @@
     <link href="http://yoursite.com/2016/04/20/%E6%A0%88%E4%B8%8E%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%8F%98%E9%87%8F%E7%9A%84%E5%9C%B0%E5%9D%80/"/>
     <id>http://yoursite.com/2016/04/20/栈与字符型变量的地址/</id>
     <published>2016-04-20T01:15:59.000Z</published>
-    <updated>2016-04-20T02:44:11.001Z</updated>
+    <updated>2016-05-06T05:02:50.434Z</updated>
     
     <content type="html">&lt;h2 id=&quot;栈的存储机制&quot;&gt;&lt;a href=&quot;#栈的存储机制&quot; class=&quot;headerlink&quot; title=&quot;栈的存储机制&quot;&gt;&lt;/a&gt;栈的存储机制&lt;/h2&gt;&lt;p&gt;在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int main()&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int a[4] = &amp;#123;1,2,3,4&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int b[4] = &amp;#123;5,6,7,8&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int c[4] = &amp;#123;9,10,11,12&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://i.imgur.com/r0E1t24.jpg&quot; alt=&quot;栈&quot;&gt;&lt;/p&gt;
@@ -674,10 +696,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="存储" scheme="http://yoursite.com/tags/%E5%AD%98%E5%82%A8/"/>
+      <category term="栈的存储" scheme="http://yoursite.com/tags/%E6%A0%88%E7%9A%84%E5%AD%98%E5%82%A8/"/>
+    
+      <category term="字符型变量输出" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E5%9E%8B%E5%8F%98%E9%87%8F%E8%BE%93%E5%87%BA/"/>
     
   </entry>
   
@@ -686,11 +710,11 @@
     <link href="http://yoursite.com/2016/04/19/unordered_set%E7%AE%80%E4%BB%8B/"/>
     <id>http://yoursite.com/2016/04/19/unordered_set简介/</id>
     <published>2016-04-19T11:42:25.000Z</published>
-    <updated>2016-04-19T12:54:21.229Z</updated>
+    <updated>2016-05-06T05:09:47.363Z</updated>
     
     <content type="html">&lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;MSDN上有对&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/bb982739.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，CSDN上有博客对&lt;a href=&quot;http://blog.csdn.net/oabid/article/details/4562577&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：&lt;code&gt;insert()&lt;/code&gt;、&lt;font color=&quot;red&quot;&gt;&lt;code&gt;find()&lt;/code&gt;&lt;/font&gt;、&lt;code&gt;erase()&lt;/code&gt;、&lt;code&gt;size()&lt;/code&gt;、&lt;code&gt;empty()&lt;/code&gt;、&lt;code&gt;begin()&lt;/code&gt;、&lt;code&gt;end()&lt;/code&gt;。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;unordered-set与STL的异同&quot;&gt;&lt;a href=&quot;#unordered-set与STL的异同&quot; class=&quot;headerlink&quot; title=&quot;unordered_set与STL的异同&quot;&gt;&lt;/a&gt;unordered_set与STL的异同&lt;/h2&gt;&lt;ol&gt;
+&lt;h2 id=&quot;unordered-set-无序关联容器-与vector的异同&quot;&gt;&lt;a href=&quot;#unordered-set-无序关联容器-与vector的异同&quot; class=&quot;headerlink&quot; title=&quot;unordered_set(无序关联容器)与vector的异同&quot;&gt;&lt;/a&gt;unordered_set(无序关联容器)与vector的异同&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;&lt;code&gt;_Pairib insert(const value_type&amp;amp; _Val)&lt;/code&gt;;基本与&lt;code&gt;vector&lt;/code&gt;用法相同，参数为要插入的值。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;iterator find(const key_type&amp;amp; _Keyval)&lt;/code&gt;;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即&lt;code&gt;end()&lt;/code&gt;。与&lt;code&gt;size_type find(_Elem _Ch, size_type _Off = 0) const&lt;/code&gt;有区别，后者会返回下标(&lt;code&gt;size_type&lt;/code&gt;可以看做一种足够大的&lt;code&gt;unsigned&lt;/code&gt;类型来表示下标)，如果没找到，返回&lt;code&gt;string::npos&lt;/code&gt;。而&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;size_type erase(const key_type&amp;amp; _Keyval)&lt;/code&gt;;擦除指定值，返回该指定值的位置。&lt;code&gt;iterator erase(const_iterator _Where)&lt;/code&gt;擦除指针指向的值，容器重排，指针不变。&lt;/li&gt;
@@ -703,6 +727,8 @@
     
     </summary>
     
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
+    
     
       <category term="unordered_set" scheme="http://yoursite.com/tags/unordered-set/"/>
     
@@ -713,7 +739,7 @@
     <link href="http://yoursite.com/2016/04/19/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
     <id>http://yoursite.com/2016/04/19/默认参数与内联函数/</id>
     <published>2016-04-19T03:15:10.000Z</published>
-    <updated>2016-04-25T02:46:46.728Z</updated>
+    <updated>2016-05-06T04:52:19.772Z</updated>
     
     <content type="html">&lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 &lt;/p&gt;
 &lt;hr&gt;
@@ -741,10 +767,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
     
     
-      <category term="函数" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0/"/>
+      <category term="默认参数" scheme="http://yoursite.com/tags/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/"/>
+    
+      <category term="内联函数" scheme="http://yoursite.com/tags/%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
@@ -753,7 +781,7 @@
     <link href="http://yoursite.com/2016/04/18/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
     <id>http://yoursite.com/2016/04/18/函数原型与函数调用/</id>
     <published>2016-04-18T11:25:05.000Z</published>
-    <updated>2016-04-21T02:49:23.462Z</updated>
+    <updated>2016-05-06T05:01:24.280Z</updated>
     
     <content type="html">&lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么需要原型&quot;&gt;&lt;/a&gt;为什么需要原型&lt;/h3&gt;&lt;p&gt;原型是函数到编译器的接口，他将函数返回值的类型以及参数的类型和数量告诉编译器。&lt;/p&gt;
 &lt;ol&gt;
@@ -799,10 +827,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="函数" scheme="http://yoursite.com/categories/%E5%87%BD%E6%95%B0/"/>
     
     
-      <category term="函数" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0/"/>
+      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="函数调用" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
     
   </entry>
   
@@ -811,7 +841,7 @@
     <link href="http://yoursite.com/2016/04/18/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     <id>http://yoursite.com/2016/04/18/类的复制构造函数和赋值运算符重载/</id>
     <published>2016-04-18T03:51:12.000Z</published>
-    <updated>2016-04-18T08:54:33.333Z</updated>
+    <updated>2016-05-06T05:14:52.203Z</updated>
     
     <content type="html">&lt;p&gt;C++会自动提供以下成员函数：&lt;/p&gt;
 &lt;ol&gt;
@@ -870,10 +900,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="C++的类" scheme="http://yoursite.com/categories/C-%E7%9A%84%E7%B1%BB/"/>
     
     
-      <category term="类" scheme="http://yoursite.com/tags/%E7%B1%BB/"/>
+      <category term="类的复制构造函数" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
+    
+      <category term="类的赋值运算符重载" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     
   </entry>
   
@@ -882,7 +914,7 @@
     <link href="http://yoursite.com/2016/04/15/vector%E4%B9%8Bresize%E6%96%B9%E6%B3%95%E5%92%8Creverse%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/15/vector之resize方法和reverse方法/</id>
     <published>2016-04-15T06:39:13.000Z</published>
-    <updated>2016-04-19T12:59:02.834Z</updated>
+    <updated>2016-05-06T05:03:54.032Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
@@ -945,10 +977,14 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
     
     
-      <category term="STL-vector" scheme="http://yoursite.com/tags/STL-vector/"/>
+      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
+    
+      <category term="resize()" scheme="http://yoursite.com/tags/resize/"/>
+    
+      <category term="reverse()" scheme="http://yoursite.com/tags/reverse/"/>
     
   </entry>
   
@@ -957,7 +993,7 @@
     <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/14/vector之erase方法/</id>
     <published>2016-04-14T02:52:25.000Z</published>
-    <updated>2016-04-26T08:27:42.210Z</updated>
+    <updated>2016-05-06T05:03:57.141Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
 &lt;table&gt;
@@ -1009,10 +1045,12 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
     
     
-      <category term="STL-vector" scheme="http://yoursite.com/tags/STL-vector/"/>
+      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
+    
+      <category term="erase()" scheme="http://yoursite.com/tags/erase/"/>
     
   </entry>
   
@@ -1021,7 +1059,7 @@
     <link href="http://yoursite.com/2016/04/13/vector%E4%B9%8Binsert%E6%96%B9%E6%B3%95%E5%92%8Cemplace%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/13/vector之insert方法和emplace方法/</id>
     <published>2016-04-13T12:39:29.000Z</published>
-    <updated>2016-04-19T12:58:59.205Z</updated>
+    <updated>2016-05-06T05:04:35.735Z</updated>
     
     <content type="html">&lt;h2 id=&quot;a-insert&quot;&gt;&lt;a href=&quot;#a-insert&quot; class=&quot;headerlink&quot; title=&quot;a.insert();&quot;&gt;&lt;/a&gt;a.insert();&lt;/h2&gt;&lt;p&gt;模板类提供了三个函数重载,这是一种&lt;strong&gt;拷贝&lt;/strong&gt;插入方法：&lt;/p&gt;
 &lt;table&gt;
@@ -1066,10 +1104,14 @@
     
     </summary>
     
-      <category term="C++" scheme="http://yoursite.com/categories/C/"/>
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
     
     
-      <category term="STL-vector" scheme="http://yoursite.com/tags/STL-vector/"/>
+      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
+    
+      <category term="insert()" scheme="http://yoursite.com/tags/insert/"/>
+    
+      <category term="emplace()" scheme="http://yoursite.com/tags/emplace/"/>
     
   </entry>
   

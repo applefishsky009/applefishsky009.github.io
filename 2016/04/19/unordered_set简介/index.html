@@ -17,23 +17,23 @@
 
   <meta name="description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
 
-unordered_set与STL的异同
-_Pairib insert(const value_t">
+unordered_set(无序关联容器)与vector的异同
+_Pairib insert(co">
 <meta property="og:type" content="article">
 <meta property="og:title" content="unordered_set简介">
 <meta property="og:url" content="http://yoursite.com/2016/04/19/unordered_set简介/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
 
-unordered_set与STL的异同
-_Pairib insert(const value_t">
-<meta property="og:updated_time" content="2016-04-19T12:54:21.229Z">
+unordered_set(无序关联容器)与vector的异同
+_Pairib insert(co">
+<meta property="og:updated_time" content="2016-05-06T05:09:47.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="unordered_set简介">
 <meta name="twitter:description" content="unordered_set简介MSDN上有对unordered_set描述，CSDN上有博客对unordered_set描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：insert()、find()、erase()、size()、empty()、begin()、end()。
 
-unordered_set与STL的异同
-_Pairib insert(const value_t">
+unordered_set(无序关联容器)与vector的异同
+_Pairib insert(co">
 
   
 
@@ -94,10 +94,10 @@ ga('send', 'pageview');
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/tag/"
+            href="/category/"
             target="_self"
             >
-            标签
+            分类
           </a>
         </li>
       
@@ -114,10 +114,10 @@ ga('send', 'pageview');
         <li class="item-toolbox">
           <a
             class="ROUND_RECT"
-            href="/category/"
+            href="/tag/"
             target="_self"
             >
-            分类
+            标签
           </a>
         </li>
       
@@ -160,7 +160,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set简介"><span class="toc-text">unordered_set简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set与STL的异同"><span class="toc-text">unordered_set与STL的异同</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set简介"><span class="toc-text">unordered_set简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered-set-无序关联容器-与vector的异同"><span class="toc-text">unordered_set(无序关联容器)与vector的异同</span></a></li></ol>
   </div>
 
 
@@ -184,6 +184,11 @@ ga('send', 'pageview');
       
 
       
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
 
 
       
@@ -200,7 +205,7 @@ ga('send', 'pageview');
     
       <h2 id="unordered-set简介"><a href="#unordered-set简介" class="headerlink" title="unordered_set简介"></a>unordered_set简介</h2><p>MSDN上有对<a href="https://msdn.microsoft.com/zh-cn/library/bb982739.aspx" target="_blank" rel="external">unordered_set</a>描述，CSDN上有博客对<a href="http://blog.csdn.net/oabid/article/details/4562577" target="_blank" rel="external">unordered_set</a>描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：<code>insert()</code>、<font color="red"><code>find()</code></font>、<code>erase()</code>、<code>size()</code>、<code>empty()</code>、<code>begin()</code>、<code>end()</code>。</p>
 <hr>
-<h2 id="unordered-set与STL的异同"><a href="#unordered-set与STL的异同" class="headerlink" title="unordered_set与STL的异同"></a>unordered_set与STL的异同</h2><ol>
+<h2 id="unordered-set-无序关联容器-与vector的异同"><a href="#unordered-set-无序关联容器-与vector的异同" class="headerlink" title="unordered_set(无序关联容器)与vector的异同"></a>unordered_set(无序关联容器)与vector的异同</h2><ol>
 <li><code>_Pairib insert(const value_type&amp; _Val)</code>;基本与<code>vector</code>用法相同，参数为要插入的值。</li>
 <li><code>iterator find(const key_type&amp; _Keyval)</code>;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即<code>end()</code>。与<code>size_type find(_Elem _Ch, size_type _Off = 0) const</code>有区别，后者会返回下标(<code>size_type</code>可以看做一种足够大的<code>unsigned</code>类型来表示下标)，如果没找到，返回<code>string::npos</code>。而</li>
 <li><code>size_type erase(const key_type&amp; _Keyval)</code>;擦除指定值，返回该指定值的位置。<code>iterator erase(const_iterator _Where)</code>擦除指针指向的值，容器重排，指针不变。</li>
@@ -243,10 +248,10 @@ ga('send', 'pageview');
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/tag/"
+              href="/category/"
               target="_self"
               >
-              标签
+              分类
             </a>
           </li>
         
@@ -263,10 +268,10 @@ ga('send', 'pageview');
           <li class="item-toolbox">
             <a
               class="ROUND_RECT"
-              href="/category/"
+              href="/tag/"
               target="_self"
               >
-              分类
+              标签
             </a>
           </li>
         
