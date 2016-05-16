@@ -27,7 +27,7 @@ multimap的所有元素都">
 
 multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；
 multimap的所有元素都">
-<meta property="og:updated_time" content="2016-05-16T06:28:37.909Z">
+<meta property="og:updated_time" content="2016-05-16T06:31:48.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="multimap简介">
 <meta name="twitter:description" content="multimap简介multimap是一种Hash Table。首先使用multimap必须使用宏语句#include &amp;lt;map&amp;gt;。MSDN上对multimap的解释已经比较清楚multimap基础，multimap与map，unorderedmap的对比主要有以下几点：
@@ -216,7 +216,7 @@ ga('send', 'pageview');
 <li>插入数据:<code>father.insert(make_pair(string1, string2);</code>，<a href="http://www.cnblogs.com/Nimeux/archive/2010/10/05/1844191.html" target="_blank" rel="external"><code>pair</code>与<code>make_pair</code>介绍</a>。</li>
 <li>寻找某个键值:<code>pair&lt;multimap&lt;string, string&gt;::iterator, multimap&lt;string, string&gt;::iterator&gt; pos = father.equal_range(string1)</code>;<code>equal_range(string1);</code>注意其返回的是<code>pair</code>对象，<code>first</code>和<code>second</code>都是迭代器类型，他返回键值为<code>string1</code>的左指针和超尾(右)指针(最后一个键值为<code>string1</code>的下一个指针)，源码如下：</li>
 </ol>
-<pre><code>`typedef pair&lt;iterator, iterator&gt; _Pairii;`
+<pre><code>typedef pair&lt;iterator, iterator&gt; _Pairii;
 
 _Pairii equal_range(const key_type&amp; _Keyval)
 {    // find range equivalent to _Keyval in mutable tree
