@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-06T07:08:58.310Z</updated>
+  <updated>2016-05-16T06:28:37.909Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>multimap简介</title>
+    <link href="http://yoursite.com/2016/05/16/multimap%E7%AE%80%E4%BB%8B/"/>
+    <id>http://yoursite.com/2016/05/16/multimap简介/</id>
+    <published>2016-05-16T04:42:19.000Z</published>
+    <updated>2016-05-16T06:28:37.909Z</updated>
+    
+    <content type="html">&lt;h2 id=&quot;multimap简介&quot;&gt;&lt;a href=&quot;#multimap简介&quot; class=&quot;headerlink&quot; title=&quot;multimap简介&quot;&gt;&lt;/a&gt;multimap简介&lt;/h2&gt;&lt;p&gt;multimap是一种Hash Table。首先使用&lt;code&gt;multimap&lt;/code&gt;必须使用宏语句&lt;code&gt;#include &amp;lt;map&amp;gt;&lt;/code&gt;。MSDN上对multimap的解释已经比较清楚&lt;a href=&quot;http://blog.csdn.net/chenyujing1234/article/details/8193172&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap基础&lt;/a&gt;，&lt;a href=&quot;http://blog.csdn.net/xz_rabbit/article/details/43907311&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap与map，unorderedmap的对比&lt;/a&gt;&lt;br&gt;主要有以下几点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；&lt;/li&gt;
+&lt;li&gt;multimap的所有元素都是pair:第一元素为键值(key),不能修改;第二元素为实值(value),可被修改 &lt;/li&gt;
+&lt;li&gt;multimap特性以及用法与map完全相同，唯一的差别在于: 允许重复键值的元素插入容器(每一个都是用一个&lt;strong&gt;链表&lt;/strong&gt;来链接的)，参考&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里的github&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unordered_multimap&lt;/code&gt;(目前还没有用到过)的无序存储特点，这是其与&lt;code&gt;multimap&lt;/code&gt;最大的区别。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;multimap的使用&quot;&gt;&lt;a href=&quot;#multimap的使用&quot; class=&quot;headerlink&quot; title=&quot;multimap的使用&quot;&gt;&lt;/a&gt;multimap的使用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;初始化:&lt;code&gt;multimap&amp;lt;string, string&amp;gt; father;&lt;/code&gt;，第一个是key类型，第二个是映照类型；&lt;/li&gt;
+&lt;li&gt;插入数据:&lt;code&gt;father.insert(make_pair(string1, string2);&lt;/code&gt;，&lt;a href=&quot;http://www.cnblogs.com/Nimeux/archive/2010/10/05/1844191.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;pair&lt;/code&gt;与&lt;code&gt;make_pair&lt;/code&gt;介绍&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;寻找某个键值:&lt;code&gt;pair&amp;lt;multimap&amp;lt;string, string&amp;gt;::iterator, multimap&amp;lt;string, string&amp;gt;::iterator&amp;gt; pos = father.equal_range(string1)&lt;/code&gt;;&lt;code&gt;equal_range(string1);&lt;/code&gt;注意其返回的是&lt;code&gt;pair&lt;/code&gt;对象，&lt;code&gt;first&lt;/code&gt;和&lt;code&gt;second&lt;/code&gt;都是迭代器类型，他返回键值为&lt;code&gt;string1&lt;/code&gt;的左指针和超尾(右)指针(最后一个键值为&lt;code&gt;string1&lt;/code&gt;的下一个指针)，源码如下：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;`typedef pair&amp;lt;iterator, iterator&amp;gt; _Pairii;`
+
+_Pairii equal_range(const key_type&amp;amp; _Keyval)
+{    // find range equivalent to _Keyval in mutable tree
+    return (_Eqrange(_Keyval));
+}
+&lt;/code&gt;&lt;/pre&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;multimap简介&quot;&gt;&lt;a href=&quot;#multimap简介&quot; class=&quot;headerlink&quot; title=&quot;multimap简介&quot;&gt;&lt;/a&gt;multimap简介&lt;/h2&gt;&lt;p&gt;multimap是一种Hash Table。首先使用&lt;code&gt;multim
+    
+    </summary>
+    
+      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
+    
+    
+      <category term="multimap" scheme="http://yoursite.com/tags/multimap/"/>
+    
+  </entry>
   
   <entry>
     <title>i++与++i的区别</title>
@@ -738,20 +779,21 @@
     <link href="http://yoursite.com/2016/04/19/unordered_set%E7%AE%80%E4%BB%8B/"/>
     <id>http://yoursite.com/2016/04/19/unordered_set简介/</id>
     <published>2016-04-19T11:42:25.000Z</published>
-    <updated>2016-05-06T05:09:47.363Z</updated>
+    <updated>2016-05-16T04:51:57.172Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;MSDN上有对&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/bb982739.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，CSDN上有博客对&lt;a href=&quot;http://blog.csdn.net/oabid/article/details/4562577&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：&lt;code&gt;insert()&lt;/code&gt;、&lt;font color=&quot;red&quot;&gt;&lt;code&gt;find()&lt;/code&gt;&lt;/font&gt;、&lt;code&gt;erase()&lt;/code&gt;、&lt;code&gt;size()&lt;/code&gt;、&lt;code&gt;empty()&lt;/code&gt;、&lt;code&gt;begin()&lt;/code&gt;、&lt;code&gt;end()&lt;/code&gt;。&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;首先使用&lt;code&gt;unordered_set&lt;/code&gt;必须使用宏语句&lt;code&gt;#include &amp;lt;unordered_set&amp;gt;&lt;/code&gt;。MSDN上有对&lt;a href=&quot;https://msdn.microsoft.com/zh-cn/library/bb982739.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，CSDN上有博客对&lt;a href=&quot;http://blog.csdn.net/oabid/article/details/4562577&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;unordered_set&lt;/a&gt;描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：&lt;code&gt;insert()&lt;/code&gt;、&lt;font color=&quot;red&quot;&gt;&lt;code&gt;find()&lt;/code&gt;&lt;/font&gt;、&lt;code&gt;erase()&lt;/code&gt;、&lt;code&gt;size()&lt;/code&gt;、&lt;code&gt;empty()&lt;/code&gt;、&lt;code&gt;begin()&lt;/code&gt;、&lt;code&gt;end()&lt;/code&gt;。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;unordered-set-无序关联容器-与vector的异同&quot;&gt;&lt;a href=&quot;#unordered-set-无序关联容器-与vector的异同&quot; class=&quot;headerlink&quot; title=&quot;unordered_set(无序关联容器)与vector的异同&quot;&gt;&lt;/a&gt;unordered_set(无序关联容器)与vector的异同&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;_Pairib insert(const value_type&amp;amp; _Val)&lt;/code&gt;;基本与&lt;code&gt;vector&lt;/code&gt;用法相同，参数为要插入的值。&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;iterator find(const key_type&amp;amp; _Keyval)&lt;/code&gt;;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即&lt;code&gt;end()&lt;/code&gt;。与&lt;code&gt;size_type find(_Elem _Ch, size_type _Off = 0) const&lt;/code&gt;有区别，后者会返回下标(&lt;code&gt;size_type&lt;/code&gt;可以看做一种足够大的&lt;code&gt;unsigned&lt;/code&gt;类型来表示下标)，如果没找到，返回&lt;code&gt;string::npos&lt;/code&gt;。而&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;size_type erase(const key_type&amp;amp; _Keyval)&lt;/code&gt;;擦除指定值，返回该指定值的位置。&lt;code&gt;iterator erase(const_iterator _Where)&lt;/code&gt;擦除指针指向的值，容器重排，指针不变。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_Pairib insert(const value_type&amp;amp; _Val);&lt;/code&gt;;基本与&lt;code&gt;vector&lt;/code&gt;用法相同，参数为要插入的值。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;iterator find(const key_type&amp;amp; _Keyval);&lt;/code&gt;;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即&lt;code&gt;end()&lt;/code&gt;。与&lt;code&gt;size_type find(_Elem _Ch, size_type _Off = 0) const;&lt;/code&gt;有区别，后者会返回下标(&lt;code&gt;size_type&lt;/code&gt;可以看做一种足够大的&lt;code&gt;unsigned&lt;/code&gt;类型来表示下标)，如果没找到，返回&lt;code&gt;string::npos&lt;/code&gt;。而&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;size_type erase(const key_type&amp;amp; _Keyval);&lt;/code&gt;;擦除指定值，返回该指定值的位置。&lt;code&gt;iterator erase(const_iterator _Where);&lt;/code&gt;擦除指针指向的值，容器重排，指针不变。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;size_type count(const Key&amp;amp; keyval) const;&lt;/code&gt;返回unordered_set中指定键对应的元素个数，k-要查找的key值。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;MSDN上有对&lt;a href=&quot;ht
+      &lt;h2 id=&quot;unordered-set简介&quot;&gt;&lt;a href=&quot;#unordered-set简介&quot; class=&quot;headerlink&quot; title=&quot;unordered_set简介&quot;&gt;&lt;/a&gt;unordered_set简介&lt;/h2&gt;&lt;p&gt;首先使用&lt;code&gt;unordere
     
     </summary>
     
@@ -1013,72 +1055,6 @@
       <category term="resize()" scheme="http://yoursite.com/tags/resize/"/>
     
       <category term="reverse()" scheme="http://yoursite.com/tags/reverse/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vector之erase方法</title>
-    <link href="http://yoursite.com/2016/04/14/vector%E4%B9%8Berase%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/04/14/vector之erase方法/</id>
-    <published>2016-04-14T02:52:25.000Z</published>
-    <updated>2016-05-06T05:03:57.141Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.erase(p)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;删除p指向的元素&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.erase(p,q)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;迭代器&lt;/strong&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;删除区间[p,q)中的元素&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;思考&lt;/strong&gt;:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;在之前内存之中讨论过，&lt;code&gt;vector&lt;/code&gt;是保证内存连续的，那么&lt;code&gt;erase&lt;/code&gt;之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在&lt;code&gt;erase()&lt;/code&gt;方法的代码中可以看到传入的p的形参是&lt;code&gt;const&lt;/code&gt;类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/TZxRRb6.png&quot; alt=&quot;STL的迭代器&quot;&gt;&lt;/li&gt;
-&lt;li&gt;注意到&lt;code&gt;erase&lt;/code&gt;返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的&lt;strong&gt;地址不变&lt;/strong&gt;，值是删除之后可用的下一个元素，因此&lt;strong&gt;给人感觉是p指向了下一个元素&lt;/strong&gt;。那么在这里有一个值得注意的问题，如下：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;vector&amp;lt;int&amp;gt;::iterator p = b.begin();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;for (;p!=b.end();p++)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (*p == 2)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		b.erase(p);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这是错误的，&lt;code&gt;b.erase(p)&lt;/code&gt;没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为&lt;code&gt;p = b.erase(p)&lt;/code&gt;也是不正确的。迭代器在进行删除的这一个循环里会&lt;code&gt;++&lt;/code&gt;两次（&lt;code&gt;erase&lt;/code&gt;可以当做&lt;code&gt;++&lt;/code&gt;一次）。但如果在&lt;code&gt;if&lt;/code&gt;语句中执行一次&lt;code&gt;p--&lt;/code&gt;，这是正确的。即&lt;code&gt;p = --b.erase(p);&lt;/code&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;不能用&lt;code&gt;p-- = b.erase(p);&lt;/code&gt;，因为&lt;code&gt;p--&lt;/code&gt;是表达式，不能为左值；&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;不能用&lt;code&gt;p = b.erase(p--);&lt;/code&gt;，也是因为&lt;code&gt;p--&lt;/code&gt;是一个表达式，强调计算结果，不能作为左值，也不能取址。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;迭代器的循环使用&lt;code&gt;while&lt;/code&gt;可以降低错误率。&lt;/strong&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;p&gt;为简单，分析第一个表达式的源码如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;iterator erase(const_iterator _Where)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// erase element at where&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_VICONT(_Where) != this&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| _VIPTR(_Where) &amp;lt; this-&amp;gt;_Myfirst&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		|| this-&amp;gt;_Mylast &amp;lt;= _VIPTR(_Where))&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_DEBUG_ERROR(&amp;quot;vector erase iterator outside range&amp;quot;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Move(_VIPTR(_Where) + 1, this-&amp;gt;_Mylast, _VIPTR(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Destroy(this-&amp;gt;_Mylast - 1, this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	_Orphan_range(_VIPTR(_Where), this-&amp;gt;_Mylast);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	--this-&amp;gt;_Mylast;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return (_Make_iter(_Where));&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(&lt;code&gt;capacity&lt;/code&gt;不变)，之后&lt;font color=&quot;red&quot;&gt;_Orphan_range发生了什么？&lt;/font&gt;,接下来指针指向正确的位置，最后返回指向原地址的迭代器。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;a-erase&quot;&gt;&lt;a href=&quot;#a-erase&quot; class=&quot;headerlink&quot; title=&quot;a.erase();&quot;&gt;&lt;/a&gt;a.erase();&lt;/h2&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th s
-    
-    </summary>
-    
-      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
-    
-    
-      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
-    
-      <category term="erase()" scheme="http://yoursite.com/tags/erase/"/>
     
   </entry>
   
