@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-16T06:31:48.006Z</updated>
+  <updated>2016-05-17T09:20:14.376Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,41 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>牛顿迭代法</title>
+    <link href="http://yoursite.com/2016/05/17/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
+    <id>http://yoursite.com/2016/05/17/牛顿迭代法/</id>
+    <published>2016-05-17T04:29:01.000Z</published>
+    <updated>2016-05-17T09:20:14.376Z</updated>
+    
+    <content type="html">&lt;p&gt;牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科的介绍&lt;/a&gt;(Markdownpad2不支持Latex有点烦)&lt;br&gt;公式如下：&lt;code&gt;$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$&lt;/code&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;a href=&quot;#牛顿迭代法在开方中的应用&quot; class=&quot;headerlink&quot; title=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;/a&gt;牛顿迭代法在开方中的应用&lt;/h2&gt;&lt;p&gt;开方的迭代式：&lt;code&gt;x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]&lt;/code&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;int&lt;/code&gt;开方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;float&lt;/code&gt;开方&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Magic Number(只针对float，链接同2) &lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;在开方的计算中，二分查找和牛顿迭代法时间复杂度都是O(logn)，但是牛顿迭代法优于二分查找。&lt;/li&gt;
+&lt;li&gt;基于牛顿迭代法的&lt;code&gt;float&lt;/code&gt;开方中使用Magic Number，可以看到使用3次牛顿迭代法就可以得到较高的精确度(相同的迭代次数，要开放的数字越大，精度越低)，其原理与浮点数的存储相关，因此只用于浮点数。&lt;/li&gt;
+&lt;li&gt;直观来看，开方(凹型曲线)时牛顿迭代法只从右侧逼近，二分查找从右侧左侧同时逼近,因此显然牛顿迭代法优于二分查找法，尤其对高阶的f(x),牛顿迭代法的逼近速度更快。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;exter
+    
+    </summary>
+    
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+    
+    
+      <category term="Newton iterative method" scheme="http://yoursite.com/tags/Newton-iterative-method/"/>
+    
+  </entry>
   
   <entry>
     <title>multimap简介</title>
@@ -980,85 +1015,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
       <category term="类的复制构造函数" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
     
       <category term="类的赋值运算符重载" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vector之resize方法和reverse方法</title>
-    <link href="http://yoursite.com/2016/04/15/vector%E4%B9%8Bresize%E6%96%B9%E6%B3%95%E5%92%8Creverse%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/04/15/vector之resize方法和reverse方法/</id>
-    <published>2016-04-15T06:39:13.000Z</published>
-    <updated>2016-05-06T05:03:54.032Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;首先介绍容器的两个属性&lt;code&gt;capacity&lt;/code&gt;和&lt;code&gt;size&lt;/code&gt;。&lt;code&gt;capacity&lt;/code&gt;存储区的大小；&lt;code&gt;size&lt;/code&gt;容器的大小。&lt;/li&gt;
-&lt;li&gt;‘reverse()’是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。&lt;/li&gt;
-&lt;li&gt;‘resize()’是改变容器大小，容器中一定有容器对象。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h3 id=&quot;a-reverse&quot;&gt;&lt;a href=&quot;#a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.reverse();&quot;&gt;&lt;/a&gt;a.reverse();&lt;/h3&gt;&lt;p&gt;看源码：&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void reserve(size_type _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new minimum length of allocated storage&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (capacity() &amp;lt; _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;// something to do, check and reallocate&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		if (max_size() &amp;lt; _Count)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			Xlen();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Reallocate(_Count);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol&gt;
-&lt;li&gt;没有&lt;code&gt;else&lt;/code&gt;，说明若当前的&lt;code&gt;capacity&lt;/code&gt;大于传入的值，&lt;strong&gt;&lt;code&gt;capacity&lt;/code&gt;是不会减小的&lt;/strong&gt;；&lt;/li&gt;
-&lt;li&gt;里层的if是错误检测机制；&lt;/li&gt;
-&lt;li&gt;验证&lt;code&gt;vector&lt;/code&gt;的&lt;code&gt;reallocate&lt;/code&gt;原理，实际上每次新的&lt;code&gt;capacity&lt;/code&gt;是之前的1.5倍。因此在&lt;strong&gt;循环之前一定要&lt;code&gt;reserve&lt;/code&gt;保证效率&lt;/strong&gt;。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h3 id=&quot;a-resize&quot;&gt;&lt;a href=&quot;#a-resize&quot; class=&quot;headerlink&quot; title=&quot;a.resize();&quot;&gt;&lt;/a&gt;a.resize();&lt;/h3&gt;&lt;p&gt;模板类提供了两个函数重载：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;表达式&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;&lt;strong&gt;返回类型&lt;/strong&gt;&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.resize(n)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;容器大小设为n&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;a.resize(n,t)&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;void&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;容器大小设为n，必要时用t填充&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h4 id=&quot;a-resize-n&quot;&gt;&lt;a href=&quot;#a-resize-n&quot; class=&quot;headerlink&quot; title=&quot;a.resize(n)&quot;&gt;&lt;/a&gt;a.resize(n)&lt;/h4&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void resize(size_type _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new length, padding as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_Newsize &amp;lt; size())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		erase(begin() + _Newsize, end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else if (size() &amp;lt; _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#123;	// pad as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Alty _Alval(this-&amp;gt;_Getal());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Reserve(_Newsize - size());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_TRY_BEGIN&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Uninitialized_default_fill_n(this-&amp;gt;_Mylast, _Newsize - size(),_Alval);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_CATCH_ALL&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Tidy();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_RERAISE;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_CATCH_END&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		this-&amp;gt;_Mylast += _Newsize - size();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ol&gt;
-&lt;li&gt;若容器新大小小于现在的大小，毁掉多余的对象；&lt;/li&gt;
-&lt;li&gt;新大小大于现在的大小：&lt;ul&gt;
-&lt;li&gt;注意&lt;code&gt;_Reserve&lt;/code&gt;和&lt;code&gt;.reverse&lt;/code&gt;是两个不同的方法，一个比较&lt;code&gt;capacity&lt;/code&gt;，一个比较&lt;code&gt;_Unused_capacity&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;检查空间，不够则&lt;code&gt;reverse&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;填充未初始化的对象&lt;/li&gt;
-&lt;li&gt;修改尾指针&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;####a.resize(n,t)&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void resize(size_type _Newsize, const value_type&amp;amp; _Val)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;	// determine new length, padding with _Val elements as needed&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (_Newsize &amp;lt; size())&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		erase(begin() + _Newsize, end());&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	else if (size() &amp;lt; _Newsize)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		_Insert_n(end(), _Newsize - size(), _Val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;若容器新大小小于现在的大小，毁掉多余的对象；&lt;/li&gt;
-&lt;li&gt;新大小大于现在的大小，直接执行&lt;code&gt;insert&lt;/code&gt;;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;a-resize-和a-reverse&quot;&gt;&lt;a href=&quot;#a-resize-和a-reverse&quot; class=&quot;headerlink&quot; title=&quot;a.resize()和a.reverse();&quot;&gt;&lt;/a&gt;a.resize()和a.reverse();&lt;/
-    
-    </summary>
-    
-      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
-    
-    
-      <category term="vector" scheme="http://yoursite.com/tags/vector/"/>
-    
-      <category term="resize()" scheme="http://yoursite.com/tags/resize/"/>
-    
-      <category term="reverse()" scheme="http://yoursite.com/tags/reverse/"/>
     
   </entry>
   

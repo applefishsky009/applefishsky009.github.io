@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>牛顿迭代法 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Newton iterative method," />
+  
+
+  <meta name="description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+
+牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+
+int开方
+float开方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛顿迭代法">
+<meta property="og:url" content="http://yoursite.com/2016/05/17/牛顿迭代法/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+
+牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+
+int开方
+float开方">
+<meta property="og:updated_time" content="2016-05-17T09:20:14.376Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="牛顿迭代法">
+<meta name="twitter:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+
+牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+
+int开方
+float开方">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#牛顿迭代法在开方中的应用"><span class="toc-text">牛顿迭代法在开方中的应用</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-牛顿迭代法" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">牛顿迭代法</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.17</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Math/">Math</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/17/牛顿迭代法/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="external">维基百科的介绍</a>(Markdownpad2不支持Latex有点烦)<br>公式如下：<code>$x_{n-1} = x_n-\frac{f(x_n)}{f^&#39;(x_n)}$</code></p>
+<hr>
+<h2 id="牛顿迭代法在开方中的应用"><a href="#牛顿迭代法在开方中的应用" class="headerlink" title="牛顿迭代法在开方中的应用"></a>牛顿迭代法在开方中的应用</h2><p>开方的迭代式：<code>x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]</code></p>
+<ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp" target="_blank" rel="external"><code>int</code>开方</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp" target="_blank" rel="external"><code>float</code>开方</a></li>
+<li>Magic Number(只针对float，链接同2) </li>
+</ol>
+<ul>
+<li>在开方的计算中，二分查找和牛顿迭代法时间复杂度都是O(logn)，但是牛顿迭代法优于二分查找。</li>
+<li>基于牛顿迭代法的<code>float</code>开方中使用Magic Number，可以看到使用3次牛顿迭代法就可以得到较高的精确度(相同的迭代次数，要开放的数字越大，精度越低)，其原理与浮点数的存储相关，因此只用于浮点数。</li>
+<li>直观来看，开方(凹型曲线)时牛顿迭代法只从右侧逼近，二分查找从右侧左侧同时逼近,因此显然牛顿迭代法优于二分查找法，尤其对高阶的f(x),牛顿迭代法的逼近速度更快。</li>
+</ul>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://yoursite.com/2016/05/17/牛顿迭代法/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
