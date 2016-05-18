@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-17T09:20:14.376Z</updated>
+  <updated>2016-05-18T03:03:34.330Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,15 +20,15 @@
     <link href="http://yoursite.com/2016/05/17/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
     <id>http://yoursite.com/2016/05/17/牛顿迭代法/</id>
     <published>2016-05-17T04:29:01.000Z</published>
-    <updated>2016-05-17T09:20:14.376Z</updated>
+    <updated>2016-05-18T03:03:34.330Z</updated>
     
-    <content type="html">&lt;p&gt;牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科的介绍&lt;/a&gt;(Markdownpad2不支持Latex有点烦)&lt;br&gt;公式如下：&lt;code&gt;$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$&lt;/code&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科的介绍&lt;/a&gt;(Markdownpad2不支持Latex有点烦)&lt;br&gt;公式如下：$x_{n+1} = x_n-f(x_n)/f’(x_n)$&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;a href=&quot;#牛顿迭代法在开方中的应用&quot; class=&quot;headerlink&quot; title=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;/a&gt;牛顿迭代法在开方中的应用&lt;/h2&gt;&lt;p&gt;开方的迭代式：&lt;code&gt;x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;a href=&quot;#牛顿迭代法在开方中的应用&quot; class=&quot;headerlink&quot; title=&quot;牛顿迭代法在开方中的应用&quot;&gt;&lt;/a&gt;牛顿迭代法在开方中的应用&lt;/h2&gt;&lt;p&gt;开方的迭代式：$x_{k+1} = 1/2(x_k+n/x_k)$&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;int&lt;/code&gt;开方&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;&lt;code&gt;float&lt;/code&gt;开方&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Magic Number(只针对float，链接同2) &lt;/li&gt;
+&lt;li&gt;Magic Number(只针对&lt;code&gt;float&lt;/code&gt;，链接同2) &lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;在开方的计算中，二分查找和牛顿迭代法时间复杂度都是O(logn)，但是牛顿迭代法优于二分查找。&lt;/li&gt;
@@ -399,7 +399,7 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     <link href="http://yoursite.com/2016/04/22/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2016/04/22/贪心算法/</id>
     <published>2016-04-22T07:54:31.000Z</published>
-    <updated>2016-05-16T08:02:52.756Z</updated>
+    <updated>2016-05-18T02:02:07.495Z</updated>
     
     <content type="html">&lt;p&gt;持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。求解最优化问题比动态规划更为简洁高效。其思想核心是&lt;font color=&quot;red&quot;&gt;选择当前最优解&lt;/font&gt;，虽然不一定是全局最优解。贪心算法主要应用有&lt;/p&gt;
 &lt;ol&gt;
@@ -416,9 +416,10 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
 &lt;li&gt;选择一个活动，选出他后剩下的资源能尽量多的被其他任务所用(算法导论16.1)；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/55%20-%20Jump%20Game/55%20-%20Jump%20Game%20%20.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jump Game&lt;/a&gt;；&lt;ul&gt;
-&lt;li&gt;Jump Game,选择当前最优解,更新当前最优解。&lt;/li&gt;
-&lt;li&gt;Jump GameⅡ, 在选择当前最优解的时候统计步数(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。&lt;/li&gt;
+&lt;li&gt;Jump Game；&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/55%20-%20Jump%20Game/55%20-%20Jump%20Game%20%20.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jump Game&lt;/a&gt;,每个节点选择更新当前最优解。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/45%20-%20Jump%20Game%20II/45%20-%20Jump%20Game%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Jump GameⅡ&lt;/a&gt;, 每一步选择当前最优解(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。&lt;/li&gt;
+&lt;li&gt;Jump GameⅡ比Jump Game多出统计步数，在这个映射范围内选择最优解&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;

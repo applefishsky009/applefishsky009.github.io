@@ -5,7 +5,7 @@
 
 
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>贪心算法 | 孤云两角，去天一握</title>
 
@@ -43,7 +43,7 @@
 
 活动选择问题
 调度竞争共享资源的多个活动问题，选出最大的">
-<meta property="og:updated_time" content="2016-05-16T08:02:52.756Z">
+<meta property="og:updated_time" content="2016-05-18T02:02:07.495Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="贪心算法">
 <meta name="twitter:description" content="持续更新，记录在编程过程中关于贪心算法的心得体会。算法分析以算法导论为主。求解最优化问题比动态规划更为简洁高效。其思想核心是选择当前最优解，虽然不一定是全局最优解。贪心算法主要应用有
@@ -84,7 +84,7 @@ ga('create', 'UA-76667484-1', 'auto');
 ga('send', 'pageview');
 
 </script>
-<!-- End Google Analytics -->
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 </head>
@@ -92,7 +92,7 @@ ga('send', 'pageview');
 <body>
 
   
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
   <div class="post-header CENTER">
@@ -242,9 +242,10 @@ ga('send', 'pageview');
 <li>选择一个活动，选出他后剩下的资源能尽量多的被其他任务所用(算法导论16.1)；</li>
 </ul>
 </li>
-<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/55%20-%20Jump%20Game/55%20-%20Jump%20Game%20%20.cpp" target="_blank" rel="external">Jump Game</a>；<ul>
-<li>Jump Game,选择当前最优解,更新当前最优解。</li>
-<li>Jump GameⅡ, 在选择当前最优解的时候统计步数(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。</li>
+<li>Jump Game；<ul>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/55%20-%20Jump%20Game/55%20-%20Jump%20Game%20%20.cpp" target="_blank" rel="external">Jump Game</a>,每个节点选择更新当前最优解。</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/45%20-%20Jump%20Game%20II/45%20-%20Jump%20Game%20II.cpp" target="_blank" rel="external">Jump GameⅡ</a>, 每一步选择当前最优解(层数，是一层一一层映射的关系，怎么感觉是在广搜？!)。</li>
+<li>Jump GameⅡ比Jump Game多出统计步数，在这个映射范围内选择最优解</li>
 </ul>
 </li>
 </ol>
@@ -415,7 +416,7 @@ ga('send', 'pageview');
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </body>
 </html>

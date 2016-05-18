@@ -5,7 +5,7 @@
 
 
 <head>
-  <meta charset="utf-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
   <title>牛顿迭代法 | 孤云两角，去天一握</title>
 
@@ -15,31 +15,34 @@
     <meta name="keywords" content="Newton iterative method," />
   
 
-  <meta name="description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+  <meta name="description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n+1} = x_n-f(x_n)/f’(x_n)$
 
-牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+牛顿迭代法在开方中的应用开方的迭代式：$x_{k+1} = 1/2(x_k+n/x_k)$
 
 int开方
-float开方">
+float开方
+Magic Number(只针对float，链接同2)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="牛顿迭代法">
 <meta property="og:url" content="http://yoursite.com/2016/05/17/牛顿迭代法/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+<meta property="og:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n+1} = x_n-f(x_n)/f’(x_n)$
 
-牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+牛顿迭代法在开方中的应用开方的迭代式：$x_{k+1} = 1/2(x_k+n/x_k)$
 
 int开方
-float开方">
-<meta property="og:updated_time" content="2016-05-17T09:20:14.376Z">
+float开方
+Magic Number(只针对float，链接同2)">
+<meta property="og:updated_time" content="2016-05-18T03:03:34.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="牛顿迭代法">
-<meta name="twitter:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n-1} = x_n-\frac{f(x_n)}{f^&amp;#39;(x_n)}$
+<meta name="twitter:description" content="牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。维基百科的介绍(Markdownpad2不支持Latex有点烦)公式如下：$x_{n+1} = x_n-f(x_n)/f’(x_n)$
 
-牛顿迭代法在开方中的应用开方的迭代式：x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]
+牛顿迭代法在开方中的应用开方的迭代式：$x_{k+1} = 1/2(x_k+n/x_k)$
 
 int开方
-float开方">
+float开方
+Magic Number(只针对float，链接同2)">
 
   
 
@@ -66,7 +69,7 @@ ga('create', 'UA-76667484-1', 'auto');
 ga('send', 'pageview');
 
 </script>
-<!-- End Google Analytics -->
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 </head>
@@ -74,7 +77,7 @@ ga('send', 'pageview');
 <body>
 
   
-    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
   <div class="post-header CENTER">
@@ -209,13 +212,13 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="external">维基百科的介绍</a>(Markdownpad2不支持Latex有点烦)<br>公式如下：<code>$x_{n-1} = x_n-\frac{f(x_n)}{f^&#39;(x_n)}$</code></p>
+      <p>牛顿迭代法是一种巧妙地(切线)逼近方法，它是一种在实数域和复数域上近似求解方程的方法。<a href="https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95" target="_blank" rel="external">维基百科的介绍</a>(Markdownpad2不支持Latex有点烦)<br>公式如下：$x_{n+1} = x_n-f(x_n)/f’(x_n)$</p>
 <hr>
-<h2 id="牛顿迭代法在开方中的应用"><a href="#牛顿迭代法在开方中的应用" class="headerlink" title="牛顿迭代法在开方中的应用"></a>牛顿迭代法在开方中的应用</h2><p>开方的迭代式：<code>x_{k+1} = \frac{1}{2}[x_k+\frac{n}{x_k}]</code></p>
+<h2 id="牛顿迭代法在开方中的应用"><a href="#牛顿迭代法在开方中的应用" class="headerlink" title="牛顿迭代法在开方中的应用"></a>牛顿迭代法在开方中的应用</h2><p>开方的迭代式：$x_{k+1} = 1/2(x_k+n/x_k)$</p>
 <ol>
 <li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp" target="_blank" rel="external"><code>int</code>开方</a></li>
 <li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp" target="_blank" rel="external"><code>float</code>开方</a></li>
-<li>Magic Number(只针对float，链接同2) </li>
+<li>Magic Number(只针对<code>float</code>，链接同2) </li>
 </ol>
 <ul>
 <li>在开方的计算中，二分查找和牛顿迭代法时间复杂度都是O(logn)，但是牛顿迭代法优于二分查找。</li>
@@ -389,7 +392,24 @@ ga('send', 'pageview');
       // load success
     });
   }
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>
