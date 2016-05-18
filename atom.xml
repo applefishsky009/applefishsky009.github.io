@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-18T05:09:18.020Z</updated>
+  <updated>2016-05-18T08:47:34.112Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>伯努利级数</title>
+    <link href="http://yoursite.com/2016/05/18/%E4%BC%AF%E5%8A%AA%E5%88%A9%E7%BA%A7%E6%95%B0/"/>
+    <id>http://yoursite.com/2016/05/18/伯努利级数/</id>
+    <published>2016-05-18T06:26:36.000Z</published>
+    <updated>2016-05-18T08:47:34.112Z</updated>
+    
+    <content type="html">&lt;p&gt;先来彩蛋，在&lt;a href=&quot;http://www.wolframalpha.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;wolframalpha&lt;/a&gt;使用Latex格式输入数学公式，可以快速得到结果。&lt;/p&gt;
+&lt;p&gt;考虑以下四种无穷级数：&lt;br&gt;$$ \sum_n\frac{1}{n^2\pm\omega^2}\qquad(1) $$&lt;/p&gt;
+&lt;p&gt;$$ \prod_n(1\pm\frac{\omega^2}{n^2})\qquad(2) $$&lt;/p&gt;
+&lt;p&gt;在式\( (1) \)中当\( \omega=0 \)时，公式变为伯努利级数：&lt;br&gt;$$ \sum_n\frac{1}{n^2}\qquad(3) $$&lt;/p&gt;
+&lt;p&gt;式\( (3) \)中是一个非常有意思的题目，下面考虑来解决他，式\( (1) \)和式\( (2) \)并不会经常用到，具体解答见&lt;a href=&quot;http://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&amp;amp;mid=404226908&amp;amp;idx=1&amp;amp;sn=93aa43ffa9157af03ad82543493cfe51&amp;amp;scene=23&amp;amp;srcid=042515FZI3kzNY54U1YJaKv8#rd&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;算法与数学之美&lt;/a&gt;的这篇文章。&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E5%B7%B4%E5%A1%9E%E5%B0%94%E9%97%AE%E9%A2%98&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科上的解答&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;与式\( (3) \)相似的一个题目:&lt;br&gt;$$ \sum_nn^2 = \frac{1}{6}n(n+1)(2n+1)\qquad(4)$$&lt;br&gt;这个题目可以用数学归纳法简单求得。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;伯努利级数&quot;&gt;&lt;a href=&quot;#伯努利级数&quot; class=&quot;headerlink&quot; title=&quot;伯努利级数&quot;&gt;&lt;/a&gt;伯努利级数&lt;/h2&gt;&lt;p&gt;$$ \sum_n\frac{1}{n^2}=1+\frac{1}{4}+\frac{1}{9}+\frac{1}{16}+\cdots\qquad(5) $$&lt;/p&gt;
+&lt;h3 id=&quot;泰勒展开&quot;&gt;&lt;a href=&quot;#泰勒展开&quot; class=&quot;headerlink&quot; title=&quot;泰勒展开&quot;&gt;&lt;/a&gt;泰勒展开&lt;/h3&gt;&lt;p&gt;首先，我们考虑式\( \frac{sin\sqrt{x}}{\sqrt{x}}=0 \)的根为\( n^2\pi^2,n=1,2,3,\ldots \)&lt;br&gt;左侧泰勒展开式为&lt;br&gt;$$ \frac{sin\sqrt{x}}{\sqrt{x}}=1-\frac{x}{6}+\frac{x^2}{120}-\frac{x^3}{5040}+\cdots\qquad(6) $$&lt;/p&gt;
+&lt;h3 id=&quot;韦达定理&quot;&gt;&lt;a href=&quot;#韦达定理&quot; class=&quot;headerlink&quot; title=&quot;韦达定理&quot;&gt;&lt;/a&gt;韦达定理&lt;/h3&gt;&lt;p&gt;其次，考虑一元n次方程的韦达定理：&lt;br&gt;$$ 1+a_1x+a_2x^2+\cdots+a_nx^n=0\qquad(7) $$&lt;/p&gt;
+&lt;p&gt;假设他有\( n \)个非零根\( x_1,x_2,\ldots,x_n \),将它转化为关于\( \frac{1}{x} \)的方程：&lt;br&gt;$$ (\frac{1}{x})^n+a_1(\frac{1}{x})^{n-1}+\cdots+a_n=0\qquad(8) $$&lt;br&gt;对应根变成\( 1/x_1,1/x_2,\ldots,1/x_n \)，由韦达定理得到：&lt;br&gt;$$ \frac{1}{x_1}+\frac{1}{x_2}+\cdots+\frac{1}{x_n}=-a_1\qquad(9) $$&lt;/p&gt;
+&lt;h3 id=&quot;欧拉的大胆推广&quot;&gt;&lt;a href=&quot;#欧拉的大胆推广&quot; class=&quot;headerlink&quot; title=&quot;欧拉的大胆推广&quot;&gt;&lt;/a&gt;欧拉的大胆推广&lt;/h3&gt;&lt;p&gt;将式\( (9) \)推广在式\( (6) \)为0的根中：&lt;/p&gt;
+&lt;p&gt;$$ \frac{1}{\pi^2}+\frac{1}{2^2\pi^2}+\frac{1}{3^2\pi^2}+\cdots=-a_1=\frac{1}{6}\qquad(10) $$&lt;br&gt;那么：&lt;br&gt;$$ 1+\frac{1}{2^2}+\frac{1}{3^2}+\cdots=\frac{\pi^2}{6}\qquad(11) $$&lt;/p&gt;
+&lt;p&gt;如算法与数学之美中所说，其启发性创造性远远掩盖其不严格性。&lt;/p&gt;
+&lt;h3 id=&quot;注解&quot;&gt;&lt;a href=&quot;#注解&quot; class=&quot;headerlink&quot; title=&quot;注解&quot;&gt;&lt;/a&gt;注解&lt;/h3&gt;&lt;p&gt;如果直接在式\( (7) \)中使用韦达定理，得到&lt;br&gt;$$ -\frac{a_{n-1}}{a_n}=\pi^2\sum_nn^2=\frac{\pi^2}{6}n(n+1)(2n+1)\qquad(12) $$&lt;br&gt;但是这个只有在\( n\rightarrow\infty \)才是有意义的，例如不能取\( n=3 \)(一个特定数值)来使等式成立。就如式\( (11) \)中取级数前\( n=3 \)部分使之成立。因此对无穷级数的未知项用韦达定理是没有意义的。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先来彩蛋，在&lt;a href=&quot;http://www.wolframalpha.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;wolframalpha&lt;/a&gt;使用Latex格式输入数学公式，可以快速得到结果。&lt;/p&gt;
+&lt;p&gt;考虑以下四种无穷级数：&lt;
+    
+    </summary>
+    
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+    
+    
+      <category term="Bernoulli Series" scheme="http://yoursite.com/tags/Bernoulli-Series/"/>
+    
+  </entry>
   
   <entry>
     <title>牛顿迭代法</title>
@@ -946,79 +984,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
       <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
     
       <category term="函数调用" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类的复制构造函数和赋值运算符重载</title>
-    <link href="http://yoursite.com/2016/04/18/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
-    <id>http://yoursite.com/2016/04/18/类的复制构造函数和赋值运算符重载/</id>
-    <published>2016-04-18T03:51:12.000Z</published>
-    <updated>2016-05-06T05:14:52.203Z</updated>
-    
-    <content type="html">&lt;p&gt;C++会自动提供以下成员函数：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;默认构造函数；&lt;/li&gt;
-&lt;li&gt;默认析构函数&lt;/li&gt;
-&lt;li&gt;复制构造函数&lt;/li&gt;
-&lt;li&gt;赋值运算符&lt;/li&gt;
-&lt;li&gt;地址运算符&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;之前讨论过构造函数与析构函数，今天讨论复制构造函数与赋值运算符。&lt;/p&gt;
-&lt;h2 id=&quot;类的复制构造函数&quot;&gt;&lt;a href=&quot;#类的复制构造函数&quot; class=&quot;headerlink&quot; title=&quot;类的复制构造函数&quot;&gt;&lt;/a&gt;类的复制构造函数&lt;/h2&gt;&lt;h3 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;作用：复制构造函数用于将一个对象复制到新创建的对象中。也就是用于初始化过程（包括按值传递）,而不是常规的赋值过程。&lt;strong&gt;隐式构造函数&lt;font color=&quot;red&quot;&gt;按值&lt;/font&gt;逐个复制非静态成员&lt;/strong&gt;,静态成员属于整个类，不属于某一个对象，因此不受影响。&lt;/li&gt;
-&lt;li&gt;何时调用：新建一个对象并将其初始化为同类现有对象。有以下四种可能语法：&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;StringBad ditto(motto)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;StringBad *pStringBad = new StringBad(motto)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;StringBad metoo = motto&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;StringBad also = StringBad(motto)&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;1、2两种声明没有临时匿名对象(或者说临时匿名对象有外部载体);3、4两种声明值是接创建metoo和also还是用复制构造函数构造临时对象然后对象赋值给metoo和also，取决于具体实现。&lt;font color=&quot;red&quot;&gt;特点是有赋值运算符的非指针构造&lt;/font&gt;，在本人的编译器上(VS2012 32)是有临时对象并析构的。&lt;/p&gt;
-&lt;h4 id=&quot;注：&quot;&gt;&lt;a href=&quot;#注：&quot; class=&quot;headerlink&quot; title=&quot;注：&quot;&gt;&lt;/a&gt;注：&lt;/h4&gt;&lt;ol&gt;
-&lt;li&gt;无论哪种编译器，按值传递和返回对象时，都将调用复制构造函数。&lt;/li&gt;
-&lt;li&gt;由于1，复制构造函数必须&lt;strong&gt;接受类对象的常量引用&lt;/strong&gt;作为参数，否则会无限递归调用自身导致堆栈溢出。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;默认复制构造函数的缺陷-浅复制&quot;&gt;&lt;a href=&quot;#默认复制构造函数的缺陷-浅复制&quot; class=&quot;headerlink&quot; title=&quot;默认复制构造函数的缺陷(浅复制)&quot;&gt;&lt;/a&gt;默认复制构造函数的缺陷(浅复制)&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;对象计数器：默认构造函数+显式构造函数+显式构造函数=析构函数。&lt;/li&gt;
-&lt;li&gt;隐式复制构造函数是&lt;strong&gt;按值复制&lt;/strong&gt;，对于指针指向的new出来的空间，它会使两个指针指向同一块内容，因此在析构时，编译器尝试两次释放同一块内存，这会导致不确定的可能有害的结果。必须定义一个显式复制构造函数给指针开辟新的内存、&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;类的复制运算符重载-深度复制&quot;&gt;&lt;a href=&quot;#类的复制运算符重载-深度复制&quot; class=&quot;headerlink&quot; title=&quot;类的复制运算符重载(深度复制)&quot;&gt;&lt;/a&gt;类的复制运算符重载(深度复制)&lt;/h2&gt;&lt;p&gt;C++的类对象赋值通过自动为类重载赋值运算符实现。赋值运算符是只能由类成员函数重载的运算符之一。&lt;br&gt;如上所说四种新建对象方法，&lt;em&gt;8初始化时总会调用复制构造函数，而是用&lt;code&gt;=&lt;/code&gt;运算符也允许调用赋值运算符。&lt;/em&gt;但是！赋值运算符的隐式实现也是对成员逐个赋值。那么如上也有两次析构的问题，因此应该提供赋值运算符进行深度复制。&lt;br&gt;其与复制构造函数的差别：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;应该首先检查自我复制，相同返回自身。否则未复制前释放了自身；&lt;/li&gt;
-&lt;li&gt;释放拷贝对象之前引用的数据，否则会内存泄露(因为要深度复制会申请新的内存空间并指向他进行数据拷贝，之前的内存指针就丢失了)。&lt;/li&gt;
-&lt;li&gt;返回一个指向调用对象的引用以便连续赋值。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;下面这个例子同时犯了复制构造函数和赋值运算符重载的浅复制错误：&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/OwHR2qp.png&quot; alt=&quot;典型的浅复制错误&quot;&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;为什么赋值运算符重载返回类型是引用？之前在&lt;code&gt;*this&lt;/code&gt;指针中提过，返回类型为引用意味着返回对象本身而不是其副本。这样在一些含有赋值运算符的初始化中也可以防止递归调用。&lt;/li&gt;
-&lt;li&gt;为什么参数类型为引用？对&lt;em&gt;复制构造函数&lt;/em&gt;和&lt;em&gt;赋值运算符重载&lt;/em&gt;，都是为了防止递归调用。&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;C++会自动提供以下成员函数：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;默认构造函数；&lt;/li&gt;
-&lt;li&gt;默认析构函数&lt;/li&gt;
-&lt;li&gt;复制构造函数&lt;/li&gt;
-&lt;li&gt;赋值运算符&lt;/li&gt;
-&lt;li&gt;地址运算符&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;之前讨论过构造函数与析构函数，今天讨论复制构造函
-    
-    </summary>
-    
-      <category term="C++的类" scheme="http://yoursite.com/categories/C-%E7%9A%84%E7%B1%BB/"/>
-    
-    
-      <category term="类的复制构造函数" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0/"/>
-    
-      <category term="类的赋值运算符重载" scheme="http://yoursite.com/tags/%E7%B1%BB%E7%9A%84%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     
   </entry>
   
