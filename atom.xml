@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-19T01:37:30.831Z</updated>
+  <updated>2016-05-19T02:08:10.242Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/05/18/%E6%A8%A1%E4%B9%9D%E5%90%8C%E4%BD%99%E4%B8%8E%E5%90%84%E4%BD%8D%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/"/>
     <id>http://yoursite.com/2016/05/18/模九同余与各位数字之和/</id>
     <published>2016-05-18T10:48:20.000Z</published>
-    <updated>2016-05-19T01:37:30.831Z</updated>
+    <updated>2016-05-19T02:08:10.242Z</updated>
     
     <content type="html">&lt;p&gt;$$ a\equiv b\quad(mod\ n) $$&lt;br&gt;此式即\( a \)与\( b \)同余于\( n \)；简称\( a \)与\( b \)模\( n \)同余。&lt;br&gt;同余运算见&lt;a href=&quot;https://en.wikipedia.org/wiki/Modular_arithmetic&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -32,7 +32,8 @@
 &lt;hr&gt;
 &lt;h2 id=&quot;LeetCode&quot;&gt;&lt;a href=&quot;#LeetCode&quot; class=&quot;headerlink&quot; title=&quot;LeetCode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/258%20-%20Add%20Digits/258%20-%20Add%20Digits.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode&lt;/a&gt;&lt;/h2&gt;&lt;hr&gt;
 &lt;h2 id=&quot;2012-2012&quot;&gt;&lt;a href=&quot;#2012-2012&quot; class=&quot;headerlink&quot; title=&quot;\( 2012^{2012} \)&quot;&gt;&lt;/a&gt;\( 2012^{2012} \)&lt;/h2&gt;&lt;p&gt;题目：记\( 2012^{2012} \)的各位数字之和为\( A \),\( A \)的各位数字之和是\( B \)，\( B \)的各位数字之和是\( C \)，求\( C \)的值。&lt;/p&gt;
-&lt;h3 id=&quot;2012-2012-的余数&quot;&gt;&lt;a href=&quot;#2012-2012-的余数&quot; class=&quot;headerlink&quot; title=&quot;\( 2012^{2012} \)的余数&quot;&gt;&lt;/a&gt;\( 2012^{2012} \)的余数&lt;/h3&gt;&lt;p&gt;$$ \because 2012 \equiv 5\quad(mod\ 9) $$&lt;br&gt;$$ \therefore 2012^{2012} \equiv 5^{2012}\quad(mod\ 9) \equiv 25^{1006}\quad(mod\ 9) \equiv (-2)^{1006}\quad(mod\ 9) \equiv 2^{1006}\quad(mod\ 9) \equiv 2\times8^{335}\quad(mod\ 9) \equiv 2\times(-1)^{335}\quad(mod\ 9) \equiv -2\quad(mod\ 9)=7$$&lt;br&gt;又&lt;br&gt;$$ \because 2012^{2012}&amp;lt;10000^{2012}-1 $$&lt;br&gt;$$ \Rightarrow A&amp;lt;2012\times4\times9=72504 $$&lt;br&gt;$$ \Rightarrow B&amp;lt;6+4\times9=42 $$&lt;br&gt;$$ \Rightarrow C&amp;lt;3+9=12 $$&lt;br&gt;$$ \therefore C=7 $$&lt;/p&gt;
+&lt;h3 id=&quot;2012-2012-的余数&quot;&gt;&lt;a href=&quot;#2012-2012-的余数&quot; class=&quot;headerlink&quot; title=&quot;\( 2012^{2012} \)的余数&quot;&gt;&lt;/a&gt;\( 2012^{2012} \)的余数&lt;/h3&gt;&lt;p&gt;$$ \because 2012 \equiv 5\quad(mod\ 9) $$&lt;br&gt;\begin{equation}&lt;br&gt;\begin{split}&lt;br&gt;\therefore 2012^{2012} &amp;amp; \equiv 5^{2012}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv 25^{1006}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv (-2)^{1006}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv 2^{1006}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv 2\times8^{335}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv 2\times(-1)^{335}\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv -2\quad(mod\ 9) \\&lt;br&gt;&amp;amp; \equiv 7&lt;br&gt;\end{split}&lt;br&gt;\end{equation}&lt;/p&gt;
+&lt;p&gt;又&lt;br&gt;$$ \because 2012^{2012}&amp;lt;10000^{2012}-1 $$&lt;br&gt;$$ \Rightarrow A&amp;lt;2012\times4\times9=72504 $$&lt;br&gt;$$ \Rightarrow B&amp;lt;6+4\times9=42 $$&lt;br&gt;$$ \Rightarrow C&amp;lt;3+9=12 $$&lt;br&gt;$$ \therefore C=7 $$&lt;/p&gt;
 &lt;p&gt;思路：&lt;strong&gt;算出最大位数&lt;/strong&gt;，每一位给9算出\( A,B,C \)的最大值。&lt;/p&gt;
 </content>
     
