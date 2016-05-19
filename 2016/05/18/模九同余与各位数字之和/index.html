@@ -25,7 +25,7 @@
 <meta property="og:description" content="$$ a\equiv b\quad(mod\ n) $$此式即\( a \)与\( b \)同余于\( n \)；简称\( a \)与\( b \)模\( n \)同余。同余运算见维基百科
 
 模九同余结论：任何一个整数模9同余于它的各数位上数字之和。题目：设自然数\( N=a[n]a[n-1]\ldots a[0] \)，其中\( a[0],a[1],\ldots,a[n] \)分别是个位、十位、">
-<meta property="og:updated_time" content="2016-05-19T02:08:10.242Z">
+<meta property="og:updated_time" content="2016-05-19T02:13:25.162Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模九同余与各位数字之和">
 <meta name="twitter:description" content="$$ a\equiv b\quad(mod\ n) $$此式即\( a \)与\( b \)同余于\( n \)；简称\( a \)与\( b \)模\( n \)同余。同余运算见维基百科
@@ -157,7 +157,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模九同余"><span class="toc-text">模九同余</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode"><span class="toc-text">LeetCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2012-2012"><span class="toc-text">\( 2012^{2012} \)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2012-2012-的余数"><span class="toc-text">\( 2012^{2012} \)的余数</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模九同余"><span class="toc-text">模九同余</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LeetCode"><span class="toc-text">LeetCode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2012-2012"><span class="toc-text">\( 2012^{2012} \)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2012-2012-的余数"><span class="toc-text">\( 2012^{2012} \)的余数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C的最大值"><span class="toc-text">C的最大值</span></a></li></ol></li></ol>
   </div>
 
 
@@ -211,7 +211,7 @@ ga('send', 'pageview');
 <h2 id="LeetCode"><a href="#LeetCode" class="headerlink" title="LeetCode"></a><a href="https://github.com/applefishsky009/LeetCode/blob/master/258%20-%20Add%20Digits/258%20-%20Add%20Digits.cpp" target="_blank" rel="external">LeetCode</a></h2><hr>
 <h2 id="2012-2012"><a href="#2012-2012" class="headerlink" title="\( 2012^{2012} \)"></a>\( 2012^{2012} \)</h2><p>题目：记\( 2012^{2012} \)的各位数字之和为\( A \),\( A \)的各位数字之和是\( B \)，\( B \)的各位数字之和是\( C \)，求\( C \)的值。</p>
 <h3 id="2012-2012-的余数"><a href="#2012-2012-的余数" class="headerlink" title="\( 2012^{2012} \)的余数"></a>\( 2012^{2012} \)的余数</h3><p>$$ \because 2012 \equiv 5\quad(mod\ 9) $$<br>\begin{equation}<br>\begin{split}<br>\therefore 2012^{2012} &amp; \equiv 5^{2012}\quad(mod\ 9) \\<br>&amp; \equiv 25^{1006}\quad(mod\ 9) \\<br>&amp; \equiv (-2)^{1006}\quad(mod\ 9) \\<br>&amp; \equiv 2^{1006}\quad(mod\ 9) \\<br>&amp; \equiv 2\times8^{335}\quad(mod\ 9) \\<br>&amp; \equiv 2\times(-1)^{335}\quad(mod\ 9) \\<br>&amp; \equiv -2\quad(mod\ 9) \\<br>&amp; \equiv 7<br>\end{split}<br>\end{equation}</p>
-<p>又<br>$$ \because 2012^{2012}&lt;10000^{2012}-1 $$<br>$$ \Rightarrow A&lt;2012\times4\times9=72504 $$<br>$$ \Rightarrow B&lt;6+4\times9=42 $$<br>$$ \Rightarrow C&lt;3+9=12 $$<br>$$ \therefore C=7 $$</p>
+<h3 id="C的最大值"><a href="#C的最大值" class="headerlink" title="C的最大值"></a>C的最大值</h3><p>$$ \because 2012^{2012}&lt;10000^{2012}-1 $$<br>$$ \Rightarrow A&lt;2012\times4\times9=72504 $$<br>$$ \Rightarrow B&lt;6+4\times9=42 $$<br>$$ \Rightarrow C&lt;3+9=12 $$<br>$$ \therefore C=7 $$</p>
 <p>思路：<strong>算出最大位数</strong>，每一位给9算出\( A,B,C \)的最大值。</p>
 
     
