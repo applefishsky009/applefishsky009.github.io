@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-18T08:47:34.112Z</updated>
+  <updated>2016-05-19T01:37:30.831Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模九同余与各位数字之和</title>
+    <link href="http://yoursite.com/2016/05/18/%E6%A8%A1%E4%B9%9D%E5%90%8C%E4%BD%99%E4%B8%8E%E5%90%84%E4%BD%8D%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/"/>
+    <id>http://yoursite.com/2016/05/18/模九同余与各位数字之和/</id>
+    <published>2016-05-18T10:48:20.000Z</published>
+    <updated>2016-05-19T01:37:30.831Z</updated>
+    
+    <content type="html">&lt;p&gt;$$ a\equiv b\quad(mod\ n) $$&lt;br&gt;此式即\( a \)与\( b \)同余于\( n \)；简称\( a \)与\( b \)模\( n \)同余。&lt;br&gt;同余运算见&lt;a href=&quot;https://en.wikipedia.org/wiki/Modular_arithmetic&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;维基百科&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;模九同余&quot;&gt;&lt;a href=&quot;#模九同余&quot; class=&quot;headerlink&quot; title=&quot;模九同余&quot;&gt;&lt;/a&gt;模九同余&lt;/h2&gt;&lt;p&gt;结论：任何一个整数模9同余于它的各数位上数字之和。&lt;br&gt;题目：设自然数\( N=a[n]a[n-1]\ldots a[0] \)，其中\( a[0],a[1],\ldots,a[n] \)分别是个位、十位、…上的数字，再设\( M=a[0]+a[1]+\ldots+a[n] \)&lt;br&gt;求证：\( N\equiv M\quad(mod\ 9) \)&lt;br&gt;证明：&lt;/p&gt;
+&lt;p&gt;$$ \because N=a[n]a[n-1]…a[0]=a[n]\times10^n+a[n-1]\times10^{n-1}+\cdots+a[1]\times10+a[0] $$&lt;br&gt;又&lt;br&gt;$$ \because 1\equiv 1\quad(mod\ 9) $$&lt;br&gt;$$ 10\equiv 1\quad(mod\ 9) $$&lt;br&gt;$$ 10^2\equiv 1\quad(mod\ 9) $$&lt;br&gt;$$ \cdots $$&lt;br&gt;$$ 10^n\equiv 1\quad(mod\ 9) $$&lt;/p&gt;
+&lt;p&gt;上面这些同余式两边分别同乘以\( a[0],a[1],a[2],\ldots,a[n] \)&lt;br&gt;再相加得：&lt;/p&gt;
+&lt;p&gt;$$ a[n]\times10^n+a[n-1]\times10^{n-1}+\cdots+a[1]\times10+a[0]\equiv (a[0]+a[1]+…+a[n])\quad(mod\ 9) $$&lt;br&gt;即&lt;br&gt;$$ N\equiv M\quad(mod\ 9) $$&lt;br&gt;得证。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a href=&quot;http://www.cnblogs.com/Rinyo/archive/2012/12/20/2826755.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;找规律&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;LeetCode&quot;&gt;&lt;a href=&quot;#LeetCode&quot; class=&quot;headerlink&quot; title=&quot;LeetCode&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/258%20-%20Add%20Digits/258%20-%20Add%20Digits.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode&lt;/a&gt;&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 id=&quot;2012-2012&quot;&gt;&lt;a href=&quot;#2012-2012&quot; class=&quot;headerlink&quot; title=&quot;\( 2012^{2012} \)&quot;&gt;&lt;/a&gt;\( 2012^{2012} \)&lt;/h2&gt;&lt;p&gt;题目：记\( 2012^{2012} \)的各位数字之和为\( A \),\( A \)的各位数字之和是\( B \)，\( B \)的各位数字之和是\( C \)，求\( C \)的值。&lt;/p&gt;
+&lt;h3 id=&quot;2012-2012-的余数&quot;&gt;&lt;a href=&quot;#2012-2012-的余数&quot; class=&quot;headerlink&quot; title=&quot;\( 2012^{2012} \)的余数&quot;&gt;&lt;/a&gt;\( 2012^{2012} \)的余数&lt;/h3&gt;&lt;p&gt;$$ \because 2012 \equiv 5\quad(mod\ 9) $$&lt;br&gt;$$ \therefore 2012^{2012} \equiv 5^{2012}\quad(mod\ 9) \equiv 25^{1006}\quad(mod\ 9) \equiv (-2)^{1006}\quad(mod\ 9) \equiv 2^{1006}\quad(mod\ 9) \equiv 2\times8^{335}\quad(mod\ 9) \equiv 2\times(-1)^{335}\quad(mod\ 9) \equiv -2\quad(mod\ 9)=7$$&lt;br&gt;又&lt;br&gt;$$ \because 2012^{2012}&amp;lt;10000^{2012}-1 $$&lt;br&gt;$$ \Rightarrow A&amp;lt;2012\times4\times9=72504 $$&lt;br&gt;$$ \Rightarrow B&amp;lt;6+4\times9=42 $$&lt;br&gt;$$ \Rightarrow C&amp;lt;3+9=12 $$&lt;br&gt;$$ \therefore C=7 $$&lt;/p&gt;
+&lt;p&gt;思路：&lt;strong&gt;算出最大位数&lt;/strong&gt;，每一位给9算出\( A,B,C \)的最大值。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;$$ a\equiv b\quad(mod\ n) $$&lt;br&gt;此式即\( a \)与\( b \)同余于\( n \)；简称\( a \)与\( b \)模\( n \)同余。&lt;br&gt;同余运算见&lt;a href=&quot;https://en.wikipedia.org/wiki/
+    
+    </summary>
+    
+      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+    
+    
+      <category term="Modular Arithmetic" scheme="http://yoursite.com/tags/Modular-Arithmetic/"/>
+    
+  </entry>
   
   <entry>
     <title>伯努利级数</title>
@@ -924,66 +958,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
       <category term="默认参数" scheme="http://yoursite.com/tags/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/"/>
     
       <category term="内联函数" scheme="http://yoursite.com/tags/%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>函数原型与函数调用</title>
-    <link href="http://yoursite.com/2016/04/18/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
-    <id>http://yoursite.com/2016/04/18/函数原型与函数调用/</id>
-    <published>2016-04-18T11:25:05.000Z</published>
-    <updated>2016-05-06T06:20:28.811Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么需要原型&quot;&gt;&lt;/a&gt;为什么需要原型&lt;/h3&gt;&lt;p&gt;原型是函数到编译器的接口，他将函数返回值的类型以及参数的类型和数量告诉编译器。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;原型告诉编译器函数参数类型和数量，如果不准确，它让编译器捕获这种错误&lt;/li&gt;
-&lt;li&gt;函数完成计算后，将返回值放在指定的位置(&lt;strong&gt;CPU寄存器或者内存&lt;/strong&gt;)以供调用函数取得。&lt;/li&gt;
-&lt;li&gt;原型指出返回类型，让编译器知道应检索多少字节以及如何&lt;em&gt;解释&lt;/em&gt;他们。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;原型语法&quot;&gt;&lt;a href=&quot;#原型语法&quot; class=&quot;headerlink&quot; title=&quot;原型语法&quot;&gt;&lt;/a&gt;原型语法&lt;/h3&gt;&lt;p&gt;以&lt;code&gt;void cheers(int);&lt;/code&gt;为例，&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;函数原型是一条语句，必须以分号结尾；&lt;/li&gt;
-&lt;li&gt;函数原型不要求提供变量名，有类型列表就够了(这与函数调用有关，原型中的变量名其实就是栈中的占位符)&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;原型功能&quot;&gt;&lt;a href=&quot;#原型功能&quot; class=&quot;headerlink&quot; title=&quot;原型功能&quot;&gt;&lt;/a&gt;原型功能&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;编译器正确处理函数返回值(就是说在&lt;strong&gt;指定位置如何解释&lt;/strong&gt;)；&lt;/li&gt;
-&lt;li&gt;编译器检查使用的参数数目是否正确(&lt;strong&gt;不正确让编译器捕获错误&lt;/strong&gt;)；&lt;/li&gt;
-&lt;li&gt;编译器检查参数类型是否正确，如果不正确，可能的话转换为正确类型(编译阶段进行的原型化，静态类型检查)。如下&lt;br&gt;&lt;img src=&quot;http://i.imgur.com/5aaLwcA.png&quot; alt=&quot;函数原型进行类型转化&quot;&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;函数调用&quot;&gt;&lt;a href=&quot;#函数调用&quot; class=&quot;headerlink&quot; title=&quot;函数调用&quot;&gt;&lt;/a&gt;函数调用&lt;/h2&gt;&lt;p&gt;详细过程见&lt;a href=&quot;http://www.zhihu.com/question/22444939#answer-4080329&quot; title=&quot;函数调用中栈的变化&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;相关寄存器&quot;&gt;&lt;a href=&quot;#相关寄存器&quot; class=&quot;headerlink&quot; title=&quot;相关寄存器&quot;&gt;&lt;/a&gt;相关寄存器&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;栈指针寄存器：指向系统栈最上面一个帧栈栈底的指针；&lt;/li&gt;
-&lt;li&gt;基址指针寄存器：指向系统栈最上面一个帧栈栈底的指针；&lt;/li&gt;
-&lt;li&gt;指令寄存器：指向下一条待执行的指令地址。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;函数调用步骤&quot;&gt;&lt;a href=&quot;#函数调用步骤&quot; class=&quot;headerlink&quot; title=&quot;函数调用步骤&quot;&gt;&lt;/a&gt;函数调用步骤&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;参数入栈：C++将参数从右向左依次入栈；&lt;/li&gt;
-&lt;li&gt;返回地址入栈：将&lt;em&gt;当前&lt;/em&gt;代码区调用指令的&lt;em&gt;下一条&lt;/em&gt;指令地址压入栈，函数返回时继续执行；&lt;/li&gt;
-&lt;li&gt;代码区跳转：从当前代码区跳转到被调函数入口处；&lt;/li&gt;
-&lt;li&gt;栈帧调整：&lt;ul&gt;
-&lt;li&gt;当前栈帧的EPB入栈；&lt;/li&gt;
-&lt;li&gt;切换到新栈帧,ESP装入EBP；&lt;/li&gt;
-&lt;li&gt;给新栈帧分配空间；&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;思考&quot;&gt;&lt;a href=&quot;#思考&quot; class=&quot;headerlink&quot; title=&quot;思考&quot;&gt;&lt;/a&gt;思考&lt;/h3&gt;&lt;h4 id=&quot;为什么参数要入栈？&quot;&gt;&lt;a href=&quot;#为什么参数要入栈？&quot; class=&quot;headerlink&quot; title=&quot;为什么参数要入栈？&quot;&gt;&lt;/a&gt;为什么参数要入栈？&lt;/h4&gt;&lt;p&gt;为了保存现场，例如一个递归：&lt;br&gt;    &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int sum(int n)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	if (n == 0)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		return 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	return sum(n-1)+n&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;当&lt;code&gt;sum(n-1)&lt;/code&gt;返回，他的栈帧被释放，还原到&lt;code&gt;sum(n)&lt;/code&gt;的栈帧，那么n的值怎么获得？假如&lt;code&gt;sum&lt;/code&gt;是在&lt;code&gt;main()&lt;/code&gt;调用的，n在调用时压入了&lt;code&gt;main()&lt;/code&gt;的栈帧，并对一个匿名对象拷贝了n的值供&lt;code&gt;sum()&lt;/code&gt;计算，如果传地址或者引用就可以直接修改栈帧中的值。&lt;br&gt;这就可以解释为什么按值传递时不能修改上一级函数的数值，因为栈帧会还原，按值传递修改的也不是栈帧中的值。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;函数原型&quot;&gt;&lt;a href=&quot;#函数原型&quot; class=&quot;headerlink&quot; title=&quot;函数原型&quot;&gt;&lt;/a&gt;函数原型&lt;/h2&gt;&lt;h3 id=&quot;为什么需要原型&quot;&gt;&lt;a href=&quot;#为什么需要原型&quot; class=&quot;headerlink&quot; title=&quot;为什么
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="函数原型" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E5%8E%9F%E5%9E%8B/"/>
-    
-      <category term="函数调用" scheme="http://yoursite.com/tags/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8/"/>
     
   </entry>
   
