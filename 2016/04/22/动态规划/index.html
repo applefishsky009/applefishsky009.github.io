@@ -17,7 +17,7 @@
 
   <meta name="description" content="持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：
 
-子问题的状态转移方程；
+子问题的状态转移方程(递推关系式)；
 保存子问题的解用于递归(自顶向下);
 
 它有两种等价的实现方式：
@@ -25,14 +25,14 @@
 带备忘的自顶向下；
 自底向上。
 
-一般来说自底向上更容易实现。实际中哪一种更容易编程取决于具体问">
+一般来说自底向上更容易实现。实际中哪一种更容易编">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划">
 <meta property="og:url" content="http://yoursite.com/2016/04/22/动态规划/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：
 
-子问题的状态转移方程；
+子问题的状态转移方程(递推关系式)；
 保存子问题的解用于递归(自顶向下);
 
 它有两种等价的实现方式：
@@ -40,13 +40,13 @@
 带备忘的自顶向下；
 自底向上。
 
-一般来说自底向上更容易实现。实际中哪一种更容易编程取决于具体问">
-<meta property="og:updated_time" content="2016-05-16T07:57:05.637Z">
+一般来说自底向上更容易实现。实际中哪一种更容易编">
+<meta property="og:updated_time" content="2016-05-19T03:23:15.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划">
 <meta name="twitter:description" content="持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：
 
-子问题的状态转移方程；
+子问题的状态转移方程(递推关系式)；
 保存子问题的解用于递归(自顶向下);
 
 它有两种等价的实现方式：
@@ -54,7 +54,7 @@
 带备忘的自顶向下；
 自底向上。
 
-一般来说自底向上更容易实现。实际中哪一种更容易编程取决于具体问">
+一般来说自底向上更容易实现。实际中哪一种更容易编">
 
   
 
@@ -221,7 +221,7 @@ ga('send', 'pageview');
     
       <p>持续更新，记录在编程过程中关于动态规划(DP)的心得体会。算法分析以算法导论为主。主要是用于求解最优化问题，不同于递归用于解决互不相交的子问题，动态规划应用于子问题重叠的情况。在实际应用中发现他有两个关键点：</p>
 <ol>
-<li>子问题的<strong>状态转移方程</strong>；</li>
+<li>子问题的<strong>状态转移方程</strong>(递推关系式)；</li>
 <li>保存子问题的解用于递归(自顶向下);</li>
 </ol>
 <p>它有两种等价的实现方式：</p>
@@ -233,6 +233,13 @@ ga('send', 'pageview');
 <ol>
 <li><a href="https://github.com/applefishsky009/LeetCode/blob/master/120%20-%20Triangle/120%20-%20Triangle.cpp" target="_blank" rel="external">triangle</a></li>
 <li><a href="https://github.com/applefishsky009/LeetCode/tree/master/62%20-%20Unique%20Paths" target="_blank" rel="external">Unique Paths</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/53%20-%20Maximum%20Subarray/53%20-%20Maximum%20Subarray.cpp" target="_blank" rel="external">LeetCode:Maximum Subarray</a>和<a href="https://github.com/applefishsky009/BeautyOfProgramming/blob/master/2.14%20-%20%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/2.14.cpp" target="_blank" rel="external">BeautyOfProgramming:一维数组的最大子数组</a><ul>
+<li>注意递推关系式(未改进版)(主要是理清逻辑，需要一个\( nStart[i] \)的递推):</li>
+<li>\( nStart[i] = max(nStart[i-1]+A[i],nAll[i-1]) \);</li>
+<li>\( nAll[i] = max(nStart[i],nAll[i-1]) \) </li>
+</ul>
+</li>
+<li></li>
 </ol>
 
     
