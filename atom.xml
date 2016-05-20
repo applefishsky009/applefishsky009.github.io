@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-05-19T02:13:25.162Z</updated>
+  <updated>2016-05-20T10:39:36.096Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,43 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Binary Search的陷阱</title>
+    <link href="http://yoursite.com/2016/05/20/Binary-Search%E7%9A%84%E9%99%B7%E9%98%B1/"/>
+    <id>http://yoursite.com/2016/05/20/Binary-Search的陷阱/</id>
+    <published>2016-05-20T09:03:16.000Z</published>
+    <updated>2016-05-20T10:39:36.096Z</updated>
+    
+    <content type="html">&lt;p&gt;先上&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;二分搜索算法wiki&lt;/a&gt;，再上&lt;a href=&quot;http://www.cppblog.com/converse/archive/2009/09/21/96893.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;二分查找写正确的方法&lt;/a&gt;。简单说说二分搜索：&lt;/p&gt;
+&lt;p&gt;主要用于&lt;font color=&quot;red&quot;&gt;有序数组&lt;/font&gt;的遍历，时间复杂度O(log(n))，比之顺序遍历的时间复杂度O(n)更优，空间复杂度为O(1)。如用在插入排序中。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;三点原则&quot;&gt;&lt;a href=&quot;#三点原则&quot; class=&quot;headerlink&quot; title=&quot;三点原则&quot;&gt;&lt;/a&gt;三点原则&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;为了防止溢出折半时应该这么写&lt;code&gt;mid = start + (end - start) / 2;&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;因为大部分情况不是大于就是小于，因此一般在最后检测相等(如下例，检测条件过于复杂，因此放在开始检测相等少写一个检测条件，写全条件容易出错，一般用于debug)。&lt;/li&gt;
+&lt;li&gt;传入的一定是左闭右闭区间，因此递归入口为&lt;code&gt;low &amp;lt;= high&lt;/code&gt;，由原则2可知递归出口判断写在入口之后。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;陷阱&quot;&gt;&lt;a href=&quot;#陷阱&quot; class=&quot;headerlink&quot; title=&quot;陷阱&quot;&gt;&lt;/a&gt;陷阱&lt;/h2&gt;&lt;p&gt;二分法，顾名思义，就是将区间一分为二传入递归函数，但是注意区间有开闭之分，因此在过程中一定要注意，例&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode - 33&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不建议传入左开右开区间，增加判断次数，但是这样写极为简单，不得已可以使用，如例子中的&lt;code&gt;Solution&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;传入左闭右闭区间，递归入口一定是&lt;code&gt;low &amp;lt;= high&lt;/code&gt;,不能少等号;&lt;/li&gt;
+&lt;li&gt;如例子中的&lt;code&gt;Solution1&lt;/code&gt;所警示，在另外有区间判断的条件时注意&lt;code&gt;int&lt;/code&gt;向下取整的特性，可能会有&lt;code&gt;low == mid;&lt;/code&gt;需要特殊分析。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先上&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;二分搜索算法wik
+    
+    </summary>
+    
+      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+    
+  </entry>
   
   <entry>
     <title>模九同余与各位数字之和</title>
@@ -924,48 +961,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     
       <category term="unordered_set" scheme="http://yoursite.com/tags/unordered-set/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>默认参数与内联函数</title>
-    <link href="http://yoursite.com/2016/04/19/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E4%B8%8E%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
-    <id>http://yoursite.com/2016/04/19/默认参数与内联函数/</id>
-    <published>2016-04-19T03:15:10.000Z</published>
-    <updated>2016-05-06T06:20:28.812Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(压入栈帧并初始化)。 &lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;内联函数&quot;&gt;&lt;a href=&quot;#内联函数&quot; class=&quot;headerlink&quot; title=&quot;内联函数&quot;&gt;&lt;/a&gt;内联函数&lt;/h2&gt;&lt;p&gt;常规函数和内联函数之间的主要区别是C++编译器如何将它们组合到程序中去。&lt;/p&gt;
-&lt;h3 id=&quot;C语言的宏&quot;&gt;&lt;a href=&quot;#C语言的宏&quot; class=&quot;headerlink&quot; title=&quot;C语言的宏&quot;&gt;&lt;/a&gt;C语言的宏&lt;/h3&gt;&lt;p&gt;宏是内联代码的原始实现，它的本质是&lt;strong&gt;文本替换&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;普通宏定义中，预处理器将空格解释成分段标志；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;##&lt;/code&gt;是一种分隔连接方式，作用是先分隔后强制连接；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;#&lt;/code&gt;表示变量替换后加双引号括起来。&lt;/li&gt;
-&lt;li&gt;另外一些分隔符、操作符如&lt;code&gt;+&lt;/code&gt;、&lt;code&gt;-&lt;/code&gt;、&lt;code&gt;*&lt;/code&gt;、&lt;code&gt;/&lt;/code&gt;、&lt;code&gt;[&lt;/code&gt;、&lt;code&gt;]&lt;/code&gt;依然有意义。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#define A1(name,type) type name_##type##_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A1(a1,int) &amp;lt;=&amp;gt; int name_int_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#define A1(name,type) type name##_##type##_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	A1(a1,int) &amp;lt;=&amp;gt; int a1_int_type&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#define stringify(x) #x&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	stringify(linux) &amp;lt;=&amp;gt; &amp;quot;linux&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;C-内联函数&quot;&gt;&lt;a href=&quot;#C-内联函数&quot; class=&quot;headerlink&quot; title=&quot;C++内联函数&quot;&gt;&lt;/a&gt;C++内联函数&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;编译器将使用相应的函数代码替换函数调用(省略了来回跳跃并记录跳跃位置的过程)；&lt;/li&gt;
-&lt;li&gt;运行速度较快，但占用更多的内存(同一个内联函数调用多少次，就有多少次副本)；&lt;/li&gt;
-&lt;li&gt;一般省略原型(但原型特性仍在起作用)，将整个定义放在原本该提供原型的地方(这是首次使用前的函数定义，充当原型)，并使用&lt;code&gt;inline&lt;/code&gt;关键字&lt;/li&gt;
-&lt;li&gt;编译器并不一定满足程序员内联函数的请求，比如函数过大或者函数调用了自己(递归不能内联)。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;注意类成员函数中的内联函数并不一定使用&lt;code&gt;inline&lt;/code&gt;关键字。定义位于类声明中自动成为内联函数；否则使用&lt;code&gt;inline&lt;/code&gt;关键字作为内联函数。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;默认参数&quot;&gt;&lt;a href=&quot;#默认参数&quot; class=&quot;headerlink&quot; title=&quot;默认参数&quot;&gt;&lt;/a&gt;默认参数&lt;/h2&gt;&lt;p&gt;省略实参时自动使用的值，必须通过函数原型(这是因为函数调用时通过函数原型将函数参数压入栈帧)，使用方法是将值赋给原型中的值(
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="默认参数" scheme="http://yoursite.com/tags/%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0/"/>
-    
-      <category term="内联函数" scheme="http://yoursite.com/tags/%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
