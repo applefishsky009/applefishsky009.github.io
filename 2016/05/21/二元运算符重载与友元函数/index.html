@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>二元运算符重载与友元函数 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="OPP,运算符重载,友元函数," />
+  
+
+  <meta name="description" content="一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》
+
+OPP特性的分析首先分析OPP特性：
+
+抽象：指抽象接口的类设计；
+封装和数据隐藏：通过访问控制实现封装，数据隐藏是封装的一种
+数据隐藏(数据放在类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二元运算符重载与友元函数">
+<meta property="og:url" content="http://yoursite.com/2016/05/21/二元运算符重载与友元函数/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》
+
+OPP特性的分析首先分析OPP特性：
+
+抽象：指抽象接口的类设计；
+封装和数据隐藏：通过访问控制实现封装，数据隐藏是封装的一种
+数据隐藏(数据放在类">
+<meta property="og:updated_time" content="2016-05-21T09:43:07.273Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二元运算符重载与友元函数">
+<meta name="twitter:description" content="一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》
+
+OPP特性的分析首先分析OPP特性：
+
+抽象：指抽象接口的类设计；
+封装和数据隐藏：通过访问控制实现封装，数据隐藏是封装的一种
+数据隐藏(数据放在类">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OPP特性的分析"><span class="toc-text">OPP特性的分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符重载"><span class="toc-text">运算符重载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#规则"><span class="toc-text">规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#疑问"><span class="toc-text">疑问</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#友元函数"><span class="toc-text">友元函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是友元"><span class="toc-text">什么是友元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何解决问题"><span class="toc-text">如何解决问题</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-二元运算符重载与友元函数" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">二元运算符重载与友元函数</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/21/二元运算符重载与友元函数/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》</p>
+<hr>
+<h2 id="OPP特性的分析"><a href="#OPP特性的分析" class="headerlink" title="OPP特性的分析"></a>OPP特性的分析</h2><p>首先分析OPP特性：</p>
+<ol>
+<li>抽象：指抽象接口的类设计；</li>
+<li>封装和数据隐藏：通过访问控制实现封装，数据隐藏是封装的一种<ul>
+<li>数据隐藏(数据放在类的私有部分)</li>
+<li>私有成员函数(实现细节私有化)</li>
+<li>类函数定义和声明放在不同的文件中(类定义封装)</li>
+</ul>
+</li>
+<li>多态：通过重载(静态多态)和vtbl(虚函数表，动态多态)实现<ul>
+<li>vtbl</li>
+<li>运算符重载(成员函数和友元函数)</li>
+<li>函数重载</li>
+</ul>
+</li>
+<li>继承：is-a关系，公有继承(常用，派生类可以使用基类方法)，保护继承，私有继承。</li>
+<li>代码可重用性：库，类库，类继承。</li>
+</ol>
+<hr>
+<h2 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h2><h3 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h3><p>先上接口：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">operator+();</span><br><span class="line">operator*();</span><br><span class="line">operator[]();</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>注意在函数之前有返回类型和类的作用域声明。运算符重载有一定的限制：</p>
+<ol>
+<li>重载后的运算符必须至少有一个操作数是用户定义的类型(不然会引发已知类型的运算符冲突)；</li>
+<li>使用运算符不能违反运算符原来的句法规则(操作数数量和优先级不能改变，编译器无法解释)</li>
+<li>不能创建新的运算符，还有一些运算符不能重载(查看可重载运算符列表)</li>
+<li><code>=,(),[],-&gt;</code>只能通过成员函数重载。</li>
+</ol>
+<p><strong>一般而言(下面的问题2的解决方案中就有例外)，单目运算符最好重载为类的成员函数，双目运算符最好重载为类的友元函数。</strong></p>
+<h3 id="疑问"><a href="#疑问" class="headerlink" title="疑问"></a>疑问</h3><p>在运算符传递的过程中，运算符左侧的对象是调用对象，右侧的对象是传递的对象。于是就会产生两个问题：</p>
+<ol>
+<li>基本四则运算(<code>+，-，*，/</code>)的交换律怎么满足?(如<code>a = b*2</code>可以匹配，但<code>a = 2*b</code>无法匹配)</li>
+<li>如何对自定义的类使用<code>ostream</code>对象(<code>&lt;&lt;</code>如何重载)?(<code>a&lt;&lt;cout</code>太过奇怪)</li>
+</ol>
+<hr>
+<h2 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h2><p>先回答上面的问题,引入友元函数来解决,简单解释：</p>
+<h3 id="什么是友元"><a href="#什么是友元" class="headerlink" title="什么是友元"></a>什么是友元</h3><p>特性：访问权限与成员函数相同的非成员函数;<br>创建：</p>
+<ol>
+<li>在类声明中使用<code>friend</code>关键字；</li>
+<li>在类定义中不要使用<code>friend</code>和类限定符(因为不是成员函数);</li>
+</ol>
+<h3 id="如何解决问题"><a href="#如何解决问题" class="headerlink" title="如何解决问题"></a>如何解决问题</h3><p>问题的答案：</p>
+<ol>
+<li>问题1中的不同类型运算使用 成员函数重载+友元函数(不同类型)重载 做到分别匹配；或者使用自动转换(特定类型的构造函数)+友元函数(相同类型，都是自定义的)来实现。前者运行速度快但程序长，后者程序简短但时间内存开销大。</li>
+<li>非成员函数重载<code>&lt;&lt;</code>，并返回<code>ostream&amp;</code>来保证连续输出(必须返回引用，因为<code>ostream</code>没有共有的复制构造函数)。<code>ostream&amp; operator&lt;&lt;(ostream &amp;os,const A &amp;a)</code>。</li>
+</ol>
+<p>使用友元函数要注意规避二义性错误。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://yoursite.com/2016/05/21/二元运算符重载与友元函数/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
