@@ -33,7 +33,7 @@ OPP特性的分析首先分析OPP特性：
 抽象：指抽象接口的类设计；
 封装和数据隐藏：通过访问控制实现封装，数据隐藏是封装的一种
 数据隐藏(数据放在类">
-<meta property="og:updated_time" content="2016-05-21T09:43:07.273Z">
+<meta property="og:updated_time" content="2016-05-21T09:46:24.705Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二元运算符重载与友元函数">
 <meta name="twitter:description" content="一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》
@@ -259,7 +259,7 @@ ga('send', 'pageview');
 <li>问题1中的不同类型运算使用 成员函数重载+友元函数(不同类型)重载 做到分别匹配；或者使用自动转换(特定类型的构造函数)+友元函数(相同类型，都是自定义的)来实现。前者运行速度快但程序长，后者程序简短但时间内存开销大。</li>
 <li>非成员函数重载<code>&lt;&lt;</code>，并返回<code>ostream&amp;</code>来保证连续输出(必须返回引用，因为<code>ostream</code>没有共有的复制构造函数)。<code>ostream&amp; operator&lt;&lt;(ostream &amp;os,const A &amp;a)</code>。</li>
 </ol>
-<p>使用友元函数要注意规避二义性错误。</p>
+<p>使用友元函数要注意规避二义性错误。自动转换和转换函数会在下一篇中分析。</p>
 
     
   </div>
