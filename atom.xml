@@ -545,7 +545,7 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     <link href="http://yoursite.com/2016/04/23/Git%E5%91%BD%E4%BB%A4/"/>
     <id>http://yoursite.com/2016/04/23/Git命令/</id>
     <published>2016-04-23T06:27:10.000Z</published>
-    <updated>2016-05-21T12:00:00.943Z</updated>
+    <updated>2016-05-21T12:28:56.846Z</updated>
     
     <content type="html">&lt;p&gt;初学git，记录当时的一些解决方法。&lt;/p&gt;
 &lt;ol&gt;
@@ -553,7 +553,7 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
 &lt;li&gt;&lt;a href=&quot;https://segmentfault.com/q/1010000000115900&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;删除版本库中的提交&lt;/a&gt;注意，他将HEAD指向某一个commit，之后的commit和文件都被擦除了，删除前做好备份……&lt;/li&gt;
 &lt;li&gt;博客中常用的命令：hexo clean(删除一些没有用的缓存，比如删掉的tag等);hexo generate(生成一个commit?);hexo deploy(提交到远程)&lt;/li&gt;
 &lt;li&gt;使用过程中碰到&lt;a href=&quot;http://stackoverflow.com/questions/9299651/git-says-warning-permanently-added-to-the-list-of-known-hosts&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Warning: Permanently added ‘github.com,192.30.252.120’ (RSA) to the list of known hosts&lt;/a&gt;.这个问题在linux下很好解决,但我用windows for github，困扰好久，方法如下：在C:/user/###(你的用户名)/.ssh/新建config文件(无后缀),添加UserKnownHostsFile ~/.ssh/known_hosts,下一次访问你还会看到，但是之后(可能要多几次，我的三次才可以，因为在这个文件夹下添加了三个ip)就没有了。&lt;/li&gt;
-&lt;li&gt;windows下换行符&lt;a href=&quot;http://wangct23.github.io/2016/03/27/WARNING-LF-CRLF/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;warning: LF will be replaced by CRLF&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;windows下换行符&lt;a href=&quot;http://www.luckyonecn.com/blog/git-auto-crlf-problem/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;warning: LF will be replaced by CRLF&lt;/a&gt;，不知道为什么我的&lt;code&gt;git config --global autocrlf false&lt;/code&gt;没有用，因此直接在仓库中将config文件，core中修改autocrlf = false,没有则添加。&lt;/li&gt;
 &lt;/ol&gt;
 </content>
     
