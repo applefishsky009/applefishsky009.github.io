@@ -4,9 +4,9 @@
   <subtitle>山在地下，地山谦</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2016-05-21T09:46:24.705Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://rylcode.cn/"/>
+  <updated>2016-05-22T09:58:22.578Z</updated>
+  <id>http://rylcode.cn/</id>
   
   <author>
     <name>ryl</name>
@@ -16,9 +16,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>数字输入与atoi函数</title>
+    <link href="http://rylcode.cn/2016/05/22/%E6%95%B0%E5%AD%97%E8%BE%93%E5%85%A5%E4%B8%8Eatoi%E5%87%BD%E6%95%B0/"/>
+    <id>http://rylcode.cn/2016/05/22/数字输入与atoi函数/</id>
+    <published>2016-05-22T08:14:08.000Z</published>
+    <updated>2016-05-22T09:58:22.578Z</updated>
+    
+    <content type="html">&lt;p&gt;这篇博客来源于编程中的数字输入检查，最终选择&lt;code&gt;cingetline()&lt;/code&gt;加&lt;code&gt;atoi()&lt;/code&gt;函数进行输入检查转换。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;输入&quot;&gt;&lt;a href=&quot;#输入&quot; class=&quot;headerlink&quot; title=&quot;输入&quot;&gt;&lt;/a&gt;输入&lt;/h2&gt;&lt;h3 id=&quot;cin的学问&quot;&gt;&lt;a href=&quot;#cin的学问&quot; class=&quot;headerlink&quot; title=&quot;cin的学问&quot;&gt;&lt;/a&gt;cin的学问&lt;/h3&gt;&lt;p&gt;首先分析&lt;code&gt;cin&lt;/code&gt;,&lt;code&gt;cin.get()&lt;/code&gt;,&lt;code&gt;cin.getline()&lt;/code&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;cin&amp;lt;&amp;lt;&lt;/code&gt;会忽略&lt;strong&gt;有效字符前的&lt;/strong&gt;空格，换行符，制表符(开始有效输入之后非法就退出了)；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cin.get()&lt;/code&gt;读取每一个字符；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cin.getline()&lt;/code&gt;读取一行到字符串中，并把&lt;code&gt;\n&lt;/code&gt;替换为&lt;code&gt;\0&lt;/code&gt;存储。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;测试中发现更多的问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;cin.getline(字符指针(char*),字符个数N(int),结束符(char));其只读取N-1个字符，因为最后一个字符要补&lt;code&gt;\0&lt;/code&gt;,如果&lt;font color=&quot;red&quot;&gt;输入超过N-1&lt;/font&gt;,会将状态位设置：&lt;code&gt;ios_base::failbit&lt;/code&gt;(表示轻微错误，可以挽回。查看&lt;code&gt;cin.getline()&lt;/code&gt;源码很明显)，注意剩下的字符依然在输入队列中。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cin.getline()&lt;/code&gt;超过N-1输入状态位设置：&lt;code&gt;ios_base::failbit&lt;/code&gt;(可修复的)，这时候不能使&lt;code&gt;cin&amp;lt;&amp;lt;&lt;/code&gt;和&lt;code&gt;cin.get()&lt;/code&gt;和&lt;code&gt;cin.getline()&lt;/code&gt;，此时输入队列有值。应该用&lt;code&gt;cin.clear()&lt;/code&gt;设置状态位&lt;code&gt;ios_base::goodbit&lt;/code&gt;才能继续读取。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.zhihu.com/question/40160488&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cin.sync()&lt;/a&gt;亲自测试&lt;code&gt;cin.sync()&lt;/code&gt;并不是如网上所说的清空缓冲区(相信英语是对的…),&lt;code&gt;cin.ignore()&lt;/code&gt;才是。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在编写主界面时，经常会碰到如下语句：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int index = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;switch(index)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	case 1:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	case 2:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	......&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	default：&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;上述语句没有对&lt;code&gt;index&lt;/code&gt;变量进行输入检查，显然不安全，那么如何进行输入检查？&lt;/p&gt;
+&lt;h3 id=&quot;一般的错误处理机制&quot;&gt;&lt;a href=&quot;#一般的错误处理机制&quot; class=&quot;headerlink&quot; title=&quot;一般的错误处理机制&quot;&gt;&lt;/a&gt;一般的错误处理机制&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int index;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while (!cin&amp;lt;&amp;lt;idex) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cin.clear();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	while(cin.get()!=&amp;apos;\n&amp;apos;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		continue;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;&amp;quot;请再次输入&amp;quot;&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里会解决错误输入的问题,但是有一个新的问题，如输入&lt;code&gt;5a&lt;/code&gt;，&lt;code&gt;cin&amp;lt;&amp;lt;&lt;/code&gt;只会让&lt;code&gt;index=5&lt;/code&gt;，&lt;code&gt;a&lt;/code&gt;留在输入队列中，会影响下一次的输入。&lt;/p&gt;
+&lt;h3 id=&quot;atoi-引发的思考&quot;&gt;&lt;a href=&quot;#atoi-引发的思考&quot; class=&quot;headerlink&quot; title=&quot;atoi()引发的思考&quot;&gt;&lt;/a&gt;atoi()引发的思考&lt;/h3&gt;&lt;p&gt;原型：&lt;code&gt;int atoi(const char *nptr);&lt;/code&gt;;&lt;br&gt;头文件：&lt;code&gt;#include &amp;lt;cstdlib&amp;gt;&lt;/code&gt;;&lt;br&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/8%20-%20String%20to%20Integer%20(atoi)/8%20-%20String%20to%20Integer%20(atoi).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里有一个非常重要的概念，不管是数字输入韩式字符串转数字，都是&lt;strong&gt;遇到有效输入开始读取，直到碰到无效输入退出&lt;/strong&gt;&lt;br&gt;也就是说其实&lt;code&gt;cin&amp;lt;&amp;lt;&lt;/code&gt;就是对输入缓存进行了一个atoi()。区别就是在&lt;code&gt;cin&amp;lt;&amp;lt;&lt;/code&gt;退出之后同行中的非法输入(如果有)还是留在输入队列中，影响后续读入。&lt;br&gt;因此可以使用&lt;code&gt;cingetline()&lt;/code&gt;加&lt;code&gt;atoi()&lt;/code&gt;函数进行输入检查转换是安全的。代码如下：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int k = 0;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;char s1[20];	//注意分配空间和,很久没用char[]，&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cin.getline(s1,20);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;k = atoi(s1);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇博客来源于编程中的数字输入检查，最终选择&lt;code&gt;cingetline()&lt;/code&gt;加&lt;code&gt;atoi()&lt;/code&gt;函数进行输入检查转换。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;输入&quot;&gt;&lt;a href=&quot;#输入&quot; class=&quot;headerlink&quot; titl
+    
+    </summary>
+    
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
+    
+    
+      <category term="输入" scheme="http://rylcode.cn/tags/%E8%BE%93%E5%85%A5/"/>
+    
+      <category term="atoi" scheme="http://rylcode.cn/tags/atoi/"/>
+    
+  </entry>
+  
+  <entry>
     <title>二元运算符重载与友元函数</title>
-    <link href="http://yoursite.com/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/"/>
-    <id>http://yoursite.com/2016/05/21/二元运算符重载与友元函数/</id>
+    <link href="http://rylcode.cn/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/"/>
+    <id>http://rylcode.cn/2016/05/21/二元运算符重载与友元函数/</id>
     <published>2016-05-21T08:21:54.000Z</published>
     <updated>2016-05-21T09:46:24.705Z</updated>
     
@@ -80,21 +126,21 @@
     
     </summary>
     
-      <category term="C++的类" scheme="http://yoursite.com/categories/C-%E7%9A%84%E7%B1%BB/"/>
+      <category term="C++的类" scheme="http://rylcode.cn/categories/C-%E7%9A%84%E7%B1%BB/"/>
     
     
-      <category term="OPP" scheme="http://yoursite.com/tags/OPP/"/>
+      <category term="OPP" scheme="http://rylcode.cn/tags/OPP/"/>
     
-      <category term="运算符重载" scheme="http://yoursite.com/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
+      <category term="运算符重载" scheme="http://rylcode.cn/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     
-      <category term="友元函数" scheme="http://yoursite.com/tags/%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/"/>
+      <category term="友元函数" scheme="http://rylcode.cn/tags/%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/"/>
     
   </entry>
   
   <entry>
     <title>链表的精髓-持续更新</title>
-    <link href="http://yoursite.com/2016/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E7%B2%BE%E9%AB%93/"/>
-    <id>http://yoursite.com/2016/05/21/链表的精髓/</id>
+    <link href="http://rylcode.cn/2016/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E7%B2%BE%E9%AB%93/"/>
+    <id>http://rylcode.cn/2016/05/21/链表的精髓/</id>
     <published>2016-05-21T06:56:57.000Z</published>
     <updated>2016-05-21T07:26:13.070Z</updated>
     
@@ -111,17 +157,17 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Linked List" scheme="http://yoursite.com/tags/Linked-List/"/>
+      <category term="Linked List" scheme="http://rylcode.cn/tags/Linked-List/"/>
     
   </entry>
   
   <entry>
     <title>Binary Search的陷阱</title>
-    <link href="http://yoursite.com/2016/05/20/Binary-Search%E7%9A%84%E9%99%B7%E9%98%B1/"/>
-    <id>http://yoursite.com/2016/05/20/Binary-Search的陷阱/</id>
+    <link href="http://rylcode.cn/2016/05/20/Binary-Search%E7%9A%84%E9%99%B7%E9%98%B1/"/>
+    <id>http://rylcode.cn/2016/05/20/Binary-Search的陷阱/</id>
     <published>2016-05-20T09:03:16.000Z</published>
     <updated>2016-05-20T10:39:36.096Z</updated>
     
@@ -148,17 +194,17 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Binary Search" scheme="http://yoursite.com/tags/Binary-Search/"/>
+      <category term="Binary Search" scheme="http://rylcode.cn/tags/Binary-Search/"/>
     
   </entry>
   
   <entry>
     <title>模九同余与各位数字之和</title>
-    <link href="http://yoursite.com/2016/05/18/%E6%A8%A1%E4%B9%9D%E5%90%8C%E4%BD%99%E4%B8%8E%E5%90%84%E4%BD%8D%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/"/>
-    <id>http://yoursite.com/2016/05/18/模九同余与各位数字之和/</id>
+    <link href="http://rylcode.cn/2016/05/18/%E6%A8%A1%E4%B9%9D%E5%90%8C%E4%BD%99%E4%B8%8E%E5%90%84%E4%BD%8D%E6%95%B0%E5%AD%97%E4%B9%8B%E5%92%8C/"/>
+    <id>http://rylcode.cn/2016/05/18/模九同余与各位数字之和/</id>
     <published>2016-05-18T10:48:20.000Z</published>
     <updated>2016-05-19T02:13:25.162Z</updated>
     
@@ -183,17 +229,17 @@
     
     </summary>
     
-      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+      <category term="Math" scheme="http://rylcode.cn/categories/Math/"/>
     
     
-      <category term="Modular Arithmetic" scheme="http://yoursite.com/tags/Modular-Arithmetic/"/>
+      <category term="Modular Arithmetic" scheme="http://rylcode.cn/tags/Modular-Arithmetic/"/>
     
   </entry>
   
   <entry>
     <title>伯努利级数</title>
-    <link href="http://yoursite.com/2016/05/18/%E4%BC%AF%E5%8A%AA%E5%88%A9%E7%BA%A7%E6%95%B0/"/>
-    <id>http://yoursite.com/2016/05/18/伯努利级数/</id>
+    <link href="http://rylcode.cn/2016/05/18/%E4%BC%AF%E5%8A%AA%E5%88%A9%E7%BA%A7%E6%95%B0/"/>
+    <id>http://rylcode.cn/2016/05/18/伯努利级数/</id>
     <published>2016-05-18T06:26:36.000Z</published>
     <updated>2016-05-18T08:47:34.112Z</updated>
     
@@ -221,17 +267,17 @@
     
     </summary>
     
-      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+      <category term="Math" scheme="http://rylcode.cn/categories/Math/"/>
     
     
-      <category term="Bernoulli Series" scheme="http://yoursite.com/tags/Bernoulli-Series/"/>
+      <category term="Bernoulli Series" scheme="http://rylcode.cn/tags/Bernoulli-Series/"/>
     
   </entry>
   
   <entry>
     <title>牛顿迭代法</title>
-    <link href="http://yoursite.com/2016/05/17/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/05/17/牛顿迭代法/</id>
+    <link href="http://rylcode.cn/2016/05/17/%E7%89%9B%E9%A1%BF%E8%BF%AD%E4%BB%A3%E6%B3%95/"/>
+    <id>http://rylcode.cn/2016/05/17/牛顿迭代法/</id>
     <published>2016-05-17T04:29:01.000Z</published>
     <updated>2016-05-18T05:09:18.020Z</updated>
     
@@ -259,17 +305,17 @@
     
     </summary>
     
-      <category term="Math" scheme="http://yoursite.com/categories/Math/"/>
+      <category term="Math" scheme="http://rylcode.cn/categories/Math/"/>
     
     
-      <category term="Newton iterative method" scheme="http://yoursite.com/tags/Newton-iterative-method/"/>
+      <category term="Newton iterative method" scheme="http://rylcode.cn/tags/Newton-iterative-method/"/>
     
   </entry>
   
   <entry>
     <title>multimap简介</title>
-    <link href="http://yoursite.com/2016/05/16/multimap%E7%AE%80%E4%BB%8B/"/>
-    <id>http://yoursite.com/2016/05/16/multimap简介/</id>
+    <link href="http://rylcode.cn/2016/05/16/multimap%E7%AE%80%E4%BB%8B/"/>
+    <id>http://rylcode.cn/2016/05/16/multimap简介/</id>
     <published>2016-05-16T04:42:19.000Z</published>
     <updated>2016-05-16T06:31:48.006Z</updated>
     
@@ -300,17 +346,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="STL" scheme="http://yoursite.com/categories/STL/"/>
+      <category term="STL" scheme="http://rylcode.cn/categories/STL/"/>
     
     
-      <category term="multimap" scheme="http://yoursite.com/tags/multimap/"/>
+      <category term="multimap" scheme="http://rylcode.cn/tags/multimap/"/>
     
   </entry>
   
   <entry>
     <title>i++与++i的区别</title>
-    <link href="http://yoursite.com/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://yoursite.com/2016/05/06/i++与++i的区别/</id>
+    <link href="http://rylcode.cn/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://rylcode.cn/2016/05/06/i++与++i的区别/</id>
     <published>2016-05-06T06:22:46.000Z</published>
     <updated>2016-05-06T07:08:58.310Z</updated>
     
@@ -327,17 +373,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++的类" scheme="http://yoursite.com/categories/C-%E7%9A%84%E7%B1%BB/"/>
+      <category term="C++的类" scheme="http://rylcode.cn/categories/C-%E7%9A%84%E7%B1%BB/"/>
     
     
-      <category term="自增减运算符重载" scheme="http://yoursite.com/tags/%E8%87%AA%E5%A2%9E%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
+      <category term="自增减运算符重载" scheme="http://rylcode.cn/tags/%E8%87%AA%E5%A2%9E%E5%87%8F%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"/>
     
   </entry>
   
   <entry>
     <title>二叉树的递归遍历与栈遍历</title>
-    <link href="http://yoursite.com/2016/05/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E4%B8%8E%E6%A0%88%E9%81%8D%E5%8E%86/"/>
-    <id>http://yoursite.com/2016/05/06/二叉树的递归遍历与栈遍历/</id>
+    <link href="http://rylcode.cn/2016/05/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86%E4%B8%8E%E6%A0%88%E9%81%8D%E5%8E%86/"/>
+    <id>http://rylcode.cn/2016/05/06/二叉树的递归遍历与栈遍历/</id>
     <published>2016-05-06T02:43:22.000Z</published>
     <updated>2016-05-06T04:44:10.888Z</updated>
     
@@ -361,19 +407,19 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="二叉树" scheme="http://yoursite.com/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+      <category term="二叉树" scheme="http://rylcode.cn/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
     
-      <category term="非递归遍历" scheme="http://yoursite.com/tags/%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/"/>
+      <category term="非递归遍历" scheme="http://rylcode.cn/tags/%E9%9D%9E%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86/"/>
     
   </entry>
   
   <entry>
     <title>BP、KMP、改进的KMP</title>
-    <link href="http://yoursite.com/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/"/>
-    <id>http://yoursite.com/2016/05/03/BP、KMP、改进的KMP/</id>
+    <link href="http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/"/>
+    <id>http://rylcode.cn/2016/05/03/BP、KMP、改进的KMP/</id>
     <published>2016-05-03T06:57:41.000Z</published>
     <updated>2016-05-06T04:44:53.510Z</updated>
     
@@ -495,19 +541,19 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="字符串匹配" scheme="http://yoursite.com/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/"/>
+      <category term="字符串匹配" scheme="http://rylcode.cn/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D/"/>
     
-      <category term="KMP" scheme="http://yoursite.com/tags/KMP/"/>
+      <category term="KMP" scheme="http://rylcode.cn/tags/KMP/"/>
     
   </entry>
   
   <entry>
     <title>野指针与内存泄漏</title>
-    <link href="http://yoursite.com/2016/04/25/%E9%87%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
-    <id>http://yoursite.com/2016/04/25/野指针与内存泄漏/</id>
+    <link href="http://rylcode.cn/2016/04/25/%E9%87%8E%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
+    <id>http://rylcode.cn/2016/04/25/野指针与内存泄漏/</id>
     <published>2016-04-25T01:36:10.000Z</published>
     <updated>2016-05-06T04:55:02.316Z</updated>
     
@@ -531,19 +577,19 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="野指针" scheme="http://yoursite.com/tags/%E9%87%8E%E6%8C%87%E9%92%88/"/>
+      <category term="野指针" scheme="http://rylcode.cn/tags/%E9%87%8E%E6%8C%87%E9%92%88/"/>
     
-      <category term="内存泄漏" scheme="http://yoursite.com/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
+      <category term="内存泄漏" scheme="http://rylcode.cn/tags/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Git命令</title>
-    <link href="http://yoursite.com/2016/04/23/Git%E5%91%BD%E4%BB%A4/"/>
-    <id>http://yoursite.com/2016/04/23/Git命令/</id>
+    <link href="http://rylcode.cn/2016/04/23/Git%E5%91%BD%E4%BB%A4/"/>
+    <id>http://rylcode.cn/2016/04/23/Git命令/</id>
     <published>2016-04-23T06:27:10.000Z</published>
     <updated>2016-05-21T12:28:56.846Z</updated>
     
@@ -566,17 +612,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
+      <category term="Git" scheme="http://rylcode.cn/categories/Git/"/>
     
     
-      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+      <category term="Git" scheme="http://rylcode.cn/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>动态规划</title>
-    <link href="http://yoursite.com/2016/04/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
-    <id>http://yoursite.com/2016/04/22/动态规划/</id>
+    <link href="http://rylcode.cn/2016/04/22/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+    <id>http://rylcode.cn/2016/04/22/动态规划/</id>
     <published>2016-04-22T09:07:05.000Z</published>
     <updated>2016-05-19T03:23:15.666Z</updated>
     
@@ -612,17 +658,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="动态规划" scheme="http://yoursite.com/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
+      <category term="动态规划" scheme="http://rylcode.cn/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"/>
     
   </entry>
   
   <entry>
     <title>贪心算法</title>
-    <link href="http://yoursite.com/2016/04/22/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
-    <id>http://yoursite.com/2016/04/22/贪心算法/</id>
+    <link href="http://rylcode.cn/2016/04/22/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/"/>
+    <id>http://rylcode.cn/2016/04/22/贪心算法/</id>
     <published>2016-04-22T07:54:31.000Z</published>
     <updated>2016-05-18T02:02:07.495Z</updated>
     
@@ -658,17 +704,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="贪心" scheme="http://yoursite.com/tags/%E8%B4%AA%E5%BF%83/"/>
+      <category term="贪心" scheme="http://rylcode.cn/tags/%E8%B4%AA%E5%BF%83/"/>
     
   </entry>
   
   <entry>
     <title>函数参数的传递</title>
-    <link href="http://yoursite.com/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
-    <id>http://yoursite.com/2016/04/22/函数参数的传递/</id>
+    <link href="http://rylcode.cn/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
+    <id>http://rylcode.cn/2016/04/22/函数参数的传递/</id>
     <published>2016-04-22T01:42:40.000Z</published>
     <updated>2016-05-06T06:20:28.808Z</updated>
     
@@ -711,21 +757,21 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="引用" scheme="http://yoursite.com/tags/%E5%BC%95%E7%94%A8/"/>
+      <category term="引用" scheme="http://rylcode.cn/tags/%E5%BC%95%E7%94%A8/"/>
     
-      <category term="参数传递" scheme="http://yoursite.com/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
+      <category term="参数传递" scheme="http://rylcode.cn/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
     
-      <category term="左值和右值" scheme="http://yoursite.com/tags/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/"/>
+      <category term="左值和右值" scheme="http://rylcode.cn/tags/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/"/>
     
   </entry>
   
   <entry>
     <title>BFS和DFS</title>
-    <link href="http://yoursite.com/2016/04/21/BFS%E5%92%8CDFS/"/>
-    <id>http://yoursite.com/2016/04/21/BFS和DFS/</id>
+    <link href="http://rylcode.cn/2016/04/21/BFS%E5%92%8CDFS/"/>
+    <id>http://rylcode.cn/2016/04/21/BFS和DFS/</id>
     <published>2016-04-21T07:28:51.000Z</published>
     <updated>2016-05-16T08:00:17.518Z</updated>
     
@@ -752,19 +798,19 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+      <category term="BFS" scheme="http://rylcode.cn/tags/BFS/"/>
     
-      <category term="DFS" scheme="http://yoursite.com/tags/DFS/"/>
+      <category term="DFS" scheme="http://rylcode.cn/tags/DFS/"/>
     
   </entry>
   
   <entry>
     <title>共用体、枚举和浮点数存储</title>
-    <link href="http://yoursite.com/2016/04/21/%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
-    <id>http://yoursite.com/2016/04/21/共用体、枚举和浮点数存储/</id>
+    <link href="http://rylcode.cn/2016/04/21/%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
+    <id>http://rylcode.cn/2016/04/21/共用体、枚举和浮点数存储/</id>
     <published>2016-04-21T02:38:14.000Z</published>
     <updated>2016-05-06T04:58:24.186Z</updated>
     
@@ -832,21 +878,21 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="共用体" scheme="http://yoursite.com/tags/%E5%85%B1%E7%94%A8%E4%BD%93/"/>
+      <category term="共用体" scheme="http://rylcode.cn/tags/%E5%85%B1%E7%94%A8%E4%BD%93/"/>
     
-      <category term="枚举" scheme="http://yoursite.com/tags/%E6%9E%9A%E4%B8%BE/"/>
+      <category term="枚举" scheme="http://rylcode.cn/tags/%E6%9E%9A%E4%B8%BE/"/>
     
-      <category term="浮点数存储" scheme="http://yoursite.com/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
+      <category term="浮点数存储" scheme="http://rylcode.cn/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>string类与结构体</title>
-    <link href="http://yoursite.com/2016/04/21/string%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"/>
-    <id>http://yoursite.com/2016/04/21/string类与结构体/</id>
+    <link href="http://rylcode.cn/2016/04/21/string%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"/>
+    <id>http://rylcode.cn/2016/04/21/string类与结构体/</id>
     <published>2016-04-21T02:36:21.000Z</published>
     <updated>2016-05-06T04:59:55.241Z</updated>
     
@@ -879,19 +925,19 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="string.find()" scheme="http://yoursite.com/tags/string-find/"/>
+      <category term="string.find()" scheme="http://rylcode.cn/tags/string-find/"/>
     
-      <category term="结构体" scheme="http://yoursite.com/tags/%E7%BB%93%E6%9E%84%E4%BD%93/"/>
+      <category term="结构体" scheme="http://rylcode.cn/tags/%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     
   </entry>
   
   <entry>
     <title>cctype与进制数转化</title>
-    <link href="http://yoursite.com/2016/04/21/cctype%E4%B8%8E%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E5%8C%96/"/>
-    <id>http://yoursite.com/2016/04/21/cctype与进制数转化/</id>
+    <link href="http://rylcode.cn/2016/04/21/cctype%E4%B8%8E%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E5%8C%96/"/>
+    <id>http://rylcode.cn/2016/04/21/cctype与进制数转化/</id>
     <published>2016-04-21T01:16:59.000Z</published>
     <updated>2016-05-06T04:55:45.555Z</updated>
     
@@ -923,81 +969,12 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     </summary>
     
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
+      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
     
     
-      <category term="进制转化" scheme="http://yoursite.com/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/"/>
+      <category term="进制转化" scheme="http://rylcode.cn/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E5%8C%96/"/>
     
-      <category term="cctype" scheme="http://yoursite.com/tags/cctype/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>类型转换</title>
-    <link href="http://yoursite.com/2016/04/20/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
-    <id>http://yoursite.com/2016/04/20/类型转换/</id>
-    <published>2016-04-20T02:53:34.000Z</published>
-    <updated>2016-05-06T05:00:51.097Z</updated>
-    
-    <content type="html">&lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不同算术类型的赋值；&lt;/li&gt;
-&lt;li&gt;包含不同类型的表达式；&lt;/li&gt;
-&lt;li&gt;函数调用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;初始化和赋值进行的转换&quot;&gt;&lt;a href=&quot;#初始化和赋值进行的转换&quot; class=&quot;headerlink&quot; title=&quot;初始化和赋值进行的转换&quot;&gt;&lt;/a&gt;初始化和赋值进行的转换&lt;/h2&gt;&lt;p&gt;扩展没有问题；缩窄可能会有一些问题:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;精度降低(double-&amp;gt;float等);&lt;/li&gt;
-&lt;li&gt;数字截短(float-&amp;gt;int等);&lt;/li&gt;
-&lt;li&gt;数据丢失(long-&amp;gt;short等)。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;列表初始化时的转换&quot;&gt;&lt;a href=&quot;#列表初始化时的转换&quot; class=&quot;headerlink&quot; title=&quot;列表初始化时的转换&quot;&gt;&lt;/a&gt;列表初始化时的转换&lt;/h2&gt;&lt;p&gt;不允许缩窄。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;表达式的转换&quot;&gt;&lt;a href=&quot;#表达式的转换&quot; class=&quot;headerlink&quot; title=&quot;表达式的转换&quot;&gt;&lt;/a&gt;表达式的转换&lt;/h2&gt;&lt;h3 id=&quot;自动转化&quot;&gt;&lt;a href=&quot;#自动转化&quot; class=&quot;headerlink&quot; title=&quot;自动转化&quot;&gt;&lt;/a&gt;自动转化&lt;/h3&gt;&lt;p&gt;&lt;code&gt;int&lt;/code&gt;型是计算机最自然的语言，运算速度最快。整型提升(integral promotion)规则如下:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;计算表达式时，C++将&lt;code&gt;bool&lt;/code&gt;，&lt;code&gt;char&lt;/code&gt;，&lt;code&gt;unsigned char&lt;/code&gt;，&lt;code&gt;signed char&lt;/code&gt;，&lt;code&gt;short&lt;/code&gt;都转换为&lt;code&gt;int&lt;/code&gt;；&lt;/li&gt;
-&lt;li&gt;如果&lt;code&gt;short&lt;/code&gt;和&lt;code&gt;int&lt;/code&gt;一样长，&lt;code&gt;unsigned short&lt;/code&gt;转换为&lt;code&gt;unsigned int&lt;/code&gt;，如果&lt;code&gt;short&lt;/code&gt;比&lt;code&gt;int&lt;/code&gt;短，&lt;code&gt;unsigned short&lt;/code&gt;转换为&lt;code&gt;int&lt;/code&gt;。总之，以不损失数据为原则。&lt;/li&gt;
-&lt;li&gt;在不损失数据的原则下，同级别有符号数比无符号数优先。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;算术运算的转化&quot;&gt;&lt;a href=&quot;#算术运算的转化&quot; class=&quot;headerlink&quot; title=&quot;算术运算的转化&quot;&gt;&lt;/a&gt;算术运算的转化&lt;/h3&gt;&lt;p&gt;将较小的类型转换成较大的类型。依次判断long double?-&amp;gt;double?-&amp;gt;float?-&amp;gt;integral promotion!可以看到浮点型优先于整型。具体过程可以查看C++11版本的效验表。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;传递参数时的转换&quot;&gt;&lt;a href=&quot;#传递参数时的转换&quot; class=&quot;headerlink&quot; title=&quot;传递参数时的转换&quot;&gt;&lt;/a&gt;传递参数时的转换&lt;/h2&gt;&lt;p&gt;由C++函数原型控制，若取消函数原型的控制:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;将对&lt;code&gt;char&lt;/code&gt;和&lt;code&gt;short&lt;/code&gt;整型提升;&lt;/li&gt;
-&lt;li&gt;将&lt;code&gt;float&lt;/code&gt;参数提升为&lt;code&gt;double&lt;/code&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;强制类型转换&quot;&gt;&lt;a href=&quot;#强制类型转换&quot; class=&quot;headerlink&quot; title=&quot;强制类型转换&quot;&gt;&lt;/a&gt;强制类型转换&lt;/h2&gt;&lt;p&gt;C++设计新格式，让强制类型转换像函数一样调用:&lt;code&gt;typename (value)&lt;/code&gt;更严格的限制允许的类型转换，以下4个类型转换符：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;dynamic_cast&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;const_cast&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;static_cast&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;reinterpret_cast&lt;/code&gt;;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;相关：因为指针大小固定(指针的本质是一个存放地址的内存，32位编译器是4字节),任意指针之间可以进行强制转化。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;C++自动执行以下类型转换：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;不同算术类型的赋值；&lt;/li&gt;
-&lt;li&gt;包含不同类型的表达式；&lt;/li&gt;
-&lt;li&gt;函数调用&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;初始化和赋值进行的转换&quot;&gt;&lt;a href=&quot;#初始化和赋值进行的转换&quot; cla
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://yoursite.com/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="类型转换" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/"/>
-    
-      <category term="整型提升" scheme="http://yoursite.com/tags/%E6%95%B4%E5%9E%8B%E6%8F%90%E5%8D%87/"/>
+      <category term="cctype" scheme="http://rylcode.cn/tags/cctype/"/>
     
   </entry>
   

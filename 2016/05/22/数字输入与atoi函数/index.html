@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数字输入与atoi函数 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="输入,atoi," />
+  
+
+  <meta name="description" content="这篇博客来源于编程中的数字输入检查，最终选择cingetline()加atoi()函数进行输入检查转换。
+
+输入cin的学问首先分析cin,cin.get(),cin.getline():
+
+cin&amp;lt;&amp;lt;会忽略有效字符前的空格，换行符，制表符(开始有效输入之后非法就退出了)；
+cin.get()读取每一个字符；
+cin.getline()读取一行到字符串中，并把\n替换为\0存储。
+
+测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数字输入与atoi函数">
+<meta property="og:url" content="http://rylcode.cn/2016/05/22/数字输入与atoi函数/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="这篇博客来源于编程中的数字输入检查，最终选择cingetline()加atoi()函数进行输入检查转换。
+
+输入cin的学问首先分析cin,cin.get(),cin.getline():
+
+cin&amp;lt;&amp;lt;会忽略有效字符前的空格，换行符，制表符(开始有效输入之后非法就退出了)；
+cin.get()读取每一个字符；
+cin.getline()读取一行到字符串中，并把\n替换为\0存储。
+
+测">
+<meta property="og:updated_time" content="2016-05-22T09:58:22.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数字输入与atoi函数">
+<meta name="twitter:description" content="这篇博客来源于编程中的数字输入检查，最终选择cingetline()加atoi()函数进行输入检查转换。
+
+输入cin的学问首先分析cin,cin.get(),cin.getline():
+
+cin&amp;lt;&amp;lt;会忽略有效字符前的空格，换行符，制表符(开始有效输入之后非法就退出了)；
+cin.get()读取每一个字符；
+cin.getline()读取一行到字符串中，并把\n替换为\0存储。
+
+测">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#输入"><span class="toc-text">输入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cin的学问"><span class="toc-text">cin的学问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一般的错误处理机制"><span class="toc-text">一般的错误处理机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#atoi-引发的思考"><span class="toc-text">atoi()引发的思考</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-数字输入与atoi函数" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">数字输入与atoi函数</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.22</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/22/数字输入与atoi函数/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这篇博客来源于编程中的数字输入检查，最终选择<code>cingetline()</code>加<code>atoi()</code>函数进行输入检查转换。</p>
+<hr>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><h3 id="cin的学问"><a href="#cin的学问" class="headerlink" title="cin的学问"></a>cin的学问</h3><p>首先分析<code>cin</code>,<code>cin.get()</code>,<code>cin.getline()</code>:</p>
+<ol>
+<li><code>cin&lt;&lt;</code>会忽略<strong>有效字符前的</strong>空格，换行符，制表符(开始有效输入之后非法就退出了)；</li>
+<li><code>cin.get()</code>读取每一个字符；</li>
+<li><code>cin.getline()</code>读取一行到字符串中，并把<code>\n</code>替换为<code>\0</code>存储。</li>
+</ol>
+<p>测试中发现更多的问题：</p>
+<ol>
+<li>cin.getline(字符指针(char*),字符个数N(int),结束符(char));其只读取N-1个字符，因为最后一个字符要补<code>\0</code>,如果<font color="red">输入超过N-1</font>,会将状态位设置：<code>ios_base::failbit</code>(表示轻微错误，可以挽回。查看<code>cin.getline()</code>源码很明显)，注意剩下的字符依然在输入队列中。</li>
+<li><code>cin.getline()</code>超过N-1输入状态位设置：<code>ios_base::failbit</code>(可修复的)，这时候不能使<code>cin&lt;&lt;</code>和<code>cin.get()</code>和<code>cin.getline()</code>，此时输入队列有值。应该用<code>cin.clear()</code>设置状态位<code>ios_base::goodbit</code>才能继续读取。</li>
+<li><a href="https://www.zhihu.com/question/40160488" target="_blank" rel="external">cin.sync()</a>亲自测试<code>cin.sync()</code>并不是如网上所说的清空缓冲区(相信英语是对的…),<code>cin.ignore()</code>才是。</li>
+</ol>
+<p>在编写主界面时，经常会碰到如下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int index = 0;</span><br><span class="line">switch(index)&#123;</span><br><span class="line">	case 1:</span><br><span class="line">	case 2:</span><br><span class="line">	......</span><br><span class="line">	default：</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述语句没有对<code>index</code>变量进行输入检查，显然不安全，那么如何进行输入检查？</p>
+<h3 id="一般的错误处理机制"><a href="#一般的错误处理机制" class="headerlink" title="一般的错误处理机制"></a>一般的错误处理机制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int index;</span><br><span class="line">while (!cin&lt;&lt;idex) &#123;</span><br><span class="line">	cin.clear();</span><br><span class="line">	while(cin.get()!=&apos;\n&apos;)</span><br><span class="line">		continue;</span><br><span class="line">	cout&lt;&lt;&quot;请再次输入&quot;&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里会解决错误输入的问题,但是有一个新的问题，如输入<code>5a</code>，<code>cin&lt;&lt;</code>只会让<code>index=5</code>，<code>a</code>留在输入队列中，会影响下一次的输入。</p>
+<h3 id="atoi-引发的思考"><a href="#atoi-引发的思考" class="headerlink" title="atoi()引发的思考"></a>atoi()引发的思考</h3><p>原型：<code>int atoi(const char *nptr);</code>;<br>头文件：<code>#include &lt;cstdlib&gt;</code>;<br><a href="https://github.com/applefishsky009/LeetCode/blob/master/8%20-%20String%20to%20Integer%20(atoi)/8%20-%20String%20to%20Integer%20(atoi).cpp" target="_blank" rel="external">LeetCode</a></p>
+<p>这里有一个非常重要的概念，不管是数字输入韩式字符串转数字，都是<strong>遇到有效输入开始读取，直到碰到无效输入退出</strong><br>也就是说其实<code>cin&lt;&lt;</code>就是对输入缓存进行了一个atoi()。区别就是在<code>cin&lt;&lt;</code>退出之后同行中的非法输入(如果有)还是留在输入队列中，影响后续读入。<br>因此可以使用<code>cingetline()</code>加<code>atoi()</code>函数进行输入检查转换是安全的。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int k = 0;</span><br><span class="line">char s1[20];	//注意分配空间和,很久没用char[]，</span><br><span class="line">cin.getline(s1,20);</span><br><span class="line">k = atoi(s1);</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/05/22/数字输入与atoi函数/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
