@@ -30,7 +30,7 @@
 无符号数没有溢出，只有进/借位(微机原理CF标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。
 有符号数没有进/借位，只有溢出(微机原理OF标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在">
 <meta property="og:image" content="http://i.imgur.com/W3CYdOb.png">
-<meta property="og:updated_time" content="2016-05-06T05:12:17.044Z">
+<meta property="og:updated_time" content="2016-05-23T04:44:45.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="溢出">
 <meta name="twitter:description" content="数值溢出原理C++Plus在P44已经说的很清楚，如下。有几点需要注意的地方：
@@ -214,6 +214,7 @@ ga('send', 'pageview');
 <li>无符号数没有溢出，只有<strong>进/借位</strong>(微机原理<code>CF</code>标示)，因为C++确保无符号数类型超越限制后在另一极端取值的行为。</li>
 <li>有符号数没有进/借位，只有<strong>溢出</strong>(微机原理<code>OF</code>标示)，因为C++无法确保有符号数上溢下溢后在另一极端取值的行为。(在我测试的时候并没有发现违背这一现象，可能有特殊情况)。</li>
 </ol>
+<p>(2016.5.23更新)，明白了反码存在的意义，很显然就清楚数值转化的原理，也就是说，补码中没有任何变化(因为硬件没有有符号无符号，只能根据输出设置标识位让编译器去解释)，就只是最高位解释为数字还是符号位!!!<br><a href="http://blog.sina.com.cn/s/blog_6e44841b0100n2h6.html" target="_blank" rel="external">汇编的一个标准两套指令</a></p>
 <hr>
 <h2 id="运算溢出"><a href="#运算溢出" class="headerlink" title="运算溢出"></a>运算溢出</h2><h3 id="判断加法溢出"><a href="#判断加法溢出" class="headerlink" title="判断加法溢出"></a>判断加法溢出</h3><p>可以像这里一样分情况或者根据圆图分析，会发现</p>
 <ol>
