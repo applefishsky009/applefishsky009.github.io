@@ -31,7 +31,7 @@ nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKerne
 nCols，nRows：结构元素的行宽与列高；
 anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直；
 nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
-<meta property="og:updated_time" content="2016-05-24T07:56:45.958Z">
+<meta property="og:updated_time" content="2016-05-24T08:07:38.959Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作2-迁移">
 <meta name="twitter:description" content="图像膨胀腐蚀
@@ -220,15 +220,16 @@ ga('send', 'pageview');
 </li>
 <li><p>图像腐蚀：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvErode( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</li>
+</ul>
 </li>
-</ol>
-<p>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</p>
-<ol>
-<li>图像膨胀：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvDilate( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
+<li><p>图像膨胀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvDilate( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</li>
+</ul>
 </li>
-</ol>
-<p>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</p>
-<ol>
 <li>彩蛋：颜色产生的方法一般采用加色法，因此0代表黑色(什么都没有),255代表白色(所有色彩组合),(另一种叫减色法);</li>
 <li>彩蛋2：四舍五入，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int cvRound (double value);</span><br></pre></td></tr></table></figure>
 </li>
@@ -273,12 +274,15 @@ ga('send', 'pageview');
 <li>参数param1与方法有关，主要可以用来控制边缘的类型和粗细。选定合适的block_size后，我们就可以选定一个更大的阈值param1，更好的抑制噪声。</li>
 </ul>
 </li>
-<li>利用Hough变换在二值图像中找到直线：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvSeq* cvHoughLines2( CvArr* image, void* line_storage, int method,double rho, double theta, int threshold,double param1=0, double param2=0 );</span><br></pre></td></tr></table></figure>
+<li><p>利用Hough变换在二值图像中找到直线：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvSeq* cvHoughLines2( CvArr* image, void* line_storage, int method,double rho, double theta, int threshold,double param1=0, double param2=0 );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解释比较麻烦，直接上例子:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cvHoughLines2( dst, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 80, 30, 10 );</span><br><span class="line">for( i = 0; i &lt; lines-&gt;total; i++ )&#123;</span><br><span class="line">	CvPoint* line =(CvPoint*)cvGetSeqElem(lines,i);</span><br><span class="line">	cvLine( color_dst, line[0], line[1], CV_RGB(255,0,0), 3, 8 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>解释比较麻烦，直接上例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cvHoughLines2( dst, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 80, 30, 10 );</span><br><span class="line">for( i = 0; i &lt; lines-&gt;total; i++ )&#123;</span><br><span class="line">	CvPoint* line =(CvPoint*)cvGetSeqElem(lines,i);</span><br><span class="line">	cvLine( color_dst, line[0], line[1], CV_RGB(255,0,0), 3, 8 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>绘制连接两个点的线段：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvLine( CvArr* img, CvPoint pt1, CvPoint pt2, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>绘制连接两个点的线段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvLine( CvArr* img, CvPoint pt1, CvPoint pt2, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure></li>
 </ol>
 
     
