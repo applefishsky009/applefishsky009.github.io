@@ -39,7 +39,7 @@
 
 清空内存存储块：
 1void cvClearMemStorage( CvMemStorage* storag">
-<meta property="og:updated_time" content="2016-05-24T07:47:31.242Z">
+<meta property="og:updated_time" content="2016-05-24T07:55:27.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作3-迁移">
 <meta name="twitter:description" content="动态内存存储及操作
@@ -178,7 +178,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态内存存储及操作"><span class="toc-text">动态内存存储及操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#椭圆与多边形"><span class="toc-text">椭圆与多边形</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态内存存储及操作"><span class="toc-text">动态内存存储及操作</span></a></li></ol>
   </div>
 
 
@@ -239,37 +239,19 @@ ga('send', 'pageview');
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvString cvMemStorageAllocString( CvMemStorage* storage, const char* ptr, int len=-1 );</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>CvString结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct CvString &#123; </span><br><span class="line">	int len; </span><br><span class="line">	char* ptr; </span><br><span class="line">&#125;;</span><br><span class="line">``` </span><br><span class="line">7. 保存内存块的位置(地址)：</span><br></pre></td></tr></table></figure></p>
+<p>CvString结构：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct CvString &#123; </span><br><span class="line">	int len; </span><br><span class="line">	char* ptr; </span><br><span class="line">&#125;;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">7. 保存内存块的位置(地址)：</span><br></pre></td></tr></table></figure></p>
 <p>void cvSaveMemStoragePos( const CvMemStorage<em> storage, CvMemStoragePos</em> pos );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8. 恢复内存存储块的位置(地址):</span><br></pre></td></tr></table></figure></p>
-<p>void cvRestoreMemStoragePos( CvMemStorage<em> storage, CvMemStoragePos</em> pos );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"></span><br><span class="line">## 轮廓</span><br><span class="line"></span><br><span class="line">1. 创建一序列：</span><br></pre></td></tr></table></figure></p>
+<p>void cvRestoreMemStoragePos( CvMemStorage<em> storage, CvMemStoragePos</em> pos );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 轮廓</span><br><span class="line"></span><br><span class="line">1. 创建一序列：</span><br></pre></td></tr></table></figure></p>
 <p>CvSeq<em> cvCreateSeq(int seq_flags,int header_size,int elem_size,CvMemStorage</em> storage)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 从二值图像中检索轮廓，并返回检测到的轮廓的个数：</span><br></pre></td></tr></table></figure></p>
-<p>CvContourScanner cvStartFindContours( CvArr<em> image,CvMemStorage</em> storage,int header_size=sizeof(CvContour),int mode=CV_RETR_LIST,int method=CV_CHAIN_APPROX_SIMPLE,CvPoint offset=cvPoint(0,0) );<br>``</p>
-<ol>
-<li><p>绘制外部和内部轮廓：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvDrawContours( CvArr *img, CvSeq* contour,CvScalar external_color, CvScalar hole_color,int max_level, int thickness=1,int line_type=8, CvPoint offset=cvPoint(0,0) );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>计算整个或部分轮廓的面积</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double cvContourArea( const CvArr* contour, CvSlice slice=CV_WHOLE_SEQ );</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<hr>
-<h2 id="椭圆与多边形"><a href="#椭圆与多边形" class="headerlink" title="椭圆与多边形"></a>椭圆与多边形</h2><ol>
-<li><p>特殊函数CvScalar：一个单独的成员val，指向4个double型数组的指针；例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define CV_RGB(r,g,b) cvScalar((b),(g),(r),0)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>绘制椭圆圆弧和椭圆扇形：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvEllipse( CvArr* img, CvPoint center, CvSize axes, double angle,double start_angle, double end_angle, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>例子：<br><code>cvEllipse(image,centerpoint,cvSize(20,20),0,0,45,cvScalar(20,48,160),1,8,0);</code></p>
-<ol>
-<li><p>用指定精度逼近多边形曲线：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvSeq* cvApproxPoly( const void* src_seq, int header_size, CvMemStorage* storage,int method, double parameter, int parameter2=0 );</span><br></pre></td></tr></table></figure>
+<p>CvContourScanner cvStartFindContours( CvArr<em> image,CvMemStorage</em> storage,int header_size=sizeof(CvContour),int mode=CV_RETR_LIST,int method=CV_CHAIN_APPROX_SIMPLE,CvPoint offset=cvPoint(0,0) );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 绘制外部和内部轮廓：</span><br></pre></td></tr></table></figure></p>
+<p>void cvDrawContours( CvArr <em>img, CvSeq</em> contour,CvScalar external_color, CvScalar hole_color,int max_level, int thickness=1,int line_type=8, CvPoint offset=cvPoint(0,0) );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 计算整个或部分轮廓的面积</span><br></pre></td></tr></table></figure></p>
+<p>double cvContourArea( const CvArr* contour, CvSlice slice=CV_WHOLE_SEQ );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 椭圆与多边形</span><br><span class="line"></span><br><span class="line">1. 特殊函数CvScalar：一个单独的成员val，指向4个double型数组的指针；例：</span><br></pre></td></tr></table></figure></p>
+<p>#define CV_RGB(r,g,b) cvScalar((b),(g),(r),0)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 绘制椭圆圆弧和椭圆扇形：</span><br></pre></td></tr></table></figure></p>
+<p>void cvEllipse( CvArr* img, CvPoint center, CvSize axes, double angle,double start_angle, double end_angle, CvScalar color,int thickness=1, int line_type=8, int shift=0 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">`cvEllipse(image,centerpoint,cvSize(20,20),0,0,45,cvScalar(20,48,160),1,8,0);`</span><br><span class="line">3. 用指定精度逼近多边形曲线：</span><br></pre></td></tr></table></figure></p>
+<p>CvSeq<em> cvApproxPoly( const void</em> src_seq, int header_size, CvMemStorage* storage,int method, double parameter, int parameter2=0 );<br>```</p>
 <ul>
 <li>使用多边形来近似表示一个轮廓。多边形逼近的目的是为了减少轮廓的顶点数目。但多边形逼近的结果依然是一个轮廓，只是这个轮廓相对要粗旷一些。</li>
 </ul>
-</li>
-</ol>
 
     
   </div>
