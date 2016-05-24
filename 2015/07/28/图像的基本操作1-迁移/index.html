@@ -33,7 +33,7 @@ IPLImage结构用来定义图像指针
 1IPLImage *src,*dst；
 
 Mat类型也可以代表和显示图像，但其侧重于计算，数学性较高">
-<meta property="og:updated_time" content="2016-05-24T08:31:29.429Z">
+<meta property="og:updated_time" content="2016-05-24T08:36:27.929Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作1-迁移">
 <meta name="twitter:description" content="在部署这个博客之前初学OPENCV的时候，在CSDN上写过一段时间的博客，当然内容比较简单基础，现在将博客迁移过来，会有很大部分的删减(只提供接口和注意事项，已经养成了学习习惯，有问题多查opencv帮助文档)，以便以后温习OPENCV。
@@ -222,7 +222,7 @@ ga('send', 'pageview');
 <li>IplImage由CvMat派生，而CvMat由CvArr派生即CvArr -&gt; CvMat -&gt; IplImage，CvArr用作函数的参数，无论传入的是CvMat或IplImage，内部都是按CvMat处理。</li>
 </ul>
 </li>
-<li>读取图像：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IplImage* cvLoadImage(const char* filename,int iscolor);</span><br><span class="line">``` </span><br><span class="line">3. 创建窗口：</span><br></pre></td></tr></table></figure>
+<li>读取图像：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">IplImage* cvLoadImage(const char* filename,int iscolor);</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">3. 创建窗口：</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>int cvNamedWindow (const char* name, int flags=CV_WINDOW_AUTOSIZE );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4. 显示图像：</span><br></pre></td></tr></table></figure></p>
