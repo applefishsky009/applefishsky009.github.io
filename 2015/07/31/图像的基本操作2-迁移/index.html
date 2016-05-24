@@ -31,7 +31,7 @@ nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKerne
 nCols，nRows：结构元素的行宽与列高；
 anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直；
 nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
-<meta property="og:updated_time" content="2016-05-24T08:07:38.959Z">
+<meta property="og:updated_time" content="2016-05-24T08:11:11.062Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作2-迁移">
 <meta name="twitter:description" content="图像膨胀腐蚀
@@ -241,11 +241,12 @@ ga('send', 'pageview');
 </ol>
 <hr>
 <h2 id="颜色空间操作"><a href="#颜色空间操作" class="headerlink" title="颜色空间操作"></a>颜色空间操作</h2><ol>
-<li>色彩空间转化：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCvtColor( const CvArr* src, CvArr* dst, int code );</span><br></pre></td></tr></table></figure>
+<li><p>色彩空间转化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCvtColor( const CvArr* src, CvArr* dst, int code );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要注意正确制定色彩空间(code参数)。</li>
+</ul>
 </li>
-</ol>
-<p>要注意正确制定色彩空间(code参数)。</p>
-<ol>
 <li>分割多通道图像：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvSplit( const CvArr* src, CvArr* dst0, CvArr* dst1,CvArr* dst2, CvArr* dst3 );</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
