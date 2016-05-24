@@ -39,7 +39,7 @@
 
 清空内存存储块：
 1void cvClearMemStorage( CvMemStorage* storag">
-<meta property="og:updated_time" content="2016-05-24T08:15:24.437Z">
+<meta property="og:updated_time" content="2016-05-24T08:23:02.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作3-迁移">
 <meta name="twitter:description" content="动态内存存储及操作
@@ -272,7 +272,8 @@ ga('send', 'pageview');
 <li><p>绘制椭圆圆弧和椭圆扇形：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvEllipse( CvArr* img, CvPoint center, CvSize axes, double angle,double start_angle, double end_angle, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure>
 <ul>
-<li>例子：<br><code>cvEllipse(image,centerpoint,cvSize(20,20),0,0,45,cvScalar(20,48,160),1,8,0);</code></li>
+<li>例子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cvEllipse(image,centerpoint,cvSize(20,20),0,0,45,cvScalar(20,48,160),1,8,0);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 </li>
 <li><p>用指定精度逼近多边形曲线：</p>
