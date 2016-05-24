@@ -31,7 +31,7 @@ nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKerne
 nCols，nRows：结构元素的行宽与列高；
 anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直；
 nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
-<meta property="og:updated_time" content="2016-05-24T07:29:55.587Z">
+<meta property="og:updated_time" content="2016-05-24T07:45:37.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图像的基本操作2-迁移">
 <meta name="twitter:description" content="图像膨胀腐蚀
@@ -166,7 +166,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图像膨胀腐蚀"><span class="toc-text">图像膨胀腐蚀</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图像膨胀腐蚀"><span class="toc-text">图像膨胀腐蚀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图像平滑"><span class="toc-text">图像平滑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色空间操作"><span class="toc-text">颜色空间操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边缘与直线检测"><span class="toc-text">边缘与直线检测</span></a></li></ol>
   </div>
 
 
@@ -224,19 +224,62 @@ ga('send', 'pageview');
 </ol>
 <p>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</p>
 <ol>
-<li>图像膨胀：<figure class="highlight plain"><figcaption><span>cvDilate( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</span><br><span class="line">4. 彩蛋：颜色产生的方法一般采用加色法，因此0代表黑色(什么都没有),255代表白色(所有色彩组合),(另一种叫减色法);</span><br><span class="line">5. 彩蛋2：四舍五入，</span><br></pre></td></tr></table></figure>
+<li>图像膨胀：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvDilate( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>int cvRound (double value);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 图像平滑</span><br><span class="line"></span><br><span class="line">1. 各种方法的图像平滑:</span><br></pre></td></tr></table></figure></p>
-<p>void cvSmooth( const CvArr<em> src, CvArr</em> dst,int smoothtype=CV_GAUSSIAN,int param1=3, int param2=0, double param3=0, double param4=0 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 颜色空间操作</span><br><span class="line"></span><br><span class="line">1. 色彩空间转化：</span><br></pre></td></tr></table></figure></p>
-<p>void cvCvtColor( const CvArr<em> src, CvArr</em> dst, int code );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">要注意正确制定色彩空间(code参数)。</span><br><span class="line">2. 分割多通道图像：</span><br></pre></td></tr></table></figure></p>
-<p>void cvSplit( const CvArr<em> src, CvArr</em> dst0, CvArr<em> dst1,CvArr</em> dst2, CvArr* dst3 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">## 边缘与直线检测</span><br><span class="line"></span><br><span class="line">1. 固定阈值操作：</span><br></pre></td></tr></table></figure></p>
-<p>void cvThreshold( const CvArr<em> src, CvArr</em> dst, double threshold,double max_value, int threshold_type );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2. 用 Canny 算法做边缘检测：</span><br></pre></td></tr></table></figure></p>
-<p>void cvCanny( const CvArr<em> image, CvArr</em> edges, double threshold1,double threshold2, int aperture_size=3 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	+ `aperture_size`Sobel算子内核大小。</span><br><span class="line">	+ 如果一个像素的梯度大于上限阈值，则被认为是边缘像素;如果低于下限阈值，则被抛弃;如果介于二者之间，只有当其与高于上限阈值的像素连接时才被接受。</span><br><span class="line">	+ canny推荐的上下限阈值比是2:1-3:1；</span><br><span class="line">3. 自适应阈值方法：</span><br></pre></td></tr></table></figure></p>
-<p>void cvAdaptiveThreshold( const CvArr<em> src, CvArr</em> dst, double max_value,int adaptive_method=CV_ADAPTIVE_THRESH_MEAN_C,int threshold_type=CV_THRESH_BINARY,int block_size=3, double param1=5 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	+ 自适应二值化对于光照不均的文字，条码等，效果很好。窗口大小选择，考虑被检测物体尺寸。</span><br><span class="line">	+ 自适应阈值化中的阈值完全是由你所选择的邻域所确定：</span><br><span class="line">		+ 如果你所选择的邻域非常小（比如3×3），那么很显然阈值的“自适应程度”就非常高，这在结果图像中就表现为边缘检测的效果。</span><br><span class="line">		+ 域选择的比较大（比如31×31），那么阈值的“自适应程度”就比较低，这在结果图像中就表现为二值化的效果。</span><br><span class="line">	+ 参数param1与方法有关，主要可以用来控制边缘的类型和粗细。选定合适的block_size后，我们就可以选定一个更大的阈值param1，更好的抑制噪声。</span><br><span class="line">4. 利用Hough变换在二值图像中找到直线：</span><br></pre></td></tr></table></figure></p>
-<p>CvSeq<em> cvHoughLines2( CvArr</em> image, void* line_storage, int method,double rho, double theta, int threshold,double param1=0, double param2=0 );<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解释比较麻烦，直接上例子:</span><br></pre></td></tr></table></figure></p>
-<p>lines = cvHoughLines2( dst, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 80, 30, 10 );<br>for( i = 0; i &lt; lines-&gt;total; i++ ){<br>    CvPoint<em> line =(CvPoint</em>)cvGetSeqElem(lines,i);<br>    cvLine( color_dst, line[0], line[1], CV_RGB(255,0,0), 3, 8 );<br>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5. 绘制连接两个点的线段：</span><br></pre></td></tr></table></figure></p>
-<p>void cvLine( CvArr* img, CvPoint pt1, CvPoint pt2, CvScalar color,int thickness=1, int line_type=8, int shift=0 );<br>```</p>
+<p>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</p>
+<ol>
+<li>彩蛋：颜色产生的方法一般采用加色法，因此0代表黑色(什么都没有),255代表白色(所有色彩组合),(另一种叫减色法);</li>
+<li>彩蛋2：四舍五入，<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int cvRound (double value);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="图像平滑"><a href="#图像平滑" class="headerlink" title="图像平滑"></a>图像平滑</h2><ol>
+<li>各种方法的图像平滑:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvSmooth( const CvArr* src, CvArr* dst,int smoothtype=CV_GAUSSIAN,int param1=3, int param2=0, double param3=0, double param4=0 );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="颜色空间操作"><a href="#颜色空间操作" class="headerlink" title="颜色空间操作"></a>颜色空间操作</h2><ol>
+<li>色彩空间转化：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCvtColor( const CvArr* src, CvArr* dst, int code );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>要注意正确制定色彩空间(code参数)。</p>
+<ol>
+<li>分割多通道图像：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvSplit( const CvArr* src, CvArr* dst0, CvArr* dst1,CvArr* dst2, CvArr* dst3 );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="边缘与直线检测"><a href="#边缘与直线检测" class="headerlink" title="边缘与直线检测"></a>边缘与直线检测</h2><ol>
+<li><p>固定阈值操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvThreshold( const CvArr* src, CvArr* dst, double threshold,double max_value, int threshold_type );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 Canny 算法做边缘检测：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCanny( const CvArr* image, CvArr* edges, double threshold1,double threshold2, int aperture_size=3 );</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>aperture_size</code>Sobel算子内核大小。</li>
+<li>如果一个像素的梯度大于上限阈值，则被认为是边缘像素;如果低于下限阈值，则被抛弃;如果介于二者之间，只有当其与高于上限阈值的像素连接时才被接受。</li>
+<li>canny推荐的上下限阈值比是2:1-3:1；</li>
+</ul>
+</li>
+<li><p>自适应阈值方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvAdaptiveThreshold( const CvArr* src, CvArr* dst, double max_value,int adaptive_method=CV_ADAPTIVE_THRESH_MEAN_C,int threshold_type=CV_THRESH_BINARY,int block_size=3, double param1=5 );</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自适应二值化对于光照不均的文字，条码等，效果很好。窗口大小选择，考虑被检测物体尺寸。</li>
+<li>自适应阈值化中的阈值完全是由你所选择的邻域所确定：<ul>
+<li>如果你所选择的邻域非常小（比如3×3），那么很显然阈值的“自适应程度”就非常高，这在结果图像中就表现为边缘检测的效果。</li>
+<li>域选择的比较大（比如31×31），那么阈值的“自适应程度”就比较低，这在结果图像中就表现为二值化的效果。</li>
+</ul>
+</li>
+<li>参数param1与方法有关，主要可以用来控制边缘的类型和粗细。选定合适的block_size后，我们就可以选定一个更大的阈值param1，更好的抑制噪声。</li>
+</ul>
+</li>
+<li>利用Hough变换在二值图像中找到直线：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvSeq* cvHoughLines2( CvArr* image, void* line_storage, int method,double rho, double theta, int threshold,double param1=0, double param2=0 );</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>解释比较麻烦，直接上例子:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cvHoughLines2( dst, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 80, 30, 10 );</span><br><span class="line">for( i = 0; i &lt; lines-&gt;total; i++ )&#123;</span><br><span class="line">	CvPoint* line =(CvPoint*)cvGetSeqElem(lines,i);</span><br><span class="line">	cvLine( color_dst, line[0], line[1], CV_RGB(255,0,0), 3, 8 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>绘制连接两个点的线段：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvLine( CvArr* img, CvPoint pt1, CvPoint pt2, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure></li>
+</ol>
 
     
   </div>
