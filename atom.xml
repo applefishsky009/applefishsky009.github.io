@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://rylcode.cn/"/>
-  <updated>2016-05-23T07:56:57.639Z</updated>
+  <updated>2016-05-25T07:44:06.882Z</updated>
   <id>http://rylcode.cn/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类的自动转换与转换函数</title>
+    <link href="http://rylcode.cn/2016/05/25/%E7%B1%BB%E7%9A%84%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2%E4%B8%8E%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0/"/>
+    <id>http://rylcode.cn/2016/05/25/类的自动转换与转换函数/</id>
+    <published>2016-05-25T03:42:52.000Z</published>
+    <updated>2016-05-25T07:44:06.882Z</updated>
+    
+    <content type="html">&lt;p&gt;先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。&lt;br&gt;因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：\( N = (D/s)^2 \)&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;自动转换&quot;&gt;&lt;a href=&quot;#自动转换&quot; class=&quot;headerlink&quot; title=&quot;自动转换&quot;&gt;&lt;/a&gt;自动转换&lt;/h2&gt;&lt;p&gt;自动转换是通过类的构造函数作为自动转换的函数，但构造函数必须是&lt;strong&gt;一个参数的构造函数&lt;/strong&gt;或者&lt;strong&gt;其他参数提供默认值&lt;/strong&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关键字&lt;code&gt;explicit&lt;/code&gt;可以关闭自动转换的特性，只能显示强制转换。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;转换函数&quot;&gt;&lt;a href=&quot;#转换函数&quot; class=&quot;headerlink&quot; title=&quot;转换函数&quot;&gt;&lt;/a&gt;转换函数&lt;/h2&gt;&lt;p&gt;转换函数是自动转换相反功能的转换，将类对象转化为基本数据类型。方式应该如基本数据类型的强制类型转换&lt;code&gt;int()&lt;/code&gt;,&lt;code&gt;double()&lt;/code&gt;。只不过作为类的方法调用，没有返回值，没有参数。函数原型：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;B::operator double();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;虽然没有返回类型，但其也会返回所需要的值。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;关键字在C++11中也可以用于转换函数，关闭自动转换特性；&lt;/li&gt;
+&lt;li&gt;也可以用非转换函数代替转换函数：&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;int B::B2int();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;转换函数和友元函数&quot;&gt;&lt;a href=&quot;#转换函数和友元函数&quot; class=&quot;headerlink&quot; title=&quot;转换函数和友元函数&quot;&gt;&lt;/a&gt;转换函数和友元函数&lt;/h2&gt;&lt;p&gt;考虑&lt;code&gt;b+5&lt;/code&gt;与&lt;code&gt;5+b&lt;/code&gt;应该有相同的值(返回一个B类实例)，都要使用友元函数&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过赋值运算符重载&lt;code&gt;B operate+(int)&lt;/code&gt;匹配1式，通过友元函数&lt;code&gt;friend B operate+(int,B);&lt;/code&gt;匹配2式。&lt;/li&gt;
+&lt;li&gt;通过&lt;code&gt;B(int)&lt;/code&gt;构造函数转化基本数据类型，友元函数&lt;code&gt;friend B operate+(B,B);&lt;/code&gt;来匹配1和2式。&lt;ul&gt;
+&lt;li&gt;第一种方法程序简短，但每次调用构造函数，增加时间内存开销；&lt;/li&gt;
+&lt;li&gt;第二种方法运行速度快，但程序工作量大。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果经常使用这种类型相加，为了时间和内存，应该重载加法;如果偶尔使用，为了简单应该依赖自动转换。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。&lt;br&gt;因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：
+    
+    </summary>
+    
+      <category term="C++的类" scheme="http://rylcode.cn/categories/C-%E7%9A%84%E7%B1%BB/"/>
+    
+    
+      <category term="自动转换" scheme="http://rylcode.cn/tags/%E8%87%AA%E5%8A%A8%E8%BD%AC%E6%8D%A2/"/>
+    
+      <category term="转换函数" scheme="http://rylcode.cn/tags/%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>使用栈-持续更新</title>
@@ -106,7 +155,7 @@
     <link href="http://rylcode.cn/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/"/>
     <id>http://rylcode.cn/2016/05/21/二元运算符重载与友元函数/</id>
     <published>2016-05-21T08:21:54.000Z</published>
-    <updated>2016-05-21T09:46:24.705Z</updated>
+    <updated>2016-05-25T07:56:27.540Z</updated>
     
     <content type="html">&lt;p&gt;一般来说，在基础知识的介绍中不会提供代码，无论哪一本语法书中都会有大篇幅的代码和例子，而博客只是用作总结提纲复习之用，没有必要提供代码(STL等代码分析除外)，如果需要细致的分析，建议查看《C++ primer plus》和《C++ Primer》&lt;/p&gt;
 &lt;hr&gt;
@@ -119,13 +168,13 @@
 &lt;li&gt;类函数定义和声明放在不同的文件中(类定义封装)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;多态：通过重载(静态多态)和vtbl(虚函数表，动态多态)实现&lt;ul&gt;
+&lt;li&gt;多态(一种消息对不同对象有多个动作)：通过重载(静态多态)和vtbl(虚函数表，动态多态)实现&lt;ul&gt;
 &lt;li&gt;vtbl&lt;/li&gt;
 &lt;li&gt;运算符重载(成员函数和友元函数)&lt;/li&gt;
 &lt;li&gt;函数重载&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;继承：is-a关系，公有继承(常用，派生类可以使用基类方法)，保护继承，私有继承。&lt;/li&gt;
+&lt;li&gt;继承(用于代码复用)：is-a关系，公有继承(常用，派生类可以使用基类方法)，保护继承，私有继承。&lt;/li&gt;
 &lt;li&gt;代码可重用性：库，类库，类继承。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -182,13 +231,13 @@
     <link href="http://rylcode.cn/2016/05/21/%E9%93%BE%E8%A1%A8%E7%9A%84%E7%B2%BE%E9%AB%93/"/>
     <id>http://rylcode.cn/2016/05/21/链表的精髓/</id>
     <published>2016-05-21T06:56:57.000Z</published>
-    <updated>2016-05-21T07:26:13.070Z</updated>
+    <updated>2016-05-25T03:40:38.291Z</updated>
     
     <content type="html">&lt;p&gt;术有穷而道无穷。一些简单的方法在实践过程中往往知易行难。在这里我会持续记录一些链表操作中值得注意的事情以及一些小小的有趣的事情。希望大家可以会心一笑。在链表操作中，发现最重要的一个概念就是&lt;font color=&quot;red&quot;&gt;前驱&lt;/font&gt;(后继同样重要，但是链表的后继太容易得到)。对于链表的调整，包括插入，删除，转置等操作，都涉及到链表结构的重组，在重组中前驱就是串联各个节点的线。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;前驱和后继&quot;&gt;&lt;a href=&quot;#前驱和后继&quot; class=&quot;headerlink&quot; title=&quot;前驱和后继&quot;&gt;&lt;/a&gt;前驱和后继&lt;/h2&gt;&lt;p&gt;链表自带后继&lt;code&gt;-&amp;gt;next&lt;/code&gt;,最后一个节点的后继通常为&lt;code&gt;nullptr&lt;/code&gt;，可以看作超尾。而编程过程中往往喜欢创建一个头节点，这是由于链表头是最特殊的一个节点，他没有前驱，不能写入循环中，往往会有&lt;code&gt;if else&lt;/code&gt;之类的语句单独处理头节点(深受其害)。于是产生了这种方法，给链表建立一个虚拟的头节点，一切问题引刃而解。&lt;/p&gt;
 &lt;h3 id=&quot;逆置部分链表&quot;&gt;&lt;a href=&quot;#逆置部分链表&quot; class=&quot;headerlink&quot; title=&quot;逆置部分链表&quot;&gt;&lt;/a&gt;逆置部分链表&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/92%20-%20Reverse%20Linked%20List%20II/92%20-%20Reverse%20Linked%20List%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LeetCode链表的部分转置&lt;/a&gt;&lt;br&gt;头指针L永远是前驱,q是当前要处理的节点，p是pre指针，指向最前的节点(&lt;code&gt;q = p;p = p-&amp;gt;next;&lt;/code&gt;)。而转置的核心代码只有两行(&lt;code&gt;q-&amp;gt;next = l;l = q;&lt;/code&gt;)。&lt;/p&gt;
-&lt;h3 id=&quot;删除当前节点&quot;&gt;&lt;a href=&quot;#删除当前节点&quot; class=&quot;headerlink&quot; title=&quot;删除当前节点&quot;&gt;&lt;/a&gt;删除当前节点&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/applefishsky009/BeautyOfProgramming/blob/master/3.4%20-%20%E4%BB%8E%E6%97%A0%E5%A4%B4%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9/3.4.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;狸猫换太子&lt;/a&gt;&lt;br&gt;这个没见过很难想到，见过绝对就回了……&lt;/p&gt;
+&lt;h3 id=&quot;删除当前节点&quot;&gt;&lt;a href=&quot;#删除当前节点&quot; class=&quot;headerlink&quot; title=&quot;删除当前节点&quot;&gt;&lt;/a&gt;删除当前节点&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/applefishsky009/BeautyOfProgramming/blob/master/3.4%20-%20%E4%BB%8E%E6%97%A0%E5%A4%B4%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9/3.4.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;狸猫换太子&lt;/a&gt;&lt;br&gt;这个没见过很难想到，见过绝对就会了……&lt;/p&gt;
 </content>
     
     <summary type="html">
@@ -925,51 +974,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
       <category term="枚举" scheme="http://rylcode.cn/tags/%E6%9E%9A%E4%B8%BE/"/>
     
       <category term="浮点数存储" scheme="http://rylcode.cn/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>string类与结构体</title>
-    <link href="http://rylcode.cn/2016/04/21/string%E7%B1%BB%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"/>
-    <id>http://rylcode.cn/2016/04/21/string类与结构体/</id>
-    <published>2016-04-21T02:36:21.000Z</published>
-    <updated>2016-05-06T04:59:55.241Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;h3 id=&quot;string运算符&quot;&gt;&lt;a href=&quot;#string运算符&quot; class=&quot;headerlink&quot; title=&quot;string运算符&quot;&gt;&lt;/a&gt;string运算符&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的运算符重载在头文件&lt;code&gt;string&lt;/code&gt;里,如&lt;code&gt;+&lt;/code&gt;,&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;。注意&lt;code&gt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot; = &amp;quot;ab&amp;quot;&lt;/code&gt;,&lt;code&gt;&amp;#39;a&amp;#39;+&amp;#39;b&amp;#39; = 195&lt;/code&gt;,前者是字符串拼接，后者是字符常量相加。但是&lt;code&gt;cout&amp;lt;&amp;lt;&amp;quot;a&amp;quot;+&amp;quot;b&amp;quot;;&lt;/code&gt;这个语句是错误的，必须至少声明两个&lt;code&gt;string&lt;/code&gt;类型。&lt;/p&gt;
-&lt;h3 id=&quot;string-find&quot;&gt;&lt;a href=&quot;#string-find&quot; class=&quot;headerlink&quot; title=&quot;string.find()&quot;&gt;&lt;/a&gt;string.find()&lt;/h3&gt;&lt;p&gt;&lt;code&gt;string&lt;/code&gt;类的&lt;code&gt;find()&lt;/code&gt;方法，可以用于找子串，返回子串在原串出现的下标。&lt;a href=&quot;http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;和&lt;a href=&quot;http://www.cplusplus.com/reference/string/string/find/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;有详细解释，使用时注意以下三点：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；&lt;/li&gt;
-&lt;li&gt;如果没有找到，返回值是&lt;code&gt;string::npos&lt;/code&gt;，他是一个很大的正数；&lt;/li&gt;
-&lt;li&gt;返回值是&lt;code&gt;size_t&lt;/code&gt;，一般可用&lt;code&gt;auto&lt;/code&gt;来代替。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;以下代码可以输出全部的匹配位置：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;string s1 = &amp;quot;abcdbcgbcdbjjkklbcdbcdbcdghjbcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;string s2 = &amp;quot;bcd&amp;quot;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;auto k  = s1.find(s2);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;while (k != string::npos)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	cout&amp;lt;&amp;lt;k&amp;lt;&amp;lt;endl;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	k = s1.find(s2,k+1);	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;h3 id=&quot;string-substr&quot;&gt;&lt;a href=&quot;#string-substr&quot; class=&quot;headerlink&quot; title=&quot;string.substr()&quot;&gt;&lt;/a&gt;string.substr()&lt;/h3&gt;&lt;p&gt;函数声明如下：&lt;code&gt;_Myt substr(size_type _Off = 0, size_type _Count = npos) const&lt;/code&gt;，返回从指定位置(_Off)开始的长度为(_Count)的子字符串。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;结构体&quot;&gt;&lt;a href=&quot;#结构体&quot; class=&quot;headerlink&quot; title=&quot;结构体&quot;&gt;&lt;/a&gt;结构体&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;基本项，可以列表化，提倡外部结构声明，可以使用赋值运算符,列表初始化不允许缩窄转换。&lt;/li&gt;
-&lt;li&gt;结构体对准：&lt;ul&gt;
-&lt;li&gt;结构体首地址能被其最宽基本类型成员的大小所整除；&lt;/li&gt;
-&lt;li&gt;结构体每个成员相对于结构体首地址的偏移量(offset)都是成员大小整数倍；&lt;/li&gt;
-&lt;li&gt;结构体的总大小是结构体最宽基本类型成员大小的整数倍。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;与此相关还有栈对准，某些编译器(x64?)按大小对准，&lt;code&gt;char&lt;/code&gt;位于栈底，&lt;code&gt;double&lt;/code&gt;位于栈顶排列。找不到相关资料了，需要深入了解。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;示例：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;//Definition for a binary tree node.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;struct TreeNode &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	int val;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *left;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode *right;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	TreeNode(int x) : val(x), left(NULL), right(NULL) &amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;string类&quot;&gt;&lt;a href=&quot;#string类&quot; class=&quot;headerlink&quot; title=&quot;string类&quot;&gt;&lt;/a&gt;string类&lt;/h2&gt;&lt;h3 id=&quot;string运算符&quot;&gt;&lt;a href=&quot;#string运算符&quot; class=&quot;header
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="string.find()" scheme="http://rylcode.cn/tags/string-find/"/>
-    
-      <category term="结构体" scheme="http://rylcode.cn/tags/%E7%BB%93%E6%9E%84%E4%BD%93/"/>
     
   </entry>
   

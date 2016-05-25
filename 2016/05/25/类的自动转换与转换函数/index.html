@@ -7,30 +7,30 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>链表的精髓-持续更新 | 孤云两角，去天一握</title>
+  <title>类的自动转换与转换函数 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Linked List," />
+    <meta name="keywords" content="自动转换,转换函数," />
   
 
-  <meta name="description" content="术有穷而道无穷。一些简单的方法在实践过程中往往知易行难。在这里我会持续记录一些链表操作中值得注意的事情以及一些小小的有趣的事情。希望大家可以会心一笑。在链表操作中，发现最重要的一个概念就是前驱(后继同样重要，但是链表的后继太容易得到)。对于链表的调整，包括插入，删除，转置等操作，都涉及到链表结构的重组，在重组中前驱就是串联各个节点的线。
+  <meta name="description" content="先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：\( N = (D/s)^2 \)
 
-前驱和后继链表自带后继-&amp;gt;next,最后一个节点的后">
+自动转换自动转换是通过类的构造函数作为自动转换的函数，但构造函数必须是一个参数的构造函数或者其他">
 <meta property="og:type" content="article">
-<meta property="og:title" content="链表的精髓-持续更新">
-<meta property="og:url" content="http://rylcode.cn/2016/05/21/链表的精髓/index.html">
+<meta property="og:title" content="类的自动转换与转换函数">
+<meta property="og:url" content="http://rylcode.cn/2016/05/25/类的自动转换与转换函数/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="术有穷而道无穷。一些简单的方法在实践过程中往往知易行难。在这里我会持续记录一些链表操作中值得注意的事情以及一些小小的有趣的事情。希望大家可以会心一笑。在链表操作中，发现最重要的一个概念就是前驱(后继同样重要，但是链表的后继太容易得到)。对于链表的调整，包括插入，删除，转置等操作，都涉及到链表结构的重组，在重组中前驱就是串联各个节点的线。
+<meta property="og:description" content="先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：\( N = (D/s)^2 \)
 
-前驱和后继链表自带后继-&amp;gt;next,最后一个节点的后">
-<meta property="og:updated_time" content="2016-05-25T03:40:38.291Z">
+自动转换自动转换是通过类的构造函数作为自动转换的函数，但构造函数必须是一个参数的构造函数或者其他">
+<meta property="og:updated_time" content="2016-05-25T07:44:06.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="链表的精髓-持续更新">
-<meta name="twitter:description" content="术有穷而道无穷。一些简单的方法在实践过程中往往知易行难。在这里我会持续记录一些链表操作中值得注意的事情以及一些小小的有趣的事情。希望大家可以会心一笑。在链表操作中，发现最重要的一个概念就是前驱(后继同样重要，但是链表的后继太容易得到)。对于链表的调整，包括插入，删除，转置等操作，都涉及到链表结构的重组，在重组中前驱就是串联各个节点的线。
+<meta name="twitter:title" content="类的自动转换与转换函数">
+<meta name="twitter:description" content="先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：\( N = (D/s)^2 \)
 
-前驱和后继链表自带后继-&amp;gt;next,最后一个节点的后">
+自动转换自动转换是通过类的构造函数作为自动转换的函数，但构造函数必须是一个参数的构造函数或者其他">
 
   
 
@@ -157,20 +157,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前驱和后继"><span class="toc-text">前驱和后继</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#逆置部分链表"><span class="toc-text">逆置部分链表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除当前节点"><span class="toc-text">删除当前节点</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动转换"><span class="toc-text">自动转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转换函数"><span class="toc-text">转换函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#转换函数和友元函数"><span class="toc-text">转换函数和友元函数</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-链表的精髓" class="article article-type-post" itemprop="blogPost">
+   <article id="post-类的自动转换与转换函数" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">链表的精髓-持续更新</h1>
+    <h1 class="post-title">类的自动转换与转换函数</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.05.21</span>
+        <span>2016.05.25</span>
       </span>
 
       
@@ -183,7 +183,7 @@ ga('send', 'pageview');
       
   <span class="article-category">
     <i class="icon-list"></i>
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
   </span>
 
 
@@ -191,7 +191,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/05/21/链表的精髓/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/05/25/类的自动转换与转换函数/#disqus_thread"></a>
         </span>
       
 
@@ -200,11 +200,31 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>术有穷而道无穷。一些简单的方法在实践过程中往往知易行难。在这里我会持续记录一些链表操作中值得注意的事情以及一些小小的有趣的事情。希望大家可以会心一笑。在链表操作中，发现最重要的一个概念就是<font color="red">前驱</font>(后继同样重要，但是链表的后继太容易得到)。对于链表的调整，包括插入，删除，转置等操作，都涉及到链表结构的重组，在重组中前驱就是串联各个节点的线。</p>
+      <p>先来一个彩蛋:C++ primer plus P410中写道，如果发现自己在随机漫步时，请保持自信，迈大步走。虽然在蜿蜒前进的过程中仍旧无法控制前进的方向，但至少会走得远一点。WTF?卖萌= =。<br>因为对于随机漫步问题,步数(N)，步长(s),净距离(D)有如下关系：\( N = (D/s)^2 \)</p>
 <hr>
-<h2 id="前驱和后继"><a href="#前驱和后继" class="headerlink" title="前驱和后继"></a>前驱和后继</h2><p>链表自带后继<code>-&gt;next</code>,最后一个节点的后继通常为<code>nullptr</code>，可以看作超尾。而编程过程中往往喜欢创建一个头节点，这是由于链表头是最特殊的一个节点，他没有前驱，不能写入循环中，往往会有<code>if else</code>之类的语句单独处理头节点(深受其害)。于是产生了这种方法，给链表建立一个虚拟的头节点，一切问题引刃而解。</p>
-<h3 id="逆置部分链表"><a href="#逆置部分链表" class="headerlink" title="逆置部分链表"></a>逆置部分链表</h3><p><a href="https://github.com/applefishsky009/LeetCode/blob/master/92%20-%20Reverse%20Linked%20List%20II/92%20-%20Reverse%20Linked%20List%20II.cpp" target="_blank" rel="external">LeetCode链表的部分转置</a><br>头指针L永远是前驱,q是当前要处理的节点，p是pre指针，指向最前的节点(<code>q = p;p = p-&gt;next;</code>)。而转置的核心代码只有两行(<code>q-&gt;next = l;l = q;</code>)。</p>
-<h3 id="删除当前节点"><a href="#删除当前节点" class="headerlink" title="删除当前节点"></a>删除当前节点</h3><p><a href="https://github.com/applefishsky009/BeautyOfProgramming/blob/master/3.4%20-%20%E4%BB%8E%E6%97%A0%E5%A4%B4%E5%8D%95%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%88%A0%E9%99%A4%E8%8A%82%E7%82%B9/3.4.cpp" target="_blank" rel="external">狸猫换太子</a><br>这个没见过很难想到，见过绝对就会了……</p>
+<h2 id="自动转换"><a href="#自动转换" class="headerlink" title="自动转换"></a>自动转换</h2><p>自动转换是通过类的构造函数作为自动转换的函数，但构造函数必须是<strong>一个参数的构造函数</strong>或者<strong>其他参数提供默认值</strong>。</p>
+<ol>
+<li>关键字<code>explicit</code>可以关闭自动转换的特性，只能显示强制转换。</li>
+</ol>
+<hr>
+<h2 id="转换函数"><a href="#转换函数" class="headerlink" title="转换函数"></a>转换函数</h2><p>转换函数是自动转换相反功能的转换，将类对象转化为基本数据类型。方式应该如基本数据类型的强制类型转换<code>int()</code>,<code>double()</code>。只不过作为类的方法调用，没有返回值，没有参数。函数原型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B::operator double();</span><br></pre></td></tr></table></figure></p>
+<p>虽然没有返回类型，但其也会返回所需要的值。</p>
+<ol>
+<li>关键字在C++11中也可以用于转换函数，关闭自动转换特性；</li>
+<li>也可以用非转换函数代替转换函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int B::B2int();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="转换函数和友元函数"><a href="#转换函数和友元函数" class="headerlink" title="转换函数和友元函数"></a>转换函数和友元函数</h2><p>考虑<code>b+5</code>与<code>5+b</code>应该有相同的值(返回一个B类实例)，都要使用友元函数</p>
+<ol>
+<li>通过赋值运算符重载<code>B operate+(int)</code>匹配1式，通过友元函数<code>friend B operate+(int,B);</code>匹配2式。</li>
+<li>通过<code>B(int)</code>构造函数转化基本数据类型，友元函数<code>friend B operate+(B,B);</code>来匹配1和2式。<ul>
+<li>第一种方法程序简短，但每次调用构造函数，增加时间内存开销；</li>
+<li>第二种方法运行速度快，但程序工作量大。</li>
+</ul>
+</li>
+<li>如果经常使用这种类型相加，为了时间和内存，应该重载加法;如果偶尔使用，为了简单应该依赖自动转换。</li>
+</ol>
 
     
   </div>
@@ -320,7 +340,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://rylcode.cn/2016/05/21/链表的精髓/';
+    var disqus_url = 'http://rylcode.cn/2016/05/25/类的自动转换与转换函数/';
     
     (function(){
       var dsq = document.createElement('script');
