@@ -15,40 +15,34 @@
     <meta name="keywords" content="类的构造函数,类的析构函数," />
   
 
-  <meta name="description" content="类的简介类的规范由两部分组成：
+  <meta name="description" content="首先强调很重要的一点，类声明只描述如何分配内存，但其并不会分配内存。，只有调用构造函数的时候才会分配内存。
+
+类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
-定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
-
-
-类方法定义 – 类的实现细节
-C++通常把接口（类">
+定义位于声明中的函数都将自动成为内联函数，若">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类的构造函数与析构函数初探">
 <meta property="og:url" content="http://rylcode.cn/2016/04/07/类的构造函数与析构函数初探/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="类的简介类的规范由两部分组成：
+<meta property="og:description" content="首先强调很重要的一点，类声明只描述如何分配内存，但其并不会分配内存。，只有调用构造函数的时候才会分配内存。
+
+类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
-定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
-
-
-类方法定义 – 类的实现细节
-C++通常把接口（类">
-<meta property="og:updated_time" content="2016-05-24T02:00:32.969Z">
+定义位于声明中的函数都将自动成为内联函数，若">
+<meta property="og:updated_time" content="2016-05-26T07:57:51.017Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类的构造函数与析构函数初探">
-<meta name="twitter:description" content="类的简介类的规范由两部分组成：
+<meta name="twitter:description" content="首先强调很重要的一点，类声明只描述如何分配内存，但其并不会分配内存。，只有调用构造函数的时候才会分配内存。
+
+类的简介类的规范由两部分组成：
 类声明（declaration） – 类的蓝图
 以数据成员的方式描述数据，以成员函数的方式描述公有接口；
 数据通常放在私有部分，组成类接口的成员函数放在公有部分，另外私有成员函数用来处理不属于公有接口的实现细节。
-定义位于声明中的函数都将自动成为内联函数，若定义位于声明之外，使用inline关键字成为内联函数。
-
-
-类方法定义 – 类的实现细节
-C++通常把接口（类">
+定义位于声明中的函数都将自动成为内联函数，若">
 
   
 
@@ -175,7 +169,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的简介"><span class="toc-text">类的简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的规范由两部分组成："><span class="toc-text">类的规范由两部分组成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类成员的访问控制（封装）"><span class="toc-text">类成员的访问控制（封装）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的构造函数与析构函数"><span class="toc-text">类的构造函数与析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的构造函数"><span class="toc-text">类的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的析构函数"><span class="toc-text">类的析构函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的语法"><span class="toc-text">构造函数的语法</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的简介"><span class="toc-text">类的简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的规范由两部分组成："><span class="toc-text">类的规范由两部分组成：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类成员的访问控制（封装）"><span class="toc-text">类成员的访问控制（封装）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的构造函数与析构函数"><span class="toc-text">类的构造函数与析构函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的构造函数"><span class="toc-text">类的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的列表初始化"><span class="toc-text">构造函数的列表初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类的析构函数"><span class="toc-text">类的析构函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#构造函数的语法"><span class="toc-text">构造函数的语法</span></a></li></ol></li></ol>
   </div>
 
 
@@ -218,7 +212,9 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="类的简介"><a href="#类的简介" class="headerlink" title="类的简介"></a>类的简介</h2><h3 id="类的规范由两部分组成："><a href="#类的规范由两部分组成：" class="headerlink" title="类的规范由两部分组成："></a>类的规范由两部分组成：</h3><ol>
+      <p>首先强调很重要的一点，<font color="red">类声明只描述如何分配内存，但其并不会分配内存。</font>，只有调用构造函数的时候才会分配内存。</p>
+<hr>
+<h2 id="类的简介"><a href="#类的简介" class="headerlink" title="类的简介"></a>类的简介</h2><h3 id="类的规范由两部分组成："><a href="#类的规范由两部分组成：" class="headerlink" title="类的规范由两部分组成："></a>类的规范由两部分组成：</h3><ol>
 <li>类声明（declaration） – 类的蓝图<ul>
 <li>以数据成员的方式描述数据，以成员函数的方式描述公有接口；</li>
 <li><strong>数据</strong>通常放在私有部分，组成类接口的<strong>成员函数</strong>放在公有部分，另外<strong>私有成员函数</strong>用来处理不属于公有接口的实现细节。</li>
@@ -249,10 +245,17 @@ ga('send', 'pageview');
 <li>如果没有提供任何构造函数，C++自动提供默认构造函数，他不做任何工作，也就是说<strong>他的值在初始化时是未知的</strong>；但是如果定义了构造函数，程序员必须为他提供默认构造函数，用户定义的默认构造函数通常给所有成员提供隐式初始值（已知合理值）。</li>
 <li>构造函数被用来创造对象，而不能通过对象来调用。（因为在通过构造函数构造出对象之前，对象是不存在的）。</li>
 </ol>
+<h3 id="构造函数的列表初始化"><a href="#构造函数的列表初始化" class="headerlink" title="构造函数的列表初始化"></a>构造函数的列表初始化</h3><p>开始就说过，类声明只描述如何分配内存，并不会分配内存。那么考虑如果初始化一个队列，队列长度是<code>const</code>常量，他应该实在构造函数执行之前被创建；而且<code>const</code>常量是不能被赋值的，同理，引用也只能在被创建时进行初始化。这时候需要一个列表初始化：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Queue::Queue(int qs):qsize(qs),front(nullptr),rear(nullptr),items(0);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>这种格式只能用于构造函数；</li>
+<li>必须用这种格式来初始化非静态<code>const</code>数据成员；</li>
+<li>必须用这种格式来初始化引用数据成员。</li>
+</ol>
 <h3 id="类的析构函数"><a href="#类的析构函数" class="headerlink" title="类的析构函数"></a>类的析构函数</h3><ol>
 <li>对象过期时，程序自动调用析构函数；如果程序员没有声明，编译器隐式声明一个默认析构函数。</li>
 <li>注意窗口环境中，窗口关闭之前的代码包含在同一个代码块中，才能保证析构函数在窗口关闭之前执行。</li>
 <li>若构造函数中有<code>new</code>，则析构函数必须<code>delete</code>。</li>
+<li>析构函数指示在代码块结束之前的扫尾工作(销毁对象)，并不会释放内存(对自动变量这是在代码块结束时自动进行的)。注意，<strong>析构函数只销毁对象不释放内存</strong></li>
 </ol>
 <h3 id="构造函数的语法"><a href="#构造函数的语法" class="headerlink" title="构造函数的语法"></a><a href="https://github.com/applefishsky009/Leetcode/blob/master/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array/26%20-%20Remove%20Duplicates%20from%20Sorted%20Array.cpp" target="_blank" rel="external">构造函数的语法</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Num nums(initVector);</span><br><span class="line">Num nums;</span><br><span class="line">Num();</span><br><span class="line">Num nums = Num();</span><br><span class="line">Num nums = Num(initVector);</span><br></pre></td></tr></table></figure>
 <ul>

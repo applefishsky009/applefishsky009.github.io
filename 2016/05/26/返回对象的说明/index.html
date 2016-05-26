@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>返回对象的说明 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="返回对象," />
+  
+
+  <meta name="description" content="有三种可选择的返回对象，返回对象的const引用，返回对象的非const引用，返回const对象。返回对象。简单来说就是两个问题,是对象还是引用?是const还是非const?
+
+返回对象的const引用返回引用提高效率
+
+返回对象调用复制构造函数，返回引用不会，效率更高；
+引用指向的对象在调用函数执行时存在(否则返回时释放会出现野指针);
+注意返回类型可能与传入的某种类型匹配。
+
+
+返回指向非c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="返回对象的说明">
+<meta property="og:url" content="http://rylcode.cn/2016/05/26/返回对象的说明/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="有三种可选择的返回对象，返回对象的const引用，返回对象的非const引用，返回const对象。返回对象。简单来说就是两个问题,是对象还是引用?是const还是非const?
+
+返回对象的const引用返回引用提高效率
+
+返回对象调用复制构造函数，返回引用不会，效率更高；
+引用指向的对象在调用函数执行时存在(否则返回时释放会出现野指针);
+注意返回类型可能与传入的某种类型匹配。
+
+
+返回指向非c">
+<meta property="og:updated_time" content="2016-05-26T04:52:21.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="返回对象的说明">
+<meta name="twitter:description" content="有三种可选择的返回对象，返回对象的const引用，返回对象的非const引用，返回const对象。返回对象。简单来说就是两个问题,是对象还是引用?是const还是非const?
+
+返回对象的const引用返回引用提高效率
+
+返回对象调用复制构造函数，返回引用不会，效率更高；
+引用指向的对象在调用函数执行时存在(否则返回时释放会出现野指针);
+注意返回类型可能与传入的某种类型匹配。
+
+
+返回指向非c">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#返回对象的const引用"><span class="toc-text">返回对象的const引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回指向非const对象的引用"><span class="toc-text">返回指向非const对象的引用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回const对象"><span class="toc-text">返回const对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回对象"><span class="toc-text">返回对象</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-返回对象的说明" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">返回对象的说明</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/26/返回对象的说明/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>有三种可选择的返回对象，返回对象的<code>const</code>引用，返回对象的非<code>const</code>引用，返回<code>const</code>对象。返回对象。简单来说就是两个问题,是对象还是引用?是<code>const</code>还是非<code>const</code>?</p>
+<hr>
+<h2 id="返回对象的const引用"><a href="#返回对象的const引用" class="headerlink" title="返回对象的const引用"></a>返回对象的<code>const</code>引用</h2><p>返回引用提高效率</p>
+<ol>
+<li>返回对象调用复制构造函数，返回引用不会，效率更高；</li>
+<li>引用指向的对象在调用函数执行时存在(否则返回时释放会出现野指针);</li>
+<li>注意返回类型可能与传入的某种类型匹配。</li>
+</ol>
+<hr>
+<h2 id="返回指向非const对象的引用"><a href="#返回指向非const对象的引用" class="headerlink" title="返回指向非const对象的引用"></a>返回指向非<code>const</code>对象的引用</h2><p>主要是返回对象能不能修改，常见两种情况，重载赋值运算符<code>=</code>，重载与<code>cout</code>一起使用的<code>&lt;&lt;</code>运算符;</p>
+<ol>
+<li>重载<code>=</code>是为了提高效率，用于连续赋值；</li>
+<li>重载<code>&lt;&lt;</code>(与<code>cout</code>一起使用)必须这样做，因为用于连续输出时对象会发生变化。</li>
+</ol>
+<hr>
+<h2 id="返回const对象"><a href="#返回const对象" class="headerlink" title="返回const对象"></a>返回<code>const</code>对象</h2><p>使用<code>const</code>对象将其声明为不可修改的左值防止被覆盖，不希望被覆盖的量如果不声明为<code>const</code>经常会引发误用和滥用。</p>
+<ol>
+<li>不可修改的左值防止被覆盖。</li>
+</ol>
+<hr>
+<h2 id="返回对象"><a href="#返回对象" class="headerlink" title="返回对象"></a>返回对象</h2><p>返回局部变量不能用引用，这是一个可修改的值或者需要赋值给一个非<code>const</code>变量，则会适用对象。</p>
+<ol>
+<li>算术运算符重载。</li>
+</ol>
+<hr>
+<p>简单回答开头所提出的问题，</p>
+<ol>
+<li>是不是<code>const</code>要看返回对象允许不允许赋值,对象有没有改变的必要性,能用<code>const</code>绝对不要不用,<strong>有趣的是</strong>,上述分析中，运算符重载都是非<code>const</code>。</li>
+<li>是不是引用取决于能不能返回引用(可不可以复制)，能返回引用一定要返回引用来提高效率(返回对象有拷贝过程),返回局部变量才不能用引用，否则会出现野指针。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/05/26/返回对象的说明/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

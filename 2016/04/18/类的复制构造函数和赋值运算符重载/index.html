@@ -44,7 +44,7 @@
 作用：复制构造函数用于将一个对象复制到新创建的对象中。也就是用于初始化过程（包括按值传递）,而不是常规的赋值过程。隐式构造函数按值逐个复制非静态成员,静态成员属于整个类，不属于某一个对象，因此不受影响。
 何时">
 <meta property="og:image" content="http://i.imgur.com/OwHR2qp.png">
-<meta property="og:updated_time" content="2016-05-06T05:14:52.203Z">
+<meta property="og:updated_time" content="2016-05-26T06:58:18.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类的复制构造函数和赋值运算符重载">
 <meta name="twitter:description" content="C++会自动提供以下成员函数：
@@ -186,7 +186,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的复制构造函数"><span class="toc-text">类的复制构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注："><span class="toc-text">注：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认复制构造函数的缺陷-浅复制"><span class="toc-text">默认复制构造函数的缺陷(浅复制)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的复制运算符重载-深度复制"><span class="toc-text">类的复制运算符重载(深度复制)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考"><span class="toc-text">思考</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类的复制构造函数"><span class="toc-text">类的复制构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#注："><span class="toc-text">注：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认复制构造函数的缺陷-浅复制"><span class="toc-text">默认复制构造函数的缺陷(浅复制)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的复制运算符重载-深度复制"><span class="toc-text">类的复制运算符重载(深度复制)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链表的陷阱"><span class="toc-text">链表的陷阱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考"><span class="toc-text">思考</span></a></li></ol>
   </div>
 
 
@@ -255,16 +255,20 @@ ga('send', 'pageview');
 </ol>
 <h3 id="默认复制构造函数的缺陷-浅复制"><a href="#默认复制构造函数的缺陷-浅复制" class="headerlink" title="默认复制构造函数的缺陷(浅复制)"></a>默认复制构造函数的缺陷(浅复制)</h3><ol>
 <li>对象计数器：默认构造函数+显式构造函数+显式构造函数=析构函数。</li>
-<li>隐式复制构造函数是<strong>按值复制</strong>，对于指针指向的new出来的空间，它会使两个指针指向同一块内容，因此在析构时，编译器尝试两次释放同一块内存，这会导致不确定的可能有害的结果。必须定义一个显式复制构造函数给指针开辟新的内存、</li>
+<li>隐式复制构造函数是<strong>按值复制</strong>，对于指针指向的new出来的空间(动态分配的内存)，它会使两个指针指向同一块内容，因此在析构时，编译器尝试两次释放同一块内存，这会导致不确定的可能有害的结果。必须定义一个显式复制构造函数给指针开辟新的内存、</li>
 </ol>
 <hr>
-<h2 id="类的复制运算符重载-深度复制"><a href="#类的复制运算符重载-深度复制" class="headerlink" title="类的复制运算符重载(深度复制)"></a>类的复制运算符重载(深度复制)</h2><p>C++的类对象赋值通过自动为类重载赋值运算符实现。赋值运算符是只能由类成员函数重载的运算符之一。<br>如上所说四种新建对象方法，<em>8初始化时总会调用复制构造函数，而是用<code>=</code>运算符也允许调用赋值运算符。</em>但是！赋值运算符的隐式实现也是对成员逐个赋值。那么如上也有两次析构的问题，因此应该提供赋值运算符进行深度复制。<br>其与复制构造函数的差别：</p>
+<h2 id="类的复制运算符重载-深度复制"><a href="#类的复制运算符重载-深度复制" class="headerlink" title="类的复制运算符重载(深度复制)"></a>类的复制运算符重载(深度复制)</h2><p>C++的类对象赋值通过自动为类重载赋值运算符实现。赋值运算符是只能由类成员函数重载的运算符之一。<br>如上所说四种新建对象方法，<em>初始化时总会调用复制构造函数，而是用<code>=</code>运算符也允许调用赋值运算符。</em>但是！赋值运算符的隐式实现也是对成员逐个赋值。那么如上也有两次析构的问题，因此应该提供赋值运算符进行深度复制。<br>其与复制构造函数的差别：</p>
 <ol>
 <li>应该首先检查自我复制，相同返回自身。否则未复制前释放了自身；</li>
 <li>释放拷贝对象之前引用的数据，否则会内存泄露(因为要深度复制会申请新的内存空间并指向他进行数据拷贝，之前的内存指针就丢失了)。</li>
 <li>返回一个指向调用对象的引用以便连续赋值。</li>
 </ol>
 <p>下面这个例子同时犯了复制构造函数和赋值运算符重载的浅复制错误：<br><img src="http://i.imgur.com/OwHR2qp.png" alt="典型的浅复制错误"></p>
+<hr>
+<h2 id="链表的陷阱"><a href="#链表的陷阱" class="headerlink" title="链表的陷阱"></a>链表的陷阱</h2><p>考虑类中的数据成员有链表，显然对于默认的复制构造和赋值运算符是不安全的，而<font color="red">假设</font>我们不需要复制构造函数和赋值运算符重载，怎么忽略他们?</p>
+<p>将这些方法<strong>私有化</strong>。</p>
+<p>这样不会有默认的复制构造函数和赋值运算符重载，而且因为私有不能被广泛使用</p>
 <hr>
 <h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><ol>
 <li>为什么赋值运算符重载返回类型是引用？之前在<code>*this</code>指针中提过，返回类型为引用意味着返回对象本身而不是其副本。这样在一些含有赋值运算符的初始化中也可以防止递归调用。</li>

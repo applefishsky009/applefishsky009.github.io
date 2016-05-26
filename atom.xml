@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://rylcode.cn/"/>
-  <updated>2016-05-25T07:44:06.882Z</updated>
+  <updated>2016-05-26T07:59:57.992Z</updated>
   <id>http://rylcode.cn/</id>
   
   <author>
@@ -14,6 +14,115 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>类中的new和delete</title>
+    <link href="http://rylcode.cn/2016/05/26/%E7%B1%BB%E4%B8%AD%E7%9A%84new%E5%92%8Cdelete/"/>
+    <id>http://rylcode.cn/2016/05/26/类中的new和delete/</id>
+    <published>2016-05-26T06:27:21.000Z</published>
+    <updated>2016-05-26T07:59:57.992Z</updated>
+    
+    <content type="html">&lt;p&gt;之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;delete&lt;/code&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;构造函数中的new&quot;&gt;&lt;a href=&quot;#构造函数中的new&quot; class=&quot;headerlink&quot; title=&quot;构造函数中的new&quot;&gt;&lt;/a&gt;构造函数中的&lt;code&gt;new&lt;/code&gt;&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;构造函数中使用&lt;code&gt;new&lt;/code&gt;来初始化，析构函数中应该用&lt;code&gt;delete&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;delete&lt;/code&gt;必须相互兼容，&lt;code&gt;new&lt;/code&gt;对应于&lt;code&gt;delete&lt;/code&gt;，&lt;code&gt;new[]&lt;/code&gt;对应于&lt;code&gt;delete[]&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;多个构造函数必须以相同的方式&lt;code&gt;new&lt;/code&gt;，因为只有一个析构函数，所有的构造函数必须与之兼容。注意，&lt;code&gt;delete&lt;/code&gt;可以用于看那个指针，因此指针可以初始化为&lt;code&gt;nullptr&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;应定义复制构造函数进行深度复制;&lt;/li&gt;
+&lt;li&gt;应定义赋值运算符重载，将一个对象深度复制给另一个对象。&lt;/li&gt;
+&lt;li&gt;逐成员复制将使用&lt;strong&gt;成员类型定义&lt;/strong&gt;的复制构造函数和赋值运算符(如&lt;code&gt;String&lt;/code&gt;作为成员对象赋值时会调用自身的复制构造函数和赋值运算符)。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;析构函数的调用&quot;&gt;&lt;a href=&quot;#析构函数的调用&quot; class=&quot;headerlink&quot; title=&quot;析构函数的调用&quot;&gt;&lt;/a&gt;析构函数的调用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;动态变量在代码块结束时调用;&lt;/li&gt;
+&lt;li&gt;静态变量，程序结束时调用;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;new&lt;/code&gt;创建的，使用&lt;code&gt;delete&lt;/code&gt;删除或者程序结束时。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;new与指针&quot;&gt;&lt;a href=&quot;#new与指针&quot; class=&quot;headerlink&quot; title=&quot;new与指针&quot;&gt;&lt;/a&gt;&lt;code&gt;new&lt;/code&gt;与指针&lt;/h2&gt;&lt;p&gt;考虑这一常见语句:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;TreeNode *head = new TreeNode(1);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;使用&lt;code&gt;new&lt;/code&gt;来初始化指针，这将调用相应的类构造函数来创建一个对象;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-&amp;gt;&lt;/code&gt;运算符用于对象指针访问类方法;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt;运算符用于对象指针获得对象;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;定位new运算符&quot;&gt;&lt;a href=&quot;#定位new运算符&quot; class=&quot;headerlink&quot; title=&quot;定位new运算符&quot;&gt;&lt;/a&gt;定位&lt;code&gt;new&lt;/code&gt;运算符&lt;/h2&gt;&lt;p&gt;考虑这一个例子：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;p = new(buffer+N*sizeof(B)) B();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;定位&lt;code&gt;new&lt;/code&gt;运算符能在分配内存时指定内存位置&lt;code&gt;buffer&lt;/code&gt;(需要包含头文件&lt;code&gt;new&lt;/code&gt;)，但是这里有一个问题，在&lt;code&gt;delete buffer&lt;/code&gt;时编译器并不知道你对&lt;code&gt;buffer&lt;/code&gt;做了什么，因此不会调用对象的析构函数，那么如何保证析构函数与构造函数的数量一致?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;之前强调过析构函数只销毁对象不释放内存，因此需要在&lt;code&gt;buffer&lt;/code&gt;内存释放前销毁对象;&lt;/li&gt;
+&lt;li&gt;用指向对象的指针显示地调用析构函数;&lt;/li&gt;
+&lt;li&gt;应注意调用析构函数的正确顺序。对于使用定位&lt;code&gt;new&lt;/code&gt;运算符创建的对象，应该和创建的顺序相反。因为，晚创建的对象可能依赖于早创建的对象。另外，仅当所有对象都被销毁后，才能释放用于存储这些对象的缓冲区。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的&lt;code&gt;new&lt;/code&gt;和&lt;code&gt;delete&lt;/code&gt;。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;构造函数中的new&quot;&gt;&lt;a href=&quot;#构造函数中的new&quot; class=&quot;headerlink&quot; title
+    
+    </summary>
+    
+      <category term="C++的类" scheme="http://rylcode.cn/categories/C-%E7%9A%84%E7%B1%BB/"/>
+    
+    
+      <category term="new" scheme="http://rylcode.cn/tags/new/"/>
+    
+      <category term="delete" scheme="http://rylcode.cn/tags/delete/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>返回对象的说明</title>
+    <link href="http://rylcode.cn/2016/05/26/%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AF%B4%E6%98%8E/"/>
+    <id>http://rylcode.cn/2016/05/26/返回对象的说明/</id>
+    <published>2016-05-26T03:30:28.000Z</published>
+    <updated>2016-05-26T04:52:21.152Z</updated>
+    
+    <content type="html">&lt;p&gt;有三种可选择的返回对象，返回对象的&lt;code&gt;const&lt;/code&gt;引用，返回对象的非&lt;code&gt;const&lt;/code&gt;引用，返回&lt;code&gt;const&lt;/code&gt;对象。返回对象。简单来说就是两个问题,是对象还是引用?是&lt;code&gt;const&lt;/code&gt;还是非&lt;code&gt;const&lt;/code&gt;?&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;返回对象的const引用&quot;&gt;&lt;a href=&quot;#返回对象的const引用&quot; class=&quot;headerlink&quot; title=&quot;返回对象的const引用&quot;&gt;&lt;/a&gt;返回对象的&lt;code&gt;const&lt;/code&gt;引用&lt;/h2&gt;&lt;p&gt;返回引用提高效率&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;返回对象调用复制构造函数，返回引用不会，效率更高；&lt;/li&gt;
+&lt;li&gt;引用指向的对象在调用函数执行时存在(否则返回时释放会出现野指针);&lt;/li&gt;
+&lt;li&gt;注意返回类型可能与传入的某种类型匹配。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;返回指向非const对象的引用&quot;&gt;&lt;a href=&quot;#返回指向非const对象的引用&quot; class=&quot;headerlink&quot; title=&quot;返回指向非const对象的引用&quot;&gt;&lt;/a&gt;返回指向非&lt;code&gt;const&lt;/code&gt;对象的引用&lt;/h2&gt;&lt;p&gt;主要是返回对象能不能修改，常见两种情况，重载赋值运算符&lt;code&gt;=&lt;/code&gt;，重载与&lt;code&gt;cout&lt;/code&gt;一起使用的&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;运算符;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;重载&lt;code&gt;=&lt;/code&gt;是为了提高效率，用于连续赋值；&lt;/li&gt;
+&lt;li&gt;重载&lt;code&gt;&amp;lt;&amp;lt;&lt;/code&gt;(与&lt;code&gt;cout&lt;/code&gt;一起使用)必须这样做，因为用于连续输出时对象会发生变化。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;返回const对象&quot;&gt;&lt;a href=&quot;#返回const对象&quot; class=&quot;headerlink&quot; title=&quot;返回const对象&quot;&gt;&lt;/a&gt;返回&lt;code&gt;const&lt;/code&gt;对象&lt;/h2&gt;&lt;p&gt;使用&lt;code&gt;const&lt;/code&gt;对象将其声明为不可修改的左值防止被覆盖，不希望被覆盖的量如果不声明为&lt;code&gt;const&lt;/code&gt;经常会引发误用和滥用。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;不可修改的左值防止被覆盖。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;返回对象&quot;&gt;&lt;a href=&quot;#返回对象&quot; class=&quot;headerlink&quot; title=&quot;返回对象&quot;&gt;&lt;/a&gt;返回对象&lt;/h2&gt;&lt;p&gt;返回局部变量不能用引用，这是一个可修改的值或者需要赋值给一个非&lt;code&gt;const&lt;/code&gt;变量，则会适用对象。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;算术运算符重载。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;简单回答开头所提出的问题，&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;是不是&lt;code&gt;const&lt;/code&gt;要看返回对象允许不允许赋值,对象有没有改变的必要性,能用&lt;code&gt;const&lt;/code&gt;绝对不要不用,&lt;strong&gt;有趣的是&lt;/strong&gt;,上述分析中，运算符重载都是非&lt;code&gt;const&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;是不是引用取决于能不能返回引用(可不可以复制)，能返回引用一定要返回引用来提高效率(返回对象有拷贝过程),返回局部变量才不能用引用，否则会出现野指针。&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有三种可选择的返回对象，返回对象的&lt;code&gt;const&lt;/code&gt;引用，返回对象的非&lt;code&gt;const&lt;/code&gt;引用，返回&lt;code&gt;const&lt;/code&gt;对象。返回对象。简单来说就是两个问题,是对象还是引用?是&lt;code&gt;const&lt;/code&gt;还是非&lt;co
+    
+    </summary>
+    
+      <category term="C++的类" scheme="http://rylcode.cn/categories/C-%E7%9A%84%E7%B1%BB/"/>
+    
+    
+      <category term="返回对象" scheme="http://rylcode.cn/tags/%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>类的自动转换与转换函数</title>
@@ -867,127 +976,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
       <category term="参数传递" scheme="http://rylcode.cn/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
     
       <category term="左值和右值" scheme="http://rylcode.cn/tags/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>BFS和DFS</title>
-    <link href="http://rylcode.cn/2016/04/21/BFS%E5%92%8CDFS/"/>
-    <id>http://rylcode.cn/2016/04/21/BFS和DFS/</id>
-    <published>2016-04-21T07:28:51.000Z</published>
-    <updated>2016-05-16T08:00:17.518Z</updated>
-    
-    <content type="html">&lt;p&gt;持续更新,该贴记录一些BFS和DFS在使用过程中的心得体会，以加深对BFS与DFS的理解。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;&lt;/a&gt;BFS(广度优先搜索)&lt;/h2&gt;&lt;p&gt;BFS需要借助一个队列来记录遍历的”层数”；每遍历目标集合一次，&lt;strong&gt;步长&lt;/strong&gt;加一；队列为空，结束搜寻。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/127%20-%20World%20Ladder/127%20-%20World%20Ladder.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Word Ladder&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Word Ladder II&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;DFS-深度优先搜索&quot;&gt;&lt;a href=&quot;#DFS-深度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;DFS(深度优先搜索)&quot;&gt;&lt;/a&gt;DFS(深度优先搜索)&lt;/h2&gt;&lt;p&gt;DFS需要用递归或者借助栈来&lt;strong&gt;记录&lt;/strong&gt;走过的路径；每遍历完这条分支，便要&lt;strong&gt;回溯&lt;/strong&gt;到上一层；在递归之前可以记录深度。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/131%20-%20Palindrome%20Partitioning/131%20-%20Palindrome%20Partitioning.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Palindrome Partitioning&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Word Ladder II&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;持续更新,该贴记录一些BFS和DFS在使用过程中的心得体会，以加深对BFS与DFS的理解。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;BFS-广度优先搜索&quot;&gt;&lt;a href=&quot;#BFS-广度优先搜索&quot; class=&quot;headerlink&quot; title=&quot;BFS(广度优先搜索)&quot;&gt;&lt;
-    
-    </summary>
-    
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="BFS" scheme="http://rylcode.cn/tags/BFS/"/>
-    
-      <category term="DFS" scheme="http://rylcode.cn/tags/DFS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>共用体、枚举和浮点数存储</title>
-    <link href="http://rylcode.cn/2016/04/21/%E5%85%B1%E7%94%A8%E4%BD%93%E3%80%81%E6%9E%9A%E4%B8%BE%E5%92%8C%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
-    <id>http://rylcode.cn/2016/04/21/共用体、枚举和浮点数存储/</id>
-    <published>2016-04-21T02:38:14.000Z</published>
-    <updated>2016-05-06T04:58:24.186Z</updated>
-    
-    <content type="html">&lt;h2 id=&quot;共用体&quot;&gt;&lt;a href=&quot;#共用体&quot; class=&quot;headerlink&quot; title=&quot;共用体&quot;&gt;&lt;/a&gt;共用体&lt;/h2&gt;&lt;p&gt;是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;它的长度是最大数据类型长度，可以节省空间；&lt;/li&gt;
-&lt;li&gt;数据不共存；&lt;/li&gt;
-&lt;li&gt;关键字&lt;code&gt;union&lt;/code&gt;，声明方式与结构体相同；&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;枚举&quot;&gt;&lt;a href=&quot;#枚举&quot; class=&quot;headerlink&quot; title=&quot;枚举&quot;&gt;&lt;/a&gt;枚举&lt;/h2&gt;&lt;p&gt;创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;可以提升(常到&lt;code&gt;int&lt;/code&gt;)，但&lt;code&gt;int&lt;/code&gt;不能缩窄到它；&lt;/li&gt;
-&lt;li&gt;可以显式设置枚举量，枚举范围内即使没有枚举量，也合法；&lt;/li&gt;
-&lt;li&gt;关键词&lt;code&gt;enum&lt;/code&gt;，声明方式与结构体相似；&lt;/li&gt;
-&lt;li&gt;他没有算术运算，一般常用于&lt;code&gt;swith&lt;/code&gt;语句中的标签。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;浮点数存储方式&quot;&gt;&lt;a href=&quot;#浮点数存储方式&quot; class=&quot;headerlink&quot; title=&quot;浮点数存储方式&quot;&gt;&lt;/a&gt;浮点数存储方式&lt;/h2&gt;&lt;p&gt;不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？&lt;br&gt;首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;数据&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;符号位&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;阶码&lt;/th&gt;
-&lt;th style=&quot;text-align:center&quot;&gt;尾数&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;float&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;1位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;8位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;23位&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;内存位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;31&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;30-23&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;22-0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;&lt;code&gt;double&lt;/code&gt;&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;1位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;11位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;52位&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;内存位&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;63&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;62-52&lt;/td&gt;
-&lt;td style=&quot;text-align:center&quot;&gt;51-0&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;其次，阶码使用中间偏置(固定量为2^N-1)的移码表示的,M的整数部分为1,不存储，只存储尾数即可。&lt;br&gt;例如，125.5f = &lt;code&gt;1111101.1&lt;/code&gt; = 1.1111011*2^6 =&amp;gt;移码127+6 = 133 = &lt;code&gt;10000101&lt;/code&gt; =&amp;gt;正数符号位是0，尾数补0到够23位,那么计算机中：&lt;code&gt;01000010 10000000 00000000 01111011&lt;/code&gt;。&lt;/p&gt;
-&lt;h3 id=&quot;补充&quot;&gt;&lt;a href=&quot;#补充&quot; class=&quot;headerlink&quot; title=&quot;补充&quot;&gt;&lt;/a&gt;补充&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;整型常量默认情况下是int型,浮点常量在默认情况下是&lt;code&gt;double&lt;/code&gt;型,如果需要&lt;code&gt;float&lt;/code&gt;型，需要这样表示：&lt;code&gt;3.25f&lt;/code&gt;；&lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;共用体&quot;&gt;&lt;a href=&quot;#共用体&quot; class=&quot;headerlink&quot; title=&quot;共用体&quot;&gt;&lt;/a&gt;共用体&lt;/h2&gt;&lt;p&gt;是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="共用体" scheme="http://rylcode.cn/tags/%E5%85%B1%E7%94%A8%E4%BD%93/"/>
-    
-      <category term="枚举" scheme="http://rylcode.cn/tags/%E6%9E%9A%E4%B8%BE/"/>
-    
-      <category term="浮点数存储" scheme="http://rylcode.cn/tags/%E6%B5%AE%E7%82%B9%E6%95%B0%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
