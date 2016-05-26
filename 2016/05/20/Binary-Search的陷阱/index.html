@@ -31,7 +31,7 @@
 三点原则
 为了防止溢出折半时应该这么写mid = start + (end - start) / 2;；
 因为大部分情况不是大于就是小于，因此一般在最后检测相等(如下例，检测条件过于复杂，因此">
-<meta property="og:updated_time" content="2016-05-20T10:39:36.096Z">
+<meta property="og:updated_time" content="2016-05-26T02:13:05.584Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Search的陷阱">
 <meta name="twitter:description" content="先上二分搜索算法wiki，再上二分查找写正确的方法。简单说说二分搜索：
@@ -166,7 +166,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#三点原则"><span class="toc-text">三点原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#陷阱"><span class="toc-text">陷阱</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#三点原则"><span class="toc-text">三点原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#陷阱"><span class="toc-text">陷阱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#递归二分"><span class="toc-text">递归二分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用while的二分查找"><span class="toc-text">使用while的二分查找</span></a></li></ol>
   </div>
 
 
@@ -218,11 +218,25 @@ ga('send', 'pageview');
 <li>传入的一定是左闭右闭区间，因此递归入口为<code>low &lt;= high</code>，由原则2可知递归出口判断写在入口之后。</li>
 </ol>
 <hr>
-<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><p>二分法，顾名思义，就是将区间一分为二传入递归函数，但是注意区间有开闭之分，因此在过程中一定要注意，例<a href="https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array.cpp" target="_blank" rel="external">LeetCode - 33</a></p>
+<h2 id="陷阱"><a href="#陷阱" class="headerlink" title="陷阱"></a>陷阱</h2><p>二分法，顾名思义，就是将区间一分为二传入递归函数，但是注意区间有开闭之分，因此在过程中一定要注意，</p>
 <ol>
 <li>不建议传入左开右开区间，增加判断次数，但是这样写极为简单，不得已可以使用，如例子中的<code>Solution</code>;</li>
 <li>传入左闭右闭区间，递归入口一定是<code>low &lt;= high</code>,不能少等号;</li>
 <li>如例子中的<code>Solution1</code>所警示，在另外有区间判断的条件时注意<code>int</code>向下取整的特性，可能会有<code>low == mid;</code>需要特殊分析。</li>
+</ol>
+<hr>
+<h2 id="递归二分"><a href="#递归二分" class="headerlink" title="递归二分"></a>递归二分</h2><ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array.cpp" target="_blank" rel="external">Search in Rotated Sorted Array</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/34%20-%20Search%20for%20a%20Range/34%20-%20Search%20for%20a%20Range.cpp" target="_blank" rel="external">Search for a Range</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/35%20-%20Search%20Insert%20Position/Search%20Insert%20Position.cpp" target="_blank" rel="external">Search Insert Position</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp" target="_blank" rel="external">Pow(x, n)</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(float%20x).cpp" target="_blank" rel="external">Sqrt(float x)</a></li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp" target="_blank" rel="external">Sqrt(int x)</a></li>
+</ol>
+<hr>
+<h2 id="使用while的二分查找"><a href="#使用while的二分查找" class="headerlink" title="使用while的二分查找"></a>使用while的二分查找</h2><p>不使用递归，使用while，传入左闭右闭(有人会写传入左闭右开)</p>
+<ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/74%20-%20Search%20a%202D%20Matrix/74%20-%20Search%20a%202D%20Matrix.cpp" target="_blank" rel="external">Search a 2D Matrix</a></li>
 </ol>
 
     
