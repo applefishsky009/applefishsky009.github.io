@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://rylcode.cn/"/>
-  <updated>2016-05-26T07:59:57.992Z</updated>
+  <updated>2016-05-27T03:53:03.661Z</updated>
   <id>http://rylcode.cn/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>set容器简介</title>
+    <link href="http://rylcode.cn/2016/05/27/set%E5%AE%B9%E5%99%A8%E7%AE%80%E4%BB%8B/"/>
+    <id>http://rylcode.cn/2016/05/27/set容器简介/</id>
+    <published>2016-05-27T02:14:47.000Z</published>
+    <updated>2016-05-27T03:53:03.661Z</updated>
+    
+    <content type="html">&lt;p&gt;先上彩蛋：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cplusplus.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cplusplus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.cppreference.com/w/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cppreference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stackoverflow&lt;/a&gt;&lt;br&gt;&lt;code&gt;#include&amp;lt;set&amp;gt;&lt;/code&gt;头文件内定义了两个有序的hash容器&lt;code&gt;set&lt;/code&gt;和&lt;code&gt;multiset&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;set简介&quot;&gt;&lt;a href=&quot;#set简介&quot; class=&quot;headerlink&quot; title=&quot;set简介&quot;&gt;&lt;/a&gt;set简介&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;以特定顺序存储&lt;strong&gt;唯一&lt;/strong&gt;元素；&lt;/li&gt;
+&lt;li&gt;键值就是值本身；&lt;/li&gt;
+&lt;li&gt;容器中的元素都是不可修改的(都是&lt;code&gt;const&lt;/code&gt;类型)，但是可以&lt;code&gt;insert&lt;/code&gt;，&lt;code&gt;remove&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;容器通过二叉搜索树实现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;set使用&quot;&gt;&lt;a href=&quot;#set使用&quot; class=&quot;headerlink&quot; title=&quot;set使用&quot;&gt;&lt;/a&gt;set使用&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/90%20-%20Subsets%20II/90%20-%20Subsets%20II(Recursion).cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Subsets II(Recursion)&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;insert&quot;&gt;&lt;a href=&quot;#insert&quot; class=&quot;headerlink&quot; title=&quot;insert()&quot;&gt;&lt;/a&gt;insert()&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pair&amp;lt;iterator,bool&amp;gt; insert (const value_type&amp;amp; val);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;pair&amp;lt;iterator,bool&amp;gt; insert (value_type&amp;amp;&amp;amp; val);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;code&gt;set&lt;/code&gt;中没有则插入，返回一个&lt;code&gt;pair&lt;/code&gt;对象，&lt;code&gt;pair.first()&lt;/code&gt;指向插入的元素或set中已有的该元素，&lt;code&gt;pair.second()&lt;/code&gt;指示该元素是已有的还是新插入的。&lt;/p&gt;
+&lt;h3 id=&quot;彩蛋&quot;&gt;&lt;a href=&quot;#彩蛋&quot; class=&quot;headerlink&quot; title=&quot;彩蛋&quot;&gt;&lt;/a&gt;彩蛋&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;#include &amp;lt;algorithm&amp;gt;&lt;/code&gt;中&lt;a href=&quot;http://stackoverflow.com/questions/5034211/c-copy-set-to-vector&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;copy将set转vector&lt;/a&gt;，当然也可以用&lt;code&gt;vector&lt;/code&gt;的构造函数(iterator类型一致)。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;p&gt;暂没有用到其他方法，待补充&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;先上彩蛋：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cplusplus.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cplusplus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.cpprefere
+    
+    </summary>
+    
+      <category term="STL" scheme="http://rylcode.cn/categories/STL/"/>
+    
+    
+      <category term="set，multiset" scheme="http://rylcode.cn/tags/set%EF%BC%8Cmultiset/"/>
+    
+  </entry>
   
   <entry>
     <title>类中的new和delete</title>
@@ -525,18 +574,26 @@
   </entry>
   
   <entry>
-    <title>multimap简介</title>
-    <link href="http://rylcode.cn/2016/05/16/multimap%E7%AE%80%E4%BB%8B/"/>
-    <id>http://rylcode.cn/2016/05/16/multimap简介/</id>
+    <title>map容器简介</title>
+    <link href="http://rylcode.cn/2016/05/16/map%E5%AE%B9%E5%99%A8%E7%AE%80%E4%BB%8B/"/>
+    <id>http://rylcode.cn/2016/05/16/map容器简介/</id>
     <published>2016-05-16T04:42:19.000Z</published>
-    <updated>2016-05-16T06:31:48.006Z</updated>
+    <updated>2016-05-27T02:31:44.269Z</updated>
     
-    <content type="html">&lt;h2 id=&quot;multimap简介&quot;&gt;&lt;a href=&quot;#multimap简介&quot; class=&quot;headerlink&quot; title=&quot;multimap简介&quot;&gt;&lt;/a&gt;multimap简介&lt;/h2&gt;&lt;p&gt;multimap是一种Hash Table。首先使用&lt;code&gt;multimap&lt;/code&gt;必须使用宏语句&lt;code&gt;#include &amp;lt;map&amp;gt;&lt;/code&gt;。MSDN上对multimap的解释已经比较清楚&lt;a href=&quot;http://blog.csdn.net/chenyujing1234/article/details/8193172&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap基础&lt;/a&gt;，&lt;a href=&quot;http://blog.csdn.net/xz_rabbit/article/details/43907311&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap与map，unorderedmap的对比&lt;/a&gt;&lt;br&gt;主要有以下几点：&lt;/p&gt;
+    <content type="html">&lt;p&gt;先上彩蛋：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cplusplus.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cplusplus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.cppreference.com/w/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cppreference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stackoverflow&lt;/a&gt;&lt;br&gt;&lt;code&gt;#include &amp;lt;map&amp;gt;&lt;/code&gt;中定义了两个hash容器，&lt;code&gt;map&lt;/code&gt;和&lt;code&gt;multimap&lt;/code&gt;，他将键对象和值对象进行关联，值对象可以是新的&lt;code&gt;map&lt;/code&gt;，因此可以形成多级映射。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&quot;multimap简介&quot;&gt;&lt;a href=&quot;#multimap简介&quot; class=&quot;headerlink&quot; title=&quot;multimap简介&quot;&gt;&lt;/a&gt;multimap简介&lt;/h2&gt;&lt;p&gt;multimap是一种Hash Table。首先使用&lt;code&gt;multimap&lt;/code&gt;必须使用宏语句&lt;code&gt;#include &amp;lt;map&amp;gt;&lt;/code&gt;。MSDN上对multimap的解释已经比较清楚&lt;a href=&quot;http://blog.csdn.net/chenyujing1234/article/details/8193172&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap基础&lt;/a&gt;，&lt;a href=&quot;http://blog.csdn.net/xz_rabbit/article/details/43907311&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;multimap与map，unorderedmap的对比&lt;/a&gt;&lt;br&gt;主要有以下几点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；&lt;/li&gt;
 &lt;li&gt;multimap的所有元素都是pair:第一元素为键值(key),不能修改;第二元素为实值(value),可被修改 &lt;/li&gt;
-&lt;li&gt;multimap特性以及用法与map完全相同，唯一的差别在于: 允许重复键值的元素插入容器(每一个都是用一个&lt;strong&gt;链表&lt;/strong&gt;来链接的)，参考&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里的github&lt;/a&gt;；&lt;/li&gt;
+&lt;li&gt;multimap特性以及用法与map完全相同，唯一的差别在于: 允许重复键值的元素插入容器(每一个都是用一个&lt;strong&gt;链表&lt;/strong&gt;来链接的);&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;unordered_multimap&lt;/code&gt;(目前还没有用到过)的无序存储特点，这是其与&lt;code&gt;multimap&lt;/code&gt;最大的区别。&lt;/li&gt;
+&lt;li&gt;参考&lt;a href=&quot;https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Word Ladder II&lt;/a&gt;；&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
 &lt;h2 id=&quot;multimap的使用&quot;&gt;&lt;a href=&quot;#multimap的使用&quot; class=&quot;headerlink&quot; title=&quot;multimap的使用&quot;&gt;&lt;/a&gt;multimap的使用&lt;/h2&gt;&lt;ol&gt;
@@ -554,12 +611,17 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     <summary type="html">
     
-      &lt;h2 id=&quot;multimap简介&quot;&gt;&lt;a href=&quot;#multimap简介&quot; class=&quot;headerlink&quot; title=&quot;multimap简介&quot;&gt;&lt;/a&gt;multimap简介&lt;/h2&gt;&lt;p&gt;multimap是一种Hash Table。首先使用&lt;code&gt;multim
+      &lt;p&gt;先上彩蛋：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cplusplus.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cplusplus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://en.cpprefere
     
     </summary>
     
       <category term="STL" scheme="http://rylcode.cn/categories/STL/"/>
     
+    
+      <category term="map" scheme="http://rylcode.cn/tags/map/"/>
     
       <category term="multimap" scheme="http://rylcode.cn/tags/multimap/"/>
     
@@ -919,63 +981,6 @@ _Pairii equal_range(const key_type&amp;amp; _Keyval)
     
     
       <category term="贪心" scheme="http://rylcode.cn/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>函数参数的传递</title>
-    <link href="http://rylcode.cn/2016/04/22/%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E9%80%92/"/>
-    <id>http://rylcode.cn/2016/04/22/函数参数的传递/</id>
-    <published>2016-04-22T01:42:40.000Z</published>
-    <updated>2016-05-06T06:20:28.808Z</updated>
-    
-    <content type="html">&lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;h3 id=&quot;引用的本质&quot;&gt;&lt;a href=&quot;#引用的本质&quot; class=&quot;headerlink&quot; title=&quot;引用的本质&quot;&gt;&lt;/a&gt;引用的本质&lt;/h3&gt;&lt;p&gt;C++将&lt;code&gt;&amp;amp;&lt;/code&gt;符号赋予了另一个含义，用来声明引用。引用是已定义变量的别名(同一块内存)。引用的主要作用是用作函数形参。&lt;br&gt;引用的本质是&lt;font color=&quot;red&quot;&gt;指针常量&lt;/font&gt;，例如&lt;code&gt;int &amp;amp;pr = rats;&lt;/code&gt;是&lt;code&gt;int* const pr = &amp;amp;rats;&lt;/code&gt;的伪装。它的含义是他是一个指针，指向一个常量地址。因此他有以下特性也就很好理解了：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;必须在声明引用是将其初始化；(因为指向常量地址)&lt;/li&gt;
-&lt;li&gt;初始化时，省略了取地址符的操作&lt;code&gt;&amp;amp;&lt;/code&gt;,给我们感觉是别名；&lt;/li&gt;
-&lt;li&gt;声明引用时，隐藏了对指针常量的自动间接引用，让我们看不到指针。&lt;/li&gt;
-&lt;li&gt;使用引用时，隐藏了解除引用&lt;code&gt;*&lt;/code&gt;,让我们觉得是在直接修改(别名)变量。&lt;br&gt;如下：&lt;img src=&quot;http://i.imgur.com/idRXQZy.png&quot; alt=&quot;这里&quot;&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&quot;返回引用&quot;&gt;&lt;a href=&quot;#返回引用&quot; class=&quot;headerlink&quot; title=&quot;返回引用&quot;&gt;&lt;/a&gt;返回引用&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;返回引用比传统返回机制烧了拷贝复制，效率更高。&lt;/li&gt;
-&lt;li&gt;返回引用本质是返回“别名”,因此要注意保证返回后这个内存依然存在。(变量持续性)&lt;/li&gt;
-&lt;li&gt;返回类型&lt;strong&gt;一般&lt;/strong&gt;用&lt;font color=&quot;red&quot;&gt;&lt;code&gt;const&lt;/code&gt;标识&lt;/font&gt;，将其设置为不可修改的左值，避免数据损失。&lt;ul&gt;
-&lt;li&gt;赋值语句，左边必须是可修改的左值；&lt;/li&gt;
-&lt;li&gt;常规返回类型是右值(因为其位于临时内存单元)-&amp;gt;不能通过地址访问。(可以出现在表达式右边，但不能出现在左边，如字面值&lt;code&gt;10.0&lt;/code&gt;,表达式&lt;code&gt;x+y&lt;/code&gt;) &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;如果返回局部变量(运算符重载中)，不能返回引用。&lt;/p&gt;
-&lt;h3 id=&quot;C-C-中的左值和右值&quot;&gt;&lt;a href=&quot;#C-C-中的左值和右值&quot; class=&quot;headerlink&quot; title=&quot;C/C++中的左值和右值&quot;&gt;&lt;/a&gt;C/C++中的左值和右值&lt;/h3&gt;&lt;ol&gt;
-&lt;li&gt;左值是一个引用到对象的表达式，因此可以取址(可以赋值)；&lt;/li&gt;
-&lt;li&gt;右值强调的不是表达式本身，而是该表达式运算后的结果。这个结果往往并不引用到某一对象，可以看成计算的中间结果(临时内存单元)；（当然它也可能引用到某一对象，但是通过该右值表达式我们不能直接修改该对象—）。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;按值传递&quot;&gt;&lt;a href=&quot;#按值传递&quot; class=&quot;headerlink&quot; title=&quot;按值传递&quot;&gt;&lt;/a&gt;按值传递&lt;/h2&gt;&lt;p&gt;C++将数值参数传递给函数，函数将其赋给一个新的变量，新变量与旧变量在赋值之后没有任何关系。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;按址传递&quot;&gt;&lt;a href=&quot;#按址传递&quot; class=&quot;headerlink&quot; title=&quot;按址传递&quot;&gt;&lt;/a&gt;按址传递&lt;/h2&gt;&lt;p&gt;C++将参数地址传递给函数，函数原型用指针(一般用&lt;code&gt;const&lt;/code&gt;修饰表示指针不会乱指)指向这个地址&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;数组传递&quot;&gt;&lt;a href=&quot;#数组传递&quot; class=&quot;headerlink&quot; title=&quot;数组传递&quot;&gt;&lt;/a&gt;数组传递&lt;/h2&gt;&lt;p&gt;数组在传递时，编译器将数组名解释为第一个元素的地址，因此传递实参为数组时，形参应该是一个指针指向这个地址。&lt;br&gt;在用多维数组名作为形参时，可以指定所有维数的大小，也可以省略第一位的大小(高维大小必须指定)，这与编译器寻址有关，比如&lt;code&gt;int p[m][n]&lt;/code&gt;如果要取&lt;code&gt;p[i][j]&lt;/code&gt;的值，编译器会计算地址为&lt;code&gt;p+i*n+j;&lt;/code&gt;，因此编译器可以不知道m的值，但必须知道n的值。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;函数参数的传递有三种，按值传递，按址传递，按引用传递(C++新增)。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&quot;引用&quot;&gt;&lt;a href=&quot;#引用&quot; class=&quot;headerlink&quot; title=&quot;引用&quot;&gt;&lt;/a&gt;引用&lt;/h2&gt;&lt;h3 id=&quot;引用的本质&quot;&gt;&lt;a href=&quot;#引
-    
-    </summary>
-    
-      <category term="C++基础" scheme="http://rylcode.cn/categories/C-%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="引用" scheme="http://rylcode.cn/tags/%E5%BC%95%E7%94%A8/"/>
-    
-      <category term="参数传递" scheme="http://rylcode.cn/tags/%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/"/>
-    
-      <category term="左值和右值" scheme="http://rylcode.cn/tags/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/"/>
     
   </entry>
   

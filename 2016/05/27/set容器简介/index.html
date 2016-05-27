@@ -7,33 +7,69 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>multimap简介 | 孤云两角，去天一握</title>
+  <title>set容器简介 | 孤云两角，去天一握</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="multimap," />
+    <meta name="keywords" content="set，multiset," />
   
 
-  <meta name="description" content="multimap简介multimap是一种Hash Table。首先使用multimap必须使用宏语句#include &amp;lt;map&amp;gt;。MSDN上对multimap的解释已经比较清楚multimap基础，multimap与map，unorderedmap的对比主要有以下几点：
+  <meta name="description" content="先上彩蛋：
 
-multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；
-multimap的所有元素都">
+cplusplus
+cppreference
+stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset
+
+
+set简介
+以特定顺序存储唯一元素；
+键值就是值本身；
+容器中的元素都是不可修改的(都是const类型)，但是可以insert，remove；
+容器通过二叉搜索树实现。
+
+
+set使用
+Subsets II(R">
 <meta property="og:type" content="article">
-<meta property="og:title" content="multimap简介">
-<meta property="og:url" content="http://rylcode.cn/2016/05/16/multimap简介/index.html">
+<meta property="og:title" content="set容器简介">
+<meta property="og:url" content="http://rylcode.cn/2016/05/27/set容器简介/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
-<meta property="og:description" content="multimap简介multimap是一种Hash Table。首先使用multimap必须使用宏语句#include &amp;lt;map&amp;gt;。MSDN上对multimap的解释已经比较清楚multimap基础，multimap与map，unorderedmap的对比主要有以下几点：
+<meta property="og:description" content="先上彩蛋：
 
-multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；
-multimap的所有元素都">
-<meta property="og:updated_time" content="2016-05-16T06:31:48.006Z">
+cplusplus
+cppreference
+stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset
+
+
+set简介
+以特定顺序存储唯一元素；
+键值就是值本身；
+容器中的元素都是不可修改的(都是const类型)，但是可以insert，remove；
+容器通过二叉搜索树实现。
+
+
+set使用
+Subsets II(R">
+<meta property="og:updated_time" content="2016-05-27T03:53:03.661Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="multimap简介">
-<meta name="twitter:description" content="multimap简介multimap是一种Hash Table。首先使用multimap必须使用宏语句#include &amp;lt;map&amp;gt;。MSDN上对multimap的解释已经比较清楚multimap基础，multimap与map，unorderedmap的对比主要有以下几点：
+<meta name="twitter:title" content="set容器简介">
+<meta name="twitter:description" content="先上彩蛋：
 
-multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；
-multimap的所有元素都">
+cplusplus
+cppreference
+stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset
+
+
+set简介
+以特定顺序存储唯一元素；
+键值就是值本身；
+容器中的元素都是不可修改的(都是const类型)，但是可以insert，remove；
+容器通过二叉搜索树实现。
+
+
+set使用
+Subsets II(R">
 
   
 
@@ -160,20 +196,20 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#multimap简介"><span class="toc-text">multimap简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#multimap的使用"><span class="toc-text">multimap的使用</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#set简介"><span class="toc-text">set简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set使用"><span class="toc-text">set使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert"><span class="toc-text">insert()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#彩蛋"><span class="toc-text">彩蛋</span></a></li></ol></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-multimap简介" class="article article-type-post" itemprop="blogPost">
+   <article id="post-set容器简介" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">multimap简介</h1>
+    <h1 class="post-title">set容器简介</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2016.05.16</span>
+        <span>2016.05.27</span>
       </span>
 
       
@@ -194,7 +230,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/05/16/multimap简介/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/05/27/set容器简介/#disqus_thread"></a>
         </span>
       
 
@@ -203,26 +239,31 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <h2 id="multimap简介"><a href="#multimap简介" class="headerlink" title="multimap简介"></a>multimap简介</h2><p>multimap是一种Hash Table。首先使用<code>multimap</code>必须使用宏语句<code>#include &lt;map&gt;</code>。MSDN上对multimap的解释已经比较清楚<a href="http://blog.csdn.net/chenyujing1234/article/details/8193172" target="_blank" rel="external">multimap基础</a>，<a href="http://blog.csdn.net/xz_rabbit/article/details/43907311" target="_blank" rel="external">multimap与map，unorderedmap的对比</a><br>主要有以下几点：</p>
+      <p>先上彩蛋：</p>
 <ol>
-<li>multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；</li>
-<li>multimap的所有元素都是pair:第一元素为键值(key),不能修改;第二元素为实值(value),可被修改 </li>
-<li>multimap特性以及用法与map完全相同，唯一的差别在于: 允许重复键值的元素插入容器(每一个都是用一个<strong>链表</strong>来链接的)，参考<a href="https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp" target="_blank" rel="external">这里的github</a>；</li>
-<li><code>unordered_multimap</code>(目前还没有用到过)的无序存储特点，这是其与<code>multimap</code>最大的区别。</li>
+<li><a href="http://www.cplusplus.com/" target="_blank" rel="external">cplusplus</a></li>
+<li><a href="http://en.cppreference.com/w/" target="_blank" rel="external">cppreference</a></li>
+<li><a href="http://stackoverflow.com/" target="_blank" rel="external">stackoverflow</a><br><code>#include&lt;set&gt;</code>头文件内定义了两个有序的hash容器<code>set</code>和<code>multiset</code></li>
 </ol>
 <hr>
-<h2 id="multimap的使用"><a href="#multimap的使用" class="headerlink" title="multimap的使用"></a>multimap的使用</h2><ol>
-<li>初始化:<code>multimap&lt;string, string&gt; father;</code>，第一个是key类型，第二个是映照类型；</li>
-<li>插入数据:<code>father.insert(make_pair(string1, string2);</code>，<a href="http://www.cnblogs.com/Nimeux/archive/2010/10/05/1844191.html" target="_blank" rel="external"><code>pair</code>与<code>make_pair</code>介绍</a>。</li>
-<li>寻找某个键值:<code>pair&lt;multimap&lt;string, string&gt;::iterator, multimap&lt;string, string&gt;::iterator&gt; pos = father.equal_range(string1)</code>;<code>equal_range(string1);</code>注意其返回的是<code>pair</code>对象，<code>first</code>和<code>second</code>都是迭代器类型，他返回键值为<code>string1</code>的左指针和超尾(右)指针(最后一个键值为<code>string1</code>的下一个指针)，源码如下：</li>
+<h2 id="set简介"><a href="#set简介" class="headerlink" title="set简介"></a>set简介</h2><ol>
+<li>以特定顺序存储<strong>唯一</strong>元素；</li>
+<li>键值就是值本身；</li>
+<li>容器中的元素都是不可修改的(都是<code>const</code>类型)，但是可以<code>insert</code>，<code>remove</code>；</li>
+<li>容器通过二叉搜索树实现。</li>
 </ol>
-<pre><code>typedef pair&lt;iterator, iterator&gt; _Pairii;
+<hr>
+<h2 id="set使用"><a href="#set使用" class="headerlink" title="set使用"></a>set使用</h2><ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/90%20-%20Subsets%20II/90%20-%20Subsets%20II(Recursion).cpp" target="_blank" rel="external">Subsets II(Recursion)</a></li>
+</ol>
+<h3 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;iterator,bool&gt; insert (const value_type&amp; val);</span><br><span class="line">pair&lt;iterator,bool&gt; insert (value_type&amp;&amp; val);</span><br></pre></td></tr></table></figure>
+<p><code>set</code>中没有则插入，返回一个<code>pair</code>对象，<code>pair.first()</code>指向插入的元素或set中已有的该元素，<code>pair.second()</code>指示该元素是已有的还是新插入的。</p>
+<h3 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h3><ol>
+<li><code>#include &lt;algorithm&gt;</code>中<a href="http://stackoverflow.com/questions/5034211/c-copy-set-to-vector" target="_blank" rel="external">copy将set转vector</a>，当然也可以用<code>vector</code>的构造函数(iterator类型一致)。</li>
+</ol>
+<hr>
+<p>暂没有用到其他方法，待补充</p>
 
-_Pairii equal_range(const key_type&amp; _Keyval)
-{    // find range equivalent to _Keyval in mutable tree
-    return (_Eqrange(_Keyval));
-}
-</code></pre>
     
   </div>
 </article>
@@ -337,7 +378,7 @@ _Pairii equal_range(const key_type&amp; _Keyval)
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://rylcode.cn/2016/05/16/multimap简介/';
+    var disqus_url = 'http://rylcode.cn/2016/05/27/set容器简介/';
     
     (function(){
       var dsq = document.createElement('script');
