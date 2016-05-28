@@ -41,7 +41,7 @@
 
 可以提升(常到int)，但int不能缩窄到它；
 可">
-<meta property="og:updated_time" content="2016-05-06T04:58:24.186Z">
+<meta property="og:updated_time" content="2016-05-27T06:24:58.641Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="共用体、枚举和浮点数存储">
 <meta name="twitter:description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：
@@ -181,7 +181,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数存储方式"><span class="toc-text">浮点数存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数存储方式"><span class="toc-text">浮点数存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数表示"><span class="toc-text">浮点数表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点整型转化"><span class="toc-text">浮点整型转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li></ol>
   </div>
 
 
@@ -239,7 +239,7 @@ ga('send', 'pageview');
 <li>他没有算术运算，一般常用于<code>swith</code>语句中的标签。</li>
 </ol>
 <hr>
-<h2 id="浮点数存储方式"><a href="#浮点数存储方式" class="headerlink" title="浮点数存储方式"></a>浮点数存储方式</h2><p>不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？<br>首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；</p>
+<h2 id="浮点数存储方式"><a href="#浮点数存储方式" class="headerlink" title="浮点数存储方式"></a>浮点数存储方式</h2><h3 id="浮点数表示"><a href="#浮点数表示" class="headerlink" title="浮点数表示"></a>浮点数表示</h3><p>不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？<br>首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；</p>
 <table>
 <thead>
 <tr>
@@ -276,7 +276,13 @@ ga('send', 'pageview');
 </tr>
 </tbody>
 </table>
-<p>其次，阶码使用中间偏置(固定量为2^N-1)的移码表示的,M的整数部分为1,不存储，只存储尾数即可。<br>例如，125.5f = <code>1111101.1</code> = 1.1111011*2^6 =&gt;移码127+6 = 133 = <code>10000101</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000010 10000000 00000000 01111011</code>。</p>
+<p>其次，阶码使用中间偏置(固定量为2^N-1)的移码表示的,M的整数部分为1,不存储，只存储尾数即可。<br>例如，</p>
+<ol>
+<li>125.5f = <code>1111101.1</code> = 1.1111011*2^6 =&gt;移码127+6 = 133 = <code>10000101</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000010 11111101 00000000 0000000</code>。</li>
+<li>253.5f = <code>11111101.1</code> = 1.11111011*2^7 =&gt;移码127+7 = 134 = <code>10000110</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000011 01111110 10000000 0000000</code>。</li>
+</ol>
+<h3 id="浮点整型转化"><a href="#浮点整型转化" class="headerlink" title="浮点整型转化"></a>浮点整型转化</h3><p>讨论<code>float</code>型与<code>int</code>的相互转化(字节数相等)，值转化使用强制类型转换<code>float(int x)</code>和<code>int(float x)</code>可以完成，这个操作中内存中的位发生了变化，那么，现在不想让位变化，转变编译器解释数据的方式该如何操作?<br>之前提到过，对一个指定的编译器，任何指针的大小都是一定的。因此可以对指针(指针类型可以告诉编译器解释内存的方式)强制类型转化(缩窄转换取低位)来完成。如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float f = 253.5;</span><br><span class="line">unsigned short s = *(unsigned short*)&amp;f;</span><br><span class="line">short s1 = *(short*)&amp;f;</span><br></pre></td></tr></table></figure></p>
+<p>s = 2**15 = 32768;<br>s1 = <code>10000000 00000000</code> = -32768;</p>
 <h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ol>
 <li>整型常量默认情况下是int型,浮点常量在默认情况下是<code>double</code>型,如果需要<code>float</code>型，需要这样表示：<code>3.25f</code>；</li>
 </ol>
