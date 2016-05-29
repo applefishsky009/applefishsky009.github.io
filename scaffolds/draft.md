@@ -1,0 +1,6 @@
+---
+title: {{ title }}
+catogory: 
+tags: 
+
+---

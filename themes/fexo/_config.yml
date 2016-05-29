@@ -1,0 +1,143 @@
+# Blog info
+blog_name: 孤云两角，去天一握
+slogan: Stay hungry,Stay foolish
+url: http://www.rylcode.com
+
+# Set avatar (Absolute url and relative url)
+avatar: /images/avatar.jpg
+
+# Set favicon
+favicon: /favicon.ico
+
+# For seo
+keywords: 数据结构,C++,算法,Python
+
+home_nav:
+  - name: Blog
+    url: /archives
+    target_blank: false #不在新页面打开
+  - name: Github
+    url: https://github.com/applefishsky009
+    target_blank: true
+
+# config page nav
+page_nav:
+  - name: 博客
+    url: /archives/
+    target_blank: false # 不在新页面打开
+  - name: 分类
+    url: /category/
+    target_blank: false  
+  - name: 关于
+    url: /about/
+    target_blank: false
+  - name: 标签
+    url: /tag/
+    target_blank: false
+  - name: 友链
+    url: /link/
+    target_blank: false
+  - name: 项目
+    url: /project/
+    target_blank: false #在新页面打开  
+  - name: 搜索
+    url: /search/
+    target_blank: false # 在新页面打开
+
+page_nav_style: ROUND_RECT  # CIRCLE|ROUND_RECT
+
+# 面包屑
+breadcrumb:
+  isShow: true # true|false
+
+# 盒子
+toolbox:
+  isShow: true # true|false
+  text: 盒子
+
+search_slogan:
+  isShow: true # true|false
+  text: Hello,welcome to my blog ~
+
+link_slogan:
+  isShow: true # true|fase
+  text: 交换友链可以邮件 ryl_public@163.com
+
+# set backtop show or hide
+backtop:
+  home: false
+  archive: false
+  category: false
+  tag: true
+  post: true
+  link: false
+  about: false
+
+post:
+  header_align: CENTER # LEFT|CENTER
+  showToc: true # true|false
+  showComments: true
+
+# =========================================================
+# 个性化设置
+# =========================================================
+
+# Custom CSS style
+personal_style: /css/personal-style.css
+
+home_background_scheme: light # dark、light
+
+# custom font-family 暂时只支持这3种英文字体，你可以完全自定义字体(看文档)
+blog_name_font_familiy: calligraffittiregular
+# blog_name_font_familiy: Lobster-Regular
+# blog_name_font_familiy: PoiretOne-Regular
+
+init_page_content: POST  # HOME_NAV | POST
+
+
+# =========================================================
+# 第三方服务
+# =========================================================
+# Stats
+google_analytics: UA-76667484-1
+
+# Comment service
+disqus_shortname: rylcode
+# duoshuo_shortname: forsigner
+
+
+# =========================================================
+# 页面内容设置
+# =========================================================
+about:
+  - type: me
+    icon: icon-user
+    text_value:
+    - "Stay young,Stay simple"
+    - "USTC, UCAS, 1991, Autumn"
+    - "硕士生，图像，极简，编程。C++ / Python / JAVA / MATLAB，梦想：全栈"
+    - "和一些有趣的人做一些有趣的事情"
+  - type: Github
+    icon: icon-github
+    text_key: Github
+    text_value: "@applefishsky009"
+    text_value_url: https://github.com/applefishsky009
+  - type: mail
+    icon: icon-mail
+    text_key: 网易邮箱
+    text_value: "ryl_public@163.com"
+  - type: location
+    icon: icon-location
+    text_value: 北京
+
+link:
+  - name: seapub
+    info: 
+    url: http://seapub.github.io/
+    avatar: https://avatars0.githubusercontent.com/u/6984146?v=3&s=400
+  
+project:
+  - type: personal
+    name: 待上传
+    url: 
+    intro: 暂未上传
