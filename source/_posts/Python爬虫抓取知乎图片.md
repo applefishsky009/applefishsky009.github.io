@@ -14,8 +14,8 @@ tags: [知乎图片爬虫]
 
 ## 工具
 
-首先介绍使用的三个模块，在实现中节省不少功夫，不知道的同学可以去搜，这里主要分析如何实现功能以及为什么这么使用，不会介绍模块。
-1. bs4，`from bs4 import BeautifulSoup`，模块文档在这里[doc](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)，这是一个非常好用的网页解析工具。简单来说，将抓回来的页面解析成`html`格式以便于查找定位。
+首先介绍使用的三个模块，在实现中节省不少功夫，不知道的可以去搜，这里主要分析如何实现功能以及为什么这么使用，不会介绍模块。
+1. bs4，`from bs4 import BeautifulSoup`，模块文档在这里[doc](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)，这是一个非常好用的网页解析工具。简单来说，将抓回来的页面解析成`html`格式以便于查找定位。那么**如何找想要的标签?**可以在谷歌浏览器中F12查看，鼠标移到对应标签左边相应栏目就会显示为蓝色。
 2. shutil，`import shutil`导入这个模块主要是使用文件夹操作，主要是因为`mkdir`使用时如果目录中已有想创建的文件夹，会返回错误，我用shutil删除重建，保证程序的稳定性。
 3. linecache，`import linecache`导入这个模块读取本地txt文件中的信息，存储了两行，第一行是要爬取的**主页**,第二行是保存图片的文件夹。注意`linecache.getline()`方法会读取回车，去掉就行。
 

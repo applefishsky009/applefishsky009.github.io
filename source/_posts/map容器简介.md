@@ -16,29 +16,38 @@ tags: [map,multimap]
 
 ## multimap简介
 
-multimap是一种Hash Table。首先使用`multimap`必须使用宏语句`#include <map>`。MSDN上对multimap的解释已经比较清楚[multimap基础](http://blog.csdn.net/chenyujing1234/article/details/8193172)，[multimap与map，unorderedmap的对比](http://blog.csdn.net/xz_rabbit/article/details/43907311)
-主要有以下几点：
-1. multimap多重映照容器:容器的数据结构采用红黑树进行管理(还没有深入理解)；
-2. multimap的所有元素都是pair:第一元素为键值(key),不能修改;第二元素为实值(value),可被修改 
+容器属性：
+1. Associative:通过key而不是绝对位置来引用；
+2. Ordered:有序；
+3. Map:将key与mapped value映射，通过key访问mapped value；
+4. Multiple equivalent keys:这是一个一对多映射
+5. Allocator-aware:使用分配器`allocator`来动态存储。
+
+特征补充：
+1. <font color = red>`value_type:pair<const key_type,mapped_type>`</font>
+2. multimap多重映照容器:容器的数据结构采用红黑树进行管理；
 3. multimap特性以及用法与map完全相同，唯一的差别在于: 允许重复键值的元素插入容器(每一个都是用一个**链表**来链接的);
-4. `unordered_multimap`(目前还没有用到过)的无序存储特点，这是其与`multimap`最大的区别。
-5. 参考[Word Ladder II](https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp)；
 
 ---
 
-## multimap的使用
+## multimap使用
+1. [Word Ladder II](https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp)；
 
-1. 初始化:`multimap<string, string> father;`，第一个是key类型，第二个是映照类型；
-2. 插入数据:`father.insert(make_pair(string1, string2);`，[`pair`与`make_pair`介绍](http://www.cnblogs.com/Nimeux/archive/2010/10/05/1844191.html)。
-3. 寻找某个键值:`pair<multimap<string, string>::iterator, multimap<string, string>::iterator> pos = father.equal_range(string1)`;`equal_range(string1);`注意其返回的是`pair`对象，`first`和`second`都是迭代器类型，他返回键值为`string1`的左指针和超尾(右)指针(最后一个键值为`string1`的下一个指针)，源码如下：
-
+### insert()
+```C++
+single element (1)	iterator insert (const value_type& val);
+with hint (2)	iterator insert (const_iterator position, const value_type& val);
+range (3)	void insert (InputIterator first, InputIterator last);
+initializer list (4)	void insert (initializer_list<value_type> il);
 ```
-typedef pair<iterator, iterator> _Pairii;
+有序插入
 
-_Pairii equal_range(const key_type& _Keyval)
-{	// find range equivalent to _Keyval in mutable tree
-	return (_Eqrange(_Keyval));
-}
-``` 
+
+### equal_range()
+```C++
+pair<const_iterator,const_iterator> equal_range (const key_type& k) const;
+pair<iterator,iterator>             equal_range (const key_type& k);
+```
+寻找某个键值的所有对象，返回pair对象(两个指针,左闭右开,将右开的指针称为超尾)。如果没有找到，这两个指针都会指向超尾。
 
 

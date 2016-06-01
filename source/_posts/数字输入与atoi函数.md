@@ -53,12 +53,13 @@ while (!cin<<idex) {
 头文件：`#include <cstdlib>`;
 [LeetCode][1]
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/8%20-%20String%20to%20Integer%20(atoi)/8%20-%20String%20to%20Integer%20(atoi).cpp
-这里有一个非常重要的概念，不管是数字输入韩式字符串转数字，都是**遇到有效输入开始读取，直到碰到无效输入退出**
+这里有一个非常重要的概念，不管是数字输入还是字符串转数字，都是**遇到有效输入开始读取，直到碰到无效输入退出**
 也就是说其实`cin<<`就是对输入缓存进行了一个atoi()。区别就是在`cin<<`退出之后同行中的非法输入(如果有)还是留在输入队列中，影响后续读入。
 因此可以使用`cingetline()`加`atoi()`函数进行输入检查转换是安全的。代码如下：
-```
+```C++
 int k = 0;
 char s1[20];	//注意分配空间和,很久没用char[]，
 cin.getline(s1,20);
 k = atoi(s1);
 ```
+之后大于19的部分可以正常用`getchar()`读取，`clear()`之后可以用cin方法读取，但是之前的输入依然在队列中，如果不想要之前的部分，要使用`ignore()`方法。

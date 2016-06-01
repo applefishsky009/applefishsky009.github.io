@@ -1,0 +1,58 @@
+---
+title: unordered_map容器简介
+date: 2016-06-01 14:21:28
+category: STL
+tags: [unordered_map,unordered_multimap]
+
+---
+
+先上彩蛋：
+1. [cplusplus](http://www.cplusplus.com/)
+2. [cppreference](http://en.cppreference.com/w/)
+3. [stackoverflow](http://stackoverflow.com/)
+`#include<unordered_map>`头文件内定义了两个无序的hash容器`unordered_map`和`unordered_multimap`
+
+---
+
+## unordered_map简介
+
+容器属性：
+1. Associative:通过key而不是绝对位置来引用；
+2. Unordered:无序，即通过hash表来组织数据，以支持通过key的快速访问；
+3. Map:将key与mapped value映射，通过key访问mapped value；
+4. Unique keys:这是一个一一映射
+5. Allocator-aware:使用分配器`allocator`来动态存储。
+
+特征补充：
+1. `unordered_map`访问个体的速度比`map`更快，但是子集元素的范围迭代效率更低。
+2. <font color = red>`value_type:pair<const key_type,mapped_type>`</font>
+
+---
+
+## unordered_map使用
+
+1. [Clone Graph][1]
+
+[1]:https://github.com/applefishsky009/LeetCode/blob/master/133%20-%20Clone%20Graph/133%20-%20Clone%20Graph(BFS).cpp
+
+### 通过key访问
+```C++
+mapped_type& operator[] ( const key_type& k );
+mapped_type& operator[] ( key_type&& k );
+```
+运算符`[]`的重载，如果已有key，返回val;如果没有key,插入这个key,返回val的引用(因此可以直接赋值)
+
+### insert()
+之前提到他的`value_type`是`pair<const key_type,mapped_type>`，因此使用insert()方法要用`make_pair()`方法来构建对象，返回对象也是指针和bool的pair。
+`pair<iterator,bool> insert ( const value_type& val );`
+
+### find()
+```C++
+iterator find ( const key_type& k );
+const_iterator find ( const key_type& k ) const;
+```
+返回指向key的指针，如果没有则返回超尾unordered_map::end。他的两个主要用途可以使用`count()`方法(是否有Key)和`operator[]`(访问val)来代替。
+
+---
+
+以后一一补充。

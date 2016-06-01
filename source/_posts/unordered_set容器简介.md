@@ -13,17 +13,43 @@ tags: [unordered_set,unordered_multiset]
 `#include <unordered_set>`头文件内定义了两个无序hash容器，`unordered_set`和`unordered_multiset`。
 
 ---
+
 ## unordered_set简介
 
-首先使用`unordered_set`必须使用宏语句`#include <unordered_set>`。MSDN上有对[unordered_set](https://msdn.microsoft.com/zh-cn/library/bb982739.aspx)描述，CSDN上有博客对[unordered_set](http://blog.csdn.net/oabid/article/details/4562577)描述，这是一个哈希表。一般来说，一些简单功能可以当做STL里的容器来用：`insert()`、<font color=red>`find()`</font>、`erase()`、`size()`、`empty()`、`begin()`、`end()`。
-1. 参考[Word Ladder II](https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp)；
+容器属性：
+1. Associative:通过key而不是绝对位置来引用;
+2. Unordered:无序，即通过hash表来组织数据，以支持通过key的快速访问；
+3. Set:键值就是值本身；
+4. Unique keys:这是一个一一映射
+5. Allocator-aware:使用分配器`allocator`来动态存储。
+
+特征补充：
+1. `unordered_set简介`访问个体的速度比`set`更快，但是子集元素的范围迭代效率更低。
 
 ---
 
-## unordered_set(无序关联容器)与vector的异同
+## unordered_set简介
 
-1. `_Pairib insert(const value_type& _Val);`;基本与`vector`用法相同，参数为要插入的值。
-2. `iterator find(const key_type& _Keyval);`;若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即`end()`。与`size_type find(_Elem _Ch, size_type _Off = 0) const;`有区别，后者会返回下标(`size_type`可以看做一种足够大的`unsigned`类型来表示下标)，如果没找到，返回`string::npos`。而
-3. `size_type erase(const key_type& _Keyval);`;擦除指定值，返回该指定值的位置。`iterator erase(const_iterator _Where);`擦除指针指向的值，容器重排，指针不变。
-4. `size_type count(const Key& keyval) const;`返回unordered_set中指定键对应的元素个数，k-要查找的key值。
+1. [Word Ladder II](https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp)；
+
+### insert()
+因为key的唯一性，只有在没有这个key的情况下才能插入成功`_pair<iterator,bool> insert ( const value_type& val );`;
+
+### find()
+```C++
+iterator find ( const key_type& k );
+const_iterator find ( const key_type& k ) const;
+```
+若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即`unordered_set::end`。
+
+### erase()
+```C++
+by position (1)	iterator erase ( const_iterator position );
+by key (2)	size_type erase ( const key_type& k );
+range (3)	iterator erase ( const_iterator first, const_iterator last );
+```
+擦除指定值，容器重排。
+
+### count()
+`size_type count(const Key& keyval) const;`返回unordered_set中指定键对应的元素个数，由于其唯一性，只能返回1(存在)或0(不存在)。
 

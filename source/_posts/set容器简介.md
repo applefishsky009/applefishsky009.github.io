@@ -2,7 +2,7 @@
 title: set容器简介
 date: 2016-05-27 10:14:47
 category: STL
-tags: [set，multiset]
+tags: [set,multiset]
 
 ---
 
@@ -16,10 +16,16 @@ tags: [set，multiset]
 
 ## set简介
 
-1. 以特定顺序存储**唯一**元素；
-2. 键值就是值本身；
-3. 容器中的元素都是不可修改的(都是`const`类型)，但是可以`insert`，`remove`；
-4. 容器通过二叉搜索树实现。
+容器属性：
+1. Associative:通过key而不是绝对位置来引用;
+2. Ordered:有序;
+3. Set:键值就是值本身；
+4. Unique keys:这是一个一一映射
+5. Allocator-aware:使用分配器`allocator`来动态存储。
+
+特征补充：
+1. 容器中的元素都是不可修改的(都是`const`类型)，但是可以`insert()`，`remove()`；
+2. 容器通过二叉搜索树实现。
 
 ---
 
@@ -30,7 +36,7 @@ tags: [set，multiset]
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/90%20-%20Subsets%20II/90%20-%20Subsets%20II(Recursion).cpp
 
 ### insert()
-```
+```C++
 pair<iterator,bool> insert (const value_type& val);
 pair<iterator,bool> insert (value_type&& val);
 ```
