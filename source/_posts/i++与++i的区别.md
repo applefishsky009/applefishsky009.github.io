@@ -1,7 +1,7 @@
 ---
 title: i++与++i的区别
 date: 2016-05-06 14:22:46
-category: C++的类
+category: C++基础
 tags: 自增减运算符重载
 
 ---

@@ -31,16 +31,18 @@ tags: [Binary Search]
 
 ## 递归二分
 
-1. [Search in Rotated Sorted Array](https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array.cpp)
-2. [Search for a Range](https://github.com/applefishsky009/LeetCode/blob/master/34%20-%20Search%20for%20a%20Range/34%20-%20Search%20for%20a%20Range.cpp)
-3. [Search Insert Position](https://github.com/applefishsky009/LeetCode/blob/master/35%20-%20Search%20Insert%20Position/Search%20Insert%20Position.cpp)
-4. [Pow(x, n)][1]
-5. [Sqrt(float x)][2]
-6. [Sqrt(int x)][3]
+1. [Search in Rotated Sorted Array](https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array.cpp),[Search in Rotated Sorted Array(2)][4]
+2. [Search in Rotated Sorted Array II](https://github.com/applefishsky009/LeetCode/blob/master/81%20-%20Search%20in%20Rotated%20Sorted%20Array%20II/81%20-%20Search%20in%20Rotated%20Sorted%20Array%20II.cpp)
+3. [Search for a Range](https://github.com/applefishsky009/LeetCode/blob/master/34%20-%20Search%20for%20a%20Range/34%20-%20Search%20for%20a%20Range.cpp)
+4. [Search Insert Position](https://github.com/applefishsky009/LeetCode/blob/master/35%20-%20Search%20Insert%20Position/Search%20Insert%20Position.cpp)
+5. [Pow(x, n)][1]
+6. [Sqrt(float x)][2]
+7. [Sqrt(int x)][3]
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp
 [2]:https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(float%20x).cpp
 [3]:https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(int%20x).cpp
+[4]:https://github.com/applefishsky009/LeetCode/blob/master/33%20-%20Search%20in%20Rotated%20Sorted%20Array/33%20-%20Search%20in%20Rotated%20Sorted%20Array(2).cpp
 
 ---
 
