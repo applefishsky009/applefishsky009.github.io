@@ -38,6 +38,7 @@ tags: [Binary Search]
 5. [Pow(x, n)][1]
 6. [Sqrt(float x)][2]
 7. [Sqrt(int x)][3]
+8. [Search a 2D Matrix](https://github.com/applefishsky009/LeetCode/blob/master/74%20-%20Search%20a%202D%20Matrix/74%20-%20Search%20a%202D%20Matrix.cpp)
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp
 [2]:https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(float%20x).cpp

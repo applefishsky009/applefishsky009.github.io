@@ -22,6 +22,16 @@ BFS需要借助一个**队列**来记录遍历的"层数"；对每个节点的�
 
 ## DFS(深度优先搜索)
 
-DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这条分支，便要**回溯**到上一层；在递归之前可以记录深度。
+DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这条分支，便要**回溯**到上一层(撤销操作)；在递归之前可以记录深度。
+有三点需要特别说明：**递归出口(DFS深度控制)**，**递归入口(在DFS中何时调用DFS)**，**撤销操作(同一层继续找递归入口)**。
 1. [Palindrome Partitioning](https://github.com/applefishsky009/LeetCode/blob/master/131%20-%20Palindrome%20Partitioning/131%20-%20Palindrome%20Partitioning.cpp)
+	+ 使用递归的DFS
 2. [Word Ladder II](https://github.com/applefishsky009/LeetCode/blob/master/126%20-%20Word%20Ladder%20II/126%20-%20Word%20Ladder%20II.cpp)
+	+ 使用栈的DFS；
+3. [Unique Paths](https://github.com/applefishsky009/LeetCode/blob/master/62%20-%20Unique%20Paths/62%20-%20Unique%20Paths.cpp)
+	+ 二分DFS与DP；
+4. [Unique Paths II](https://github.com/applefishsky009/LeetCode/blob/master/63%20-%20Unique%20Paths%20II/63%20-%20Unique%20Paths%20II.cpp)
+	+ 带判断的二分递归与DP；
+5. [N-Queens](https://github.com/applefishsky009/LeetCode/blob/master/51%20-%20N-Queens/51%20-%20N-Queens.cpp)
+	+ 使用递归的DFS，递归出口(DFS深度控制)，递归入口(在DFS中何时调用DFS)，以及回溯时撤销操作(同一层继续找递归入口)；
+	+ 判断是否在对角线上：行列差相等。
