@@ -39,6 +39,10 @@ tags: [Binary Search]
 6. [Sqrt(float x)][2]
 7. [Sqrt(int x)][3]
 8. [Search a 2D Matrix](https://github.com/applefishsky009/LeetCode/blob/master/74%20-%20Search%20a%202D%20Matrix/74%20-%20Search%20a%202D%20Matrix.cpp)
+9. [Median of Two Sorted Arrays](https://github.com/applefishsky009/LeetCode/blob/master/4%20-%20Median%20of%20Two%20Sorted%20Arrays/4%20-%20Median%20of%20Two%20Sorted%20Arrays.cpp)
+	+ 大小数组个数和大于k，保证两数组左侧个数和是k;
+	+ 保证二分搜索时小数组不越界，这样小数组删完了可以直接取大数组;
+	+ 每次递归删掉二分的一般继续找，直到找到为止。
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp
 [2]:https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(float%20x).cpp

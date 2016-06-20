@@ -32,6 +32,10 @@ tags: [unordered_map,unordered_multimap]
 ## unordered_map使用
 
 1. [Clone Graph][1]
+2. [Permutations II](https://github.com/applefishsky009/LeetCode/blob/master/47%20-%20Permutations%20II/47%20-%20Permutations%20II.cpp)
+	+ 随着sums的增长，在最后一步find()方法的复杂度n!增长，耗时太久;
+	+ 在每一步中可以去掉相同的步，可以极大优化算法;
+	+ 用hash_map统计出现的次数速度更快，于是用字符次数对来代替原数组(重复字符越多速度提升越明显)。
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/133%20-%20Clone%20Graph/133%20-%20Clone%20Graph(BFS).cpp
 

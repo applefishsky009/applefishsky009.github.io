@@ -28,16 +28,23 @@ tags: [vector,sort()]
 | `sort(p,q)`	| `void`	| 对[p,q)升序排序		|
 | `sort(p,q,cmp)`	| `void`	| 对[p,q)使用`cmp`方法排序，`cmp`	|
 
-1. 右闭左开区间，一般来讲`p = a.begin()`;`q = a.end()`完成了对容器的排序。
-2. 升序排序直接用第一个方法，系统默认`a<b`返回真，因此是升序。
-3. 降序排序需要自定义`cmp`方法,方法如下，只需要将默认值改为`a>b`。
-
-```
+```C++
 	bool comp(const int &a,const int &b)
 	{
    		return a>b;
 	}
 ```
+
+1. 右闭左开区间，一般来讲`p = a.begin()`;`q = a.end()`完成了对容器的排序；
+2. 升序排序直接用第一个方法，系统默认`a<b`返回真，因此是升序；
+3. 降序排序需要自定义`cmp`方法,方法如下，只需要将默认值改为`a>b`；
+4. 第二种表达式的主要作用是对一些自己构造的数据结构可以自定义排序方法，可以这么写：
+```C++
+sort(nums.begin(), nums.end(), [](int a, int b) {return a < b;});
+```
+
+例子：
+1. [Merge Intervals](https://github.com/applefishsky009/LeetCode/blob/master/56%20-%20Merge%20Intervals/56%20-%20Merge%20Intervals.cpp)
 
 ---
 

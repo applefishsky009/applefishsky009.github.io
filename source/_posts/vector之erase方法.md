@@ -35,7 +35,7 @@ tags: [vector,erase()]
 ---
 
 为简单，分析第一个表达式的源码如下：
-```
+```C++
 iterator erase(const_iterator _Where)
 {	// erase element at where
 	if (_VICONT(_Where) != this
@@ -48,6 +48,41 @@ iterator erase(const_iterator _Where)
 	--this->_Mylast;
 	return (_Make_iter(_Where));
 }
+void _Orphan_range(pointer _First, pointer _Last) const
+		{	// orphan iterators within specified (inclusive) range
+		_Lockit _Lock(_LOCK_DEBUG);
+		const_iterator **_Pnext = (const_iterator **)this->_Getpfirst();
+		if (_Pnext != 0)
+			{	// test an iterator
+			while (*_Pnext != 0)
+				if ((*_Pnext)->_Ptr < _First || _Last < (*_Pnext)->_Ptr)
+					_Pnext = (const_iterator **)(*_Pnext)->_Getpnext();
+				else
+					{	// orphan the iterator
+					(*_Pnext)->_Clrcont();	//WTF!!!!!!!!!!!
+					*_Pnext = *(const_iterator **)(*_Pnext)->_Getpnext();
+					}
+			}
+		}
 ```
-可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(`capacity`不变)，之后<font color=red>_Orphan_range发生了什么？</font>,接下来指针指向正确的位置，最后返回指向原地址的迭代器。
+可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(`capacity`不变)，之后<font color=red>_Orphan_range将这个位置以及之后的孤儿迭代器失效了！WTF!!!</font>(也许是基于安全考虑),接下来指向正确的尾部元素，最后<font color=red>总算有点良心</font>，返回值是`erase()`元素之后的下一个元素(也认为是位置不变)，即返回指向原地址的迭代器。
+
+## 迭代器的有效性
+
+```C++
+vector<int>::iterator t;	//便于说明此处不初始化
+vector<int>::iterator k = result.begin();
+vector<int>::iterator p = result.begin() + 1;
+vector<int>::iterator q = result.begin() + 2;
+t = result.erase(p);
+```
+看这个句法，以此为例，在[Cplusplus](http://www.cplusplus.com/reference/vector/vector/erase/)上提到这一点，：
+>Iterators, pointers and references pointing to position (or first) and beyond are invalidated, with all iterators, pointers and references to elements before position (or first) are guaranteed to keep referring to the same elements they were referring to before the call.
+
+大意是指向p以及之后的孤儿迭代器都不可用了(p和q)，但是指向p之前的孤儿迭代器以及`erase()`方法返回的孤儿迭代器都是可用的(k和t)。
+
+因此在使用多个迭代器的时候一定要注意迭代器是否有效(特别是涉及`erase()`和`insert()`方法)，这种情况下最好使用`index`下标作为循环而不是孤儿迭代器。
+
+1. [Merge Intervals](https://github.com/applefishsky009/LeetCode/blob/master/56%20-%20Merge%20Intervals/56%20-%20Merge%20Intervals.cpp)
+	+ 注意Two Pointers的用法
 
