@@ -13,6 +13,11 @@ tags: [string,cctype]
 2. [Evaluate Reverse Polish Notation](https://github.com/applefishsky009/LeetCode/blob/master/150%20-%20Evaluate%20Reverse%20Polish%20Notation/150%20-%20Evaluate%20Reverse%20Polish%20Notation.cpp)
 	+ `string::sizetype`是无符号，`string::npos`是-1的强制类型转换，不同类型值不同；
 	+ `stringtoint:string::stoi()`。
+3. [Longest Substring Without Repeating Characters](https://github.com/applefishsky009/LeetCode/blob/master/3%20-%20Longest%20Substring%20Without%20Repeating%20Characters/3%20-%20Longest%20Substring%20Without%20Repeating%20Characters.cpp)
+	+ 从上一个重复字符的下一个字符计数。
+4. [Regular Expression Matching](https://github.com/applefishsky009/LeetCode/blob/master/10%20-%20Regular%20Expression%20Matching/10%20-%20Regular%20Expression%20Matching.cpp)
+	+ `*`匹配0个或者多个前个字符 - 重点；
+	+ 注意当前匹配条件`*p == *s || (*p == '.' && *s != '\0')`，'.'唯一不能匹配'\0'。
 
 ### string运算符
 `string`类的运算符重载在头文件`string`里,如`+`,`<<`。注意`"a"+"b" = "ab"`,`'a'+'b' = 195`,前者是字符串拼接，后者是字符常量相加。但是`cout<<"a"+"b";`这个语句是错误的，必须至少声明两个`string`类型。
@@ -36,7 +41,7 @@ while (k != string::npos)
 ```
 
 ### string.substr()
-函数声明如下：`_Myt substr(size_type _Off = 0, size_type _Count = npos) const`，返回从指定位置(_Off)开始的长度为(_Count)的子字符串。
+函数声明如下：`_Myt substr(size_type _Off = 0, size_type _Count = npos) const`，返回从指定位置(_Off)开始的长度为(_Count)的子字符串，注意缺省值取尽可能多的字符。
 
 
 ### string::stoi()

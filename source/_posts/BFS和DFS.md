@@ -45,3 +45,5 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 	+ 用hash_map统计出现的次数速度更快，于是用字符次数对来代替原数组(重复字符越多速度提升越明显)。
 8. [N-Queens II](https://github.com/applefishsky009/LeetCode/blob/master/52%20-%20N-Queens%20II/52%20-%20N-Queens%20II.cpp)
 	+ 使用`vector<int> C`来记录每一层/行(i)的Q在哪一列(j)。
+9. [Interleaving String](https://github.com/applefishsky009/LeetCode/tree/master/97%20-%20Interleaving%20String)
+	+ DFS传递步数，使用两个指针判断，但是会超时(在release版本下复杂样本测试时间超过30s)。

@@ -1,8 +1,8 @@
 ---
-title: LeetCodeC1编程技巧说明
+title: 编程技巧说明
 date: 2016-04-08 19:44:02
 category: C++基础
-tags: [LeetCode编程技巧]
+tags: [编程技巧]
 
 ---
 
@@ -54,3 +54,43 @@ for(int i=0;i<row;i++)
 1. `vector`需要更多空间，以类似`realloc`的思想来增长大小。分配，回收，拷贝和析构，这些步骤都很昂贵。并且每次这些步骤发生时，所有指向`vector`或`string`中的迭代器、指针和引用都会失效。
 2. 据博客中所说，vector重新分配时容量翻倍。我在VS2012，WIN32编译器下结果如下，容量是翻*1.5*倍的。因此在1000次`push_back`中导致了18次重新分配。![reverse()](http://i.imgur.com/ooqb6by.png)
 3. 在**容器被构造之后**进行**`reserve`设置容器容量**可以避免不必要的重新分配。`a.reserve(1000)`即把a的容量设置为1000。
+
+---
+
+## 诊断宏
+
+[assert.h](https://zh.wikipedia.org/wiki/Assert.h),`assert()`是一个诊断宏，用于动态辨识程序的逻辑错误条件，原型：
+```C++
+void assert(int expression);
+```
+1. 如果是非零值，不做任何操作；
+2. 如果是零值，用宽字符打印诊断消息，然后调用`abort()`，诊断消息：
+	+ 源文件名字；
+	+ 源文件行号；
+	+ 所在函数名；
+	+ 求值结果为0的表达式。
+
+---
+
+## const在C++与ANSI C中的不同
+[为什么const不能用于数组初始化](http://baike.baidu.com/subview/1065598/5048428.htm?fromTaglist=)，简单来说：
+1. ANSI C中`const`定义了只读变量，C++中`const`是常量，而数组初始化要求参数只能是常量；
+2. ANSI C中定义常量只能用枚举或宏。
+3. 另外这样使用数组如果越界访问并存储，会按特定方式修改栈，造成安全隐患。
+```C++
+int main()
+{
+	const int n = 4;
+	int a[n];
+	a[0] = 1;a[1] = 2;a[2] = 3;a[3] = 4;a[4] = 5;
+	for (int i = 0;i < n;++i)
+		cout << a[i] << endl;
+	cout << a[4] << endl;
+	system("pause");
+}
+```
+这会破坏栈中的环境变量表或其他设置(开始执行main()时压入栈的东西)，提示：
+> Run-Time Check Failure #2 - Stack around the variable 'a' was corrupted.
+
+如果使用vector,在越界访问时就会抛出一个错误，提示：
+> vector subscript out of range.
