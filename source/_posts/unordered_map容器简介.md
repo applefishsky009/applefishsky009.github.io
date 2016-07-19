@@ -27,6 +27,11 @@ tags: [unordered_map,unordered_multimap]
 1. `unordered_map`访问个体的速度比`map`更快，但是子集元素的范围迭代效率更低。
 2. <font color = red>`value_type:pair<const key_type,mapped_type>`</font>
 
+心得：
+1. 他底层数据结构是散列表，因此搜索操作具有常数级的平均时间复杂度,[和map对比](http://ask.todgo.com/detail/6006173bc12b.html)；
+2. `map`的查找效率比`unordered_map`稳定，其插入，删除，搜索的复杂度都是O(logn)，对于频繁的插入删除，优先使用`map`；
+3. 如果仅需要在插入完毕后排序一次，可以考虑用`unordered_map`，最后sort那个arary。
+
 ---
 
 ## unordered_map使用
@@ -39,6 +44,9 @@ tags: [unordered_map,unordered_multimap]
 3. [Longest Consecutive Sequence](https://github.com/applefishsky009/LeetCode/blob/master/128%20-%20Longest%20Consecutive%20Sequence/128%20-%20Longest%20Consecutive%20Sequence.cpp)
 	+ O(n)的时间复杂度应该联想到Hash Table；
 	+ 和其他线性容器不同，他的删除操作很容易实现。
+4. [Two Sum](https://github.com/applefishsky009/LeetCode/blob/master/1%20-%20Two%20Sum/1%20-%20Two%20Sum.cpp)
+	+ 使用`unordered_map`，常数级搜索；
+	+ 考虑{3,2,4，(3)},6；因此不能对半筛选，因此过滤相同下标。
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/133%20-%20Clone%20Graph/133%20-%20Clone%20Graph(BFS).cpp
 

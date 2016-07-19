@@ -1,5 +1,5 @@
 ---
-title: string与cctype
+title: string类与cctype
 date: 2016-04-21 10:36:21
 category: C++的类
 tags: [string,cctype]
@@ -18,6 +18,13 @@ tags: [string,cctype]
 4. [Regular Expression Matching](https://github.com/applefishsky009/LeetCode/blob/master/10%20-%20Regular%20Expression%20Matching/10%20-%20Regular%20Expression%20Matching.cpp)
 	+ `*`匹配0个或者多个前个字符 - 重点；
 	+ 注意当前匹配条件`*p == *s || (*p == '.' && *s != '\0')`，'.'唯一不能匹配'\0'。
+5. [Multiply Strings](https://github.com/applefishsky009/LeetCode/blob/master/43%20-%20Multiply%20Strings/43%20-%20Multiply%20Strings.cpp)
+	+ 任意大小非负数字乘积计算(`string`类)，按结果逐位计算；
+	+ 注意避免头插和`find_first_not_of("0")`可以去掉头部的'0'；
+	+ 保证num1，num2访问不越界。
+6. [Wildcard Matching](https://github.com/applefishsky009/LeetCode/blob/master/44%20-%20Wildcard%20Matching/44%20-%20Wildcard%20Matching.cpp)
+	+ 利用字符串和字符串指针来回溯；
+	+ 正则匹配的思路。
 
 ### string运算符
 `string`类的运算符重载在头文件`string`里,如`+`,`<<`。注意`"a"+"b" = "ab"`,`'a'+'b' = 195`,前者是字符串拼接，后者是字符常量相加。但是`cout<<"a"+"b";`这个语句是错误的，必须至少声明两个`string`类型。

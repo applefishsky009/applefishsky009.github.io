@@ -47,3 +47,19 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 	+ 使用`vector<int> C`来记录每一层/行(i)的Q在哪一列(j)。
 9. [Interleaving String](https://github.com/applefishsky009/LeetCode/tree/master/97%20-%20Interleaving%20String)
 	+ DFS传递步数，使用两个指针判断，但是会超时(在release版本下复杂样本测试时间超过30s)。
+10. [Combinations](https://github.com/applefishsky009/LeetCode/blob/master/77%20-%20Combinations/77%20-%20Combinations.cpp)
+	+ start-标识当前步, cur-path中的元素数量(可以用path.size()代替);
+	+ 这题自己写的时候走了不少弯路，想用`unordered_set<int>`标识当前可走的步数，用`set<int>`对path排序，用`unodered_set<vector<int>>`来防止重复，但`unodered_set<vector<int>>`需要重写hasher，比较复杂，因此用了对`vector<vector<int>>`用了find方法，这在大样本下难免会超时；
+	+ 从上可以看出其**深度参数**的重要性，参数左边是已经走过的步，参数右边就是所有可能走的步数；
+	+ 另外注意Backtracking是在当前步走完，递归，就要立即回溯。
+11. [Restore IP Addresses](https://github.com/applefishsky009/LeetCode/blob/master/93%20-%20Restore%20IP%20Addresses/93%20-%20Restore%20IP%20Addresses.cpp)
+	+ 每一层的选择不一定这么简单，就像这个问题，尤其注意剪枝；
+	+ 每一层的遍历尽量用`for`，不符合条件的剪掉就行。当前层剪不掉的可以在下一层入口剪掉，例如例子中余下字符数过多过少的问题。
+12. [Same Tree](https://github.com/applefishsky009/LeetCode/blob/master/100%20-%20Same%20Tree/100%20-%20Same%20Tree.cpp)
+	+ 及其简单的一个DFS。
+13. [Letter Combinations of a Phone Number](https://github.com/applefishsky009/LeetCode/blob/master/17%20-%20Letter%20Combinations%20of%20a%20Phone%20Number/17%20-%20Letter%20Combinations%20of%20a%20Phone%20Number.cpp)
+	+ 递归版本比较简单，掌握四要素：1.递归出口；2.传递当前步数；3.当前步数可能值循环；4.回溯(因为是按值传递path)
+	+ 非递归版本比较复杂，按内存复制。
+14. [Combination Sum](https://github.com/applefishsky009/LeetCode/blob/master/39%20-%20Combination%20Sum/39%20-%20Combination%20Sum.cpp)
+	+ 保证输入排序；
+	+ 提前减枝提升性能。
