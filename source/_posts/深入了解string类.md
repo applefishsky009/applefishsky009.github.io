@@ -110,3 +110,12 @@ character (4)	size_t find (char c, size_t pos = 0) const noexcept;
 5. `>>`;
 6. `>>`;
 7. 关系运算符。
+
+### []重载
+三观尽毁，先来一个概念[Null-terminated string](https://en.wikipedia.org/wiki/Null-terminated_string),再来参考文档[operator[]](http://www.cplusplus.com/reference/string/string/operator[]/)。解释一下：
+```C++
+string s;
+bool flag = s[s.size()] == '\0'；
+```
+1. `s[s.size()]`不会抛出异常，调试时监视器提示越界(坑，越界是没错，但其有值!)
+2. `flag`等于`true`，也就是说`s[s.size()]`的值为`'\0'`。

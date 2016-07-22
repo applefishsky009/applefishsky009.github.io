@@ -47,6 +47,9 @@ tags: [unordered_map,unordered_multimap]
 4. [Two Sum](https://github.com/applefishsky009/LeetCode/blob/master/1%20-%20Two%20Sum/1%20-%20Two%20Sum.cpp)
 	+ 使用`unordered_map`，常数级搜索；
 	+ 考虑{3,2,4，(3)},6；因此不能对半筛选，因此过滤相同下标。
+5. [Substring with Concatenation of All Words](https://github.com/applefishsky009/LeetCode/blob/master/30%20-%20Substring%20with%20Concatenation%20of%20All%20Words/30%20-%20Substring%20with%20Concatenation%20of%20All%20Words.cpp)
+	+ 用`Hash Table`，涉及到字符串，使用`unordered_map`统计字符串个数作为“池”；
+	+ `iterator`的方法目前涉及太少`next()`,`pre()`,`advance()`。
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/133%20-%20Clone%20Graph/133%20-%20Clone%20Graph(BFS).cpp
 
