@@ -63,3 +63,6 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 14. [Combination Sum](https://github.com/applefishsky009/LeetCode/blob/master/39%20-%20Combination%20Sum/39%20-%20Combination%20Sum.cpp)
 	+ 保证输入排序；
 	+ 提前减枝提升性能。
+15. [Symmetric Tree](https://github.com/applefishsky009/LeetCode/blob/master/101%20-%20Symmetric%20Tree/101%20-%20Symmetric%20Tree.cpp)
+	+ 利用重载来改变接口为自己想要的；
+	+ 不能用中序遍历判断vector是否对称来做，以1233N2N(层次顺序)为例。
