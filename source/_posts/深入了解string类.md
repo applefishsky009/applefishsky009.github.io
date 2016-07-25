@@ -88,6 +88,8 @@ character (4)	size_t find (char c, size_t pos = 0) const noexcept;
 4. `find_first_not_of`找字符串中第一个不在参数串中的字符位置；
 5. `find_last_not_of`找字符串中最后一个不在参数串中的字符位置。
 
+注意以上不管是什么寻找方法(`first`类寻找或者`last`类寻找)，找不到都会返回`string::npos`;
+
 ---
 
 ## 其他功能

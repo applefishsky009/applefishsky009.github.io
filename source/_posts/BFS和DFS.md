@@ -66,3 +66,6 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 15. [Symmetric Tree](https://github.com/applefishsky009/LeetCode/blob/master/101%20-%20Symmetric%20Tree/101%20-%20Symmetric%20Tree.cpp)
 	+ 利用重载来改变接口为自己想要的；
 	+ 不能用中序遍历判断vector是否对称来做，以1233N2N(层次顺序)为例。
+16. [Combination Sum II](https://github.com/applefishsky009/LeetCode/blob/master/40%20-%20Combination%20Sum%20II/40%20-%20Combination%20Sum%20II.cpp)
+	+ 严格按照层dfs，每层使用一次dfs，不要调用第二次；
+	+ 对数组来说，未决定的所有剩余数字都可作为本层输入。
