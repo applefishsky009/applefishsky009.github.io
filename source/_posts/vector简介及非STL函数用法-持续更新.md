@@ -19,6 +19,37 @@ tags: [vector,sort()]
 
 ---
 
+## push_back()
+
+平时使用`push_back()`方法觉得非常简单，但是有一些值得注意的地方：
+
+### 迭代器有效性
+如果在`push_back()`时候有内存分配行为(reallocation)，他所有的迭代器都会失效，这是因为容器可能不在原先的内容处而被拷贝到另一处。 因此可以在`push_back()`之前调用`reverse()`方法。
+```C++
+void push_back(const value_type& _Val)
+	{	// insert element at end
+	if (_Inside(_STD addressof(_Val)))
+		{	// push back an element
+		size_type _Idx = _STD addressof(_Val) - _Unfancy(this->_Myfirst());
+		if (this->_Mylast() == this->_Myend())
+			_Reserve(1);
+		_Orphan_range(this->_Mylast(), this->_Mylast());
+		this->_Getal().construct(_Unfancy(this->_Mylast()),this->_Myfirst()[_Idx]);
+		++this->_Mylast();
+		}
+	else
+		{	// push back a non-element
+		if (this->_Mylast() == this->_Myend())
+			_Reserve(1);
+		_Orphan_range(this->_Mylast(), this->_Mylast());
+		this->_Getal().construct(_Unfancy(this->_Mylast()),_Val);
+		++this->_Mylast();
+		}
+	}
+```
+
+---
+
 ## sort()用于vector;
 
 在`algorithm>`头文件中提供了`sort`的两个重载函数,查看源码可发现是用**快排**实现的。
