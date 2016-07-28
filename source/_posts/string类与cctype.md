@@ -73,5 +73,6 @@ int atoi (const char * str);
 2. `islower()`,`isupper()`,`isprint()`可以用于判断是小写字母、大写字符、可显示字符。返回`true`或`false`。[可显示字符](https://zh.wikipedia.org/wiki/ASCII#.E5.8F.AF.E6.98.BE.E7.A4.BA.E5.AD.97.E7.AC.A6)从32到126一共95个。
 3. `tolower()`,`toupper()`用于大小写字母的转换，如果不需要转换，字符不变。
 4. 另外一些不常用的字符函数,`isgraph()`(除空格之外的打印字符),`ispunct()`(标点符号),`isspace()`(标准空白字符),`iscntrl()`(控制字符),`isxdigit()`(16进制,即1-9,a-f,A-F)。
+5. 尤为注意的是除了这些判断函数，`<cctype>`中还包括两个转化函数(^.^主要是可以作为函数对象，很方便)
 
 ---

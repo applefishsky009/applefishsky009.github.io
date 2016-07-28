@@ -34,4 +34,7 @@ tags: Two Pointers
 1. [3Sum](https://github.com/applefishsky009/LeetCode/blob/master/15%20-%203Sum/15%20-%203Sum.cpp)
 	+ 先排序，注意跳过重复值，且遍历后再跳以便于第三个指针可以跳到前两个指针的重复值(如果有的话)；
 2. [Remove Nth Node From End of List](https://github.com/applefishsky009/LeetCode/blob/master/19%20-%20Remove%20Nth%20Node%20From%20End%20of%20List/19%20-%20Remove%20Nth%20Node%20From%20End%20of%20List.cpp)
-	+ 使用头结点不必对第一个逻辑结点单独处理；
+	+ 使用头结点不必对第一个逻辑结点单独处理。
+3. [3Sum Closest](https://github.com/applefishsky009/LeetCode/blob/master/16%20-%203Sum%20Closest/16%20-%203Sum%20Closest.cpp)
+	+ 夹逼的精髓是两侧逼近，如水的容积，正数组和为k的最长长度；
+	+ 注意迭代器方法的使用可以简化编程。
