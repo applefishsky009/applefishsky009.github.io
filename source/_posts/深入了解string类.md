@@ -1,7 +1,7 @@
 ---
 title: 深入了解string类
 date: 2016-07-01 14:58:51
-category: C++的类
+category: 非STL库
 tags: string
 
 ---

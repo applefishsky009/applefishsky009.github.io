@@ -13,3 +13,10 @@ tags: Git
 3. 博客中常用的命令：hexo clean(删除一些没有用的缓存，比如删掉的tag等);hexo generate(生成一个commit?);hexo deploy(提交到远程)；合并hexo generate和hexo deploy：hexo d -g；
 4. 使用过程中碰到[Warning: Permanently added 'github.com,192.30.252.120' (RSA) to the list of known hosts](http://stackoverflow.com/questions/9299651/git-says-warning-permanently-added-to-the-list-of-known-hosts).这个问题在linux下很好解决,但我用windows for github，困扰好久，方法如下：在C:/user/###(你的用户名)/.ssh/新建config文件(无后缀),添加UserKnownHostsFile ~/.ssh/known_hosts,下一次访问你还会看到，但是之后(可能要多几次，我的三次才可以，因为在这个文件夹下添加了三个ip)就没有了。
 5. windows下换行符[warning: LF will be replaced by CRLF](http://www.luckyonecn.com/blog/git-auto-crlf-problem/)，不知道为什么我的`git config --global autocrlf false`没有用，因此直接在仓库中将config文件，core中修改autocrlf = false,没有则添加。
+6. 从零配置网上教程到处都是，不必多说，主要解释换电脑或者重装系统的配置：
+	+ 安装Nodejs(这是一个框架)
+	+ 安装hexo -> npm install hexo-cli -g(这是hexo指令)
+	+ 将保存的hexo目录(博客文件夹)拷贝过来，并使用git for windows add仓库(否则使用命令行配置key)
+	+ 然后进入Hexo目录重新配置hexo模块 npm install(局部hexo指令)
+	+ 最后建议在GUI同步一下(否则本地和remote的commit记录不同步)
+	+ [参考资料](http://stackoverflow.com/questions/9023672/nodejs-how-to-resolve-cannot-find-module-error)

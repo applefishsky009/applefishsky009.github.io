@@ -40,7 +40,7 @@ tags: [unordered_set,unordered_multiset]
 iterator find ( const key_type& k );
 const_iterator find ( const key_type& k ) const;
 ```
-若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即`unordered_set::end`。
+若找到该元素，返回的指针指向该元素，没找到返回的指针会指向超尾即`unordered_set::end`(`a.end()`)。
 
 ### erase()
 ```C++
