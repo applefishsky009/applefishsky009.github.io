@@ -27,6 +27,13 @@ tags: [string,cctype]
 	+ 正则匹配的思路。
 7. [Longest Common Prefix](https://github.com/applefishsky009/LeetCode/blob/master/14%20-%20Longest%20Common%20Prefix/14%20-%20Longest%20Common%20Prefix.cpp)
 	+ 参考[Null-terminated string](https://en.wikipedia.org/wiki/Null-terminated_string)
+8. [Valid Number](https://github.com/applefishsky009/LeetCode/blob/master/65%20-%20Valid%20Number/65%20-%20Valid%20Number.cpp)
+	+ 这种题看似简单，但是坑巨多无比;
+	+ 完成' '的strip功能;
+	+ '.'小数点的判断；
+	+ 'e'指数，底数可以是小数，但是指数只能是整数；
+	+ '+'，'-'的有效性；
+	+ 最后，神一般的有限状态机解法，不知道说什么好了。
 
 ### string运算符
 `string`类的运算符重载在头文件`string`里,如`+`,`<<`。注意`"a"+"b" = "ab"`,`'a'+'b' = 195`,前者是字符串拼接，后者是字符常量相加。但是`cout<<"a"+"b";`这个语句是错误的，必须至少声明两个`string`类型。
