@@ -69,3 +69,4 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 16. [Combination Sum II](https://github.com/applefishsky009/LeetCode/blob/master/40%20-%20Combination%20Sum%20II/40%20-%20Combination%20Sum%20II.cpp)
 	+ 严格按照层dfs，每层使用一次dfs，不要调用第二次；
 	+ 对数组来说，未决定的所有剩余数字都可作为本层输入。
+17. [Generate Parentheses](https://github.com/applefishsky009/LeetCode/blob/master/22%20-%20Generate%20Parentheses/22%20-%20Generate%20Parentheses.cpp)

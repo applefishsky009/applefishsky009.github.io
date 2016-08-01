@@ -23,10 +23,11 @@ STL目前一共有五个版本：
 
 ## 在windows下使用SGI STL
 
+首先gdb调试(工程目录和gdb安装目录都是)不支持中文目录，包括空格，需要调试尤其注意这一点。总之，Vscode+gcc比codeblock好用太多了。。。
 ### CodeBlock
 1. [codeblocks](http://www.codeblocks.org/downloads/26),下载最新版mingw版本;
 2. [Have g++ follow the C++11 ISO C++ language standard [-std=c++11]](http://www.cnblogs.com/abcdea/archive/2013/09/13/Sublime.html)；
-3. 界面不太友好，F5和F9和VS中是反的，但是他源码追踪是很正确稳定的。
+3. 界面不太友好，调试器极度不友好!!!，但是他源码追踪是很正确稳定的。
 
 ### VsCode+GCC
 
@@ -34,6 +35,8 @@ STL目前一共有五个版本：
 2. 安装编译、调试环境时有些问题，一般在项目的`.vscode`中放入三个文件(即上述过程中的配置文件,我的配置在后边给出，参数依然需要follow the C++11 ISO C++ language standard)，参考来源：[Compiling C++11 with g++](http://stackoverflow.com/questions/10363646/compiling-c11-with-g)， [How do I enable C++11 in gcc?](http://stackoverflow.com/questions/16886591/how-do-i-enable-c11-in-gcc);
 3. 一定要注意安装gcc时，用VsCode调试项目时，<font color=red>路径中不能有空格</font>，否则gdb调试器不能定位这个路径；
 4. 界面很友好，但是，源码追踪比较坑，建议直接在文件夹中自己找源码。
+
+需要注意的是，使用不同的编译器要包含正确的头文件，VS中的一些习惯很可能在GCC中失败，比如`#include <cstdlib>`和`#include <cmath>`中的`abs()`方法是不同的。
 
 launch.json
 

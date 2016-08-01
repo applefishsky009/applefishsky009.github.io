@@ -74,3 +74,6 @@ deploy:
 
 stylus:
   compress: true
+  
+plugins: 
+  hexo-math
