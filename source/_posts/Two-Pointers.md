@@ -27,3 +27,6 @@ tags: Two Pointers
 3. [3Sum Closest](https://github.com/applefishsky009/LeetCode/blob/master/16%20-%203Sum%20Closest/16%20-%203Sum%20Closest.cpp)
 	+ 夹逼的精髓是两侧逼近，如水的容积，正数组和为k的最长长度；
 	+ 注意迭代器方法的使用可以简化编程。
+4. [4Sum](https://github.com/applefishsky009/LeetCode/blob/master/18%20-%204Sum/18%20-%204Sum.cpp)
+	+ 固定两个位置，两个指针夹逼；
+	+ 注意提前减枝，去掉相同解。
