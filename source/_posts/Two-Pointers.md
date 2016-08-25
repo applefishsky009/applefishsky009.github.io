@@ -30,3 +30,5 @@ tags: Two Pointers
 4. [4Sum](https://github.com/applefishsky009/LeetCode/blob/master/18%20-%204Sum/18%20-%204Sum.cpp)
 	+ 固定两个位置，两个指针夹逼；
 	+ 注意提前减枝，去掉相同解。
+5. [Remove Element](https://github.com/applefishsky009/LeetCode/blob/master/27%20-%20Remove%20Element/27%20-%20Remove%20Element.cpp)
+	+ 模拟`remove()`函数。

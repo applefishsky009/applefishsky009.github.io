@@ -70,3 +70,5 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 	+ 严格按照层dfs，每层使用一次dfs，不要调用第二次；
 	+ 对数组来说，未决定的所有剩余数字都可作为本层输入。
 17. [Generate Parentheses](https://github.com/applefishsky009/LeetCode/blob/master/22%20-%20Generate%20Parentheses/22%20-%20Generate%20Parentheses.cpp)
+18. [Word Search](https://github.com/applefishsky009/LeetCode/blob/master/79%20-%20Word%20Search/79%20-%20Word%20Search.cpp)
+	+ DFS解答，注意模拟`Hash Table`记录已经遍历的路径防止重复使用元素。
