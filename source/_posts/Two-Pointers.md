@@ -32,3 +32,13 @@ tags: Two Pointers
 	+ 注意提前减枝，去掉相同解。
 5. [Remove Element](https://github.com/applefishsky009/LeetCode/blob/master/27%20-%20Remove%20Element/27%20-%20Remove%20Element.cpp)
 	+ 模拟`remove()`函数。
+6. [Linked List Cycle](https://github.com/applefishsky009/LeetCode/blob/master/141%20-%20Linked%20List%20Cycle/141%20-%20Linked%20List%20Cycle.cpp)
+	+ 快慢指针相遇，说明链表有环。
+7. [Linked List Cycle II](https://github.com/applefishsky009/LeetCode/blob/master/142%20-%20Linked%20List%20Cycle%20II/142%20-%20Linked%20List%20Cycle%20II.cpp)
+	+ 设快慢指针相遇时慢指针走了\\( s \\)步，环长为\\( r \\)，那么对快指针：\\( 2s = s+nr \\)；即有关系\\( s = nr \\)；(注意相遇时慢指针一定没有走完链表一次);
+	+ 设链表长度为\\( L \\),链表头到环结点的距离为\\( x \\),环结点到快慢指针相遇结点的距离为\\( a \\),那么\\( s(x+a) = nr((n-1)*r+L-x) \\);
+	+ 即有关系：\\( x = (n-1)r+(L-x-a) \\),\\( L-x-a \\)在链表上代表相遇结点到环结点的距离！
+	+ 记住结论：快慢指针相遇时，两个慢指针，一个从链表头出发，一个从相遇点出发，他们相遇在环入口。
+
+
+$$$$
