@@ -38,6 +38,15 @@ tags: [string,cctype]
 	+ 除数留余，避免`substr()`方法，使用`Hash Table`让提升效率。
 10. [CountandSay](https://github.com/applefishsky009/LeetCode/blob/master/38%20-%20Count%20and%20Say/38%20-%20Count%20and%20Say.cpp)
 	+ dp思路，一层一层找。
+11. [ZigZag Conversion](https://github.com/applefishsky009/LeetCode/blob/master/6%20-%20ZigZag%20Conversion/6%20-%20ZigZag%20Conversion.cpp)
+	+ 分类，注意找对称元素。
+12. [Group Anagrams](https://github.com/applefishsky009/LeetCode/blob/master/49%20-%20Group%20Anagrams/49%20-%20Group%20Anagrams.cpp)
+	+ 这个题与ip消息队列，LRU cache有相似的地方，键值映射一个队列/链表。
+13. [Simplify Path](https://github.com/applefishsky009/LeetCode/blob/master/71%20-%20Simplify%20Path/71%20-%20Simplify%20Path.cpp)
+	+ 这个题和处理`,`分割的数字输入类似，使用`find`分类讨论。
+14. [Text Justification](https://github.com/applefishsky009/LeetCode/blob/master/68%20-%20Text%20Justification/68%20-%20Text%20Justification.cpp)
+	+ 除了最后一行，字符串按位数均匀分布(两个字符串之间至少有一个空格)，注意如果只有一个单词要补充足够的空格；
+	+ 最后一行单词左排列就行(依然至少一个空格)，要补充足够的空格。
 
 ### string运算符
 `string`类的运算符重载在头文件`string`里,如`+`,`<<`。注意`"a"+"b" = "ab"`,`'a'+'b' = 195`,前者是字符串拼接，后者是字符常量相加。但是`cout<<"a"+"b";`这个语句是错误的，必须至少声明两个`string`类型。
@@ -73,6 +82,19 @@ int stoi (const wstring& str, size_t* idx = 0, int base = 10);
 对比而言`atoi()`功能类似，但其是C-stringtoint。
 ```C++
 int atoi (const char * str);
+```
+
+---
+
+## 完整的strcpy函数
+
+```C++
+char * strcpy( char *strDest, const char *strSrc ) {
+	assert( (strDest != NULL) && (strSrc != NULL) );
+	char *address = strDest; 
+	while( (*strDest++ = * strSrc++) != ‘\0’ ); 
+ 	return address;
+}
 ```
 
 ---

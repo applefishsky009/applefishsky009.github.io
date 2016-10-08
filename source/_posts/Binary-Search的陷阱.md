@@ -17,6 +17,7 @@ tags: [Binary Search]
 1. 为了防止溢出折半时应该这么写`mid = start + (end - start) / 2;`；
 2. 因为大部分情况不是大于就是小于，因此一般在最后检测相等(如下例，检测条件过于复杂，因此放在开始检测相等少写一个检测条件，写全条件容易出错，一般用于debug)。
 3. 传入的一定是左闭右闭区间，因此递归入口为`low <= high`，由原则2可知递归出口判断写在入口之后。
+4. <font color = red>2016.09.13修改</font>：受到STL启发，传入头和超尾，即左闭右开区间更合适。
 
 ---
 
@@ -43,6 +44,9 @@ tags: [Binary Search]
 	+ 大小数组个数和大于k，保证两数组左侧个数和是k;
 	+ 保证二分搜索时小数组不越界，这样小数组删完了可以直接取大数组;
 	+ 每次递归删掉二分的一般继续找，直到找到为止。
+10. [Divide Two Integers](https://github.com/applefishsky009/LeetCode/blob/master/29%20-%20Divide%20Two%20Integers/29%20-%20Divide%20Two%20Integers.cpp)
+	+ 倍数逐差法来优化普通的逐差，不知道编译器是否是这么完成的除法和余操作?
+	+ 注意特殊边界的处理，特别是数据不对称性导致的非法值。
 
 [1]:https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp
 [2]:https://github.com/applefishsky009/LeetCode/blob/master/69%20-%20Sqrt(x)/69%20-%20Sqrt(float%20x).cpp

@@ -73,4 +73,7 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 18. [Word Search](https://github.com/applefishsky009/LeetCode/blob/master/79%20-%20Word%20Search/79%20-%20Word%20Search.cpp)
 	+ DFS解答，注意模拟`Hash Table`记录已经遍历的路径防止重复使用元素。
 18. [Construct Binary Tree from Preorder and Inorder Traversal](https://github.com/applefishsky009/LeetCode/blob/master/105%20-%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal/105%20-%20Construct%20Binary%20Tree%20from%20Preorder%20and%20Inorder%20Traversal.cpp)
-	+ 正确传递下标就没有问题。建议传递超尾，易于迁移到迭代器
+	+ 正确传递下标就没有问题。建议传递超尾，易于迁移到迭代器。
+19. [Construct Binary Tree from Inorder and Postorder Traversal](https://github.com/applefishsky009/LeetCode/blob/master/106%20-%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal/106%20-%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.cpp)
+	+ 传数组`Index`，仿照迭代器传递头和超尾；
+	+ 找根节点的同时计数，方便计算下一次的`Index`。

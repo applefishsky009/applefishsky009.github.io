@@ -47,6 +47,6 @@ LRU算法将过去最近作为不远将来的近似，置换最长时间没有�
 ---
 
 参考资料：
-1. [LeetCode - 146. LRU Cache](https://leetcode.com/problems/lru-cache/) - 解答：[GitHub - 待上传]();
+1. [LeetCode - 146. LRU Cache](https://leetcode.com/problems/lru-cache/) - 解答：[146 - LRU Cache](https://github.com/applefishsky009/LeetCode/blob/master/146%20-%20LRU%20Cache/146%20-%20LRU%20Cache.cpp);
 2. 操作系统概念,Peter Bare Galvin等.
 
