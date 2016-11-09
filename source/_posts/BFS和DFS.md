@@ -77,3 +77,5 @@ DFS需要用递归或者借助栈来**记录**走过的路径；每遍历完这�
 19. [Construct Binary Tree from Inorder and Postorder Traversal](https://github.com/applefishsky009/LeetCode/blob/master/106%20-%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal/106%20-%20Construct%20Binary%20Tree%20from%20Inorder%20and%20Postorder%20Traversal.cpp)
 	+ 传数组`Index`，仿照迭代器传递头和超尾；
 	+ 找根节点的同时计数，方便计算下一次的`Index`。
+20. [Convert Sorted Array to Binary Search Tree](https://github.com/applefishsky009/LeetCode/blob/master/108%20-%20Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree/108%20-%20Convert%20Sorted%20Array%20to%20Binary%20Search%20Tree.cpp)
+	+ 二分查找,传递超尾。

@@ -37,7 +37,7 @@ struct node{
 ```
 
 举例：
-1. [最短时间作业SJF - GitHub - 待上传]()
+1. [最短时间作业SJF - GitHub](https://github.com/applefishsky009/FunnyIssues/blob/master/7%20-%20SJF/6%20-%20SJF.cpp)
 
 
 
