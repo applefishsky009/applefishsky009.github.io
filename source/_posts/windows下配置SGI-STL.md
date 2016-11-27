@@ -1,8 +1,8 @@
 ---
-title: windows下配置SGI STL
+title: Windows下配置SGI STL
 date: 2016-07-30 15:04:17
-category: STL源码剖析
-tags: [CodeBlock,VsCode,SGI STL]
+category: VSCode
+tags: [VSCode,SGI STL]
 
 ---
 
@@ -32,6 +32,8 @@ STL目前一共有五个版本：
 ### VsCode+GCC
 
 1. 先参照这个[Windows下VSCode编译调试c/c++](http://blog.csdn.net/c_duoduo/article/details/51615381),这是[官方指南](https://code.visualstudio.com/docs/languages/cpp)，安装cpptools,SGITools;
+	+ 安装参考[下载安装cgywin](http://www.programarts.com/cfree_ch/doc/help/UsingCF/CompilerSupport/Cygwin/Cygwin1.htm)，即从中国镜像地址`http://www.cygwin.cn`下载；
+	+ 建议安装`make`包，在编译大项目是需要自己写`makefile`。
 2. 安装编译、调试环境时有些问题，一般在项目的`.vscode`中放入三个文件(即上述过程中的配置文件,我的配置在后边给出，参数依然需要follow the C++11 ISO C++ language standard)，参考来源：[Compiling C++11 with g++](http://stackoverflow.com/questions/10363646/compiling-c11-with-g)， [How do I enable C++11 in gcc?](http://stackoverflow.com/questions/16886591/how-do-i-enable-c11-in-gcc);
 3. 一定要注意安装gcc时，用VsCode调试项目时，<font color=red>路径中不能有空格</font>，否则gdb调试器不能定位这个路径；
 4. 界面很友好，但是，源码追踪比较坑，建议直接在文件夹中自己找源码。

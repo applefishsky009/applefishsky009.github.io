@@ -23,3 +23,26 @@ tags: Git
 	+ [参考资料](http://stackoverflow.com/questions/9023672/nodejs-how-to-resolve-cannot-find-module-error)
 	+ 为hexo安装math指令：npm install hexo-math --save,(也有可能并不需要,npm以及全部安装了)
 	+ 注意如果使用行内数学公式，该文章必须至少使用一行行间公式，不然行内公式会失效(如果不需要，请在文章最后添加`$$$$`)。
+
+---
+
+## 命令行新建repository的步骤
+
+1. `mkdir repositoryName` -> `cd repositoryName`;
+2. `git init`，同时在远程新建仓库得到链接;
+3. `touch .gitignore` -> `vim .gitignore`并设置ignore文件
+	+ [vim简易使用指南](http://blog.csdn.net/jackalfly/article/details/7546878)
+	+ 将 .gitignore 文件和 .gitattributes文件 另存，每次新建仓库拷贝即可。
+	+ [Git之忽略文件(ignore file)](http://blog.csdn.net/benkaoya/article/details/7932370)
+4. 标准commit：`git add .gitignore` -> `git commit -m ".gitignore"`;
+	`-m`即message，界面中的summary。
+5. 远程链接`git remote add origin <URL>`;
+	+ `origin`指定你`push`到哪个remote,如果远程没有，参考[Git 的origin和master分析 ](http://blog.csdn.net/abo8888882006/article/details/12375091)
+6. 设置默认上传流`git push -u origin master`;
+	+ 默认推送到远程`master`分支，如果没有则新建；
+7. 设置完毕，以后的文件上传使用三个指令就可以完成：
+	+ `git add fileName`；
+	+ `git commit -m "summary"`;
+	+ `git push`；
+	+ 结合 .gitignore 文件设置上传规则。
+	+ 可以`cd folder`单独上传文件设置不同的message，但是github上文件的message是最近commit的message。

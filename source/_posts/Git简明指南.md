@@ -64,6 +64,7 @@ cd folder
 3. `git branch -a`列出本地分支和远程分支;
 4. `git branch name1`创建名字为`name1`的本地分支(不进行分支切换);
 5. `git branch -d name1`删除分支，详情自行查询。
+6. `git checkout name1`切换分支，详情自行查询。
 
 ### git mv file1 file2
 重命名一个文件夹(更改到缓存池)，这是下列指令的组合：
@@ -81,6 +82,10 @@ clone一个版本库
 ### git config
 1. `git config paramname val`修改本仓库的配置
 2. `git config --global paraname val`修改全局配置(我的.config文件在C：/users/username/.gitconfig)
+
+### touch .gitignore
+1. 这个指令可以在git Bash中创建`.gitignore`文件；
+2. 当然可以在git for windows或者github创建仓库的时候添加这个文件。
 
 ---
 
