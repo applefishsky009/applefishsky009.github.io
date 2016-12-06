@@ -48,16 +48,17 @@ STL容器的基本方法：
 
 ## 基于范围的for循环
 
+需要注意传值还是传引用。
 ```C++
-for (double x:prices)	//缺点：对数组没有下标索引
-	cout<<x<<endl;
+for (double x : prices)	//缺点：对数组没有下标索引
+	cout << x << endl;
 
-for_each(nums.begin(),nums.end(),show)
+for_each(nums.begin(), nums.end(), show)
 void show (const double &x){	//广义指针操作，依然没有下标索引，值不可变，但是例外，可查看参考文档
-	cout<<x<<endl;
+	cout << x << endl;
 }
 
-for(auto &x:nums) change(x);	//值可变，依然没有索引
+for(auto &x : nums) change(x);	//值可变，依然没有索引
 
 ```
 

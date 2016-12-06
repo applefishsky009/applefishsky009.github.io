@@ -6,15 +6,15 @@ tags: [vector,resize(),reverse()]
 
 ---
 
-## a.resize()和a.reverse();
+## a.resize()和a.reserve();
 
 1. 首先介绍容器的两个属性`capacity`和`size`。`capacity`存储区的大小；`size`容器的大小。
-2. 'reverse()'是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。
-3. 'resize()'是改变容器大小，容器中一定有容器对象。
+2. `reserve()`是预分配存储区的大小，预分配存储区，但存储区不一定有容器对象。
+3. `resize()`是改变容器大小，容器中一定有容器对象。
 
 ---
 
-### a.reverse();
+### a.reserve();
 看源码：
 
 ```

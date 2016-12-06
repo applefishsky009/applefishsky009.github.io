@@ -64,7 +64,7 @@ tags: VSCode
 4. ** ctrl + k** + **left/right**
 	+ 编辑器换位置。
 5. ** ctrl + `**
-	+ 打开集成终端，比如`make clean`就可以在这里输入。
+	+ 打开集成终端，比如`make clean`就可以在这里输入，`cls`指令可以清理屏幕。
 
 
 ---

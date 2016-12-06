@@ -27,6 +27,12 @@ cd folder
 ### git commit -m "summary"
 将缓存池的改动提交到HEAD中,push到远程分支之后,summay就是文件名和时间中间现实的东西，一般新建的仓库中的read.md的summary都是Initial commit。
 
+### git reset --soft ID
+不改变索引(一切都正确暂存了)，但是想调整提交消息，配合`git commit --amend`来使用。
+
+### git reset --hard ID
+把分支拉回到之前的状态，同时也会修改工作目录。
+
 ### git commit --ammend
 修改最近一次commit的summary。
 
@@ -44,6 +50,9 @@ cd folder
 1. `git log -n`显示版本库提交的历史，默认参数n=all。
 2. `git log --stat -n`显示版本库历史的文件变更统计。
 3. `git log -g`我主要用他在切换分支时查看两个版本之间的提交。
+
+### git reflog
+记录所有的Head历史，即使误删也不怕啦！[恢复 git reset -hard 的误操作](http://blog.sina.com.cn/s/blog_4bc7d49f01014r2s.html)
 
 ### cat file
 文件列表中的文件或标准输入转标准输出，简单来讲，在屏幕上打印文件内容。
@@ -88,7 +97,6 @@ clone一个版本库
 2. 当然可以在git for windows或者github创建仓库的时候添加这个文件。
 
 ---
-
 
 ## Git远程版本库
 
