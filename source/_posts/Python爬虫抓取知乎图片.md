@@ -1,8 +1,8 @@
 ---
 title: Python爬虫抓取知乎图片
 date: 2016-05-30 16:58:08
-category: Python爬虫
-tags: [知乎图片爬虫]
+category: Python
+tags: crawler 
 
 ---
 
