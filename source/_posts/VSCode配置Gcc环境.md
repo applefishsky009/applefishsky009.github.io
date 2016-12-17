@@ -1,8 +1,8 @@
 ---
-title: Windows下配置SGI STL
+title: VSCode配置Gcc环境
 date: 2016-07-30 15:04:17
 category: VSCode
-tags: [VSCode,SGI STL]
+tags: VSCode
 
 ---
 

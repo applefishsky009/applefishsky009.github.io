@@ -26,7 +26,11 @@ tags: VSCode
 
 调出命令列表，查看所有的命令/快捷键;`ctrl + P`模式和他可以切换(`>`和`BackSpace`)
 1. **alt**
-	+ 显示菜单栏，平时可以在这个模式下输入`view: toggle Mebu Bar`来切换正常状态下菜单栏是隐藏的还是显示的;
+	+ 显示菜单栏(上方)，平时可以在这个模式下输入`view: toggle Mebu Bar`来切换正常状态下菜单栏是隐藏的还是显示的;
+2. **Toggle Activity Bar Visibility**
+	+ 切换活动栏显隐性(左方)，参考资料[vscode怎么隐藏左边栏？](https://www.zhihu.com/question/48285162)
+3. **Conf**
+	+ [调整本地语言](http://colobu.com/2016/04/21/use-vscode-to-develop-go-programs/)
 
 ---
 
@@ -65,7 +69,11 @@ tags: VSCode
 	+ 编辑器换位置。
 5. ** ctrl + `**
 	+ 打开集成终端，比如`make clean`就可以在这里输入，`cls`指令可以清理屏幕。
-
+6. ** 改变默认的集成终端 **
+	+ [Add Powershell as integrated terminal in VSC for Windows?](https://github.com/Microsoft/vscode/issues/11785)
+	+ Put this in your user settings.json:`"terminal.integrated.shell.windows": "\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe"`。
+7. **ctrl + shift + u**
+	+ 打开输出面板
 
 ---
 
@@ -146,7 +154,6 @@ tags: VSCode
 	+ 预览`markdown`。
 6. **ctrl + shift + u**
 	+ 显示输出窗口。
-
 
 参考资料：
 [Vscode中一些方便的快捷键](http://www.jianshu.com/p/1b7b8760504c)
