@@ -12,7 +12,7 @@ tags: VSCode
 由于经常使用**打开文件夹**功能，文件 —> 首选项 -> 键盘快捷方式，然后在`keybindings.json`中添加：
 ```JSON
 [
-    { "key": "ctrl+q",                "command": "workbench.action.files.openFolder" }
+    { "key": "ctrl+a",                "command": "workbench.action.files.openFolder" }
 ]
 ```
 
@@ -45,6 +45,8 @@ tags: VSCode
 7. `@:`查找函数或者属性。
 8. `#`查找符号；
 	+ 比`ctrl + F`更细化。
+9. **ctrl + q**
+	+ Quick Open,相当于在**ctrl + p**模式下输入`view `。
 
 ---
 
@@ -74,6 +76,8 @@ tags: VSCode
 	+ Put this in your user settings.json:`"terminal.integrated.shell.windows": "\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe"`。
 7. **ctrl + shift + u**
 	+ 打开输出面板
+8. **win + k**
+	+ 清除终端窗口。
 
 ---
 
@@ -154,6 +158,8 @@ tags: VSCode
 	+ 预览`markdown`。
 6. **ctrl + shift + u**
 	+ 显示输出窗口。
+7. **ctrl + K Z**
+	+ window.fullScreenZenMode,(更好的代码，阅读模式)。
 
 参考资料：
 [Vscode中一些方便的快捷键](http://www.jianshu.com/p/1b7b8760504c)
@@ -183,5 +189,11 @@ tags: VSCode
 ```
 
 参考资料：[Visual Studio Code自定义用户代码块](http://www.jianshu.com/p/85e707cc5c5c)
+
+---
+
+## 更新
+1. File > Preferences > Keymap Extensions.
+	+ 键盘映射扩展。
 
 ---
