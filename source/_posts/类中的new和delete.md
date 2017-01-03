@@ -2,7 +2,7 @@
 title: 类中的new和delete
 date: 2016-05-26 14:27:21
 category: C++的类
-tags: [new,delete]
+tags: C++
 
 ---
 

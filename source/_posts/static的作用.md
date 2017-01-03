@@ -2,7 +2,7 @@
 title: static的作用
 date: 2016-08-25 14:28:33
 category: C++基础
-tags: static
+tags: C++
 
 ---
 

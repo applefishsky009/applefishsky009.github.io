@@ -2,7 +2,7 @@
 title: vector简介及非STL函数用法-持续更新
 date: 2016-04-12 14:54:50
 category: STL
-tags: [vector,sort()]
+tags: C++
 
 ---
 

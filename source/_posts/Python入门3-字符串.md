@@ -1,5 +1,5 @@
 ---
-title: Python入门3
+title: Python入门3-字符串
 date: 2016-12-13 09:45:58
 category: Python
 tags: Python
@@ -42,7 +42,7 @@ for i in [None] + list(range(-1, -len(s), -1)):
 
 ---
 
-## 内建函数
+## Funtions
 
 迭代的概念本身是从序列，迭代器，或者其他支持迭代操作的对象中泛化而来的。因此序列本身就包含了迭代的概念。
 
@@ -63,7 +63,7 @@ iter表示可迭代对象,seq表示序列。
 
 ---
 
-# 字符串
+# str
 
 字符串是不可变类型的，就是说改变一个元素需要创建一个新的字符串。
 
@@ -89,7 +89,7 @@ iter表示可迭代对象,seq表示序列。
 3. Unicode字符串操作(`u/U`)
 	+ Unicode操作符必须出现在原始字符串操作符之前。
 
-## 内建函数
+## Funtions
 1. len()
 2. max(),min()
 3. enumerate()
@@ -97,7 +97,7 @@ iter表示可迭代对象,seq表示序列。
 	+ 注意返回类型是zip，转化成list可视化
 	+ 可以使用解析符号`*`unzip，`x,y=zip(*c)`，返回值x,y是tuple类型。
 
-## 字符串方法
+## Methods
 共44个str相关方法，详见[How Soft Works.net Logo - str](http://www.howsoftworks.net/python.api/builtins/str_capitalize.html)。常见方法总结：
 1. str.find() 返回子字符串在字符串中第一次出现的位置；如没找到返回-1。
 2. str.format() 执行字符串格式化操作，替换字段使用{}分割。

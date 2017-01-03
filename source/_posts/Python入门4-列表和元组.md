@@ -1,5 +1,5 @@
 ---
-title: Python入门4
+title: Python入门4-列表和元组
 date: 2016-12-14 15:45:47
 category: Python
 tags: Python
@@ -40,16 +40,14 @@ tags: Python
 [i for i in range[8] if i % 2 == 0] = [0, 2, 4, 6]
 ```
 
-## Built-in Functions
-内建方法
+## Functions
 1. len() 列表大小
 2. max()/min() 最大最小值
 3. sorted()/reversed() 字典序排序(排序后是另外一个对象)，反转(注意反转返回的是迭代器，需要list()转化，但这是另外一个对象了)
 4. enumerate()/zip() 枚举，打包为元组
 5. sum() 求和
 
-## builtins
-11个内建函数
+## Methods
 1. list.append() 附件一个对象到list
 2. list.clear() 删除list中的所有元素
 3. list.copy() 浅拷贝list
@@ -92,11 +90,10 @@ type((1,)) = 'tuple'
 2. `in/not in`,`[]`成员关系操作符，切片操作
 3. `<`,`>`,`==` 运算符
 
-## Built-in Functions
+## Functions
 元组没有自己专用的内建函数，列表中描述的一些函数与其可变性有关，不适用于元祖。除此之外的一些适用于不可变迭代器的内建函数就可以用于元组。
 
-## builtins
-2个内建函数
+## Methods
 1. tuple.count() 指定参数在tuple中出现的次数
 2. tuple.index() 指定参数在tuple中第一次出现的次数，如果没有出现抛出错误。
 

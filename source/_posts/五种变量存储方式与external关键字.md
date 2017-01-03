@@ -2,7 +2,7 @@
 title: 五种变量存储方式与external关键字
 date: 2016-04-06 17:15:14
 category: C++基础
-tags: [变量存储,external关键字]
+tags: C++
 
 ---
 

@@ -2,7 +2,7 @@
 title: Binary Search的陷阱
 date: 2016-05-20 17:03:16
 category: 数据结构与算法
-tags: [Binary Search]
+tags: Algorithm
 
 ---
 

@@ -2,7 +2,7 @@
 title: 有趣的switch
 date: 2016-07-26 09:48:41
 category: C++基础
-tags: switch
+tags: C++
 
 ---
 

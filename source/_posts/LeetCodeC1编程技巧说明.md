@@ -2,7 +2,7 @@
 title: 编程技巧说明
 date: 2016-04-08 19:44:02
 category: C++基础
-tags: [编程技巧]
+tags: C++
 
 ---
 

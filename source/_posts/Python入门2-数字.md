@@ -1,5 +1,5 @@
 ---
-title: Python入门2
+title: Python入门2-数字
 date: 2016-12-10 10:14:09
 category: Python
 tags: Python
@@ -46,7 +46,8 @@ tags: Python
 
 ---
 
-## 内建函数和函数工厂
+## Funtions
+以前叫做内建函数，这以后统一为工厂函数。
 
 ### 转换工厂函数
 1. bool(obj)

@@ -2,7 +2,7 @@
 title: queue容器简介
 date: 2016-09-07 11:17:37
 category: STL
-tags: [queue,priority_queue]
+tags: C++
 
 ---
 

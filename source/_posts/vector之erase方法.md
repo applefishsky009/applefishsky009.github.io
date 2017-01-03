@@ -2,7 +2,7 @@
 title: vector之erase方法
 date: 2016-04-14 10:52:25
 category: STL
-tags: [vector,erase()]
+tags: C++
 
 ---
 

@@ -2,7 +2,7 @@
 title: vector之resize方法和reverse方法
 date: 2016-04-15 14:39:13
 category: STL
-tags: [vector,resize(),reverse()]
+tags: C++
 
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: string类与cctype
 date: 2016-04-21 10:36:21
-category: 非STL库
-tags: [string,cctype]
+category: STL
+tags: C++
 
 ---
 

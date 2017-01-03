@@ -1,8 +1,8 @@
 ---
 title: 其他非STL库
 date: 2016-07-29 14:57:52
-category: 非STL库
-tags: [valarray,array,initializer_list]
+category: STL
+tags: C++
 
 ---
 

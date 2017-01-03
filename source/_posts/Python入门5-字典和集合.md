@@ -1,5 +1,5 @@
 ---
-title: Python入门5
+title: Python入门5-字典和集合
 date: 2016-12-19 09:49:03
 category: Python
 tags: Python
@@ -40,7 +40,7 @@ tags: Python
 3. 字典的键查找操作符`[]`，给某元素赋值或者查询字典中某元素的值。
 4. 键成员关系操作`in/not in`。
 
-## Built-in Functions
+## Functions
 1. type() 返回对象的类型或创建一个新的类型对象。
 2. str() 得到对象的str()版本。
 3. len() 返回对象长度或者集合个数。
@@ -51,7 +51,7 @@ tags: Python
 	+ 一般用来判断对象是否是可哈希的，如果可哈希返回哈希值；
 	+ 如果不可哈希，返回错误。
 
-## builtins
+## Methods
 1. dict.clear() 删除dictionary中的所有键值对，字典变为空。
 2. dict.copy() 浅拷贝dictionary。
 3. dict.fromkeys(iterater, value=None) 新建一个dictionary，键由可迭代对象组成，所有的值都是value。
@@ -111,15 +111,13 @@ tags: Python
 3. `-=` 差更新，返回除去右集合后剩余元素组成的集合，此方法和difference_update()等价。
 4. `^=` 差分更新，返回仅是左集合或者仅是右集合的元素组成的集合。
 
-## Built-in Functions
-内建函数。
+## Functions
 1. len() 返回集合基数。
 2. set()/frozenset() 生成可变/不可变集合。
 	+ 默认生成空集合；
 	+ 如果有一个参数，该参数必须是可迭代的。
 
-## builtins
-内建方法。
+## Methods
 1. set.add() 往set中添加一个元素。
 2. set.clear() 从set中移除所有元素。
 3. set.copy() 返回set的浅拷贝。

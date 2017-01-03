@@ -2,7 +2,7 @@
 title: BP、KMP、改进的KMP
 date: 2016-05-03 14:57:41
 category: 数据结构与算法
-tags: [字符串匹配,KMP]
+tags: Algorithm
 
 ---
 

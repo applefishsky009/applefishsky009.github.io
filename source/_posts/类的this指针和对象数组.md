@@ -2,7 +2,7 @@
 title: 类的this指针和对象数组
 date: 2016-04-12 09:08:44
 category: C++的类
-tags: [this指针,对象数组]
+tags: C++
 
 ---
 

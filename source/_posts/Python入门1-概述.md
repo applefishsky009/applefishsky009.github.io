@@ -1,5 +1,5 @@
 ---
-title: Python入门1
+title: Python入门1-概述
 date: 2016-12-09 10:14:09
 category: Python
 tags: Python

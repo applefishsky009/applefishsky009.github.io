@@ -2,7 +2,7 @@
 title: unordered_map容器简介
 date: 2016-06-01 14:21:28
 category: STL
-tags: [unordered_map,unordered_multimap]
+tags: C++
 
 ---
 

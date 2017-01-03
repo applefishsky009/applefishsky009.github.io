@@ -2,7 +2,7 @@
 title: 数字输入与atoi函数
 date: 2016-05-22 16:14:08
 category: C++基础
-tags: [输入,atoi]
+tags: C++
 
 ---
 

@@ -2,7 +2,7 @@
 title: map容器简介
 date: 2016-05-16 12:42:19
 category: STL
-tags: [map,multimap]
+tags: C++
 
 ---
 

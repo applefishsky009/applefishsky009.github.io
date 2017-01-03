@@ -1,8 +1,8 @@
 ---
 title: valarray容器(数值处理)
 date: 2016-06-10 15:40:05
-category: 非STL库
-tags: valarray
+category: STL
+tags: C++
 
 ---
 

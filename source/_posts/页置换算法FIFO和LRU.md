@@ -2,7 +2,7 @@
 title: 页置换算法FIFO和LRU
 date: 2016-08-29 16:39:44
 category: 操作系统
-tags: [FIFO,LRU]
+tags: Linux
 
 ---
 

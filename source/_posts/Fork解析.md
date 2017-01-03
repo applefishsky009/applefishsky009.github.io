@@ -2,7 +2,7 @@
 title: Fork解析
 date: 2016-11-10 10:19:54
 category: 操作系统
-tags: 进程
+tags: Linux
 
 ---
 

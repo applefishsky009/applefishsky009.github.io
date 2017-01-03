@@ -1,6 +1,6 @@
 # Blog info
 blog_name: 孤云两角，去天一握
-slogan: Stay hungry,Stay foolish
+slogan: Smart is new sexy
 url: http://www.rylcode.com
 
 # Set avatar (Absolute url and relative url)
@@ -113,10 +113,8 @@ about:
   - type: me
     icon: icon-user
     text_value:
-    - "Stay young,Stay simple"
     - "USTC, UCAS, 1991, Autumn"
-    - "硕士生，图像，极简，编程。C++ / Python / JAVA / MATLAB，梦想：全栈"
-    - "和一些有趣的人做一些有趣的事情"
+    - "硕士生, 极简。C++ / Python / JAVA / MATLAB"
   - type: Github
     icon: icon-github
     text_key: Github

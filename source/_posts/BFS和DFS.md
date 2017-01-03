@@ -2,7 +2,7 @@
 title: BFS和DFS
 date: 2016-04-21 15:28:51
 category: 数据结构与算法
-tags: [BFS,DFS]
+tags: Algorithm
 
 ---
 

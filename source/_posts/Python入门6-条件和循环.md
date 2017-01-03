@@ -1,5 +1,6 @@
 ---
-date: 2016-12-21 14:04:0
+title: Python入门6-条件和循环
+date: 2016-12-21 14:04:04
 category: Python
 tags: Python
 

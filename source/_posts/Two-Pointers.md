@@ -2,7 +2,7 @@
 title: Two Pointers
 date: 2016-07-21 16:08:38
 category: 数据结构与算法
-tags: Two Pointers
+tags: Algorithm
 
 ---
 

@@ -2,7 +2,7 @@
 title: RTTI
 date: 2016-06-29 11:18:41
 category: C++基础
-tags: [RTTI,类型转换运算符]
+tags: C++
 
 ---
 

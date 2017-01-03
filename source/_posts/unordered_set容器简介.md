@@ -2,7 +2,7 @@
 title: unordered_set简介
 date: 2016-04-19 19:42:25
 category: STL
-tags: [unordered_set,unordered_multiset]
+tags: C++
 
 ---
 

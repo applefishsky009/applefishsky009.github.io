@@ -2,7 +2,7 @@
 title: vector之insert方法和emplace方法
 date: 2016-04-13 20:39:29
 category: STL
-tags: [vector,insert(),emplace()]
+tags: C++
 
 ---
 
