@@ -79,6 +79,8 @@ while True:
 定义匿名函数，这个语句作为function传入其它函数。
 ```Python
 lambda x: doSomethingAboutX
+f = lambda x:x+1
+print(f(2))
 ```
 
 ## List Comprehensions

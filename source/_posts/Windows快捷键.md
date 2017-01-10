@@ -38,3 +38,11 @@ tags: Windows
 
 ctrl + shift + F//快速简繁体转化
 alt + CapsLock + ? //软件设置
+
+---
+
+## ctrl + /shift + ?
+shift可以反向，例如：
+1. `shift + tab` 其实并无卵用，开关大小写。
+2. `ctrl + shift + z` 返回撤销，`ctrl + z`的返回。
+---
