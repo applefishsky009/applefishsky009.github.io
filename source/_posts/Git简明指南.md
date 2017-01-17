@@ -11,6 +11,9 @@ tags: Git
 本地版本库推送到远程版本库需要经过这样的过程：
 本地文件->缓存池->HEAD->remote
 
+### git help <command>
+查看某一个指令的`Manuel Page`，在网页打开。
+
 ### git init
 将本地文件夹初始化为版本库，使用下列指令创建并进入文件夹(简单的window操作。。。)
 ```
@@ -45,11 +48,13 @@ cd folder
 ### git status
 显示你的本地文件夹，缓存池，HEAD中不一致的地方。
 
-### git log
+### git log /file
 查看版本库的提交历史，按q退出。
 1. `git log -n`显示版本库提交的历史，默认参数n=all。
 2. `git log --stat -n`显示版本库历史的文件变更统计。
-3. `git log -g`我主要用他在切换分支时查看两个版本之间的提交。
+3. `git log file`是一个很重要的指令，查看某一个文件的变更历史。配合`--pretty=oneline`和`-stat`参数可以追踪详细精简的文件变更记录。而`cmd`中出现的`^M`是指一行插入完了(换行的显式标识)。
+4. `git log -p /file`显示每次提交引进的补丁或变更，如果指定文件查看更方便。`p=patch`。
+5. 注意这个指令中无论添加什么参数`/file`参数是可选的，相当于一个过滤器。
 
 ### git reflog
 记录所有的Head历史，即使误删也不怕啦！[恢复 git reset -hard 的误操作](http://blog.sina.com.cn/s/blog_4bc7d49f01014r2s.html)
