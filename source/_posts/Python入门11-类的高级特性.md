@@ -1,6 +1,6 @@
 ---
 title: Python入门11-类的高级特性
-date: 2017-01-17 10:07:53
+date: 2017-01-15 10:07:53
 category: Python
 tags: Python
 

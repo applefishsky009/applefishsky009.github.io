@@ -195,5 +195,9 @@ tags: VSCode
 ## 更新
 1. File > Preferences > Keymap Extensions.
 	+ 键盘映射扩展。
+2. cannot read property 'substring' of undefined
+	+ 最简单的解决方案，在文件最后加一行空的代码。
+3. expected unqualified-id before 'int' || expected primary-expression before 'union'
+	+ 这是由一些变量有歧义造成的，也许有自定义的变量和std名称空间冲突。
 
 ---

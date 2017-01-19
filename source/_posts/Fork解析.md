@@ -8,7 +8,7 @@ tags: Linux
 
 ## 进程
 
-测试：[Fork测试](https://github.com/applefishsky009/OperationSystem/blob/master/1-Fork/fork.cpp)
+测试：[Fork测试](https://github.com/applefishsky009/OperationSystem/tree/master/1-Fork)
 
 参考unix环境高级编程，主要是测试fork的机制，其中两个函数和一个宏值得注意：
 
@@ -96,6 +96,7 @@ AABBAB
 2. 如果没有`flush`没有`endl(即\n)`，他的输出次数是\\( 2^{loopCount}*loopCount \\)
 3. 如果子进程和父进程的输出缓冲规则不一致，一个有`endl`一个没有`endl`，总数一定为\\( (2^{loopCount}*loopCount+2^1+....+2^{loopCount})/2 \\)，即上述两种情况的平均值。
 4. 如果没有刷出缓存(`flush`或`\n`),但只输出了6个(理论上是8个),考虑到断点设置导致的后先调用的父进程的缓冲区没有刷出，因此会缺少。
+
 $$ $$
 
 ---
