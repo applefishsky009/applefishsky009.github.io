@@ -67,7 +67,7 @@ go get -v -u github.com/peterh/liner github.com/derekparker/delve/cmd/dlv	//调�
 
 参考资料:
 <font color=red>特别重要</font>[Go for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=lukehoban.Go)
-[indows下visual studio code搭建golang开发环境](http://www.cnblogs.com/JerryNo1/p/5412864.html)
+[windows下visual studio code搭建golang开发环境](http://www.cnblogs.com/JerryNo1/p/5412864.html)
 [HOW TO SETUP VISUAL STUDIO CODE TO DEBUG GOLANG WITH DELVE](https://duosoftware.com/blog/how-to-setup-visual-studio-code-to-debug-golang-with-delve/)
 
 ## launch和settings

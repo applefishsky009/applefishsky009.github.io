@@ -48,7 +48,7 @@ tags: Python
 	password = getpass(str1 = 'Password：');
 ```
 3. print(str)
-	+ print(str, end = ' ')可以改变默认输出之后接空格而不是回车；
+	+ `print(str, end = ' ')`可以改变默认输出之后接空格而不是回车；
 
 ---
 
