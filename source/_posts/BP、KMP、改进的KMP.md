@@ -38,9 +38,8 @@ tags: Algorithm
 | offset		|  1 1 2 3 3 3 3 3 3	|
 
 ### 如何求得next[j]
-![这里](http://i.imgur.com/qc2eynB.png)
-[这里]:next[j]
-在计算公式中第二行指的是:j位**以前**字串中真前后缀的最大**公共**元素长度。真前缀、真后缀指的不包含串本身的子串。那么我们可以这样来计算j:
+
+在计算公式中next[j]指的是:j位**以前**字串中真前后缀的最大**公共**元素长度。真前缀、真后缀指的不包含串本身的子串。那么我们可以这样来计算j:
 tempNext[j]表示j位及以前子串真前缀最大公共元素长度。将tempNext[j]右移一位，初值赋为-1,得到next[j]
 
 | `xyxyyxxyx`	|  0 1 2 3 4 5 6 7 8	|
@@ -108,4 +107,4 @@ next[j]值越小，模式匹配所需比较次数越少。next[j]的计算中先
 | offset2			|  1 1 2  4 3 5 4  8 8 9 11 10  7	|
 
 [LeetCode代码][中括号很烦]
-[中括号很烦]:https://github.com/applefishsky009/LeetCode/blob/master/28%20-%20Implement%20strStr()/28%20-%20Implement%20strStr().cpp
+[中括号很烦]:https://github.com/applefishsky009/LeetCode/blob/master/28-Implement_strStr()/28-Implement_strStr().cpp
