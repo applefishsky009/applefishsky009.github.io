@@ -1,7 +1,7 @@
 # Blog info
 blog_name: 孤云两角，去天一握
 slogan: Smart is new sexy
-url: applefishsky009.github.io
+url: http://applefishsky009.github.io
 
 # Set avatar (Absolute url and relative url)
 avatar: /images/avatar.jpg
@@ -85,7 +85,7 @@ post:
 # Custom CSS style
 personal_style: /css/personal-style.css
 
-home_background_scheme: light # dark、light
+home_background_scheme: dark # dark、light
 
 # custom font-family 暂时只支持这3种英文字体，你可以完全自定义字体(看文档)
 blog_name_font_familiy: calligraffittiregular
@@ -114,7 +114,7 @@ about:
     icon: icon-user
     text_value:
     - "USTC, UCAS, 1991, Autumn"
-    - "硕士生, 极简。C / C++ / Python"
+    - "硕士, 极简。C / C++ / Python"
   - type: Github
     icon: icon-github
     text_key: Github
