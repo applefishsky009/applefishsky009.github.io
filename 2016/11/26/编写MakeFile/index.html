@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>编写MakeFile | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="VSCode,">
+  
+
+  <meta name="description" content="代码并非越灵活越好把代码写得太灵活不好吗？,总结起来大概有以下几个方面的考量：  更高的弹性可能增加复杂性，开发/维护成本，代码体积，性能开销等。 使用复杂性的增加，比如泛型ListNode或TreeNode时需要使用&amp;lt;&amp;gt;携带类型，但平常使用的接口是用得不到的。 好的代码应该体现在架构设计上，具体到代码片段，反而是简单直白的好。 KISS - Keep IT Simple,Stupid">
+<meta name="keywords" content="VSCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编写MakeFile">
+<meta property="og:url" content="http://rylcode.cn/2016/11/26/编写MakeFile/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="代码并非越灵活越好把代码写得太灵活不好吗？,总结起来大概有以下几个方面的考量：  更高的弹性可能增加复杂性，开发/维护成本，代码体积，性能开销等。 使用复杂性的增加，比如泛型ListNode或TreeNode时需要使用&amp;lt;&amp;gt;携带类型，但平常使用的接口是用得不到的。 好的代码应该体现在架构设计上，具体到代码片段，反而是简单直白的好。 KISS - Keep IT Simple,Stupid">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编写MakeFile">
+<meta name="twitter:description" content="代码并非越灵活越好把代码写得太灵活不好吗？,总结起来大概有以下几个方面的考量：  更高的弹性可能增加复杂性，开发/维护成本，代码体积，性能开销等。 使用复杂性的增加，比如泛型ListNode或TreeNode时需要使用&amp;lt;&amp;gt;携带类型，但平常使用的接口是用得不到的。 好的代码应该体现在架构设计上，具体到代码片段，反而是简单直白的好。 KISS - Keep IT Simple,Stupid">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#代码并非越灵活越好"><span class="toc-text">代码并非越灵活越好</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要MakeFile"><span class="toc-text">为什么需要MakeFile?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何编写MakeFile"><span class="toc-text">如何编写MakeFile?</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-编写MakeFile" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">编写MakeFile</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.11.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/VSCode/">VSCode</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/11/26/编写MakeFile/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="代码并非越灵活越好"><a href="#代码并非越灵活越好" class="headerlink" title="代码并非越灵活越好"></a>代码并非越灵活越好</h2><p><a href="http://www.zhihu.com/question/52951851" target="_blank" rel="noopener">把代码写得太灵活不好吗？</a>,总结起来大概有以下几个方面的考量：</p>
+<ol>
+<li>更高的弹性可能增加复杂性，开发/维护成本，代码体积，性能开销等。</li>
+<li>使用复杂性的增加，比如泛型<code>ListNode</code>或<code>TreeNode</code>时需要使用<code>&lt;&gt;</code>携带类型，但平常使用的接口是用得不到的。</li>
+<li>好的代码应该体现在架构设计上，具体到代码片段，反而是简单直白的好。</li>
+<li>KISS - Keep IT Simple,Stupid.</li>
+<li>没有需求不要加功能。</li>
+</ol>
+<hr>
+<h2 id="为什么需要MakeFile"><a href="#为什么需要MakeFile" class="headerlink" title="为什么需要MakeFile?"></a>为什么需要MakeFile?</h2><p>在之前的VSCode介绍中已经配置过使用<code>gdb</code>编译简单短小的c++程序，但是在实际的项目中会有非常多的.h和.cpp文件相互配合，这时候直接通过g++编译可执行文件就会比较复杂，而<code>make</code>这个强大的项目构建工具就能完美的解决这个问题，帮助我们构建和组织项目代码。</p>
+<p>参考资料：<a href="http://www.cnblogs.com/zhxilin/p/5881080.html" target="_blank" rel="noopener">在Linux中使用VS Code编译调试C++项目</a></p>
+<p>可以根据参考资料，将所有的g++指令写在<code>MakeFile</code>中，这样适用于大项目或者小项目。</p>
+<hr>
+<h2 id="如何编写MakeFile"><a href="#如何编写MakeFile" class="headerlink" title="如何编写MakeFile?"></a>如何编写MakeFile?</h2><p>第一节中的参考资料做出了简单的解释，基本语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">target : prerequisites</span><br><span class="line">	command	#前面必须是tab</span><br></pre></td></tr></table></figure>
+
+<p><code>target</code>可以是：</p>
+<ol>
+<li>目标文件(Object File) :<ul>
+<li><a href="http://stackoverflow.com/questions/3045603/what-does-an-object-file-contain" target="_blank" rel="noopener">What does an object file contain?</a></li>
+<li>即编译，根据需要的.cpp生成.o文件；</li>
+</ul>
+</li>
+<li>可执行文件:<ul>
+<li>即链接，链接所有的.o文件生成.exe文件；</li>
+</ul>
+</li>
+<li>标签：<ul>
+<li>动作名字。在<code>make</code>后指出整个动作的名字即可执行该命令。</li>
+</ul>
+</li>
+</ol>
+<p>举例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">build : main.o init.o</span><br><span class="line">	g++ -std=c++0x -o build main.o init.o	</span><br><span class="line">main.o :</span><br><span class="line">	g++ -std=c++0x -g -c main.cpp </span><br><span class="line">init.o : init.cpp init.h</span><br><span class="line">	g++ -std=c++0x -g -c init.cpp	</span><br><span class="line">clean :</span><br><span class="line">	rm main.o init.o build</span><br></pre></td></tr></table></figure>
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/11/26/编写MakeFile/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

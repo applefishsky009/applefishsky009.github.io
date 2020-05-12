@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门11-类的高级特性 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="通用特性 类和类型统一，所有Python内建转换函数都是工厂函数。类名以及工厂函数可以创建类的新对象，还可以作为基类去子类化类型，还可以用于instance()内建函数。     注意instance(obj,OBJ)内建函数不是严格比较的，如果obj是一个给定类型的实例或其子类的实例，都会返回TRUE。 严格比较使用is操作符。   slots类属性Usage of slots?  字典对实例很">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门11-类的高级特性">
+<meta property="og:url" content="http://rylcode.cn/2017/01/15/Python入门11-类的高级特性/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="通用特性 类和类型统一，所有Python内建转换函数都是工厂函数。类名以及工厂函数可以创建类的新对象，还可以作为基类去子类化类型，还可以用于instance()内建函数。     注意instance(obj,OBJ)内建函数不是严格比较的，如果obj是一个给定类型的实例或其子类的实例，都会返回TRUE。 严格比较使用is操作符。   slots类属性Usage of slots?  字典对实例很">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门11-类的高级特性">
+<meta name="twitter:description" content="通用特性 类和类型统一，所有Python内建转换函数都是工厂函数。类名以及工厂函数可以创建类的新对象，还可以作为基类去子类化类型，还可以用于instance()内建函数。     注意instance(obj,OBJ)内建函数不是严格比较的，如果obj是一个给定类型的实例或其子类的实例，都会返回TRUE。 严格比较使用is操作符。   slots类属性Usage of slots?  字典对实例很">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#通用特性"><span class="toc-text">通用特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#slots类属性"><span class="toc-text">slots类属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getattribute-特殊方法"><span class="toc-text">getattribute()特殊方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#描述符"><span class="toc-text">描述符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优先级别"><span class="toc-text">优先级别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性和property内建函数"><span class="toc-text">属性和property内建函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元类-metaclass"><span class="toc-text">元类(metaclass)</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门11-类的高级特性" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门11-类的高级特性</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.01.15</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2017/01/15/Python入门11-类的高级特性/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="通用特性"><a href="#通用特性" class="headerlink" title="通用特性"></a>通用特性</h2><ol>
+<li>类和类型统一，所有Python内建转换函数都是工厂函数。类名以及工厂函数可以创建类的新对象，还可以作为基类去子类化类型，还可以用于<code>instance()</code>内建函数。    </li>
+<li>注意<code>instance(obj,OBJ)</code>内建函数不是严格比较的，如果obj是一个给定类型的实例或其子类的实例，都会返回<code>TRUE</code>。</li>
+<li>严格比较使用<code>is</code>操作符。</li>
+</ol>
+<hr>
+<h2 id="slots类属性"><a href="#slots类属性" class="headerlink" title="slots类属性"></a><strong>slots</strong>类属性</h2><p><a href="http://stackoverflow.com/questions/472000/usage-of-slots" target="_blank" rel="noopener">Usage of <strong>slots</strong>?</a></p>
+<ol>
+<li>字典对实例很重要，<code>__dict__</code>属性跟踪所有实例属性。使用<code>inst.foo</code>和<code>inst.__dict__[&#39;foo&#39;]</code>访问属性是一样的。</li>
+<li>字典会占用大量内存，如果有一个属性数量很少的类，但有很多实例，基于内存上的考虑，可以使用<code>__slots__</code>属性来代替<code>__dict__</code>属性。</li>
+<li><code>__slots__</code>属性是一个类变量，由一序列型对象组成，由所有合法标识构成的实例属性的集合来表示，可以是列表，元组，可迭代对象，甚至在实例属性唯一时他可以是字符串。</li>
+<li><code>__slots__</code>属性是“类型安全”的，不允许用户动态增加实例属性。带<code>__slots__</code>属性的类定义不会存在<code>__dict__</code>了。</li>
+<li><code>__slots__</code>属性主要有两个优势，节约内存，访问属性速度更快。</li>
+</ol>
+<hr>
+<h2 id="getattribute-特殊方法"><a href="#getattribute-特殊方法" class="headerlink" title="getattribute()特殊方法"></a><strong>getattribute</strong>()特殊方法</h2><ol>
+<li>回忆<code>__getattr__()</code>特殊方法，当属性不能在实例或他的类或他的祖先类中的<code>__dict__</code>找到时，调用这个方法(在授权中，调用这个方法后调用<code>getattr()</code>内建函数来实现授权)。</li>
+<li>使用一个函数来执行每一个函数的访问，不光是属性不能找到的情况。如果类同时定义了<code>__getattribute__()</code>及<code>__getattr__()</code>方法，除非明确从<code>__getattribute__()</code>调用<code>__getattr__()</code>或者引发<code>AttributeError</code>(<code>__getattr__()</code>捕获这个异常并执行)，否则后者不会被调用。</li>
+<li>如果在<code>__getattribute__()</code>中不知何故再次调用了<code>__getattribute__()</code>，会引起无穷递归调用。因此总应该先调用祖先类的同名方法。</li>
+</ol>
+<hr>
+<h2 id="描述符"><a href="#描述符" class="headerlink" title="描述符"></a>描述符</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>描述符是表示对象属性的一个代理。</p>
+<ol>
+<li>描述符可以是任何类，至少实现了<code>__get__()</code>,<code>__set__()</code>,<code>__del__()</code>三个方法中的一个，这三个方法充当描述符协议的作用。实现方法不同具有不同的读写权限。</li>
+<li>非数据描述符实现<code>__get__()</code>方法，是只读数据，也叫做方法描述符。数据描述符具有读写权限，实现了<code>__set__()</code>和<code>__get__()</code>方法。</li>
+<li>如果想为一个属性写个代理，必须把他作为一个类的属性，让这个代理来完成所有的工作。考虑到上一节中每个属性实例都会调用的特殊方法<code>__getattribute__()</code>，他是描述符的核心。</li>
+<li>如果<code>super()</code>被调用了，它会沿着<code>obj.__class__.__mro__</code>紧接着的继承树来查找属性。</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def __get__(self, obj, type=None) =&gt; value</span><br><span class="line">类X的实例x  x.foo    equals    type(x).__dict__[<span class="string">'foo'</span>].__get__(x,type(x))</span><br><span class="line">类X        X.foo    equals    X.__dict__[<span class="string">'foo'</span>].__get__(<span class="literal">None</span>,X)</span><br><span class="line">类X的子类Y  super(Y,obj).foo   X.__dict__[<span class="string">'foo'</span>].__get__(obj,X)</span><br><span class="line"></span><br><span class="line">def __set__(self, obj, val) =&gt; None</span><br><span class="line">def __delete__(self, obj) =&gt; None</span><br></pre></td></tr></table></figure>
+
+<h3 id="优先级别"><a href="#优先级别" class="headerlink" title="优先级别"></a>优先级别</h3><ol>
+<li>类属性 &gt; 数据描述符 &gt; 实例属性 &gt; 非数据描述符 &gt; 默认为<code>__getattr__()</code>。</li>
+<li>非数据描述符的目的只是当实例属性值不存在时，提供的一个值而已。当没有找到非数据描述符，<code>__getattribute__()</code>将会抛出一个<code>AttributeError</code>异常，接着会调用<code>__getattr__()</code>作为最后一个操作。</li>
+<li>优先级高的可以隐藏优先级低的属性。</li>
+<li>函数是非数据描述符，实例属性有更高的优先级，可以遮蔽任何一个非数据描述符。只要把(另)一个(非数据描述符)对象赋给实例(属性)就行了。</li>
+<li>静态方法、类方法、属性，甚至所有的函数都是描述符，描述符会根据函数的类型确定如何“封装”这个函数和函数被绑定的对象，然后返回调用对象。</li>
+</ol>
+<hr>
+<h2 id="属性和property内建函数"><a href="#属性和property内建函数" class="headerlink" title="属性和property内建函数"></a>属性和property内建函数</h2><p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/00143186781871161bc8d6497004764b398401a401d4cce000" target="_blank" rel="noopener">使用@property</a><br><a href="http://www.howsoftworks.net/python/function/property.html" target="_blank" rel="noopener">property</a></p>
+<ol>
+<li>可以使用<code>property()</code>方法来处理实例属性的获取(<code>x.getter</code>)、赋值(<code>x.setter</code>)、删除(<code>x.deleter</code>)操作，在操作中可以对属性做一些合法值判断等功能。</li>
+<li><code>property()</code>方法是他所在类被创建时调用的，实际上是将函数作为参数传递进去，这些方法(其实就是函数)是非绑定的。</li>
+</ol>
+<hr>
+<h2 id="元类-metaclass"><a href="#元类-metaclass" class="headerlink" title="元类(metaclass)"></a>元类(metaclass)</h2><p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014319106919344c4ef8b1e04c48778bb45796e0335839000" target="_blank" rel="noopener">使用元类</a><br><a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">深刻理解Python中的元类(metaclass)</a><br><a href="http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank" rel="noopener">What is a metaclass in Python?</a></p>
+<ol>
+<li>元类是类的类，即由元类创建类，由类创建实例，关键是元类中的<code>__new__()</code>方法和<code>type()</code>内建函数(唯一可以创建类的东西)。</li>
+<li>元类一般用于创建类，解释器首先会查找类的关键字参数<code>metaclass</code>，如果没有传入，他会继续查找父类的关键字参数<code>metaclass</code>，直到<code>object</code>，<code>type(object)</code>即<code>type</code>类型，可以看到一个令人震惊的事实，<code>object</code>是<code>type</code>创建的。</li>
+<li>元类用于改变类的默认行为和创建方式。</li>
+</ol>
+<p>运行以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> time <span class="keyword">import</span> ctime</span><br><span class="line"></span><br><span class="line">print(<span class="string">'1'</span>)</span><br><span class="line">print(<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MetaA</span><span class="params">(type)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(cls,name,bases,attrd)</span>:</span></span><br><span class="line">        super(MetaA,cls).__init__(name,bases,attrd)</span><br><span class="line">        print(<span class="string">'4'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'3'</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(object,metaclass=MetaA)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'6'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'5'</span>)</span><br><span class="line">c = C()</span><br><span class="line">print(<span class="string">'7'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>输出为</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2017/01/15/Python入门11-类的高级特性/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门5-字典和集合 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="映射类型：字典(dict)集合类型：集合(set) 可变集合/不可变集合  字典dictAssignment 赋值运算符=和花括号{}，键值之间的对应用冒号:。 工厂方法dict(),键值之间可以用赋值运算符=。 使用内建方法dict.fromkeys(seq,value),创建一个默认的字典，字典中的元素具有相同的值。  Access 键值访问 dict[key]返回value 迭代器访问 fo">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门5-字典和集合">
+<meta property="og:url" content="http://rylcode.cn/2016/12/19/Python入门5-字典和集合/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="映射类型：字典(dict)集合类型：集合(set) 可变集合/不可变集合  字典dictAssignment 赋值运算符=和花括号{}，键值之间的对应用冒号:。 工厂方法dict(),键值之间可以用赋值运算符=。 使用内建方法dict.fromkeys(seq,value),创建一个默认的字典，字典中的元素具有相同的值。  Access 键值访问 dict[key]返回value 迭代器访问 fo">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门5-字典和集合">
+<meta name="twitter:description" content="映射类型：字典(dict)集合类型：集合(set) 可变集合/不可变集合  字典dictAssignment 赋值运算符=和花括号{}，键值之间的对应用冒号:。 工厂方法dict(),键值之间可以用赋值运算符=。 使用内建方法dict.fromkeys(seq,value),创建一个默认的字典，字典中的元素具有相同的值。  Access 键值访问 dict[key]返回value 迭代器访问 fo">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字典"><span class="toc-text">字典</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#dict"><span class="toc-text">dict</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Assignment"><span class="toc-text">Assignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Access"><span class="toc-text">Access</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update"><span class="toc-text">Update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delete"><span class="toc-text">Delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Operator"><span class="toc-text">Operator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions"><span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-text">Methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Warning"><span class="toc-text">Warning</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#集合"><span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Set"><span class="toc-text">Set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Assignment-1"><span class="toc-text">Assignment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Access-1"><span class="toc-text">Access</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update-1"><span class="toc-text">Update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delete-1"><span class="toc-text">Delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Operator-1"><span class="toc-text">Operator</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Functions-1"><span class="toc-text">Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods-1"><span class="toc-text">Methods</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门5-字典和集合" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门5-字典和集合</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.12.19</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/12/19/Python入门5-字典和集合/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>映射类型：字典(dict)<br>集合类型：集合(set) 可变集合/不可变集合</p>
+<hr>
+<h1 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h1><h2 id="dict"><a href="#dict" class="headerlink" title="dict"></a>dict</h2><h3 id="Assignment"><a href="#Assignment" class="headerlink" title="Assignment"></a>Assignment</h3><ol>
+<li>赋值运算符<code>=</code>和花括号<code>{}</code>，键值之间的对应用冒号<code>:</code>。</li>
+<li>工厂方法dict(),键值之间可以用赋值运算符<code>=</code>。</li>
+<li>使用内建方法dict.fromkeys(seq,value),创建一个默认的字典，字典中的元素具有相同的值。</li>
+</ol>
+<h3 id="Access"><a href="#Access" class="headerlink" title="Access"></a>Access</h3><ol>
+<li>键值访问 dict[key]返回value</li>
+<li>迭代器访问 for key in dict</li>
+</ol>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><ol>
+<li>方括号和赋值运算符新建/更新字典，dict[key] = newValue;<ul>
+<li>如果没有key,则新建，如果有则更新；</li>
+</ul>
+</li>
+<li>使用内建方法dict.update(dict)将整个字典的内容添加到另一个字典。</li>
+</ol>
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><ol>
+<li>del dict[key] 删除键为key的条目。</li>
+<li>dict.clear() 删除dict中所有的条目。</li>
+<li>dict.pop(key) 删除并返回键为key的条目的值。</li>
+</ol>
+<h3 id="Operator"><a href="#Operator" class="headerlink" title="Operator"></a>Operator</h3><ol>
+<li>赋值运算符<code>=</code>，Python3中取消了关系运算符<code>&gt;</code>,<code>&lt;</code>，等相关的运算符，但是<code>==</code>依然可用。</li>
+<li>Python3中取消了<code>cmp()</code>内建函数。</li>
+<li>字典的键查找操作符<code>[]</code>，给某元素赋值或者查询字典中某元素的值。</li>
+<li>键成员关系操作<code>in/not in</code>。</li>
+</ol>
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><ol>
+<li>type() 返回对象的类型或创建一个新的类型对象。</li>
+<li>str() 得到对象的str()版本。</li>
+<li>len() 返回对象长度或者集合个数。</li>
+<li>dict() 创建字典。<ul>
+<li>如果参数是可迭代的，必须成对出现才能创建字典，zip或者列表，列表解析等；</li>
+<li>如果输入参数是一个映射对象，此函数会返回该映射对象的浅拷贝版本，但是效率没有dict.copy()高。</li>
+</ul>
+</li>
+<li>hash() 得到对象的哈希值。<ul>
+<li>一般用来判断对象是否是可哈希的，如果可哈希返回哈希值；</li>
+<li>如果不可哈希，返回错误。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><ol>
+<li>dict.clear() 删除dictionary中的所有键值对，字典变为空。</li>
+<li>dict.copy() 浅拷贝dictionary。</li>
+<li>dict.fromkeys(iterater, value=None) 新建一个dictionary，键由可迭代对象组成，所有的值都是value。</li>
+<li>dict.get(key, d) 返回dictionary中键为key的值，如果不存在key，则返回d(默认为None)，这可以判断键key是否存在。</li>
+<li>dict.items() 返回dictionary中所有键值对，类型为dict_items，可以使用迭代器访问。</li>
+<li>dict.keys() 返回dictionary中所有的键集合，类型为dict_keys，可以使用迭代器访问。</li>
+<li>dict.values() 返回dictionary中所有的值集合，类型为dict_values，可以使用迭代器访问。</li>
+<li>dict.pop(key) 删除dictionary中指定key，并返回key的值。如果没有key，会抛出KeyError。</li>
+<li>dict.popitem() 删除dictionary中key-value对，类型是tuple()，如果dict是空，抛出异常。</li>
+<li>dict.setdefault(k,d) 如果dictionary中不存在k,设置dict[k] = d,并返回d；如果k存在，则返回原有键k的值。</li>
+<li>dict.update(dict/iterable) 使用一个字典或者可迭代容器(比如zip)更新字典(添加内容)。</li>
+</ol>
+<h2 id="Warning"><a href="#Warning" class="headerlink" title="Warning"></a>Warning</h2><ol>
+<li>不允许一个键对应多个值，以最后一次的赋值/更新为准。</li>
+<li>键必须是可哈希的<ul>
+<li>所有的不可变类型都是可哈希的，因为字典中的键用来计算数据存储位置，如果可变，存取数据就变得不可靠了。</li>
+<li>数字和字符串都可以作为键，但对元组来说，元组只包括数字和字符串这样的不可变参数，才能作为字典中有效的值。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1><p>分为可变集合和不可变集合，可变集合可以添加删除元素，不可哈希。不可变集合刚好相反。</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="Assignment-1"><a href="#Assignment-1" class="headerlink" title="Assignment"></a>Assignment</h3><p>只能通过工厂方法来创建，集合具有无序性，确定性，互异性。</p>
+<ol>
+<li>set() 可变集合。</li>
+<li>frozenset() 不可变集合。</li>
+</ol>
+<h3 id="Access-1"><a href="#Access-1" class="headerlink" title="Access"></a>Access</h3><ol>
+<li><code>in/not in</code>。</li>
+</ol>
+<h3 id="Update-1"><a href="#Update-1" class="headerlink" title="Update"></a>Update</h3><ol>
+<li>set.add() 往set中添加一个元素。</li>
+<li>set.remove() 从set中删除一个元素，这个操作和set.add()相对应。</li>
+<li>set.update(set) 往set中添加一个set的所有元素。</li>
+<li>set <code>-=</code> set() 从set中删去一个set的所有元素，这个操作与set.update()相对应。</li>
+</ol>
+<h3 id="Delete-1"><a href="#Delete-1" class="headerlink" title="Delete"></a>Delete</h3><ol>
+<li><code>del set</code>清除出当前的名称空间，如果引用计数为0，会被垃圾回收。</li>
+</ol>
+<h3 id="Operator-1"><a href="#Operator-1" class="headerlink" title="Operator"></a>Operator</h3><p>注意<code>+</code>不是集合类型操作符，最接近<code>+</code>的逻辑是或(OR<code>|</code>)。</p>
+<ol>
+<li><code>in/not in</code> 成员关系操作符。</li>
+<li><code>==/!=</code> 等价/不等价。</li>
+<li><code>&lt;/&lt;=,&gt;/&gt;=</code> 严格子集/非严格子集(<code>&lt;=</code>相当于set.issubset())，严格超集/非严格超集(<code>&gt;=</code>相当于set.issuperset())。</li>
+<li><code>|</code> 联合，相当于OR,等价方法set.union()。</li>
+<li><code>&amp;</code> 交集，相当于ADD，等价方法set.intersection()。</li>
+<li><code>-</code> 差补/相对补集，等价方法set.difference()。</li>
+<li><code>^</code> 对称差分,即异或，等价方法set.symmetric_difference()。</li>
+</ol>
+<p>以下仅适用于可变集合：</p>
+<ol>
+<li><code>|=</code> 从已存在的集合中添加多个成员，此方法和update()等价。</li>
+<li><code>&amp;=</code> 保留(交集更新)，保留与其他集合的共有成员，此方法和intersection_update()等价。</li>
+<li><code>-=</code> 差更新，返回除去右集合后剩余元素组成的集合，此方法和difference_update()等价。</li>
+<li><code>^=</code> 差分更新，返回仅是左集合或者仅是右集合的元素组成的集合。</li>
+</ol>
+<h2 id="Functions-1"><a href="#Functions-1" class="headerlink" title="Functions"></a>Functions</h2><ol>
+<li>len() 返回集合基数。</li>
+<li>set()/frozenset() 生成可变/不可变集合。<ul>
+<li>默认生成空集合；</li>
+<li>如果有一个参数，该参数必须是可迭代的。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Methods-1"><a href="#Methods-1" class="headerlink" title="Methods"></a>Methods</h2><ol>
+<li>set.add() 往set中添加一个元素。</li>
+<li>set.clear() 从set中移除所有元素。</li>
+<li>set.copy() 返回set的浅拷贝。</li>
+<li>set.difference() 返回两个或多个set中不同的元素组成的set，差分。</li>
+<li>set.difference_update() 从当前set中移除其他set中所有元素。</li>
+<li>set.discard() 从set中删除一个元素，如果该元素存在。无论该元素存在与否，返回值都是None。</li>
+<li>set.intersection() 返回两个或多个set的交集。</li>
+<li>set.intersection_update() 更新当前set，只保留所有set中都存在的元素、</li>
+<li>set.isdisjoint() 判断两个set有没有交集。</li>
+<li>set.issubset()/set.issuperset() 判断是否非严格子集/非严格超集。 </li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/12/19/Python入门5-字典和集合/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

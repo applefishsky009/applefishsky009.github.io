@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>set容器简介 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="先上彩蛋：  cplusplus cppreference stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset   set简介容器属性：  Associative:通过key而不是绝对位置来引用; Ordered:有序; Set:键值就是值本身； Unique keys:这是一个一一映射 Allocator-aware:使用">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="set容器简介">
+<meta property="og:url" content="http://rylcode.cn/2016/05/27/set容器简介/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="先上彩蛋：  cplusplus cppreference stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset   set简介容器属性：  Associative:通过key而不是绝对位置来引用; Ordered:有序; Set:键值就是值本身； Unique keys:这是一个一一映射 Allocator-aware:使用">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="set容器简介">
+<meta name="twitter:description" content="先上彩蛋：  cplusplus cppreference stackoverflow#include&amp;lt;set&amp;gt;头文件内定义了两个有序的hash容器set和multiset   set简介容器属性：  Associative:通过key而不是绝对位置来引用; Ordered:有序; Set:键值就是值本身； Unique keys:这是一个一一映射 Allocator-aware:使用">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#set简介"><span class="toc-text">set简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set使用"><span class="toc-text">set使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert"><span class="toc-text">insert()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#彩蛋"><span class="toc-text">彩蛋</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-set容器简介" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">set容器简介</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.27</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/27/set容器简介/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>先上彩蛋：</p>
+<ol>
+<li><a href="http://www.cplusplus.com/" target="_blank" rel="noopener">cplusplus</a></li>
+<li><a href="http://en.cppreference.com/w/" target="_blank" rel="noopener">cppreference</a></li>
+<li><a href="http://stackoverflow.com/" target="_blank" rel="noopener">stackoverflow</a><br><code>#include&lt;set&gt;</code>头文件内定义了两个有序的hash容器<code>set</code>和<code>multiset</code></li>
+</ol>
+<hr>
+<h2 id="set简介"><a href="#set简介" class="headerlink" title="set简介"></a>set简介</h2><p>容器属性：</p>
+<ol>
+<li>Associative:通过key而不是绝对位置来引用;</li>
+<li>Ordered:有序;</li>
+<li>Set:键值就是值本身；</li>
+<li>Unique keys:这是一个一一映射</li>
+<li>Allocator-aware:使用分配器<code>allocator</code>来动态存储。</li>
+</ol>
+<p>特征补充：</p>
+<ol>
+<li>容器中的元素都是不可修改的(都是<code>const</code>类型)，但是可以<code>insert()</code>，<code>remove()</code>；</li>
+<li>容器通过二叉搜索树实现。</li>
+</ol>
+<hr>
+<h2 id="set使用"><a href="#set使用" class="headerlink" title="set使用"></a>set使用</h2><ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/90%20-%20Subsets%20II/90%20-%20Subsets%20II(Recursion).cpp" target="_blank" rel="noopener">Subsets II(Recursion)</a></li>
+</ol>
+<h3 id="insert"><a href="#insert" class="headerlink" title="insert()"></a>insert()</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pair&lt;iterator,bool&gt; insert (const value_type&amp; val);</span><br><span class="line">pair&lt;iterator,bool&gt; insert (value_type&amp;&amp; val);</span><br></pre></td></tr></table></figure>
+
+<p><code>set</code>中没有则插入，返回一个<code>pair</code>对象，<code>pair.first()</code>指向插入的元素或set中已有的该元素，<code>pair.second()</code>指示该元素是已有的还是新插入的。</p>
+<h3 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h3><ol>
+<li><code>#include &lt;algorithm&gt;</code>中<a href="http://stackoverflow.com/questions/5034211/c-copy-set-to-vector" target="_blank" rel="noopener">copy将set转vector</a>，当然也可以用<code>vector</code>的构造函数(iterator类型一致)。</li>
+</ol>
+<hr>
+<p>暂没有用到其他方法，待补充</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/05/27/set容器简介/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

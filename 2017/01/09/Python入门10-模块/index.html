@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门10-模块 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="模块基础 自我包含并且有组织的代码片段就是模块。把其他模块中属性附件到你的模块中的操作叫做导入。 模块按照逻辑来组织Python代码方法，文件是物理层组织模块的方法。 一个文件被看作一个独立模块，一个模块也被看作是一个文件。 模块的文件名就是模块的名字加上扩展名.py。   一个名称空间就是一个从名称到对象的关系集合映射。所以每个模块都定义了自己的唯一的名称空间。 即使属性之间有名称冲突，但他们的">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门10-模块">
+<meta property="og:url" content="http://rylcode.cn/2017/01/09/Python入门10-模块/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="模块基础 自我包含并且有组织的代码片段就是模块。把其他模块中属性附件到你的模块中的操作叫做导入。 模块按照逻辑来组织Python代码方法，文件是物理层组织模块的方法。 一个文件被看作一个独立模块，一个模块也被看作是一个文件。 模块的文件名就是模块的名字加上扩展名.py。   一个名称空间就是一个从名称到对象的关系集合映射。所以每个模块都定义了自己的唯一的名称空间。 即使属性之间有名称冲突，但他们的">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门10-模块">
+<meta name="twitter:description" content="模块基础 自我包含并且有组织的代码片段就是模块。把其他模块中属性附件到你的模块中的操作叫做导入。 模块按照逻辑来组织Python代码方法，文件是物理层组织模块的方法。 一个文件被看作一个独立模块，一个模块也被看作是一个文件。 模块的文件名就是模块的名字加上扩展名.py。   一个名称空间就是一个从名称到对象的关系集合映射。所以每个模块都定义了自己的唯一的名称空间。 即使属性之间有名称冲突，但他们的">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模块基础"><span class="toc-text">模块基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模块导入"><span class="toc-text">模块导入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包和其他特性"><span class="toc-text">包和其他特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#包"><span class="toc-text">包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他特性"><span class="toc-text">其他特性</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门10-模块" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门10-模块</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.01.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2017/01/09/Python入门10-模块/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="模块基础"><a href="#模块基础" class="headerlink" title="模块基础"></a>模块基础</h2><ol>
+<li>自我包含并且有组织的代码片段就是模块。把其他模块中属性附件到你的模块中的操作叫做导入。</li>
+<li>模块按照逻辑来组织Python代码方法，文件是物理层组织模块的方法。<ul>
+<li>一个文件被看作一个独立模块，一个模块也被看作是一个文件。</li>
+<li>模块的文件名就是模块的名字加上扩展名.py。</li>
+</ul>
+</li>
+<li>一个名称空间就是一个从名称到对象的关系集合映射。所以每个模块都定义了自己的唯一的名称空间。<ul>
+<li>即使属性之间有名称冲突，但他们的完整授权名称——据点属性标识指定了各自的名称空间(防止名称冲突)。</li>
+</ul>
+</li>
+<li>默认搜索路径是在编译时或者安装时指定的。他可以在一个或者两个地方修改。路径模块<code>import sys</code>。<ul>
+<li><code>sys.path</code>包含每个独立路径的列表，那么显然<code>sys.path.append()</code>可以添加搜索的路径，<code>sys.path.insert(pos, val)</code>可以指定插入位置。</li>
+<li><code>sys.modules</code>可以找到当前导入了哪些模块以及他们来自哪里，返回值是一个字典，模块名是<code>key</code>，对应物理地址是<code>val</code>。</li>
+</ul>
+</li>
+<li>名称空间是名称到对象的映射，改变一个名字叫做重新绑定，删除一个名字叫做解除绑定。<ul>
+<li>局部名称空间，全局名称空间，内建名称空间(<code>__buildins__</code>模块中的名字)，从前往后搜索名称，从后往前加载。</li>
+<li><code>globals()</code>和<code>locals()</code>内建函数得到全局/当前符号表字典。可以用于判断某一名字属于哪个名称空间。</li>
+</ul>
+</li>
+<li><code>__name__</code>系统变量可以在运行时检测该模块是被导入还是被直接执行。<ul>
+<li>如果模块是被导入，<code>__name__</code>的值为模块名字。</li>
+<li>如果模块是被直接执行，<code>__name__</code>的值是<code>__main__</code>。</li>
+<li>利用这个特性在主程序中书写测试代码。</li>
+</ul>
+</li>
+<li>明白名称查询的规则，就很容易理解遮蔽效应。名称查询首先从局部名称空间开始，然后查找全局名称空间，然后在内建名称空间里查找。</li>
+<li>可以在任何需要防止数据的地方获得一个名称空间，比如可以在任何时候给函数添加属性。 </li>
+</ol>
+<hr>
+<h2 id="模块导入"><a href="#模块导入" class="headerlink" title="模块导入"></a>模块导入</h2><ol>
+<li>建议按顺序导入模块，Python标准库模块-&gt;Python第三方模块库-&gt;应用程序自定义模块。</li>
+<li>可以在模块中导入指定属性。即吧指定名称导入当前作用域。</li>
+<li>多行导入，使用逗号分隔属性，使用<code>\</code>来自动换行，建议使用Python标准分组机制(圆括号)来创建更合理的多行导入语句。</li>
+<li>在<code>import</code>语句之后使用<code>as</code>在导入的同时指定局部绑定名称。</li>
+<li>一个模块只能被加载一次，加载只在第一次导入时发生。<ul>
+<li>限制使用<code>from module import *</code>，因为会污染名称空间。</li>
+<li>在交互解释器或者目标模块属性非常多时可以全部导入。</li>
+</ul>
+</li>
+<li>属性名称可能冲突时，建议使用<code>import</code>和完整的标识符名称(句点属性标识)。</li>
+<li><code>__future__</code>导入新的特性。</li>
+<li>警告框架，警告用户不要使用一个即将改变或不支持的操作，包含几个部分：<ul>
+<li>API：调用API发布警告，使用warnings模块。</li>
+<li>一些警告异常类的集合：Warning，UserWarning，DeprecationWarning,SyntaxWarning和RunningWarning等。</li>
+<li>警告过滤器：不仅仅收集关于警告的信息(如信号，警告原因等)，控制是否忽略警告，是否显示警告(可以自定义格式)，或者转化为错误生成一个异常等。</li>
+</ul>
+</li>
+<li>从zip文件中导入模块。</li>
+<li>编写可调用的<code>import</code>类来重新实现整个导入机制，需要实现查找器和载入器。<ul>
+<li><code>import</code>语句调用<code>__import()__</code>函数完成工作，提供这个函数是为了让有特殊需求的用户覆盖他，实现自定义的导入算法。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="包和其他特性"><a href="#包和其他特性" class="headerlink" title="包和其他特性"></a>包和其他特性</h2><h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><ol>
+<li>包是一个有层次的文件目录结构，他定义了一个由模块和子包组成的Python应用程序执行环境。</li>
+<li>可以通过<code>最顶层的包.子包.模块</code>来导入；也可以通过<code>from 最顶层的包 import 子包</code>然后使用 属性/点 操作符向下引用子包树；也可以<code>from 最顶层的包.子包 import 模块</code>来导入模块；甚至可以沿着子包的树状结构导入子包中模块的名称空间<code>from 最顶层的包.子包.子包中模块 import something</code>。</li>
+<li>绝对导入是指导入的包通过Python路径(<code>sys.path</code>或者<code>PYTHONPATH</code>)，<code>.</code>表示导入同目录下的模块，<code>..</code>表示导入不同目录下的模块(他们都包含在同一个最顶层的包中)。<ul>
+<li><a href="http://python3-cookbook.readthedocs.io/zh_CN/latest/c10/p03_import_submodules_by_relative_names.html" target="_blank" rel="noopener">使用相对路径名导入包中子模块</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="其他特性"><a href="#其他特性" class="headerlink" title="其他特性"></a>其他特性</h3><ol>
+<li>自动载入的模块：内建模块，在Python2.x中命名是<code>__builtin__</code>，在Python3.x中命名是<code>builtins</code>。而不论是2还是3中，<code>__builtins__</code>都是对内建模块的引用。不同的是，在主模块<code>__main()__</code>中，其是对内建模块本身的引用；而在非<code>__main()__</code>中，其仅仅是对<code>__buildin__/builtins.__dict__</code>的引用，他的类型是字典。<ul>
+<li><a href="http://www.52ij.com/jishu/665.html" target="_blank" rel="noopener">Python中的内建模块</a></li>
+</ul>
+</li>
+<li>阻止属性导入：如果不想让某个模块被<code>from module import *</code>导入，可以在模块中给不想导入的属性名称加下划线(<code>_</code>，例如<code>bar</code>-&gt;<code>_bar</code>)，但是加上下划线之后怎么导入模块？可以导入整个模块(<code>import foo</code>)或者显式导入这个属性(<code>import foo._bar</code>)。</li>
+<li>不区分大小写的导入，必须指定一个<code>PYTHONCASEOK</code>的变量。</li>
+<li>源代码编译，<a href="http://www.crifan.com/python_head_meaning_for_usr_bin_python_coding_utf-8/" target="_blank" rel="noopener">关于Python脚本开头两行的：#!/usr/bin/python和# -<em>- coding: utf-8 -</em>-的作用 – 指定文件编码类型</a></li>
+<li>导入循环，循环引用的问题。删除导入语句；或者将导入语句移到最后；或者将导入语句放在函数内部，只在调用函数的时候导入这个模块。</li>
+<li>模块执行：通过命令行，shell，execfile()，模块导入，解释器的<code>-m</code>选项等。</li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2017/01/09/Python入门10-模块/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

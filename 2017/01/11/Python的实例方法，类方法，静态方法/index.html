@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python的实例方法，类方法，静态方法 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="静态方法和类方法参考资料：  python类的静态方法和类方法区别强调使用场景和继承。 Python @classmethod and @staticmethod for beginner?最高赞答案强调了重载，次高赞答案强调了继承。 Python 中的 classmethod 和 staticmethod 有什么具体用途最高赞答案强调了封装和使用场景。来自于Difference between">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python的实例方法，类方法，静态方法">
+<meta property="og:url" content="http://rylcode.cn/2017/01/11/Python的实例方法，类方法，静态方法/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="静态方法和类方法参考资料：  python类的静态方法和类方法区别强调使用场景和继承。 Python @classmethod and @staticmethod for beginner?最高赞答案强调了重载，次高赞答案强调了继承。 Python 中的 classmethod 和 staticmethod 有什么具体用途最高赞答案强调了封装和使用场景。来自于Difference between">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python的实例方法，类方法，静态方法">
+<meta name="twitter:description" content="静态方法和类方法参考资料：  python类的静态方法和类方法区别强调使用场景和继承。 Python @classmethod and @staticmethod for beginner?最高赞答案强调了重载，次高赞答案强调了继承。 Python 中的 classmethod 和 staticmethod 有什么具体用途最高赞答案强调了封装和使用场景。来自于Difference between">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#静态方法和类方法"><span class="toc-text">静态方法和类方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#封装"><span class="toc-text">封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重载"><span class="toc-text">重载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用场景"><span class="toc-text">使用场景</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python的实例方法，类方法，静态方法" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python的实例方法，类方法，静态方法</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.01.11</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2017/01/11/Python的实例方法，类方法，静态方法/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="静态方法和类方法"><a href="#静态方法和类方法" class="headerlink" title="静态方法和类方法"></a>静态方法和类方法</h2><p>参考资料：</p>
+<ol>
+<li><a href="http://www.jianshu.com/p/212b6fdb2c50" target="_blank" rel="noopener">python类的静态方法和类方法区别</a>强调使用场景和继承。</li>
+<li><a href="http://stackoverflow.com/questions/12179271/python-classmethod-and-staticmethod-for-beginner" target="_blank" rel="noopener">Python @classmethod and @staticmethod for beginner?</a>最高赞答案强调了重载，次高赞答案强调了继承。</li>
+<li><a href="https://www.zhihu.com/question/20021164" target="_blank" rel="noopener">Python 中的 classmethod 和 staticmethod 有什么具体用途</a>最高赞答案强调了封装和使用场景。来自于<a href="https://link.zhihu.com/?target=http%3A//www.pythoncentral.io/difference-between-staticmethod-and-classmethod-in-python/" target="_blank" rel="noopener">Difference between @staticmethod and @classmethod in Python</a></li>
+</ol>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><ol>
+<li>实例方法提供与类的实例对象进行交互的方法(针对实例特有的数据)，因此第一个参数必须传入实例对象，<code>一般习惯用self</code>。</li>
+<li>类方法提供与类本身(类也是对象)交互的方法()，我们可以在类外定义一个简单方法将类作为参数传入来交互。这个参数如果传入实例对象，需要通过实例对象的<code>__class__</code>属性来访问类，如果是类对象，可以直接访问。但是这样就会将类代码关系扩散到类定义的外部，违背了OOP封装的特性。因此采用<code>@classmethod</code>装饰器来创建类方法与类交互，注意要与类交互，因此类方法的第一个参数必须传入类对象。</li>
+<li>有一些与类有关系的功能但不需要类对象或者实例对象，这就需要静态对象，比如更改环境变量(控制一部分类功能)或者修改其他类的属性。用外部函数依然可以解决，但同样会扩散类内部代码，造成维护困难。因此采用<code>@staticmethod</code>装饰器，因为这些功能不需要类对象与实例对象，因此默认不需要传入任何参数。</li>
+</ol>
+<p>代码参见参考资料3，但代码对齐有一些问题。</p>
+<h3 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h3><ol>
+<li>考虑C++中类构造函数的多样化可以通过函数重载(<code>overloading</code>)来实现，但Python中没有这个概念，如果只能有一个构造函数，对于不同的初始化参数，只能在类外做一些重复性的工作后传入唯一的构造函数来初始化。因此类方法<code>@classmethod</code>,通过给不同的类方法传入不同的初始化参数来实现多样化的初始化。<ul>
+<li>可重复利用(reusable)，针对构造函数外部重复性的处理。</li>
+<li>封装(Encapsulation)，将类代码关系封装在类内。</li>
+<li>继承(inherit)，类方法与类关联，因此继承后依然存在于子类，但其属于子类。</li>
+</ul>
+</li>
+<li>静态方法与类方法非常相似，但其不需要强制参数，因此可以做一些与类控制相关的环境变量或其他类属性的判断或更改。</li>
+</ol>
+<p>代码见参考资料2,3。</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>如果子类继承父类方法，子类覆盖了父类的静态方法；</p>
+<ol>
+<li>子类实例继承父类的静态方法，调用该方法，还是调用父类的方法和类属性。其实可以认为是提供了一个子类访问父类属性的接口(就算子类重载了任何函数，这个静态函数的搜索也是从父类开始向上的，即屏蔽了子类的名称空间)。</li>
+<li>子类实例继承父类的类方法，调用该方法，调用子类的方法和类属性。可以通过继承来覆盖类方法。</li>
+</ol>
+<p>代码参见资料1,2。</p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ol>
+<li>实例方法，只能被实例对象调用，第一个参数必须要传实例对象，一般习惯用<code>self</code>；</li>
+<li>类方法(在类中由<code>@classmethod</code>装饰)，可以被实例对象和类调用，第一个参数必须要传类，一般习惯用<code>cls</code>；</li>
+<li>静态方法(在类中由<code>@staticmethod</code>装饰)，可以被实例对象和类调用，参数没有要求。</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">foo</span><span class="params">(object)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_my1</span><span class="params">(self)</span>:</span>    </span><br><span class="line">        print(<span class="string">'实例方法&#123;&#125;'</span>.format(self.__class__))</span><br><span class="line">        </span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_my2</span><span class="params">(cls)</span>:</span> <span class="comment">#所属的类名</span></span><br><span class="line">        print(<span class="string">'类方法&#123;&#125;'</span>.format(cls.__name__))</span><br><span class="line">        </span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_my3</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'静态方法'</span>)</span><br><span class="line"></span><br><span class="line">x = foo()</span><br><span class="line"><span class="comment">#实例初始化只有两个属性__dict__(包含可用的属性名-属性字典)和__class__(指出该实例属于哪一类)</span></span><br><span class="line"><span class="comment">#foo.print_my1() 类不能调用实例方法</span></span><br><span class="line">foo.print_my2()</span><br><span class="line">foo.print_my3()</span><br><span class="line">x.print_my1()</span><br><span class="line">x.print_my2()</span><br><span class="line">x.print_my3()</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#error</span></span><br><span class="line">类方法foo</span><br><span class="line">静态方法</span><br><span class="line">实例方法&lt;<span class="class"><span class="keyword">class</span> '<span class="title">__main__</span>.<span class="title">foo</span>'&gt;</span></span><br><span class="line"><span class="class">类方法<span class="title">foo</span></span></span><br><span class="line"><span class="class">静态方法</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2017/01/11/Python的实例方法，类方法，静态方法/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

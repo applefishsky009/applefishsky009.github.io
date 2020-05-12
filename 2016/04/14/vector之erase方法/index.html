@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>vector之erase方法 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="a.erase();模板类提供了两个函数重载：    表达式 返回类型 说明    a.erase(p) 迭代器 删除p指向的元素   a.erase(p,q) 迭代器 删除区间[p,q)中的元素   思考:     1.    在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vector之erase方法">
+<meta property="og:url" content="http://rylcode.cn/2016/04/14/vector之erase方法/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="a.erase();模板类提供了两个函数重载：    表达式 返回类型 说明    a.erase(p) 迭代器 删除p指向的元素   a.erase(p,q) 迭代器 删除区间[p,q)中的元素   思考:     1.    在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://i.imgur.com/TZxRRb6.png">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.014Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vector之erase方法">
+<meta name="twitter:description" content="a.erase();模板类提供了两个函数重载：    表达式 返回类型 说明    a.erase(p) 迭代器 删除p指向的元素   a.erase(p,q) 迭代器 删除区间[p,q)中的元素   思考:     1.    在之前内存之中讨论过，vector是保证内存连续的，那么erase之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在erase()方法的代">
+<meta name="twitter:image" content="http://i.imgur.com/TZxRRb6.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#a-erase"><span class="toc-text">a.erase();</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器的有效性"><span class="toc-text">迭代器的有效性</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-vector之erase方法" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">vector之erase方法</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.14</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/14/vector之erase方法/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="a-erase"><a href="#a-erase" class="headerlink" title="a.erase();"></a>a.erase();</h2><p>模板类提供了两个函数重载：</p>
+<table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="center"><strong>返回类型</strong></th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>a.erase(p)</code></td>
+<td align="center"><strong>迭代器</strong></td>
+<td align="center">删除p指向的元素</td>
+</tr>
+<tr>
+<td align="center"><code>a.erase(p,q)</code></td>
+<td align="center"><strong>迭代器</strong></td>
+<td align="center">删除区间[p,q)中的元素</td>
+</tr>
+<tr>
+<td align="center"><strong>思考</strong>:</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1.    在之前内存之中讨论过，<code>vector</code>是保证内存连续的，那么<code>erase</code>之后他是如何保证内存连续的？答案是让该元素之后的所有元素前移补充“空位”。这一点在<code>erase()</code>方法的代码中可以看到传入的p的形参是<code>const</code>类型的，也就是说p指向的地址并不发生变化，只不过是元素前移了。测试如下：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><img src="http://i.imgur.com/TZxRRb6.png" alt="STL的迭代器"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. 注意到<code>erase</code>返回的都是迭代器，由1中的分析可知，删除p指向的元素之后，他返回的迭代器的<strong>地址不变</strong>，值是删除之后可用的下一个元素，因此<strong>给人感觉是p指向了下一个元素</strong>。那么在这里有一个值得注意的问题，如下：</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator p = b.<span class="built_in">begin</span>();</span><br><span class="line"><span class="keyword">for</span> (;p!=b.<span class="built_in">end</span>();p++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (*p == <span class="number">2</span>)</span><br><span class="line">		b.erase(p);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>这是错误的，<code>b.erase(p)</code>没有迭代器来承接p的返回值，它的返回值被释放了。然后执行p++很显然会出现野指针。但是如果修改为<code>p = b.erase(p)</code>也是不正确的。迭代器在进行删除的这一个循环里会<code>++</code>两次（<code>erase</code>可以当做<code>++</code>一次）。但如果在<code>if</code>语句中执行一次<code>p--</code>，这是正确的。即<code>p = --b.erase(p);</code>，逻辑上是这样，但有时候这样会出现问题，因此最好用<code>else</code>来控制迭代器自增。</p>
+<ol>
+<li>不能用<code>p-- = b.erase(p);</code>，因为<code>p--</code>是表达式，不能为左值；</li>
+<li>不能用<code>p = b.erase(p--);</code>，也是因为<code>p--</code>是一个表达式，强调计算结果，不能作为左值，也不能取址。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">auto</span> p = <span class="built_in">bitSet</span>.<span class="built_in">begin</span>(); p != <span class="built_in">bitSet</span>.<span class="built_in">end</span>();)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (??)</span><br><span class="line">		p = <span class="built_in">bitSet</span>.erase(p);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		p++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> <strong>迭代器的循环使用<code>while</code>可以降低错误率。</strong></p>
+<hr>
+<p>为简单，分析第一个表达式的源码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">iterator <span class="title">erase</span><span class="params">(const_iterator _Where)</span></span></span><br><span class="line"><span class="function"></span>&#123;	<span class="comment">// erase element at where</span></span><br><span class="line">	<span class="keyword">if</span> (_VICONT(_Where) != <span class="keyword">this</span></span><br><span class="line">		|| _VIPTR(_Where) &lt; <span class="keyword">this</span>-&gt;_Myfirst</span><br><span class="line">		|| <span class="keyword">this</span>-&gt;_Mylast &lt;= _VIPTR(_Where))</span><br><span class="line">		_DEBUG_ERROR(<span class="string">"vector erase iterator outside range"</span>);</span><br><span class="line">	_Move(_VIPTR(_Where) + <span class="number">1</span>, <span class="keyword">this</span>-&gt;_Mylast, _VIPTR(_Where));</span><br><span class="line">	_Destroy(<span class="keyword">this</span>-&gt;_Mylast - <span class="number">1</span>, <span class="keyword">this</span>-&gt;_Mylast);</span><br><span class="line">	_Orphan_range(_VIPTR(_Where), <span class="keyword">this</span>-&gt;_Mylast);</span><br><span class="line">	--<span class="keyword">this</span>-&gt;_Mylast;</span><br><span class="line">	<span class="keyword">return</span> (_Make_iter(_Where));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">void</span> _Orphan_range(pointer _First, pointer _Last) <span class="keyword">const</span></span><br><span class="line">		&#123;	<span class="comment">// orphan iterators within specified (inclusive) range</span></span><br><span class="line">		_Lockit _Lock(_LOCK_DEBUG);</span><br><span class="line">		const_iterator **_Pnext = (const_iterator **)<span class="keyword">this</span>-&gt;_Getpfirst();</span><br><span class="line">		<span class="keyword">if</span> (_Pnext != <span class="number">0</span>)</span><br><span class="line">			&#123;	<span class="comment">// test an iterator</span></span><br><span class="line">			<span class="keyword">while</span> (*_Pnext != <span class="number">0</span>)</span><br><span class="line">				<span class="keyword">if</span> ((*_Pnext)-&gt;_Ptr &lt; _First || _Last &lt; (*_Pnext)-&gt;_Ptr)</span><br><span class="line">					_Pnext = (const_iterator **)(*_Pnext)-&gt;_Getpnext();</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">					&#123;	<span class="comment">// orphan the iterator</span></span><br><span class="line">					(*_Pnext)-&gt;_Clrcont();	<span class="comment">//WTF!!!!!!!!!!!</span></span><br><span class="line">					*_Pnext = *(const_iterator **)(*_Pnext)-&gt;_Getpnext();</span><br><span class="line">					&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到他做了哪些工作,首先元素前移，然后毁掉最后一个对象(<code>capacity</code>不变)，之后<font color="red">_Orphan_range将这个位置以及之后的孤儿迭代器失效了！WTF!!!</font>(也许是基于安全考虑),接下来指向正确的尾部元素，最后<font color="red">总算有点良心</font>，返回值是<code>erase()</code>元素之后的下一个元素(也认为是位置不变)，即返回指向原地址的迭代器。</p>
+<h2 id="迭代器的有效性"><a href="#迭代器的有效性" class="headerlink" title="迭代器的有效性"></a>迭代器的有效性</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator t;	<span class="comment">//便于说明此处不初始化</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator k = result.<span class="built_in">begin</span>();</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator p = result.<span class="built_in">begin</span>() + <span class="number">1</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator q = result.<span class="built_in">begin</span>() + <span class="number">2</span>;</span><br><span class="line">t = result.erase(p);</span><br></pre></td></tr></table></figure>
+
+<p>看这个句法，以此为例，在<a href="http://www.cplusplus.com/reference/vector/vector/erase/" target="_blank" rel="noopener">Cplusplus</a>上提到这一点，：</p>
+<blockquote>
+<p>Iterators, pointers and references pointing to position (or first) and beyond are invalidated, with all iterators, pointers and references to elements before position (or first) are guaranteed to keep referring to the same elements they were referring to before the call.</p>
+</blockquote>
+<p>大意是指向p以及之后的孤儿迭代器都不可用了(p和q)，但是指向p之前的孤儿迭代器以及<code>erase()</code>方法返回的孤儿迭代器都是可用的(k和t)。</p>
+<p>因此在使用多个迭代器的时候一定要注意迭代器是否有效(特别是涉及<code>erase()</code>和<code>insert()</code>方法)，这种情况下最好使用<code>index</code>下标作为循环而不是孤儿迭代器。</p>
+<ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/56%20-%20Merge%20Intervals/56%20-%20Merge%20Intervals.cpp" target="_blank" rel="noopener">Merge Intervals</a><ul>
+<li>注意Two Pointers的用法</li>
+</ul>
+</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/04/14/vector之erase方法/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

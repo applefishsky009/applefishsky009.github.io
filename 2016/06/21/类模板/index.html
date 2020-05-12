@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>类模板 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="泛型编程的一种，即将具体类型作为参数传递给类。  模板类定义模板类应该这样开头： 1template&amp;lt;typename Type&amp;gt;  模板成员函数的每个函数头(函数定义之前)将以相同的模板声明打头： 1template&amp;lt;typeName Type&amp;gt;  实例化泛型标识符要求必须对类型变量实例化才能使用，通过&amp;lt;Type&amp;gt;来实例化类型。 指针变量若将指针作为类型变量，">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类模板">
+<meta property="og:url" content="http://rylcode.cn/2016/06/21/类模板/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="泛型编程的一种，即将具体类型作为参数传递给类。  模板类定义模板类应该这样开头： 1template&amp;lt;typename Type&amp;gt;  模板成员函数的每个函数头(函数定义之前)将以相同的模板声明打头： 1template&amp;lt;typeName Type&amp;gt;  实例化泛型标识符要求必须对类型变量实例化才能使用，通过&amp;lt;Type&amp;gt;来实例化类型。 指针变量若将指针作为类型变量，">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.029Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类模板">
+<meta name="twitter:description" content="泛型编程的一种，即将具体类型作为参数传递给类。  模板类定义模板类应该这样开头： 1template&amp;lt;typename Type&amp;gt;  模板成员函数的每个函数头(函数定义之前)将以相同的模板声明打头： 1template&amp;lt;typeName Type&amp;gt;  实例化泛型标识符要求必须对类型变量实例化才能使用，通过&amp;lt;Type&amp;gt;来实例化类型。 指针变量若将指针作为类型变量，">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#模板类"><span class="toc-text">模板类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例化"><span class="toc-text">实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指针变量"><span class="toc-text">指针变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非类型参数"><span class="toc-text">非类型参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归，多参，默认参数"><span class="toc-text">递归，多参，默认参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体化"><span class="toc-text">具体化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#成员模板"><span class="toc-text">成员模板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板参数"><span class="toc-text">模板参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板类和友元"><span class="toc-text">模板类和友元</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#非模板友元"><span class="toc-text">非模板友元</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#约束模板友元"><span class="toc-text">约束模板友元</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非约束模板友元"><span class="toc-text">非约束模板友元</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模板别名"><span class="toc-text">模板别名</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-类模板" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">类模板</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/06/21/类模板/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>泛型编程的一种，即将具体类型作为参数传递给类。</p>
+<hr>
+<h2 id="模板类"><a href="#模板类" class="headerlink" title="模板类"></a>模板类</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>模板类应该这样开头：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</span><br></pre></td></tr></table></figure>
+
+<p>模板成员函数的每个函数头(函数定义之前)将以相同的模板声明打头：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;typeName Type&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实例化"><a href="#实例化" class="headerlink" title="实例化"></a>实例化</h3><p>泛型标识符要求必须对类型变量实例化才能使用，通过<code>&lt;Type&gt;</code>来实例化类型。</p>
+<h3 id="指针变量"><a href="#指针变量" class="headerlink" title="指针变量"></a>指针变量</h3><p>若将指针作为类型变量，需要注意：</p>
+<ol>
+<li>指针作为参数类型，必须让调用程序提供<strong>指针数组</strong>，因其满足这四个条件：空间，左值，可赋值，不同的指向；</li>
+<li>创建不同指针是调用程序的职责，而不是泛型模板类的职责；</li>
+<li>以指针为参数的模板类涉及到动态内存，因此必须包含析构函数，复制构造函数和赋值运算符。</li>
+<li>制定返回类型或作用域解析符时，必须使用完整的实例化类型<code>classA&lt;Type&gt;</code>;</li>
+<li>构造函数使用<code>new</code>创建一个用于保存指针的数组，析构函数删除该数组，而不是数组元素指向的内容。</li>
+</ol>
+<h3 id="非类型参数"><a href="#非类型参数" class="headerlink" title="非类型参数"></a>非类型参数</h3><p>举例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>,<span class="title">int</span> <span class="title">n</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>相比在构造函数和析构函数中<code>new</code>和<code>delete</code>，非类型参数使用自动变量维护的内存栈，速度更快；</li>
+<li>但每个不同的非类型参数都会生成自己的模板类;</li>
+<li>构造函数更通用(参数优于硬编码)，便于赋值和创建大小可变的类。</li>
+</ol>
+<h3 id="递归，多参，默认参数"><a href="#递归，多参，默认参数" class="headerlink" title="递归，多参，默认参数"></a>递归，多参，默认参数</h3><ol>
+<li>递归使用模板：<code>array&lt;array&lt;int,5&gt;,10&gt; a</code>；</li>
+<li>多个类型参数：<code>template&lt;typename T1,typename T2&gt;</code>；</li>
+<li>默认类型模板参数：<code>template&lt;typename T1,typename T2 = int&gt;</code>。</li>
+</ol>
+<h3 id="具体化"><a href="#具体化" class="headerlink" title="具体化"></a>具体化</h3><p>模板以泛型的方式描述类，具体化是使用具体的类型生成类声明。具体化(具体的行为)包括，隐式实例化(最常用)，显式实例化，显式具体化。</p>
+<ol>
+<li><strong>隐式实例化</strong>：在创建对象时，编译器根据参数类型生成类定义，再根据类定义生成对象；</li>
+<li><strong>显式实例化</strong>：使用关键字<code>template</code>指出所需类型来声明类，编译器生成类声明的显式实例化；</li>
+<li><strong>显示具体化</strong>：特定类型的定义，特殊类型实例化时，对模板修改使其行为不同，这要求<strong>必须有自己的函数定义</strong>，使用前缀<code>template&lt;&gt;</code>(<code>&lt;&gt;</code>内声明的是没有被具体化的参数，因此这表示全部被具体化了),<font color="red">这是一种多态？</font>。</li>
+<li>显示具体化的匹配优先级高于通用模板。</li>
+<li><strong>部分具体化</strong>：使部分特定类型的行为不同，<code>template&lt;typename T1&gt;</code>表示T1的行为不显式具体化，而余下的T2被显示具体化： <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1&gt; <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;T1,int&gt;&#123;</span>&#125;;	<span class="comment">//T2部分具体化为int</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="成员模板"><a href="#成员模板" class="headerlink" title="成员模板"></a>成员模板</h3><p>模板可以作为结构，类或模板类的成员。</p>
+<ol>
+<li><p>在模板中声明模板类和模板方法(模板函数)，在模板外面定义他们；</p>
+</li>
+<li><p>因为模板是嵌套的，外部定义必须使用下面语法：</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">typename</span> V&gt;</span><br><span class="line">		fatherClass::method/childClass&#123;</span><br><span class="line">			...</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用作用域解析符指明他们是哪一类的成员。</p>
+</li>
+</ol>
+<h3 id="模板参数"><a href="#模板参数" class="headerlink" title="模板参数"></a>模板参数</h3><p>模板可以包含类型参数和非类型参数，也可以接受模板作为参数。递归使用模板就是参数是自身这一模板的特殊情况。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="class"><span class="keyword">class</span> <span class="title">Example</span>&gt;;</span></span><br><span class="line">Example&lt;<span class="keyword">int</span>&gt;;	<span class="comment">//1作为类数据成员</span></span><br><span class="line">Example&lt;<span class="keyword">double</span>&gt;;	<span class="comment">//2作为类数据成员</span></span><br><span class="line">Father&lt;Stack&gt; result;	<span class="comment">//将1实例化为Stack&lt;int&gt;,将2实例化为Stack&lt;double&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>模板参数和常规参数可以混合使用.</li>
+</ol>
+<h3 id="模板类和友元"><a href="#模板类和友元" class="headerlink" title="模板类和友元"></a>模板类和友元</h3><p>模板的友元有三类：</p>
+<ol>
+<li>非模板友元(普通友元函数，只不过模板具体化使他成为很多具体化之后的类的友元)；</li>
+<li>约束模板友元()；</li>
+<li>非约束模板友元(模板友元函数，)。</li>
+</ol>
+<p>约束是指友元函数是某一具体化的友元还是所有实例化的友元；模板是指友元函数本身是不是模板。</p>
+<h4 id="非模板友元"><a href="#非模板友元" class="headerlink" title="非模板友元"></a>非模板友元</h4><ol>
+<li><p>使函数成为模板所有实例化的友元，他的用处：</p>
+<ul>
+<li>访问全局对象；</li>
+<li>使用全局指针访问非全局对象；</li>
+<li>创建自己的对象；</li>
+<li>访问独立于对象的模板类的静态数据成员。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">counts</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>为友元函数提供模板类参数，必须为友元定义显式具体化：</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">clasee A&#123;</span><br><span class="line">	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">report</span> <span class="params">(A&lt;T&gt; &amp;a)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h4 id="约束模板友元"><a href="#约束模板友元" class="headerlink" title="约束模板友元"></a>约束模板友元</h4><p>将友元函数本身成为模板(类外部声明)，即对友元函数的类型加以约束，使每个类型都有自己的友元函数，这是<strong>类具体化获得函数具体化来约束了友元类型</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> <span class="title">counts</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; <span class="keyword">void</span> <span class="title">report</span><span class="params">(T &amp;t)</span></span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> TT&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">	<span class="keyword">friend</span> <span class="keyword">void</span> counts&lt;TT&gt;();</span><br><span class="line">	<span class="keyword">friend</span> <span class="keyword">void</span> report&lt;&gt;(A&lt;TT&gt; &amp;a);	<span class="comment">//省略了&lt;&gt;中的A&lt;TT&gt;,因为可以从参数推断</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>和模板类参数的非模板友元区别，有无<code>&lt;&gt;</code>来约束类型，总的来说包含以下三步；</li>
+<li>在类定义前面声明每个模板函数；</li>
+<li>在类中将具体化的模板函数声明为友元；</li>
+<li>为友元提供模板定义。</li>
+</ol>
+<h4 id="非约束模板友元"><a href="#非约束模板友元" class="headerlink" title="非约束模板友元"></a>非约束模板友元</h4><p>通过在类内部声明模板，创建非约束模板友元，<strong>每个函数具体化是每个类具体化的友元</strong>，友元模板参数类型与模板类类型参数是不同的，也就是说类具体化不能约束友元函数类型，因此每个函数具体化都是所有类具体化的友元。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">	template&lt;typename C,typename D&gt; friend void show2(C &amp;c,D &amp;d);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="模板别名"><a href="#模板别名" class="headerlink" title="模板别名"></a>模板别名</h3><p>使用typedef为模板具体化指定别名：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">double</span>,12&gt; arrd;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span> 12&gt; arri;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>,12&gt; arrst;</span><br></pre></td></tr></table></figure>
+
+<p>使用模板提供一系列别名(<code>using</code>关键字)：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> arrtype = <span class="built_in">std</span>::<span class="built_in">array</span>&lt;T,<span class="number">12</span>&gt;;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">double</span>&gt; arrd;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="keyword">int</span>&gt; arri;</span><br><span class="line"><span class="built_in">array</span>&lt;<span class="built_in">std</span>::<span class="built_in">string</span>&gt; arrst;</span><br></pre></td></tr></table></figure>
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/06/21/类模板/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>类中的new和delete | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的new和delete。  构造函数中的new 构造函数中使用new来初始化，析构函数中应该用delete; new和delete必须相互兼容，new对应于delete，new[]对应于delete[]; 多个构造函数必须以相同的方式new，因为只有一个析构函数，所有的构造函数必须与之兼容。注意，delete可以用于看那个指针，因此指针可以初始化为">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类中的new和delete">
+<meta property="og:url" content="http://rylcode.cn/2016/05/26/类中的new和delete/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的new和delete。  构造函数中的new 构造函数中使用new来初始化，析构函数中应该用delete; new和delete必须相互兼容，new对应于delete，new[]对应于delete[]; 多个构造函数必须以相同的方式new，因为只有一个析构函数，所有的构造函数必须与之兼容。注意，delete可以用于看那个指针，因此指针可以初始化为">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类中的new和delete">
+<meta name="twitter:description" content="之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的new和delete。  构造函数中的new 构造函数中使用new来初始化，析构函数中应该用delete; new和delete必须相互兼容，new对应于delete，new[]对应于delete[]; 多个构造函数必须以相同的方式new，因为只有一个析构函数，所有的构造函数必须与之兼容。注意，delete可以用于看那个指针，因此指针可以初始化为">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#构造函数中的new"><span class="toc-text">构造函数中的new</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#析构函数的调用"><span class="toc-text">析构函数的调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#new与指针"><span class="toc-text">new与指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定位new运算符"><span class="toc-text">定位new运算符</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-类中的new和delete" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">类中的new和delete</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.26</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/26/类中的new和delete/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>之前提到过浅拷贝和深拷贝的问题，现在详细讲一讲类中的<code>new</code>和<code>delete</code>。</p>
+<hr>
+<h2 id="构造函数中的new"><a href="#构造函数中的new" class="headerlink" title="构造函数中的new"></a>构造函数中的<code>new</code></h2><ol>
+<li>构造函数中使用<code>new</code>来初始化，析构函数中应该用<code>delete</code>;</li>
+<li><code>new</code>和<code>delete</code>必须相互兼容，<code>new</code>对应于<code>delete</code>，<code>new[]</code>对应于<code>delete[]</code>;</li>
+<li>多个构造函数必须以相同的方式<code>new</code>，因为只有一个析构函数，所有的构造函数必须与之兼容。注意，<code>delete</code>可以用于看那个指针，因此指针可以初始化为<code>nullptr</code>;</li>
+<li>应定义复制构造函数进行深度复制;</li>
+<li>应定义赋值运算符重载，将一个对象深度复制给另一个对象。</li>
+<li>逐成员复制将使用<strong>成员类型定义</strong>的复制构造函数和赋值运算符(如<code>String</code>作为成员对象赋值时会调用自身的复制构造函数和赋值运算符)。</li>
+</ol>
+<hr>
+<h2 id="析构函数的调用"><a href="#析构函数的调用" class="headerlink" title="析构函数的调用"></a>析构函数的调用</h2><ol>
+<li>动态变量在代码块结束时调用;</li>
+<li>静态变量，程序结束时调用;</li>
+<li><code>new</code>创建的，使用<code>delete</code>删除或者程序结束时。</li>
+</ol>
+<hr>
+<h2 id="new与指针"><a href="#new与指针" class="headerlink" title="new与指针"></a><code>new</code>与指针</h2><p>考虑这一常见语句:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TreeNode *head = new TreeNode(1);</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>使用<code>new</code>来初始化指针，这将调用相应的类构造函数来创建一个对象;</li>
+<li><code>-&gt;</code>运算符用于对象指针访问类方法;</li>
+<li><code>*</code>运算符用于对象指针获得对象;</li>
+</ol>
+<hr>
+<h2 id="定位new运算符"><a href="#定位new运算符" class="headerlink" title="定位new运算符"></a>定位<code>new</code>运算符</h2><p>考虑这一个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = new(buffer+N*sizeof(B)) B();</span><br></pre></td></tr></table></figure>
+
+<p>定位<code>new</code>运算符能在分配内存时指定内存位置<code>buffer</code>(需要包含头文件<code>new</code>)，但是这里有一个问题，在<code>delete buffer</code>时编译器并不知道你对<code>buffer</code>做了什么，因此不会调用对象的析构函数，那么如何保证析构函数与构造函数的数量一致?</p>
+<ol>
+<li>之前强调过析构函数只销毁对象不释放内存，因此需要在<code>buffer</code>内存释放前销毁对象;</li>
+<li>用指向对象的指针显示地调用析构函数;</li>
+<li>应注意调用析构函数的正确顺序。对于使用定位<code>new</code>运算符创建的对象，应该和创建的顺序相反。因为，晚创建的对象可能依赖于早创建的对象。另外，仅当所有对象都被销毁后，才能释放用于存储这些对象的缓冲区。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/05/26/类中的new和delete/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

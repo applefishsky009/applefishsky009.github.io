@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>string类与cctype | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="string类 Add Binary 不同长度链表或字符串运算，注意?,:用得非常巧妙；   Evaluate Reverse Polish Notation string::sizetype是无符号，string::npos是-1的强制类型转换，不同类型值不同； stringtoint:string::stoi()。   Longest Substring Without Repeating C">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="string类与cctype">
+<meta property="og:url" content="http://rylcode.cn/2016/04/21/string类与cctype/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="string类 Add Binary 不同长度链表或字符串运算，注意?,:用得非常巧妙；   Evaluate Reverse Polish Notation string::sizetype是无符号，string::npos是-1的强制类型转换，不同类型值不同； stringtoint:string::stoi()。   Longest Substring Without Repeating C">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.013Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="string类与cctype">
+<meta name="twitter:description" content="string类 Add Binary 不同长度链表或字符串运算，注意?,:用得非常巧妙；   Evaluate Reverse Polish Notation string::sizetype是无符号，string::npos是-1的强制类型转换，不同类型值不同； stringtoint:string::stoi()。   Longest Substring Without Repeating C">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#string类"><span class="toc-text">string类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#string运算符"><span class="toc-text">string运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-find"><span class="toc-text">string.find()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-substr"><span class="toc-text">string.substr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-stoi"><span class="toc-text">string::stoi()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#完整的strcpy函数"><span class="toc-text">完整的strcpy函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cctype"><span class="toc-text">cctype</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-string类与cctype" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">string类与cctype</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/04/21/string类与cctype/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h2><ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/67%20-%20Add%20Binary/67%20-%20Add%20Binary.cpp" target="_blank" rel="noopener">Add Binary</a><ul>
+<li>不同长度链表或字符串运算，注意<code>?</code>,<code>:</code>用得非常巧妙；</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/150%20-%20Evaluate%20Reverse%20Polish%20Notation/150%20-%20Evaluate%20Reverse%20Polish%20Notation.cpp" target="_blank" rel="noopener">Evaluate Reverse Polish Notation</a><ul>
+<li><code>string::sizetype</code>是无符号，<code>string::npos</code>是-1的强制类型转换，不同类型值不同；</li>
+<li><code>stringtoint:string::stoi()</code>。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/3%20-%20Longest%20Substring%20Without%20Repeating%20Characters/3%20-%20Longest%20Substring%20Without%20Repeating%20Characters.cpp" target="_blank" rel="noopener">Longest Substring Without Repeating Characters</a><ul>
+<li>从上一个重复字符的下一个字符计数。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/10%20-%20Regular%20Expression%20Matching/10%20-%20Regular%20Expression%20Matching.cpp" target="_blank" rel="noopener">Regular Expression Matching</a><ul>
+<li><code>*</code>匹配0个或者多个前个字符 - 重点；</li>
+<li>注意当前匹配条件<code>*p == *s || (*p == &#39;.&#39; &amp;&amp; *s != &#39;\0&#39;)</code>，’.’唯一不能匹配’\0’。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/43%20-%20Multiply%20Strings/43%20-%20Multiply%20Strings.cpp" target="_blank" rel="noopener">Multiply Strings</a><ul>
+<li>任意大小非负数字乘积计算(<code>string</code>类)，按结果逐位计算；</li>
+<li>注意避免头插和<code>find_first_not_of(&quot;0&quot;)</code>可以去掉头部的’0’；</li>
+<li>保证num1，num2访问不越界。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/44%20-%20Wildcard%20Matching/44%20-%20Wildcard%20Matching.cpp" target="_blank" rel="noopener">Wildcard Matching</a><ul>
+<li>利用字符串和字符串指针来回溯；</li>
+<li>正则匹配的思路。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/14%20-%20Longest%20Common%20Prefix/14%20-%20Longest%20Common%20Prefix.cpp" target="_blank" rel="noopener">Longest Common Prefix</a><ul>
+<li>参考<a href="https://en.wikipedia.org/wiki/Null-terminated_string" target="_blank" rel="noopener">Null-terminated string</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/65%20-%20Valid%20Number/65%20-%20Valid%20Number.cpp" target="_blank" rel="noopener">Valid Number</a><ul>
+<li>这种题看似简单，但是坑巨多无比;</li>
+<li>完成’ ‘的strip功能;</li>
+<li>‘.’小数点的判断；</li>
+<li>‘e’指数，底数可以是小数，但是指数只能是整数；</li>
+<li>‘+’，’-‘的有效性；</li>
+<li>最后，神一般的有限状态机解法，不知道说什么好了。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/13%20-%20Roman%20to%20Integer/13%20-%20Roman%20to%20Integer.cpp" target="_blank" rel="noopener">Roman to Integer</a><ul>
+<li>除数留余，避免<code>substr()</code>方法，使用<code>Hash Table</code>让提升效率。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/38%20-%20Count%20and%20Say/38%20-%20Count%20and%20Say.cpp" target="_blank" rel="noopener">CountandSay</a><ul>
+<li>dp思路，一层一层找。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/6%20-%20ZigZag%20Conversion/6%20-%20ZigZag%20Conversion.cpp" target="_blank" rel="noopener">ZigZag Conversion</a><ul>
+<li>分类，注意找对称元素。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/49%20-%20Group%20Anagrams/49%20-%20Group%20Anagrams.cpp" target="_blank" rel="noopener">Group Anagrams</a><ul>
+<li>这个题与ip消息队列，LRU cache有相似的地方，键值映射一个队列/链表。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/71%20-%20Simplify%20Path/71%20-%20Simplify%20Path.cpp" target="_blank" rel="noopener">Simplify Path</a><ul>
+<li>这个题和处理<code>,</code>分割的数字输入类似，使用<code>find</code>分类讨论。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/68%20-%20Text%20Justification/68%20-%20Text%20Justification.cpp" target="_blank" rel="noopener">Text Justification</a><ul>
+<li>除了最后一行，字符串按位数均匀分布(两个字符串之间至少有一个空格)，注意如果只有一个单词要补充足够的空格；</li>
+<li>最后一行单词左排列就行(依然至少一个空格)，要补充足够的空格。</li>
+</ul>
+</li>
+</ol>
+<h3 id="string运算符"><a href="#string运算符" class="headerlink" title="string运算符"></a>string运算符</h3><p><code>string</code>类的运算符重载在头文件<code>string</code>里,如<code>+</code>,<code>&lt;&lt;</code>。注意<code>&quot;a&quot;+&quot;b&quot; = &quot;ab&quot;</code>,<code>&#39;a&#39;+&#39;b&#39; = 195</code>,前者是字符串拼接，后者是字符常量相加。但是<code>cout&lt;&lt;&quot;a&quot;+&quot;b&quot;;</code>这个语句是错误的，必须至少声明两个<code>string</code>类型。</p>
+<h3 id="string-find"><a href="#string-find" class="headerlink" title="string.find()"></a>string.find()</h3><p><code>string</code>类的<code>find()</code>方法，可以用于找子串，返回子串在原串出现的下标。<a href="http://www.cnblogs.com/web100/archive/2012/12/02/cpp-string-find-npos.html" target="_blank" rel="noopener">这里</a>和<a href="http://www.cplusplus.com/reference/string/string/find/" target="_blank" rel="noopener">这里</a>有详细解释，使用时注意以下三点：</p>
+<ul>
+<li>接受三个参数，第一个是子串，第二个是开始寻找的下标，第三个参数是匹配字串的字符数。可以用于找全部的匹配子串；</li>
+<li>如果没有找到，返回值是<code>string::npos</code>，他是一个很大的正数(-1强制转化为无符号整型)；</li>
+<li>返回值是<code>size_type</code>，一般用<code>auto</code>来代替，这是一个无符号数据，因为对于不同的数据类型,<code>string::npos</code>是不同；如果不是<code>string::npos</code>，返回值和<code>int</code>是没有区别的。</li>
+</ul>
+<p>以下代码可以输出全部的匹配位置：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1 = <span class="string">"abcdbcgbcdbjjkklbcdbcdbcdghjbcd"</span>;</span><br><span class="line"><span class="built_in">string</span> s2 = <span class="string">"bcd"</span>;</span><br><span class="line"><span class="keyword">auto</span> k  = s1.<span class="built_in">find</span>(s2);</span><br><span class="line"><span class="keyword">while</span> (k != <span class="built_in">string</span>::npos)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;k&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	k = s1.<span class="built_in">find</span>(s2,k+<span class="number">1</span>);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="string-substr"><a href="#string-substr" class="headerlink" title="string.substr()"></a>string.substr()</h3><p>函数声明如下：<code>_Myt substr(size_type _Off = 0, size_type _Count = npos) const</code>，返回从指定位置(_Off)开始的长度为(_Count)的子字符串，注意缺省值取尽可能多的字符。</p>
+<h3 id="string-stoi"><a href="#string-stoi" class="headerlink" title="string::stoi()"></a>string::stoi()</h3><p>字符串转整型stringtoint:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stoi</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp;  str, <span class="keyword">size_t</span>* idx = <span class="number">0</span>, <span class="keyword">int</span> base = <span class="number">10</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stoi</span> <span class="params">(<span class="keyword">const</span> <span class="built_in">wstring</span>&amp; str, <span class="keyword">size_t</span>* idx = <span class="number">0</span>, <span class="keyword">int</span> base = <span class="number">10</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>对比而言<code>atoi()</code>功能类似，但其是C-stringtoint。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">atoi</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> * str)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="完整的strcpy函数"><a href="#完整的strcpy函数" class="headerlink" title="完整的strcpy函数"></a>完整的strcpy函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">char</span> * <span class="title">strcpy</span><span class="params">( <span class="keyword">char</span> *strDest, <span class="keyword">const</span> <span class="keyword">char</span> *strSrc )</span> </span>&#123;</span><br><span class="line">	assert( (strDest != <span class="literal">NULL</span>) &amp;&amp; (strSrc != <span class="literal">NULL</span>) );</span><br><span class="line">	<span class="keyword">char</span> *address = strDest; </span><br><span class="line">	<span class="keyword">while</span>( (*strDest++ = * strSrc++) != ‘\<span class="number">0</span>’ ); </span><br><span class="line"> 	<span class="keyword">return</span> address;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="cctype"><a href="#cctype" class="headerlink" title="cctype"></a>cctype</h2><p>主要是<code>cctype</code>头文件中的字符函数在编程过程中可以带来很多便利，常用的总结如下：</p>
+<ol>
+<li><code>isalpha()</code>,<code>isdigit()</code>,<code>isalnum()</code>可以用于判断是字符、数字、字母或数字。返回<code>true</code>或<code>false</code>。</li>
+<li><code>islower()</code>,<code>isupper()</code>,<code>isprint()</code>可以用于判断是小写字母、大写字符、可显示字符。返回<code>true</code>或<code>false</code>。<a href="https://zh.wikipedia.org/wiki/ASCII#.E5.8F.AF.E6.98.BE.E7.A4.BA.E5.AD.97.E7.AC.A6" target="_blank" rel="noopener">可显示字符</a>从32到126一共95个。</li>
+<li><code>tolower()</code>,<code>toupper()</code>用于大小写字母的转换，如果不需要转换，字符不变。</li>
+<li>另外一些不常用的字符函数,<code>isgraph()</code>(除空格之外的打印字符),<code>ispunct()</code>(标点符号),<code>isspace()</code>(标准空白字符),<code>iscntrl()</code>(控制字符),<code>isxdigit()</code>(16进制,即1-9,a-f,A-F)。</li>
+<li>尤为注意的是除了这些判断函数，<code>&lt;cctype&gt;</code>中还包括两个转化函数(^.^主要是可以作为函数对象，很方便)</li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/04/21/string类与cctype/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

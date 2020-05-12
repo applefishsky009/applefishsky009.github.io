@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门8-错误和异常 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="错误是语法和逻辑上的，当Python检测到一个错误时，解释器就会指出当前流已经无法继续执行下去了，这时候就出现了异常。  Python中的异常Exception hierarchy，所有的标准/内建异常都是从根异常派生的。目前的Python3有4个直接从BaseException派生的异常子类：  SystemExit KeyboardInterrupt GeneratorExit Excepti">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门8-错误和异常">
+<meta property="og:url" content="http://rylcode.cn/2017/01/04/Python入门8-错误和异常/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="错误是语法和逻辑上的，当Python检测到一个错误时，解释器就会指出当前流已经无法继续执行下去了，这时候就出现了异常。  Python中的异常Exception hierarchy，所有的标准/内建异常都是从根异常派生的。目前的Python3有4个直接从BaseException派生的异常子类：  SystemExit KeyboardInterrupt GeneratorExit Excepti">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门8-错误和异常">
+<meta name="twitter:description" content="错误是语法和逻辑上的，当Python检测到一个错误时，解释器就会指出当前流已经无法继续执行下去了，这时候就出现了异常。  Python中的异常Exception hierarchy，所有的标准/内建异常都是从根异常派生的。目前的Python3有4个直接从BaseException派生的异常子类：  SystemExit KeyboardInterrupt GeneratorExit Excepti">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Python中的异常"><span class="toc-text">Python中的异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测和处理异常"><span class="toc-text">检测和处理异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try…except…"><span class="toc-text">try…except…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try…finally…"><span class="toc-text">try…finally…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try…except…finally…"><span class="toc-text">try…except…finally…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try…except…else…"><span class="toc-text">try…except…else…</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try…except…else…finally…"><span class="toc-text">try…except…else…finally…</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#上下文管理"><span class="toc-text">上下文管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#触发异常"><span class="toc-text">触发异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#断言"><span class="toc-text">断言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sys模块和异常"><span class="toc-text">sys模块和异常</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门8-错误和异常" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门8-错误和异常</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.01.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2017/01/04/Python入门8-错误和异常/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>错误是语法和逻辑上的，当Python检测到一个错误时，解释器就会指出当前流已经无法继续执行下去了，这时候就出现了异常。</p>
+<hr>
+<h2 id="Python中的异常"><a href="#Python中的异常" class="headerlink" title="Python中的异常"></a>Python中的异常</h2><p><a href="https://docs.python.org/3/library/exceptions.html" target="_blank" rel="noopener">Exception hierarchy</a>，所有的标准/内建异常都是从根异常派生的。目前的Python3有4个直接从BaseException派生的异常子类：</p>
+<ol>
+<li>SystemExit</li>
+<li>KeyboardInterrupt</li>
+<li>GeneratorExit</li>
+<li>Exception</li>
+</ol>
+<p>其他所有的内建异常都是Exception的子类。</p>
+<hr>
+<h2 id="检测和处理异常"><a href="#检测和处理异常" class="headerlink" title="检测和处理异常"></a>检测和处理异常</h2><h3 id="try…except…"><a href="#try…except…" class="headerlink" title="try…except…"></a>try…except…</h3><ol>
+<li>使用<font color="red"><code>as</code></font>关键字将错误捕获为异常参数。</li>
+<li>为用户可能遇到的返回错误写文档。比如显式的返回None或者负数(如果可以表征无效值)，来规范代码。</li>
+<li>带有多个<code>except</code>的<code>try</code>语句，匹配不同的异常来执行对应的动作。</li>
+<li>处理多个异常的<code>except</code>语句，可以在一个<code>except</code>语句中处理多个异常，但使用<code>as</code>捕获异常参数时，被赋值的是所触发的特定异常。</li>
+<li>不指定任何异常，可以捕获所有异常。</li>
+<li>不要捕获并忽略(<code>pass</code>)所有错误，可以捕获并忽略特定错误。</li>
+<li>异常参数是导致异常的代码的诊断信息的类实例。</li>
+</ol>
+<h3 id="try…finally…"><a href="#try…finally…" class="headerlink" title="try…finally…"></a>try…finally…</h3><ol>
+<li>这个语句不用来捕捉异常，无论<code>try</code>是否有异常被触发，<code>finally</code>代码段都会被执行。</li>
+<li>当<code>try</code>范围中产生一个异常时，会立即跳转到<code>finally</code>语句段。当<code>finally</code>中的所有代码都执行完毕后，会继续向上一层引发异常。</li>
+<li>如果<code>finally</code>中的代码引发了另一个由于<code>return</code>,<code>break</code>,<code>continue</code>语法而终止，原来的异常将丢失且无法重新引发。</li>
+</ol>
+<h3 id="try…except…finally…"><a href="#try…except…finally…" class="headerlink" title="try…except…finally…"></a>try…except…finally…</h3><ol>
+<li>无论异常是否发生，是否捕捉都会执行的一段代码。</li>
+</ol>
+<h3 id="try…except…else…"><a href="#try…except…else…" class="headerlink" title="try…except…else…"></a>try…except…else…</h3><ol>
+<li>在<code>try</code>范围内没有异常被检测到时，执行<code>else</code>子句。</li>
+</ol>
+<h3 id="try…except…else…finally…"><a href="#try…except…else…finally…" class="headerlink" title="try…except…else…finally…"></a>try…except…else…finally…</h3><ol>
+<li>无论选择什么语法，至少需要一个<code>except</code>，<code>else</code>和<code>finally</code>都是可选的。</li>
+</ol>
+<p>所有的异常处理语法：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	doSomething</span><br><span class="line"><span class="keyword">except</span> Exception1:</span><br><span class="line">	doSomethingForE1</span><br><span class="line"><span class="keyword">except</span> (Exception2,Exception3,Exception4):</span><br><span class="line">	doSomethingForE2||E3||E4</span><br><span class="line"><span class="keyword">except</span> Exception5 <span class="keyword">as</span> e5:</span><br><span class="line">	doSomethingForE5</span><br><span class="line"><span class="keyword">except</span> (Exception6,Exception7,Exception8) <span class="keyword">as</span> e6||e7||e8</span><br><span class="line">	doSomethingForE6||E7||E8</span><br><span class="line">	note that e6||e7||e8 <span class="keyword">is</span> only the one Exception that cause error.</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">	catch all the other exceptions</span><br><span class="line"><span class="keyword">else</span>:</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="上下文管理"><a href="#上下文管理" class="headerlink" title="上下文管理"></a>上下文管理</h2><p><code>with</code>语句的目的在于从流程图中把<code>try</code>,<code>except</code>,<code>finally</code>关键字和资源分配释放相关代码统统去掉。<br>支持上下文管理协议的成员：</p>
+<ol>
+<li>file</li>
+<li>decimal.Context</li>
+<li>thread.LockType</li>
+<li>threading.Lock</li>
+<li>threading.RLock</li>
+<li>threading.Condition</li>
+<li>threading.Semaphore</li>
+<li>threading.BoundedSemaphore</li>
+</ol>
+<p>file是最常见且最易于演示的(通常见到<code>with</code>用于打开文件)。</p>
+<hr>
+<h2 id="触发异常"><a href="#触发异常" class="headerlink" title="触发异常"></a>触发异常</h2><p>异常除了由解释器引发，还可以由程序员明确触发：<code>raise</code>语句。<br><code>raise SomeException args traceback</code></p>
+<ol>
+<li><code>SomeException</code>:触发异常的名字。</li>
+<li><code>args</code>:异常参数，可以是一个单独对象，或者是一个元组。</li>
+<li><code>traceback</code>:跟踪记录对象，用于重新引发异常。</li>
+</ol>
+<hr>
+<h2 id="断言"><a href="#断言" class="headerlink" title="断言"></a>断言</h2><p><code>assert</code>和C++中用法基本相同，只不过不需要括号需要空格分隔关键字和表达式。</p>
+<hr>
+<h2 id="sys模块和异常"><a href="#sys模块和异常" class="headerlink" title="sys模块和异常"></a>sys模块和异常</h2><p><code>sys</code>模块中的<code>exc._info()</code>函数返回一个三元组来提供关于异常更多的消息。</p>
+<ol>
+<li><code>exc_type</code>:异常类；</li>
+<li><code>exc_value</code>:异常类的实例；</li>
+<li><code>exc_traceback</code>:跟踪记录对象。</li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2017/01/04/Python入门8-错误和异常/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

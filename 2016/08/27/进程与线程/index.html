@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>进程与线程 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Linux,">
+  
+
+  <meta name="description" content="简单来讲，进程是执行中的程序，他是现代分时系统的工作单元，而线程是CPU利用的基本单元，他与同一进程的其他进程共享代码段，数据段和其他操作系统资源。  进程 进程可能包含： 程序代码，即文本段； 当前活动(程序计数器的值和处理器寄存器内容)； 进程栈(临时数据，如函数参数、返回地址、局部变量)； 数据段(全局变量)； 堆(进程运行期间动态分配的内存)；    可以看到，程序本身不是进程；程序是被动">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程与线程">
+<meta property="og:url" content="http://rylcode.cn/2016/08/27/进程与线程/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="简单来讲，进程是执行中的程序，他是现代分时系统的工作单元，而线程是CPU利用的基本单元，他与同一进程的其他进程共享代码段，数据段和其他操作系统资源。  进程 进程可能包含： 程序代码，即文本段； 当前活动(程序计数器的值和处理器寄存器内容)； 进程栈(临时数据，如函数参数、返回地址、局部变量)； 数据段(全局变量)； 堆(进程运行期间动态分配的内存)；    可以看到，程序本身不是进程；程序是被动">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.033Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程与线程">
+<meta name="twitter:description" content="简单来讲，进程是执行中的程序，他是现代分时系统的工作单元，而线程是CPU利用的基本单元，他与同一进程的其他进程共享代码段，数据段和其他操作系统资源。  进程 进程可能包含： 程序代码，即文本段； 当前活动(程序计数器的值和处理器寄存器内容)； 进程栈(临时数据，如函数参数、返回地址、局部变量)； 数据段(全局变量)； 堆(进程运行期间动态分配的内存)；    可以看到，程序本身不是进程；程序是被动">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#进程"><span class="toc-text">进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程"><span class="toc-text">线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程与线程关系总结"><span class="toc-text">进程与线程关系总结</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-进程与线程" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">进程与线程</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.08.27</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/08/27/进程与线程/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>简单来讲，进程是执行中的程序，他是现代分时系统的工作单元，而线程是CPU利用的基本单元，他与同一进程的其他进程共享代码段，数据段和其他操作系统资源。</p>
+<hr>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><ol>
+<li>进程可能包含：<ul>
+<li>程序代码，即文本段；</li>
+<li>当前活动(程序计数器的值和处理器寄存器内容)；</li>
+<li>进程栈(临时数据，如函数参数、返回地址、局部变量)；</li>
+<li>数据段(全局变量)；</li>
+<li>堆(进程运行期间动态分配的内存)；</li>
+</ul>
+</li>
+</ol>
+<p>可以看到，程序本身不是进程；程序是被动实体，而进程是活动实体。</p>
+<ol start="2">
+<li>进程状态：<ul>
+<li>新建；</li>
+<li>运行；</li>
+<li>等待；</li>
+<li>就绪；</li>
+<li>终止。</li>
+</ul>
+</li>
+</ol>
+<p>注意等待I/O操作或时间完成时进程阻塞，必须转到就绪状态通过调度算法分配才能进入运行状态；</p>
+<ol start="3">
+<li>进程间通信有两种模型：<ul>
+<li>共享内存；</li>
+<li>消息传递(信号与信号量，管道与命名管道，消息队列，socket等)；</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ol>
+<li>线程的优点：<ul>
+<li>响应度高(部分阻塞不影响其他部分)；</li>
+<li>资源共享(线程共享所属进程内存和资源)；</li>
+<li>经济(创建和切换更经济)；</li>
+<li>多处理器体系结构的利用(多线程加强并发功能)；</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="进程与线程关系总结"><a href="#进程与线程关系总结" class="headerlink" title="进程与线程关系总结"></a>进程与线程关系总结</h2><ol>
+<li>一个线程只能属于一个进程，而一个进程可以有多个线程，但至少有一个进程；</li>
+<li>资源分配给进程，同一进程的所有线程共享该进程的所有资源；</li>
+<li>处理器分给线程，即真正在处理器上运行的是线程；</li>
+<li>线程在执行过程中，需要协作同步。不同进程的线程间要利用消息通信的办法实现同步。</li>
+</ol>
+<p>参考资料：</p>
+<ol>
+<li><a href="http://www.jianshu.com/p/9218692cb209" target="_blank" rel="noopener">线程间的通信、同步方式与进程间通信方式</a></li>
+<li>操作系统概念,Peter Bare Galvin等.</li>
+<li><a href="https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B%E9%96%93%E9%80%9A%E8%A8%8A" target="_blank" rel="noopener">维基百科 - 进程间通信</a></li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/08/27/进程与线程/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

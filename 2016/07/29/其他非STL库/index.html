@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>其他非STL库 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="valarray和array vector模板是容器类和算法系统的一部分，他支持面向容器的操作； valarray模板是面向数值计算的，之前简单介绍过，比如重载基本运算符，定义数学方法等； array为代替内置数组设计，他通过更好更安全的接口，让数组更紧凑，效率更高。  注意：  valarray的接口更简单，但是性能并不更高，而且他没有begin(),end()方法，凡是他有begin(val">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="其他非STL库">
+<meta property="og:url" content="http://rylcode.cn/2016/07/29/其他非STL库/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="valarray和array vector模板是容器类和算法系统的一部分，他支持面向容器的操作； valarray模板是面向数值计算的，之前简单介绍过，比如重载基本运算符，定义数学方法等； array为代替内置数组设计，他通过更好更安全的接口，让数组更紧凑，效率更高。  注意：  valarray的接口更简单，但是性能并不更高，而且他没有begin(),end()方法，凡是他有begin(val">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="其他非STL库">
+<meta name="twitter:description" content="valarray和array vector模板是容器类和算法系统的一部分，他支持面向容器的操作； valarray模板是面向数值计算的，之前简单介绍过，比如重载基本运算符，定义数学方法等； array为代替内置数组设计，他通过更好更安全的接口，让数组更紧凑，效率更高。  注意：  valarray的接口更简单，但是性能并不更高，而且他没有begin(),end()方法，凡是他有begin(val">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#valarray和array"><span class="toc-text">valarray和array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#initializer-list"><span class="toc-text">initializer_list</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-其他非STL库" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">其他非STL库</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.07.29</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/07/29/其他非STL库/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <hr>
+<h2 id="valarray和array"><a href="#valarray和array" class="headerlink" title="valarray和array"></a>valarray和array</h2><ol>
+<li><code>vector</code>模板是容器类和算法系统的一部分，他支持面向容器的操作；</li>
+<li><code>valarray</code>模板是面向数值计算的，之前简单介绍过，比如重载基本运算符，定义数学方法等；</li>
+<li><code>array</code>为代替内置数组设计，他通过更好更安全的接口，让数组更紧凑，<font color="red">效率更高</font>。</li>
+</ol>
+<p>注意：</p>
+<ol>
+<li><code>valarray</code>的接口更简单，但是性能并不更高，而且他没有<code>begin()</code>,<code>end()</code>方法，凡是他有<code>begin(val)</code>,<code>end(val)</code>函数，他还有二值化值域，扩展的下标访问等功能。<ul>
+<li><code>valarray&lt;bool&gt; vbool = numbers &gt; 9</code>;</li>
+<li><code>a[slice(1,4,3)]</code>没有计算功能，需要转化为<code>valarray</code>:<code>valarray&lt;int&gt; b(a[slice(1,4,3)])</code>;</li>
+</ul>
+</li>
+<li><code>array</code>提供了多个STL方法，但是他固定长度(因此改变长度的方法他都没有)；</li>
+</ol>
+<hr>
+<h2 id="initializer-list"><a href="#initializer-list" class="headerlink" title="initializer_list"></a>initializer_list</h2><p>C++11新增，使得STL容器能够使用初始化列表语法，容器类会包含一个<code>initializer_list&lt;T&gt;</code>作为参数的构造函数。</p>
+<ol>
+<li>如果类有接受<code>initializer_list</code>作为参数的构造函数，则使用<code>{}</code>语法将调用该构造函数；</li>
+<li>初始化列表构造函数不能进行隐式的缩窄转化；</li>
+<li>包含头文件<code>&lt;initializer_list&gt;</code>构造<code>initializer_list</code>对象，这个模板类包括<code>begin()</code>,<code>end()</code>,<code>size()</code>等成员函数，还重载了赋值运算符<code>=</code>；</li>
+<li><code>initializer_list</code>迭代器类型为<code>const</code>。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/07/29/其他非STL库/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

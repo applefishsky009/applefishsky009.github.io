@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>函数重载与函数模板 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="简单介绍重载和模板，具体可以参考OPP特性分析函数重载是一种多态，一种消息对不同对象有多个动作；函数模板是一种泛型编程，简化了重载函数的函数体设计，使代码的可重用性大大提高。到之后的类模板设计中可以体会到他的优美。  函数重载关键：函数参数列表也就是特征标不同。  如果没有完全匹配，C++尝试标准类型转换强制匹配； 编译器检查函数特征标时，将类型引用和类型本身视为同一个特征标； 非const参数只">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数重载与函数模板">
+<meta property="og:url" content="http://rylcode.cn/2016/06/03/函数重载与函数模板/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="简单介绍重载和模板，具体可以参考OPP特性分析函数重载是一种多态，一种消息对不同对象有多个动作；函数模板是一种泛型编程，简化了重载函数的函数体设计，使代码的可重用性大大提高。到之后的类模板设计中可以体会到他的优美。  函数重载关键：函数参数列表也就是特征标不同。  如果没有完全匹配，C++尝试标准类型转换强制匹配； 编译器检查函数特征标时，将类型引用和类型本身视为同一个特征标； 非const参数只">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数重载与函数模板">
+<meta name="twitter:description" content="简单介绍重载和模板，具体可以参考OPP特性分析函数重载是一种多态，一种消息对不同对象有多个动作；函数模板是一种泛型编程，简化了重载函数的函数体设计，使代码的可重用性大大提高。到之后的类模板设计中可以体会到他的优美。  函数重载关键：函数参数列表也就是特征标不同。  如果没有完全匹配，C++尝试标准类型转换强制匹配； 编译器检查函数特征标时，将类型引用和类型本身视为同一个特征标； 非const参数只">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数重载"><span class="toc-text">函数重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数模板"><span class="toc-text">函数模板</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#具体化"><span class="toc-text">具体化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类型的困惑"><span class="toc-text">类型的困惑</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-函数重载与函数模板" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">函数重载与函数模板</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/06/03/函数重载与函数模板/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>简单介绍重载和模板，具体可以参考<a href="http://rylcode.cn/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/">OPP特性分析</a><br>函数重载是一种多态，一种消息对不同对象有多个动作；<br>函数模板是一种泛型编程，简化了重载函数的函数体设计，使代码的可重用性大大提高。到之后的类模板设计中可以体会到他的优美。</p>
+<hr>
+<h2 id="函数重载"><a href="#函数重载" class="headerlink" title="函数重载"></a>函数重载</h2><p>关键：函数参数列表也就是特征标不同。</p>
+<ol>
+<li>如果没有完全匹配，C++尝试标准类型转换强制匹配；</li>
+<li>编译器检查函数特征标时，将类型引用和类型本身视为同一个特征标；</li>
+<li>非<code>const</code>参数只匹配非<code>const</code>调用，<code>const</code>参数同时匹配<code>const</code>调用和非<code>const</code>调用。(<code>const</code>参数不能传给非<code>const</code>参数，因为有改变的风险)</li>
+<li>三个原型的可能匹配(优先最佳匹配)，注意<code>r2</code>匹配范围最广<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">double</span> &amp;r1)</span></span>;	<span class="comment">//可修改的左值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">const</span> <span class="keyword">double</span> &amp;r2)</span></span>;	<span class="comment">//可修改的左值，'const'左值，右值</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sink</span><span class="params">(<span class="keyword">double</span> &amp;&amp;r3)</span></span>;	<span class="comment">//右值</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>仅当函数基本上执行相同的任务，但是用不同形式的数据时，才应采用函数重载。</p>
+<hr>
+<h2 id="函数模板"><a href="#函数模板" class="headerlink" title="函数模板"></a>函数模板</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>假设维护一个大项目，对于两个数据相加，其数据类型可能是<code>char</code>,<code>int</code>,<code>short</code>,<code>double</code>,<code>float</code>甚至自定义的类，不可能对每种可能的类型提供重载，这就需要泛型编程。</p>
+<ol>
+<li><p>函数模板允许以任意类型的方式来定义函数,可用于将同一种算法用于不同类型的数据，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">swap</span><span class="params">(<span class="keyword">const</span> T &amp;a,<span class="keyword">const</span> T &amp; b，<span class="keyword">int</span> n = <span class="number">0</span>)</span> </span>&#123;</span><br><span class="line">	T c = a+b;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数模板不能缩短可执行程序。最终的代码只包含为程序生成的史记汉书，并不包含任何模板。</p>
+</li>
+<li><p>模板函数参数不一定必须是模板的参数类型；</p>
+</li>
+<li><p>模板函数中使用的运算符在具体化的模板中可能并未重载，这时候可以为具体化的模板重载运算符。</p>
+</li>
+</ol>
+<h3 id="具体化"><a href="#具体化" class="headerlink" title="具体化"></a>具体化</h3><ol>
+<li>匹配顺序：非模板函数&gt;显式具体化函数&gt;模板函数；</li>
+<li>实例化指的是模板参数(上例中的T)的指定，这样就可以生成一个定义。实例化是指对特定类型的显式定义，<strong>这些原型必须有自己的函数定义</strong>(也就是说这个类型和通用模板的行为不同时使用显示具体(具体指的是具体行为)化)，<font color="red">这是一种多态？</font>。</li>
+<li>重载解析将寻找最匹配的函数。<ul>
+<li>如果只有一个，选择它；</li>
+<li>如果有多个，只有一个非模板函数，选择它；</li>
+<li>如果有多个，且都是模板函数，选择更具体的模板；</li>
+<li>如果这些模板函数都不比其他模板具体，编译器会困惑，这是错误的；</li>
+<li>没有匹配也是错误的。</li>
+</ul>
+</li>
+<li>自定义选择调用模板或者具体化的模板(即使不是最匹配，因为是先具体化再调用)<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//提供非模板函数，模板函数，具体化的模板函数</span></span><br><span class="line"><span class="keyword">int</span> m,n;<span class="keyword">double</span> x,y;</span><br><span class="line">lesser(m,n)	<span class="comment">//调用非模板函数</span></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;lesser(m,n)	<span class="comment">//调用模板函数，使用int具体化</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">int</span>&gt;lesser(x,y)	<span class="comment">//地用模板函数，使用int具体化</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="类型的困惑"><a href="#类型的困惑" class="headerlink" title="类型的困惑"></a>类型的困惑</h3><ol>
+<li><p><code>decltype(expression)</code>关键字用于类型获取<code>decltype(x+y) xpy = x+y</code></p>
+</li>
+<li><p><code>decltype</code>关键字的核对表：</p>
+<ul>
+<li>如果是没有用括号括起来的标识符，则得到的类型与标识符相同；</li>
+<li>如果获取函数调用，得到类型与函数返回值相同；</li>
+<li>将标识符用括号括起来，可以得到标识符引用；</li>
+<li>如果都不满足，得到<code>expression</code>类型。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x;</span><br><span class="line"><span class="keyword">decltype</span>(x);	<span class="comment">//int</span></span><br><span class="line"><span class="keyword">decltype</span>(<span class="built_in">sqrt</span>(x));	<span class="comment">//int</span></span><br><span class="line"><span class="keyword">decltype</span>((x));	<span class="comment">//int &amp;</span></span><br><span class="line"><span class="keyword">decltype</span>(x+<span class="number">6</span>).	<span class="comment">//int</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>后置返回类型，函数返回类型在函数声明之前，如果是需要在函数内推断的类型，如何获得?使用后置返回类型，用<code>auto</code>占位，将<code>decltype</code>置于函数声明之后。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1,<span class="keyword">typename</span> T2&gt;</span><br><span class="line">auto gt(T1 x,T2 y)-&gt;decltype(x+y) &#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/06/03/函数重载与函数模板/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

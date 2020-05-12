@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门6-条件和循环 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="Condition if子句 单一语句的代码块可以放在if同一行上，但建议使用合理的缩进。   else子句 Python使用缩进在避免悬挂else时非常有用，因为C/C++中else与最近的if搭配，这在他本想与内部if搭配时发生错误。不要忘记花括号可以避免这个问题。   elif子句，即else if语句 Conditional expression. Python很长一段时间内都没有条件表达">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门6-条件和循环">
+<meta property="og:url" content="http://rylcode.cn/2016/12/21/Python入门6-条件和循环/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="Condition if子句 单一语句的代码块可以放在if同一行上，但建议使用合理的缩进。   else子句 Python使用缩进在避免悬挂else时非常有用，因为C/C++中else与最近的if搭配，这在他本想与内部if搭配时发生错误。不要忘记花括号可以避免这个问题。   elif子句，即else if语句 Conditional expression. Python很长一段时间内都没有条件表达">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.007Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门6-条件和循环">
+<meta name="twitter:description" content="Condition if子句 单一语句的代码块可以放在if同一行上，但建议使用合理的缩进。   else子句 Python使用缩进在避免悬挂else时非常有用，因为C/C++中else与最近的if搭配，这在他本想与内部if搭配时发生错误。不要忘记花括号可以避免这个问题。   elif子句，即else if语句 Conditional expression. Python很长一段时间内都没有条件表达">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Condition"><span class="toc-text">Condition</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Loop"><span class="toc-text">Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Conditional-Loop-while"><span class="toc-text">Conditional Loop(while)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Iterative-Loop-for"><span class="toc-text">Iterative Loop(for)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#break"><span class="toc-text">break</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#continue"><span class="toc-text">continue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pass"><span class="toc-text">pass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#else"><span class="toc-text">else</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Iterator"><span class="toc-text">Iterator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#List-Comprehensions"><span class="toc-text">List Comprehensions</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda"><span class="toc-text">lambda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-Comprehensions-1"><span class="toc-text">List Comprehensions</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Generator-Expression"><span class="toc-text">Generator Expression</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门6-条件和循环" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门6-条件和循环</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.12.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/12/21/Python入门6-条件和循环/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h1 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h1><ol>
+<li><code>if</code>子句<ul>
+<li>单一语句的代码块可以放在<code>if</code>同一行上，但建议使用合理的缩进。</li>
+</ul>
+</li>
+<li><code>else</code>子句<ul>
+<li>Python使用缩进在避免<font color="red">悬挂<code>else</code></font>时非常有用，因为C/C++中else与最近的if搭配，这在他本想与内部if搭配时发生错误。不要忘记花括号可以避免这个问题。</li>
+</ul>
+</li>
+<li><code>elif</code>子句，即<code>else if</code>语句</li>
+<li>Conditional expression. Python很长一段时间内都没有条件表达式<code>C ? X : Y</code>，P2.5加入并确定语法为<ul>
+<li><code>X if C else Y</code>.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="Loop"><a href="#Loop" class="headerlink" title="Loop"></a>Loop</h1><h2 id="Conditional-Loop-while"><a href="#Conditional-Loop-while" class="headerlink" title="Conditional Loop(while)"></a>Conditional Loop(while)</h2><p><code>while</code>是条件循环语句，常用在计数循环(配合自增或自减语句)、无限循环中。</p>
+<h2 id="Iterative-Loop-for"><a href="#Iterative-Loop-for" class="headerlink" title="Iterative Loop(for)"></a>Iterative Loop(for)</h2><p><code>for</code>是Python中最强大的循环结构，他是迭代循环语句，可用于列表解析和生成器表达式中，自动调用<code>next(iter)</code>工厂函数(Python2是迭代器方法)，最终捕获StopIterator异常并结束循环。</p>
+<ol>
+<li>可用于序列类型，包括字符串，列表以及元组等。<ul>
+<li>通过序列项迭代。</li>
+<li>配合<code>range(len())</code>通过序列索引迭代，但显然效率不如序列迭代高，这是由迭代器的特性决定的。</li>
+<li>使用索引和项迭代，这就是<code>enumerate()</code>的威力。</li>
+</ul>
+</li>
+<li>用于迭代器类型，因为可以调用<code>next(iter)</code>函数，调用后返回下一条目所有条目迭代完毕后迭代器引发一个StopIteration异常告诉程序循环结束，这都是<code>for</code>语句内部发生的。</li>
+<li>内建函数<code>range()</code>可以将原本类似于<code>foreach</code>的语句变成更熟悉的语句。<ul>
+<li><code>range(start, end, step = 1)</code> step要求start。</li>
+<li><code>range(end)</code></li>
+<li><code>range(start, end)</code></li>
+<li>注意不能将<code>range()</code>简略成一种语法<code>range(start = 0, end, step = 1)</code>，这是因为这个语法的两个参数调用版本有歧义。</li>
+</ul>
+</li>
+<li>相关内建函数，<code>sorted()</code>(返回list),<code>zip()</code>(返回tuple指针)是序列相关，<code>enumerate()</code>,<code>reversed()</code>返回迭代器。</li>
+</ol>
+<h2 id="break"><a href="#break" class="headerlink" title="break"></a>break</h2><p>用于<code>while</code>和<code>for</code>循环中打断列表的迭代。</p>
+<h2 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h2><p>终止当前循环并验证条件表达式(<code>while</code>)或验证是否有元素可以迭代(<code>for</code>)，验证成功的情况下开始下一次循环。</p>
+<h2 id="pass"><a href="#pass" class="headerlink" title="pass"></a>pass</h2><p>提供<code>pass</code>语句表示不做任何事，在Python中如果在需要有语句块的地方不写任何语句，会提示语法错误。<code>pass</code>也可以作为调试中的小技巧，标记你后来要完成的代码。</p>
+<h2 id="else"><a href="#else" class="headerlink" title="else"></a>else</h2><p>Python中可以在<code>while</code>和<code>for</code>循环中使用<code>else</code>语句做循环后处理(post-processing)，相当于设置了一个完整执行循环的flag，即<code>break</code>语句也会跳过<code>else</code>块，因为循环并没有被完整执行。</p>
+<hr>
+<h1 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h1><p>迭代器从根本上来说就是一个有<code>next()</code>方法的对象，因此他能无缝支持序列对象。(next()方法迭代和StopIteration异常告诉外部调用者迭代结束)，内建函数<code>reversed()</code>,<code>enumerate()</code>,<code>any()</code>,<code>all()</code>都返回迭代器。</p>
+<ol>
+<li>序列 内建函数iter()和next()；</li>
+<li>字典 for迭代，方法缺省时迭代键；</li>
+<li>文件 for，行迭代。</li>
+</ol>
+<p>不要在迭代不可变对象时改变值，比如字典的key，但是使用<code>dict.key()</code>方法是可以的，因为这个方法返回独立于字典的列表。一个实现了<code>__iter__()</code>和<code>__next__()</code>方法的类可以作为迭代器使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#for的工作原理</span></span><br><span class="line">fetch = iter(seq)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		i = next(fetch)</span><br><span class="line">	<span class="keyword">except</span> StopIteration:</span><br><span class="line">		<span class="keyword">break</span></span><br><span class="line">	do_something_to(i)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="List-Comprehensions"><a href="#List-Comprehensions" class="headerlink" title="List Comprehensions"></a>List Comprehensions</h1><h2 id="lambda"><a href="#lambda" class="headerlink" title="lambda"></a>lambda</h2><p>定义匿名函数，这个语句作为function传入其它函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">lambda</span> x: doSomethingAboutX</span><br><span class="line">f = <span class="keyword">lambda</span> x:x+<span class="number">1</span></span><br><span class="line">print(f(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="List-Comprehensions-1"><a href="#List-Comprehensions-1" class="headerlink" title="List Comprehensions"></a>List Comprehensions</h2><p>Python独有的语法，比lambda更具优势，两个表达式及例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[expr <span class="keyword">for</span> iter_var <span class="keyword">in</span> iterable]</span><br><span class="line">[expr <span class="keyword">for</span> iter_var <span class="keyword">in</span> iterable <span class="keyword">if</span> condexpr]</span><br><span class="line"></span><br><span class="line">[(x + <span class="number">1</span>, y + <span class="number">1</span>) <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">3</span>) <span class="keyword">for</span> y <span class="keyword">in</span> range(<span class="number">5</span>)]</span><br><span class="line">len([word <span class="keyword">for</span> line <span class="keyword">in</span> f <span class="keyword">for</span> word <span class="keyword">in</span> line.split()])</span><br><span class="line">sum([len(word) <span class="keyword">for</span> line <span class="keyword">in</span> f <span class="keyword">for</span> word <span class="keyword">in</span> line.split()])</span><br></pre></td></tr></table></figure>
+
+<p>那么列表如何解析？</p>
+<ol>
+<li>对嵌套循环，for语句的顺序是与原顺序相同的；</li>
+<li>条件表达式的作用域是前一个语句(for或者其他表达式)；</li>
+<li>循环和条件之前的表达式是列表元素(核心部分)，如果还原回来这个语句应该在循环和条件的最内层。</li>
+</ol>
+<hr>
+<h1 id="Generator-Expression"><a href="#Generator-Expression" class="headerlink" title="Generator Expression"></a>Generator Expression</h1><p>列表解析的一个缺点就是要生成所有数据用于创建整个列表。生成器表达式是列表解析的一个扩展。它使用了对内存使用更友好的结构。几他不创建真正的列表，而是返回一个生成器，这个生成器每次计算出一个条目之后，把这个条目“产生(<code>yield</code>)出来”，使用“延迟计算”(lazy evaluation)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(expr <span class="keyword">for</span> iter_var <span class="keyword">in</span> iterable <span class="keyword">if</span> cond_expr)</span><br><span class="line"></span><br><span class="line">((i, j) <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>) <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">5</span>))</span><br><span class="line"><span class="keyword">return</span> max([len(x.strip()) <span class="keyword">for</span> x <span class="keyword">in</span> open(<span class="string">'ect/motd'</span>)])	<span class="comment">#List Comprehensions</span></span><br><span class="line"><span class="keyword">return</span> max(len(x.strip()) <span class="keyword">for</span> x <span class="keyword">in</span> open(<span class="string">'/ect/motd'</span>))	<span class="comment">#Generator Expression</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/12/21/Python入门6-条件和循环/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

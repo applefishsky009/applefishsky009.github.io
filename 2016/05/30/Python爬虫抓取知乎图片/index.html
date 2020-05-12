@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python爬虫抓取知乎图片 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="初学Python，数据结构感觉很简单，语法什么也太过于枯燥无味。就从爬虫做起，使用Python3.5版本，在Pycharm中编写，用自带的IDE调试(这个真好用啊)，花了两天时间终于做好了自己的Python爬虫，先抓取某个用户一个回答的所有图片，然后抓取某一知乎用户的所有图片，代码见Github，感觉新世界的大门在缓缓开启啊，^.^~ 另外，由于只学习几天就急着做爬虫玩，导致Python基本功不行">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫抓取知乎图片">
+<meta property="og:url" content="http://rylcode.cn/2016/05/30/Python爬虫抓取知乎图片/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="初学Python，数据结构感觉很简单，语法什么也太过于枯燥无味。就从爬虫做起，使用Python3.5版本，在Pycharm中编写，用自带的IDE调试(这个真好用啊)，花了两天时间终于做好了自己的Python爬虫，先抓取某个用户一个回答的所有图片，然后抓取某一知乎用户的所有图片，代码见Github，感觉新世界的大门在缓缓开启啊，^.^~ 另外，由于只学习几天就急着做爬虫玩，导致Python基本功不行">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://i.imgur.com/tKh1O4Z.png">
+<meta property="og:image" content="http://i.imgur.com/3eNTvO5.png">
+<meta property="og:image" content="http://i.imgur.com/LTGQx7W.png">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.008Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python爬虫抓取知乎图片">
+<meta name="twitter:description" content="初学Python，数据结构感觉很简单，语法什么也太过于枯燥无味。就从爬虫做起，使用Python3.5版本，在Pycharm中编写，用自带的IDE调试(这个真好用啊)，花了两天时间终于做好了自己的Python爬虫，先抓取某个用户一个回答的所有图片，然后抓取某一知乎用户的所有图片，代码见Github，感觉新世界的大门在缓缓开启啊，^.^~ 另外，由于只学习几天就急着做爬虫玩，导致Python基本功不行">
+<meta name="twitter:image" content="http://i.imgur.com/tKh1O4Z.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具"><span class="toc-text">工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bs4"><span class="toc-text">bs4</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shutil"><span class="toc-text">shutil</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linecache"><span class="toc-text">linecache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简易"><span class="toc-text">简易</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进阶"><span class="toc-text">进阶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卡死的爬虫"><span class="toc-text">卡死的爬虫</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python爬虫抓取知乎图片" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python爬虫抓取知乎图片</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.30</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/05/30/Python爬虫抓取知乎图片/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>初学Python，数据结构感觉很简单，语法什么也太过于枯燥无味。就从爬虫做起，使用Python3.5版本，在Pycharm中编写，用自带的IDE调试(这个真好用啊)，花了两天时间终于做好了自己的Python爬虫，先抓取某个用户一个回答的所有图片，然后抓取某一知乎用户的所有图片，代码见<a href="https://github.com/applefishsky009/PythonReptile" target="_blank" rel="noopener">Github</a>，感觉新世界的大门在缓缓开启啊，^.^~</p>
+<p>另外，由于只学习几天就急着做爬虫玩，导致Python基本功不行，代码风格还是乱七八槽的，估计以后也懒得修改，主要关注内容原理吧。</p>
+<hr>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>首先介绍使用的三个模块，在实现中节省不少功夫，不知道的可以去搜，这里主要分析如何实现功能以及为什么这么使用，不会介绍模块。</p>
+<ol>
+<li>bs4，<code>from bs4 import BeautifulSoup</code>，模块文档在这里<a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/" target="_blank" rel="noopener">doc</a>，这是一个非常好用的网页解析工具。简单来说，将抓回来的页面解析成<code>html</code>格式以便于查找定位。那么<strong>如何找想要的标签?</strong>可以在谷歌浏览器中F12查看，鼠标移到对应标签左边相应栏目就会显示为蓝色。</li>
+<li>shutil，<code>import shutil</code>导入这个模块主要是使用文件夹操作，主要是因为<code>mkdir</code>使用时如果目录中已有想创建的文件夹，会返回错误，我用shutil删除重建，保证程序的稳定性。</li>
+<li>linecache，<code>import linecache</code>导入这个模块读取本地txt文件中的信息，存储了两行，第一行是要爬取的<strong>主页</strong>,第二行是保存图片的文件夹。注意<code>linecache.getline()</code>方法会读取回车，去掉就行。</li>
+</ol>
+<h3 id="bs4"><a href="#bs4" class="headerlink" title="bs4"></a>bs4</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">url_open</span><span class="params">(url)</span>:</span> <span class="comment">#打开页面]</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">with</span> urllib.request.urlopen(url,timeout=<span class="number">30</span>) <span class="keyword">as</span> response:</span><br><span class="line">            html = response.read()</span><br><span class="line">        <span class="keyword">return</span> html</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        print(e)</span><br><span class="line">        <span class="keyword">return</span> url_open(url)</span><br><span class="line"></span><br><span class="line">anwser_page = url_open(table_tail)</span><br><span class="line">soup = BeautifulSoup(anwser_page,<span class="string">'html.parser'</span>)</span><br><span class="line">soup = BeautifulSoup(one_page, <span class="string">'html.parser'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>简单强调一点，bs4的<code>find()</code>和<code>find_all</code>方法，第一个返回一个bs4.Tag类，第二个返回的是这个类的<code>Set</code>,因此<code>find_all</code>之后一定要在循环中对<code>Set</code>的每一个成员才能使用<code>find()</code>方法。<br>大部分页面不登录就能访问，个别页面需要登录才能访问，因此需要判断<code>soup.find()</code>返回类型是不是<code>None</code>，可以登录才能爬取图片。</p>
+<h3 id="shutil"><a href="#shutil" class="headerlink" title="shutil"></a>shutil</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> os.path.isdir(folder):</span><br><span class="line">	shutil.rmtree(folder)</span><br><span class="line">	os.mkdir(folder)</span><br><span class="line">	print(<span class="string">'删除已有目录，创建新目录'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	os.mkdir(folder)</span><br><span class="line">	print(<span class="string">'没有指定目录，创建新目录'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="linecache"><a href="#linecache" class="headerlink" title="linecache"></a>linecache</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">person = linecache.getline(<span class="string">r'E:\Python\pic_answer_page\input.txt'</span>,<span class="number">1</span>).split(<span class="string">'\n'</span>)[<span class="number">0</span>]</span><br><span class="line">folder = linecache.getline(<span class="string">r'E:\Python\pic_answer_page\input.txt'</span>,<span class="number">2</span>).split(<span class="string">'\n'</span>)[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+<p>由于<code>linecache.getline()</code>方法会读取回车，因此需要分割字符串去掉<code>\n</code>。</p>
+<hr>
+<h2 id="简易"><a href="#简易" class="headerlink" title="简易"></a>简易</h2><p>这里只爬取了知乎一个回答页面的图片作为测试，要抓取的人和保存的文件夹都内置了，可以右键编辑<code>down_wshpic</code>函数的默认参数<code>folder</code>和这个函数下的<code>url</code>(注意一定要是某一个回答的页面)<br>这个简短程序主要的BUG有两个：</p>
+<ol>
+<li><code>url_open(url)</code>没有采取<code>try...catch</code>模块，遇见这个BUG多跑几次就行了，在进阶的程序中也做了修改，可以直接替换函数。</li>
+<li>抓取的知乎页面提示需要登录才能访问，这个问题本不该出现，下次制作爬虫再解决<br>代码在这里<a href="https://github.com/applefishsky009/PythonReptile/blob/master/pic_page/pic_page.py" target="_blank" rel="noopener">抓取单个页面</a></li>
+</ol>
+<hr>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>找到一个你感兴趣的人，主页是这样的形式<code>https://www.zhihu.com/people/xxxx</code>，为了熟悉定位过程，程序会自动定位回答页面，解析回答页面数，解析所有回答的链接，爬取图片。<br>代码在这里<a href="https://github.com/applefishsky009/PythonReptile/blob/master/pic_people/pic_people.py" target="_blank" rel="noopener">抓取某位用户的所有图片</a><br>主页信息和要保存图片的路径信息都在txt中保存，第一行是主页信息，第二行是保存文件的路径，形式见<a href="https://github.com/applefishsky009/PythonReptile/blob/master/pic_people/input.txt" target="_blank" rel="noopener">这里</a></p>
+<hr>
+<h2 id="卡死的爬虫"><a href="#卡死的爬虫" class="headerlink" title="卡死的爬虫"></a>卡死的爬虫</h2><ol>
+<li>可以看到在进阶中和简易的爬虫中的<code>url_open(url)</code>是不一样的，这是由于网络响应不全或者服务器不响应导致的(注意如果服务器不响应，<code>except</code>后边要用<code>pass</code>)，设置一个响应超时的参数(30s)，如果还未抓取<code>urlopen()</code>会抛出一个异常，因此采用<code>try...except</code>来抓取异常，并重新请求响应(因为知乎服务器大部分情况下，我们认为是响应不全)。如果用<code>pass</code>这个页面就被跳过了。如下：<br><img src="http://i.imgur.com/tKh1O4Z.png" alt="超时重连"></li>
+<li>在爬取的过程中还有一个问题，大部分页面是不需要的登陆就可以访问的，偶尔有极个别的人登陆之后才能访问，这些页面，爬取不到，直接跳过，以后的制作的爬虫会发送登录信息。<br><img src="http://i.imgur.com/3eNTvO5.png" alt="抓取错误"></li>
+<li>还有这个错误。。。原因未知，猜测是我的网挂了一下，挂着蓝灯不太稳定导致的<br><img src="http://i.imgur.com/LTGQx7W.png" alt="BadGate"></li>
+</ol>
+<hr>
+<p>吐槽一下，有的人278个回答，只有250个图片，有的人142个回答，爬了1629个图片。。。这真是太可怕了。。<br>一共爬取9个人获得3231张图片。</p>
+<p>写在最后，喜欢哪个知乎上的帅哥妹子，快去收藏他/她的图库吧。。。</p>
+<p>下一步计划，</p>
+<ol>
+<li>登陆网站</li>
+<li>使用正则</li>
+<li>打印PDF</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/05/30/Python爬虫抓取知乎图片/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

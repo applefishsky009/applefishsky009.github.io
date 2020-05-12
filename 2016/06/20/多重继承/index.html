@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>多重继承 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="多重继承(Multiple Inherit)/MI是指一个类别可以同时从多于一个父类继承行为和特征。这增加了编程的复杂度，主要是派生类通过多条途径继承同一基类引起的。有一点注意和两个问题：  使用public关键字限定每一个基类，否则默认为私有派生； 如何从两个基类继承同名方法？(作用域解析符或者隐藏) 从两个基类或更多相关基类继承同一个类的多个实例造成不期望的多个组成部分，引入虚基类来解决问题。">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多重继承">
+<meta property="og:url" content="http://rylcode.cn/2016/06/20/多重继承/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="多重继承(Multiple Inherit)/MI是指一个类别可以同时从多于一个父类继承行为和特征。这增加了编程的复杂度，主要是派生类通过多条途径继承同一基类引起的。有一点注意和两个问题：  使用public关键字限定每一个基类，否则默认为私有派生； 如何从两个基类继承同名方法？(作用域解析符或者隐藏) 从两个基类或更多相关基类继承同一个类的多个实例造成不期望的多个组成部分，引入虚基类来解决问题。">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多重继承">
+<meta name="twitter:description" content="多重继承(Multiple Inherit)/MI是指一个类别可以同时从多于一个父类继承行为和特征。这增加了编程的复杂度，主要是派生类通过多条途径继承同一基类引起的。有一点注意和两个问题：  使用public关键字限定每一个基类，否则默认为私有派生； 如何从两个基类继承同名方法？(作用域解析符或者隐藏) 从两个基类或更多相关基类继承同一个类的多个实例造成不期望的多个组成部分，引入虚基类来解决问题。">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚基类-或者叫做虚拟继承更好"><span class="toc-text">虚基类/或者叫做虚拟继承更好</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选择方法"><span class="toc-text">选择方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他问题"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#混合使用基类和非虚基类"><span class="toc-text">混合使用基类和非虚基类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚基类和支配"><span class="toc-text">虚基类和支配</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-多重继承" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">多重继承</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="http://www.rylcode.com/2016/06/20/多重继承/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>多重继承(Multiple Inherit)/MI是指一个类别可以同时从多于一个父类继承行为和特征。这增加了编程的复杂度，主要是派生类通过多条途径继承同一基类引起的。有一点注意和两个问题：</p>
+<ol>
+<li>使用<code>public</code>关键字限定<strong>每一个</strong>基类，否则默认为私有派生；</li>
+<li>如何从两个基类继承同名方法？(作用域解析符或者隐藏)</li>
+<li>从两个基类或更多相关基类继承同一个类的多个实例造成不期望的多个组成部分，引入虚基类来解决问题。</li>
+</ol>
+<hr>
+<h2 id="虚基类-或者叫做虚拟继承更好"><a href="#虚基类-或者叫做虚拟继承更好" class="headerlink" title="虚基类/或者叫做虚拟继承更好"></a>虚基类/或者叫做虚拟继承更好</h2><p>引入虚基类来解决重复的基类组成问题。</p>
+<ol>
+<li>将可能重复的基类在派生时使用<code>virtual</code>关键字，其和<code>public</code>的关键字的顺序不关紧要(区分虚函数，纯虚函数)；</li>
+<li>虚函数和虚基类之间没有明显联系，<code>virtual</code>关键字重载；</li>
+<li>将基类声明为虚要求额外的计算，因此不能使虚行为成为默认的MI准则；</li>
+<li>虚基类通过禁止信息通过中间类自动传递给基类来解决上述问题，因此采用一种<font color="red">特殊的构造函数</font>，但是注意这种形式只适用于虚基类，对于非虚基类是非法的。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// not this(class Work is not virtual,SingerWaiter has an unexpected objects)</span></span><br><span class="line">SingerWaiter(<span class="keyword">const</span> Worker &amp;wk,<span class="keyword">int</span> p = <span class="number">0</span>,<span class="keyword">int</span> v = Singer::other):Waiter(wk,p),Singer(wk,v)&#123;&#125;	<span class="comment">//other是class Singer中的枚举量</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//but this</span></span><br><span class="line">SingerWaiter(<span class="keyword">const</span> Worker &amp;wk,<span class="keyword">int</span> p = <span class="number">0</span>,<span class="keyword">int</span> v = Singer::other):Worker(wk),Waiter(wk,p),Singer(wk,v)&#123;&#125;	<span class="comment">//必须在构造派生对象之前构造基类，否则将采用默认的构造函数</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="选择方法"><a href="#选择方法" class="headerlink" title="选择方法"></a>选择方法</h2><p>使用作用域解析符或多态的方法定义一个新的函数指明调用的方法。另外使用模块化的方法(这将要求一些方法声明为保护而不是私有以便于派生类的模块化)防止重复访问。</p>
+<ol>
+<li>私有方法一般是外部接口(公有方法)的辅助方法，为了模块化，可以将这些辅助方法(私有方法)声明为保护的，在派生类中和派生类的辅助方法(只访问派生类的数据模块)构成完整的模块；</li>
+<li>祖先相同时，使用MI必须引入虚基类，并修改构造函数列表初始化规则。</li>
+</ol>
+<hr>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="混合使用基类和非虚基类"><a href="#混合使用基类和非虚基类" class="headerlink" title="混合使用基类和非虚基类"></a>混合使用基类和非虚基类</h3><ol>
+<li>当类通过多条非虚途径继承某个特定的基类时，该类将包含一个表示所有的虚途径的基类子对象和分别表示各条非虚途径的多个基类子对象。</li>
+</ol>
+<h3 id="虚基类和支配"><a href="#虚基类和支配" class="headerlink" title="虚基类和支配"></a>虚基类和支配</h3><ol>
+<li>使用非虚基类，类从不同类继承了同名成员(数据或方法)，将导致二义性；</li>
+<li>使用虚基类，派生类中的名称优先于这个派生类直接或间接祖先中的名称(也就是说这两个方法所在的类必须有继承关系才不会导致二义性)；</li>
+<li>虚二义性和访问规则无关，例如，基类中<code>public</code>方法，他的派生类中<code>private</code>方法，当前类从派生类继承而来，在不用作用域解析符时默认调用派生类的<code>private</code>方法(这对实例对象来说是不可访问的)。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'http://rylcode.cn/2016/06/20/多重继承/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
