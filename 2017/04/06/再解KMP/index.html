@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-home">
+  <html class="dark page-home">
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -19,7 +19,7 @@
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="再解KMP">
-<meta property="og:url" content="http://rylcode.cn/2017/04/06/再解KMP/index.html">
+<meta property="og:url" content="applefishsky009.github.io/2017/04/06/再解KMP/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="之前在BP、KMP、改进的KMP博文中介绍了计算KMP的方式以及程序理解，经过一段时间的沉淀，现在从算法角度和编程两个角度结合其他算法探求沉思KMP算法的本质。  算法角度结合DP思维，记录了前后缀匹配长度。DP的思想体现首先在于无后效性，next[j]代表j位以前字符串中真前后缀的最大公共元素长度，即不包含j自身。j位以前的记录和j位以后无关，这就是无后效性。但注意在之前博文中改进的KMP算法使">
 <meta property="og:locale" content="Chinese">
@@ -196,7 +196,7 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>之前在<a href="http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/">BP、KMP、改进的KMP</a>博文中介绍了计算KMP的方式以及程序理解，经过一段时间的沉淀，现在从算法角度和编程两个角度结合其他算法探求沉思KMP算法的本质。</p>
+      <p>之前在<a href="http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/" target="_blank" rel="noopener">BP、KMP、改进的KMP</a>博文中介绍了计算KMP的方式以及程序理解，经过一段时间的沉淀，现在从算法角度和编程两个角度结合其他算法探求沉思KMP算法的本质。</p>
 <hr>
 <h2 id="算法角度"><a href="#算法角度" class="headerlink" title="算法角度"></a>算法角度</h2><p>结合DP思维，记录了前后缀匹配长度。<br>DP的思想体现首先在于<font color="red"><strong>无后效性</strong></font>，<code>next[j]</code>代表<code>j</code>位以前字符串中真前后缀的最大公共元素长度，即不包含<code>j</code>自身。<code>j</code>位以前的记录和<code>j</code>位以后无关，这就是无后效性。但注意在之前博文中改进的KMP算法使用到了<code>j</code>位的字符比较。<br>其次体现在状态转移上，<code>j</code>位的记录仅由<code>j-1</code>位和当前字符和前缀指针是否匹配来共同决定，这就引出了编程使用双指针fail pointer的决策实现。</p>
 <hr>
@@ -333,7 +333,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://rylcode.cn/2017/04/06/再解KMP/';
+    var disqus_url = 'applefishsky009.github.io/2017/04/06/再解KMP/';
     
     (function(){
       var dsq = document.createElement('script');

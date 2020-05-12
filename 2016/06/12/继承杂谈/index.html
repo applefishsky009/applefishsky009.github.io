@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-home">
+  <html class="dark page-home">
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -19,7 +19,7 @@
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承杂谈">
-<meta property="og:url" content="http://rylcode.cn/2016/06/12/继承杂谈/index.html">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/12/继承杂谈/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="在上一篇提到过，不能被继承的一些情况：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。  这篇详细说明这些。  友元函数继承只针对成员函数，但友元不是成员函数，因此不能被继承。如果希望派生类可以使用基类的友元函数，可以使用指针强制转化将基类指针指向派生类指针，通过基类指针调用友元函数。  继承中动">
 <meta property="og:locale" content="Chinese">
@@ -334,7 +334,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://rylcode.cn/2016/06/12/继承杂谈/';
+    var disqus_url = 'applefishsky009.github.io/2016/06/12/继承杂谈/';
     
     (function(){
       var dsq = document.createElement('script');
