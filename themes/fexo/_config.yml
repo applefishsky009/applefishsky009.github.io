@@ -1,7 +1,7 @@
 # Blog info
 blog_name: 孤云两角，去天一握
 slogan: Smart is new sexy
-url: http://www.rylcode.com
+url: https://applefishsky009.github.io
 
 # Set avatar (Absolute url and relative url)
 avatar: /images/avatar.jpg
@@ -114,7 +114,7 @@ about:
     icon: icon-user
     text_value:
     - "USTC, UCAS, 1991, Autumn"
-    - "硕士生, 极简。C++ / Python / JAVA / MATLAB"
+    - "硕士, 极简。C++ / Python / C"
   - type: Github
     icon: icon-github
     text_key: Github
@@ -129,10 +129,10 @@ about:
     text_value: 北京
 
 link:
-  - name: seapub
+  - name: 
     info: 
-    url: http://seapub.github.io/
-    avatar: https://avatars0.githubusercontent.com/u/6984146?v=3&s=400
+    url: 
+    avatar: 
   
 project:
   - type: personal
