@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="dark page-home">
+  <html class="light page-home">
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -19,11 +19,11 @@
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入了解string类">
-<meta property="og:url" content="applefishsky009.github.io/2016/07/01/深入了解string类/index.html">
+<meta property="og:url" content="http://rylcode.cn/2016/07/01/深入了解string类/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="之前由于编程过程中经常使用，在string类与cctype等博客中简单介绍过一些string相关的方法，迭代器，算法的用法。这篇主要是以一个类的角度深入系统地管理string类知识。可在cplus上的string查阅各种方法用法。  模板具体化string是模板basic_string&amp;lt;char&amp;gt;的一个typedef，basic_string有四个具体化，都有typedef名称： 12">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2020-05-11T23:57:44.027Z">
+<meta property="og:updated_time" content="2020-05-13T12:18:58.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入了解string类">
 <meta name="twitter:description" content="之前由于编程过程中经常使用，在string类与cctype等博客中简单介绍过一些string相关的方法，迭代器，算法的用法。这篇主要是以一个类的角度深入系统地管理string类知识。可在cplus上的string查阅各种方法用法。  模板具体化string是模板basic_string&amp;lt;char&amp;gt;的一个typedef，basic_string有四个具体化，都有typedef名称： 12">
@@ -187,7 +187,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="applefishsky009.github.io/2016/07/01/深入了解string类/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/07/01/深入了解string类/#disqus_thread"></a>
         </span>
       
 
@@ -196,7 +196,7 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>之前由于编程过程中经常使用，在<a href="http://rylcode.cn/2016/04/21/string%E4%B8%8Ecctype/" target="_blank" rel="noopener">string类与cctype</a>等博客中简单介绍过一些<code>string</code>相关的方法，迭代器，算法的用法。这篇主要是以一个类的角度深入系统地管理<code>string</code>类知识。可在<a href="http://www.cplusplus.com/reference/string/" target="_blank" rel="noopener">cplus上的string</a>查阅各种方法用法。</p>
+      <p>之前由于编程过程中经常使用，在<a href="http://rylcode.cn/2016/04/21/string%E4%B8%8Ecctype/">string类与cctype</a>等博客中简单介绍过一些<code>string</code>相关的方法，迭代器，算法的用法。这篇主要是以一个类的角度深入系统地管理<code>string</code>类知识。可在<a href="http://www.cplusplus.com/reference/string/" target="_blank" rel="noopener">cplus上的string</a>查阅各种方法用法。</p>
 <hr>
 <h2 id="模板具体化"><a href="#模板具体化" class="headerlink" title="模板具体化"></a>模板具体化</h2><p><code>string</code>是模板<code>basic_string&lt;char&gt;</code>的一个typedef，<code>basic_string</code>有四个具体化，都有<code>typedef</code>名称：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">charT</span>, <span class="title">class</span> <span class="title">traits</span> = <span class="title">char_traits</span>&lt;charT&gt;, <span class="title">class</span> <span class="title">Allocator</span> = <span class="title">allocator</span>&lt;charT&gt; &gt;</span></span><br><span class="line"><span class="class"><span class="title">basic_string</span>&#123;</span>...&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> basic_string&lt;<span class="keyword">char</span>&gt; <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">typedef</span> basic_string&lt;<span class="keyword">wchar_t</span>&gt; <span class="built_in">wstring</span>;</span><br><span class="line"><span class="keyword">typedef</span> basic_string&lt;<span class="keyword">char16_t</span>&gt; u16string;</span><br><span class="line"><span class="keyword">typedef</span> basic_string&lt;<span class="keyword">char32_t</span>&gt; u32string;</span><br></pre></td></tr></table></figure>
@@ -390,7 +390,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'applefishsky009.github.io/2016/07/01/深入了解string类/';
+    var disqus_url = 'http://rylcode.cn/2016/07/01/深入了解string类/';
     
     (function(){
       var dsq = document.createElement('script');

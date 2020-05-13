@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="dark page-home">
+  <html class="light page-home">
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -19,11 +19,11 @@
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="泛型编程">
-<meta property="og:url" content="applefishsky009.github.io/2016/07/25/泛型编程/index.html">
+<meta property="og:url" content="http://rylcode.cn/2016/07/25/泛型编程/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。  迭代器简介泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。  迭代器应可以解除引用(*p); 迭代器应可以赋值(p=q); 迭代器应可以比较(p==q,p!=q); 迭代器应可以遍历容器(p++,q++)。  参考i++与++i的区别，">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2020-05-11T23:57:44.027Z">
+<meta property="og:updated_time" content="2020-05-13T12:18:58.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="泛型编程">
 <meta name="twitter:description" content="面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。  迭代器简介泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。  迭代器应可以解除引用(*p); 迭代器应可以赋值(p=q); 迭代器应可以比较(p==q,p!=q); 迭代器应可以遍历容器(p++,q++)。  参考i++与++i的区别，">
@@ -187,7 +187,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="applefishsky009.github.io/2016/07/25/泛型编程/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/07/25/泛型编程/#disqus_thread"></a>
         </span>
       
 
@@ -205,7 +205,7 @@ ga('send', 'pageview');
 <li>迭代器应可以比较(<code>p==q</code>,<code>p!=q</code>);</li>
 <li>迭代器应可以遍历容器(<code>p++</code>,<code>q++</code>)。</li>
 </ol>
-<p>参考<a href="http://rylcode.cn/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">i++与++i的区别</a>，为了区分前缀版本和后缀版本，C++将<code>operator++</code>作为前缀版本，将<code>operator++(int)</code>作为后缀版本，其中的参数永远不会用到，因此不必指定其名称，列出<code>iterator</code>中<code>p++</code>和<code>++p</code>的实现：</p>
+<p>参考<a href="http://rylcode.cn/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/">i++与++i的区别</a>，为了区分前缀版本和后缀版本，C++将<code>operator++</code>作为前缀版本，将<code>operator++(int)</code>作为后缀版本，其中的参数永远不会用到，因此不必指定其名称，列出<code>iterator</code>中<code>p++</code>和<code>++p</code>的实现：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">iterator&amp; <span class="keyword">operator</span>++()&#123;	<span class="comment">//++p</span></span><br><span class="line">	pt = pt-&gt;next;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterator&amp; <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;	<span class="comment">//p++</span></span><br><span class="line">	iterator tmp = *<span class="keyword">this</span>;</span><br><span class="line">	pt = pt-&gt;next;</span><br><span class="line">	<span class="keyword">return</span> tmp; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <ol>
@@ -402,7 +402,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'applefishsky009.github.io/2016/07/25/泛型编程/';
+    var disqus_url = 'http://rylcode.cn/2016/07/25/泛型编程/';
     
     (function(){
       var dsq = document.createElement('script');

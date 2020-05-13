@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-  <html class="dark page-home">
+  <html class="light page-home">
 
 
 <head><meta name="generator" content="Hexo 3.9.0">
@@ -19,11 +19,11 @@
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据存储与二进制运算">
-<meta property="og:url" content="applefishsky009.github.io/2016/04/09/数据存储与二进制运算/index.html">
+<meta property="og:url" content="http://rylcode.cn/2016/04/09/数据存储与二进制运算/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="数据存储为什么需要反码和补码(2016.5.23添加)之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，1+-1=0在内存中怎么计算? 123400000001+10000001=10000010;1+-1=-2? WTF?\therefore00000001+11111110(反码)=11111111;11111111+">
 <meta property="og:locale" content="Chinese">
-<meta property="og:updated_time" content="2020-05-11T23:57:44.025Z">
+<meta property="og:updated_time" content="2020-05-13T12:18:58.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据存储与二进制运算">
 <meta name="twitter:description" content="数据存储为什么需要反码和补码(2016.5.23添加)之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，1+-1=0在内存中怎么计算? 123400000001+10000001=10000010;1+-1=-2? WTF?\therefore00000001+11111110(反码)=11111111;11111111+">
@@ -187,7 +187,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="applefishsky009.github.io/2016/04/09/数据存储与二进制运算/#disqus_thread"></a>
+          <a href="http://www.rylcode.com/2016/04/09/数据存储与二进制运算/#disqus_thread"></a>
         </span>
       
 
@@ -256,7 +256,7 @@ ga('send', 'pageview');
 <p>考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有<code>00000000</code>、<code>10000000</code>两个原码表示+0与-0，而这是没有意义的。我们保证<code>00000000</code>这个原码与<code>00000000</code>这个补码相对应来表示0就可以。这样找到了消失的原码：<code>10000000</code>。</p>
 <p>在这个基于256的数值域中，观察补码的<strong>重置点（溢出中非常重要的概念）</strong>127的补码<code>01111111</code>，-127的补码<code>10000001</code>，那么可以清楚的看到<code>127+1=？</code>、<code>？+1=127</code>。因此很好理解，多余的补码是<code>10000000</code>（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即<strong>-128的原码</strong>是<code>10000000</code>，<strong>补码</strong>也是<code>10000000</code>（显然它的<strong>反码</strong>是<code>01111111</code>）。</p>
 <h3 id="数据扩充和缩窄"><a href="#数据扩充和缩窄" class="headerlink" title="数据扩充和缩窄"></a>数据扩充和缩窄</h3><ol>
-<li>数据扩充在之前<a href="http://rylcode.cn/2016/04/08/LeetCodeC1%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/" target="_blank" rel="noopener">LeetCode编程技巧说明</a>提到过，有符号扩充符号位，无符号扩充0;</li>
+<li>数据扩充在之前<a href="http://rylcode.cn/2016/04/08/LeetCodeC1%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/">LeetCode编程技巧说明</a>提到过，有符号扩充符号位，无符号扩充0;</li>
 <li>数据缩窄，编译器认为你只对低位感兴趣，因此会丢掉高位(栈中从变量开始字节访问固定的字节结束)。列表初始化和枚举是不允许缩窄的。</li>
 </ol>
 <hr>
@@ -455,7 +455,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'applefishsky009.github.io/2016/04/09/数据存储与二进制运算/';
+    var disqus_url = 'http://rylcode.cn/2016/04/09/数据存储与二进制运算/';
     
     (function(){
       var dsq = document.createElement('script');
