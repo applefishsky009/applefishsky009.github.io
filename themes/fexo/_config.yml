@@ -1,11 +1,7 @@
 # Blog info
 blog_name: 孤云两角，去天一握
 slogan: Smart is new sexy
-<<<<<<< HEAD
 url: https://applefishsky009.github.io
-=======
-url: applefishsky009.github.io
->>>>>>> origin/hexo
 
 # Set avatar (Absolute url and relative url)
 avatar: /images/avatar.jpg
@@ -118,11 +114,7 @@ about:
     icon: icon-user
     text_value:
     - "USTC, UCAS, 1991, Autumn"
-<<<<<<< HEAD
     - "硕士, 极简。C++ / Python / C"
-=======
-    - "硕士, 极简。C / C++ / Python"
->>>>>>> origin/hexo
   - type: Github
     icon: icon-github
     text_key: Github

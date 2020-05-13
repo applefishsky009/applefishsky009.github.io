@@ -12,11 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-<<<<<<< HEAD
 url: https://applefishsky009.github.io
-=======
-url: applefishsky009.github.io
->>>>>>> origin/hexo
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
