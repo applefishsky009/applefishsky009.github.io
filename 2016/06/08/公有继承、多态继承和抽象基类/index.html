@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>公有继承，多态继承和抽象基类 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="通过本篇的学习，可以看到如何通过类继承来实现代码复用(可重用性)，不得让人感慨设计的精妙。简单来讲，类继承可以完成以下工作：  已有类的基础上添加功能； 给类添加数据； 修改类方法的行为。  但以下是不能被继承的：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。   公有继承简单继承有三种：公有继">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="公有继承，多态继承和抽象基类">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/08/公有继承、多态继承和抽象基类/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="通过本篇的学习，可以看到如何通过类继承来实现代码复用(可重用性)，不得让人感慨设计的精妙。简单来讲，类继承可以完成以下工作：  已有类的基础上添加功能； 给类添加数据； 修改类方法的行为。  但以下是不能被继承的：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。   公有继承简单继承有三种：公有继">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="公有继承，多态继承和抽象基类">
+<meta name="twitter:description" content="通过本篇的学习，可以看到如何通过类继承来实现代码复用(可重用性)，不得让人感慨设计的精妙。简单来讲，类继承可以完成以下工作：  已有类的基础上添加功能； 给类添加数据； 修改类方法的行为。  但以下是不能被继承的：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。   公有继承简单继承有三种：公有继">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#公有继承"><span class="toc-text">公有继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C风格字符串参数"><span class="toc-text">C风格字符串参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公有派生的特性"><span class="toc-text">公有派生的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#公有继承的构造函数"><span class="toc-text">公有继承的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基类指针-引用-指向-引用派生类对象"><span class="toc-text">基类指针/引用 指向/引用派生类对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不能被继承的赋值运算符"><span class="toc-text">不能被继承的赋值运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多态继承"><span class="toc-text">多态继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏的规则："><span class="toc-text">隐藏的规则：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏的缺陷"><span class="toc-text">隐藏的缺陷</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用虚方法"><span class="toc-text">使用虚方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚函数对静态联编的困扰"><span class="toc-text">虚函数对静态联编的困扰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚函数实现机制vtbl"><span class="toc-text">虚函数实现机制vtbl</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚函数注意事项"><span class="toc-text">虚函数注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protected访问控制"><span class="toc-text">protected访问控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#抽象基类-ABC"><span class="toc-text">抽象基类(ABC)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ABC特征"><span class="toc-text">ABC特征</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-公有继承、多态继承和抽象基类" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">公有继承，多态继承和抽象基类</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.08</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/08/公有继承、多态继承和抽象基类/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>通过本篇的学习，可以看到如何通过类继承来实现<code>代码复用</code>(可重用性)，不得让人感慨设计的精妙。<br>简单来讲，类继承可以完成以下工作：</p>
+<ol>
+<li>已有类的基础上添加功能；</li>
+<li>给类添加数据；</li>
+<li>修改类方法的行为。</li>
+</ol>
+<p>但以下是不能被继承的：</p>
+<ol>
+<li>构造函数(派生类调用基类)；</li>
+<li>析构函数(派生类调用基类)；</li>
+<li>赋值运算符(成员赋值)；</li>
+<li>友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。</li>
+</ol>
+<hr>
+<h2 id="公有继承"><a href="#公有继承" class="headerlink" title="公有继承"></a>公有继承</h2><p>简单继承有三种：公有继承，保护继承，私有继承。最常用简单公有继承是is-a关系，也就是<strong>包含</strong>关系，这种关系通常是不可逆的(除非相互包含)。注意这里的包含和has-a中的包含是不一样的，这里是抽象上的逻辑上包含，has-a强调有一个。</p>
+<h3 id="C风格字符串参数"><a href="#C风格字符串参数" class="headerlink" title="C风格字符串参数"></a>C风格字符串参数</h3><p>简单来说，C风格字符串作为函数参数时，函数原型必须是<code>const string</code>才行(否则参数类型不匹配)，如下:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">A <span class="title">a</span><span class="params">(<span class="string">"test"</span>,x,y)</span></span>;	<span class="comment">//A的实例1</span></span><br><span class="line"><span class="function">A <span class="title">b</span><span class="params">(str2,x,y)</span></span>;	<span class="comment">//A的实例2</span></span><br><span class="line">A::A (<span class="keyword">const</span> <span class="built_in">string</span> &amp;first,<span class="keyword">int</span> x,<span class="keyword">int</span> y);	<span class="comment">//A的构造函数原型</span></span><br></pre></td></tr></table></figure>
+
+<p>对“test”可以引用，但显然他是常量，因此引用之后不能改变。那么这个引用必须声明为<code>const</code>，否则构造函数只于实例2匹配。置于传入的是<code>const char*</code>还是<code>string</code>并不重要，因为string类有<code>const char*</code>的构造函数(其实就是告诉编译器，可以将<code>const char*</code>解释为<code>string</code>。</p>
+<ol>
+<li>注意这里的const和A类构造函数中的const不是一个概念；</li>
+<li>即使在赋值过程中构造了string，其是一个中间计算过程，也不能作为左值出现。</li>
+</ol>
+<h3 id="公有派生的特性"><a href="#公有派生的特性" class="headerlink" title="公有派生的特性"></a>公有派生的特性</h3><p>公有派生必须使用<code>public</code>关键字，如下</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>派生类对象存储了积累的数据成员(继承了基类的实现)；</li>
+<li>派生类可以使用基类的方法(派生类继承了基类的接口)；</li>
+<li>派生类需要自己的<strong>构造函数</strong>；</li>
+<li>派生类可以添加额外的数据成员和成员函数。</li>
+</ol>
+<h3 id="公有继承的构造函数"><a href="#公有继承的构造函数" class="headerlink" title="公有继承的构造函数"></a>公有继承的构造函数</h3><p>构造函数必须给新成员和继承的成员提供数据，由于派生类只能通过基类的公有方法来访问基类的私有数据，因此<strong>派生类构造函数必须使用基类的构造函数</strong>来初始化(基类部分的)数据。有以下几个要点：</p>
+<ol>
+<li>创建基类对象；</li>
+<li>派生类通过<strong>成员初始化列表</strong>(非构造函数不能使用成员初始化列表语法)来指明要使用的基类构造函数，否则将会调用默认构造函数；</li>
+<li>派生类初始化其新增的数据成员。</li>
+</ol>
+<h3 id="基类指针-引用-指向-引用派生类对象"><a href="#基类指针-引用-指向-引用派生类对象" class="headerlink" title="基类指针/引用 指向/引用派生类对象"></a>基类指针/引用 指向/引用派生类对象</h3><p>将公有派生类和基类之间的特殊关系总结(从概念上将，公有派生是包含关系，2,3点也就好理解了)如下：</p>
+<ol>
+<li>公有派生的派生类可以使用基类的非私有(公有或保护)方法；</li>
+<li>基类指针在不进行显示类型转化的情况下指向派生类对象；</li>
+<li>基类引用在不进行显示类型转化的情况下可以引用派生类对象。</li>
+</ol>
+<p>2,3(这是<font color="red">公有派生(is-a关系)的核心</font>)有几个常用的场景，</p>
+<ol>
+<li>对象数组中，可以是基类对象和派生类对象(-.-因为派生类对象是一种特殊的基类对象)；</li>
+<li>指向基类对象的指针数组，可以指向基类对象会派生类对象；</li>
+<li>形参为基类引用，实参可以是基类或派生类对象；</li>
+<li>形参是指向基类的指针，实参可以传入基类或派生类对象的地址；</li>
+<li>基类对象可以初始化为派生类对象(调用复制构造函数)；</li>
+<li>派生类对象可以赋给基类对象(调用重载的赋值运算符)。</li>
+</ol>
+<p>这一特性在使用隐藏的多态中会出现问题，虚函数的出现解决了这个问题。</p>
+<h3 id="不能被继承的赋值运算符"><a href="#不能被继承的赋值运算符" class="headerlink" title="不能被继承的赋值运算符"></a>不能被继承的赋值运算符</h3><p>派生类继承的方法特征标与基类完全相同，但赋值运算符的特征标只与类本身有关。因此其不能被继承。</p>
+<ol>
+<li>默认的赋值运算符采用成员赋值的方式。如果是派生类对象，对其中属于基类对象的部分调用基类的赋值运算符(默认或显式)；</li>
+<li>派生类中使用<code>new</code>，必须提供显式的赋值运算符重载；</li>
+<li>派生类对象赋给基类对象，将调用基类的赋值运算符重载，只涉及基类的成员；</li>
+<li>在满足下列两个条件之一时，基类可以赋值给派生类：<ul>
+<li>从基类到派生类的转换构造函数；</li>
+<li>定义一个用于将基类赋给派生类的赋值运算符。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="多态继承"><a href="#多态继承" class="headerlink" title="多态继承"></a>多态继承</h2><p>考虑继承的多态行为，就是说同一个函数在派生类中和基类中行为不同(函数名相同，具体代码有区别)，有两种方式：</p>
+<ol>
+<li>隐藏，即在派生类中重新定义基类方法(派生类隐藏基类同名方法)；</li>
+<li>虚方法(vtbl)。</li>
+</ol>
+<h3 id="隐藏的规则："><a href="#隐藏的规则：" class="headerlink" title="隐藏的规则："></a>隐藏的规则：</h3><p><strong>隐藏</strong>是指<strong>在派生类的函数中屏蔽了与其同名的基类函数</strong>。<br>(1)如果派生类的函数与基类的函数同名，但是参数不同。此时，不论有无 <code>virtual</code>关键字，基类的函数将被隐藏。<br>(2)如果派生类的函数与基类的函数同名，并且参数也相同，但是基类函数没有virtual关键字。此时，基类的函数被隐藏。</p>
+<h3 id="隐藏的缺陷"><a href="#隐藏的缺陷" class="headerlink" title="隐藏的缺陷"></a>隐藏的缺陷</h3><p>在隐藏的时候，程序根据指针或者引用类型选择方法。但是公有继承中基类的指针/引用可以指向/引用派生类对象，这样会导致多态行为不稳定。而虚方法会解决这一问题。他会根据指针指向或引用的对象类型来调用方法而不是指针/引用类型。</p>
+<h3 id="使用虚方法"><a href="#使用虚方法" class="headerlink" title="使用虚方法"></a>使用虚方法</h3><p>在基类中将派生类会<strong>重写(覆盖)</strong>的方法声明为虚方法(在函数声明最前端使用<code>virtual</code>关键字)。</p>
+<ol>
+<li>要将析构函数声明为虚的(保证调用正确的析构函数)；<ul>
+<li>如果析构函数不是虚的，只会调用指针/引用类型的析构函数，而不是对象类型，这会有隐患；</li>
+<li>在重写(覆盖)的虚析构函数里，应该调用基类的析构函数并释放派生类动态申请的空间。</li>
+</ul>
+</li>
+<li>在派生类中定义虚函数时，如果要调用基类同名方法，需要使用作用域解析符，否则编译器会视为递归调用。</li>
+</ol>
+<h3 id="虚函数对静态联编的困扰"><a href="#虚函数对静态联编的困扰" class="headerlink" title="虚函数对静态联编的困扰"></a>虚函数对静态联编的困扰</h3><p>静态联编(C++默认选择)的必要性：</p>
+<ol>
+<li>静态联编效率高；</li>
+<li>指出不要重新定义该函数(因为是静态的)。<br>考虑派生类引用或指针转换为基类引用或指针，被称为向上强制转换。这种关系是不可逆的(因为是包含关系)。这种情况下肯定需要动态联编来调用正确重写的函数。</li>
+</ol>
+<h3 id="虚函数实现机制vtbl"><a href="#虚函数实现机制vtbl" class="headerlink" title="虚函数实现机制vtbl"></a>虚函数实现机制vtbl</h3><p>C++规定了虚函数的行为，编译器执行他的实现。实现方式为为每个对象添加<strong>一个</strong>隐藏成员，他是一个指向函数地址数组的指针，这个数组称为<strong>虚函数表(vtbl)</strong>。虚函数多少决定了这个地址数组大小。实现机制：</p>
+<ol>
+<li>如果重写虚方法，vtbl保存新函数地址；</li>
+<li>如果没有重写虚方法，vtbl指向基类原始方法地址；</li>
+<li>如果定义新的虚方法，vtbl加入新成员。<br>虚函数具有了动态联编的能力，同时使用虚函数的成本：</li>
+<li>每个对象都将增大(指针成员和存储地址的空间)；</li>
+<li>编译器为每一个类创建一个虚函数地址表(数组)(对象是类的实例)；</li>
+<li>每个虚函数调用，都需要到表中查找地址。</li>
+</ol>
+<h3 id="虚函数注意事项"><a href="#虚函数注意事项" class="headerlink" title="虚函数注意事项"></a>虚函数注意事项</h3><p>之前关于虚函数大体上说有三个要点：</p>
+<ol>
+<li>需要重写就声明虚函数；</li>
+<li>使用<code>virtual</code>关键字；</li>
+<li>(由于向上强制转化)使用动态联编。</li>
+</ol>
+<p>还有一些注意事项：</p>
+<ol>
+<li>构造函数不能是虚函数，而应该在派生类中调用基类的构造函数；</li>
+<li>不管是否用作基类，析构函数应该是虚的(只是不用做基类时效率略低)；</li>
+<li>友元不能是虚函数，因为友元不是成员函数。只有成员函数才能被申明为虚；<ul>
+<li><strong>友元函数</strong>不是成员函数，不能被继承；</li>
+<li>如果想派生类使用基类的友元函数，可以通过强制类型转换，将派生类引用或指针转换为基类引用或指针，使用转换后的引用或指针来调用基类的友元函数。</li>
+</ul>
+</li>
+<li>基类中声明为虚，但派生类中没有重写，依然会调用基类方法<ul>
+<li>因为vtbl初始状态是基类方法地址，重写一个虚方法才更新；</li>
+<li>由<font color="red">C++的隐藏规则</font>可推断，应该是先删掉所有的同名函数地址，然后加入新的虚方法地址。</li>
+</ul>
+</li>
+<li>由4中所说，重写才将隐藏方法。</li>
+</ol>
+<p>2条经验规则：</p>
+<ol>
+<li>重写的继承方法确保与原来的原型完全相同，但<font color="red">返回类型协变</font>例外。返回类型协变：如果返回类型是基类引用或指针，则可以修改为指向派生类的引用或指针。只适用于返回类型不适用于参数；</li>
+<li>如果基类声明被重载了，派生类中应重写所有的基类版本(先重写的版本<strong>隐藏</strong>所有的同名函数)。<ul>
+<li>如果只重写一个版本，另外两版本会被隐藏，派生类将无法使用；</li>
+<li>如果想使用基类方法但是又不要修改方法，在重写的派生类方法中调用基类方法即可。</li>
+</ul>
+</li>
+</ol>
+<h3 id="protected访问控制"><a href="#protected访问控制" class="headerlink" title="protected访问控制"></a>protected访问控制</h3><p><code>protected</code>关键字使类成员在类外是<code>public</code>权限，在派生类内是<code>public</code>权限。但是其类成员的选择值得注意：</p>
+<ol>
+<li>数据成员最好采用私有访问控制。因为数据成员一般被封装，只能通过成员函数访问，如果被声明为<code>protected</code>，在派生类中其成为公有数据，与数据隐藏的概念相矛盾，可以调用基类方法来修改私有数据成员；</li>
+<li>对<strong>成员函数</strong>来讲，保护访问控制很有用。对基类，一些方法的实现细节被封装(外部不可见)；对派生类，我们依然可以调用这些成员函数来完成更多的工作(可作为派生类方法的实现细节)。</li>
+</ol>
+<hr>
+<h2 id="抽象基类-ABC"><a href="#抽象基类-ABC" class="headerlink" title="抽象基类(ABC)"></a>抽象基类(ABC)</h2><p>一些情况下的公有派生是很笨拙的，例如圆是一种椭圆。可以通过抽象基类(ABC)来抽象出他们的共性，ABC使用纯虚函数(<code>virtual</code>与原型<code>=0</code>)来提供未实现的函数接口(由于实现接口的一些数据不是共性，在派生类中才能添加)。注意，<font color="red">至少含一个纯虚函数的类才是ABC</font>。一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">double</span> <span class="title">Area</span><span class="params">()</span> <span class="keyword">const</span> </span>= <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ABC特征"><a href="#ABC特征" class="headerlink" title="ABC特征"></a>ABC特征</h3><ol>
+<li>在ABC派生的具体类中实现纯虚方法的定义；</li>
+<li>使用ABC指针数组管理所有具体类；</li>
+<li>ABC是一种必须实现的接口。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/08/公有继承、多态继承和抽象基类/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

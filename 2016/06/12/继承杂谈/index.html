@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>继承杂谈 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="在上一篇提到过，不能被继承的一些情况：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。  这篇详细说明这些。  友元函数继承只针对成员函数，但友元不是成员函数，因此不能被继承。如果希望派生类可以使用基类的友元函数，可以使用指针强制转化将基类指针指向派生类指针，通过基类指针调用友元函数。  继承中动">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承杂谈">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/12/继承杂谈/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="在上一篇提到过，不能被继承的一些情况：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。  这篇详细说明这些。  友元函数继承只针对成员函数，但友元不是成员函数，因此不能被继承。如果希望派生类可以使用基类的友元函数，可以使用指针强制转化将基类指针指向派生类指针，通过基类指针调用友元函数。  继承中动">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.031Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="继承杂谈">
+<meta name="twitter:description" content="在上一篇提到过，不能被继承的一些情况：  构造函数(派生类调用基类)； 析构函数(派生类调用基类)； 赋值运算符(成员赋值)； 友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。  这篇详细说明这些。  友元函数继承只针对成员函数，但友元不是成员函数，因此不能被继承。如果希望派生类可以使用基类的友元函数，可以使用指针强制转化将基类指针指向派生类指针，通过基类指针调用友元函数。  继承中动">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#友元函数"><span class="toc-text">友元函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#继承中动态内存分配"><span class="toc-text">继承中动态内存分配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#派生类不使用new"><span class="toc-text">派生类不使用new</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#派生类使用new"><span class="toc-text">派生类使用new</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-继承杂谈" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">继承杂谈</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/12/继承杂谈/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>在上一篇提到过，不能被继承的一些情况：</p>
+<ol>
+<li>构造函数(派生类调用基类)；</li>
+<li>析构函数(派生类调用基类)；</li>
+<li>赋值运算符(成员赋值)；</li>
+<li>友元函数(非成员函数，通过指针强制类型转化改变作用域访问)。</li>
+</ol>
+<p>这篇详细说明这些。</p>
+<hr>
+<h2 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h2><p>继承只针对成员函数，但友元不是成员函数，因此不能被继承。如果希望派生类可以使用基类的友元函数，可以使用指针强制转化将基类指针指向派生类指针，通过基类指针调用友元函数。</p>
+<hr>
+<h2 id="继承中动态内存分配"><a href="#继承中动态内存分配" class="headerlink" title="继承中动态内存分配"></a>继承中动态内存分配</h2><p>派生类构造函数使用列表初始化调用基类的构造函数。余下的复制构造函数，析构函数，赋值运算符重载，都是与动态内存分配相关(这三种成员函数总是需要特别注意分配的动态内存)，放在一起来分析。</p>
+<h3 id="派生类不使用new"><a href="#派生类不使用new" class="headerlink" title="派生类不使用new"></a>派生类不使用new</h3><ol>
+<li>默认析构函数是合适的(销毁自身构造的对象部分后调用基类的析构函数)；</li>
+<li>复制构造函数是合适的(成员复制，基类对象部分调用基类对象的复制构造函数)；</li>
+<li>同上，赋值运算符也是合适的(赋值运算符一般需要用复制构造函数)。</li>
+</ol>
+<h3 id="派生类使用new"><a href="#派生类使用new" class="headerlink" title="派生类使用new"></a>派生类使用new</h3><p>必须为派生类定义显式析构函数，复制构造函数和赋值运算符。</p>
+<ol>
+<li>析构函数需要对派生类构造执行工作进行清理(delete new出来的空间)；</li>
+<li>派生类复制构造函数，初始化列表中将派生类对象直接传递给基类对象用来复制派生类中的基类部分(因为基类引用可以引用派生类对象，这调用基类复制构造函数)，在代码块中执行剩下的工作。</li>
+<li>派生类赋值运算符使用作用域解析符显式调用基类的复制构造函数。例如：<code>base::operator=(a)</code>，其作用相当于<code>*this=a</code>(但这个语法是错的)，只不过将后者的赋值运算符显式声明为基类赋值运算符。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/12/继承杂谈/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

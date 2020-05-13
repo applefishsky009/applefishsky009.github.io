@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>局域网通信 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="计算机网络,">
+  
+
+  <meta name="description" content="这是对第一篇博客访问网站时到底发生了什么？中，局域网通信的扩展。  以太网和互联网的区别通常来说，局域网是工作在网络接口层的小型网络；互联网是将小型网络连接起来的大型网络。  以太网是为了实现局域网通信而设计的一种(目前应用最普遍的)技术(局域网组网方式)，没有中继覆盖200m。其他局域网标准如令牌环，FDDI，ARCNET； 互联网(internet)是网络的网络； 因特网(Internet)特">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="局域网通信">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/05/局域网通信/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="这是对第一篇博客访问网站时到底发生了什么？中，局域网通信的扩展。  以太网和互联网的区别通常来说，局域网是工作在网络接口层的小型网络；互联网是将小型网络连接起来的大型网络。  以太网是为了实现局域网通信而设计的一种(目前应用最普遍的)技术(局域网组网方式)，没有中继覆盖200m。其他局域网标准如令牌环，FDDI，ARCNET； 互联网(internet)是网络的网络； 因特网(Internet)特">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="局域网通信">
+<meta name="twitter:description" content="这是对第一篇博客访问网站时到底发生了什么？中，局域网通信的扩展。  以太网和互联网的区别通常来说，局域网是工作在网络接口层的小型网络；互联网是将小型网络连接起来的大型网络。  以太网是为了实现局域网通信而设计的一种(目前应用最普遍的)技术(局域网组网方式)，没有中继覆盖200m。其他局域网标准如令牌环，FDDI，ARCNET； 互联网(internet)是网络的网络； 因特网(Internet)特">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#以太网和互联网的区别"><span class="toc-text">以太网和互联网的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP地址与MAC地址"><span class="toc-text">IP地址与MAC地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARP协议"><span class="toc-text">ARP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是ARP？"><span class="toc-text">什么是ARP？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么时候用ARP？"><span class="toc-text">什么时候用ARP？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主机为什么会不知道MAC地址？"><span class="toc-text">主机为什么会不知道MAC地址？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP到底是在网络层还是在数据链路层？"><span class="toc-text">ARP到底是在网络层还是在数据链路层？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARP协议怎么使用"><span class="toc-text">ARP协议怎么使用</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-局域网通信" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">局域网通信</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.05</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/05/局域网通信/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这是对第一篇博客<a href="http://rylcode.cn/2016/06/04/%E8%AE%BF%E9%97%AE%E7%BD%91%E7%AB%99%E6%97%B6%E5%88%B0%E5%BA%95%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_blank" rel="noopener">访问网站时到底发生了什么？</a>中，局域网通信的扩展。</p>
+<hr>
+<h2 id="以太网和互联网的区别"><a href="#以太网和互联网的区别" class="headerlink" title="以太网和互联网的区别"></a>以太网和互联网的区别</h2><p>通常来说，局域网是工作在网络接口层的小型网络；互联网是将小型网络连接起来的大型网络。</p>
+<ol>
+<li>以太网是为了实现局域网通信而设计的一种(目前应用最普遍的)技术(局域网组网方式)，没有中继覆盖200m。其他局域网标准如令牌环，FDDI，ARCNET；</li>
+<li>互联网(internet)是网络的网络；</li>
+<li>因特网(Internet)特指当前全球最大的，开放的，有众多网络互相连接而成的特定计算机网络，采用TCP/IP协议族作为通信规则；</li>
+<li>以太网&lt;局域网&lt;互联网!=因特网。</li>
+</ol>
+<hr>
+<h2 id="IP地址与MAC地址"><a href="#IP地址与MAC地址" class="headerlink" title="IP地址与MAC地址"></a>IP地址与MAC地址</h2><p>由于全世界网络各式各样，使用的硬件地址也不同，如果用硬件地址通信，需要非常复杂的硬件地址转换工作。因此使用统一的IP地址通信。</p>
+<ol>
+<li>MAC地址是数据链路层和物理层使用的地址，是物理地址，IP地址是网络层和以上各层使用的地址，是逻辑地址。</li>
+<li>IP数据报是MAC帧的数据，链路层只能看见MAC帧，IP层抽象的互联网上只能看到IP数据报，屏蔽下层细节；</li>
+<li>路由器只根据目的站的IP地址网络号进行路由选择。</li>
+<li>报文发送过程中IP地址是不会变化的。</li>
+</ol>
+<hr>
+<h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><h3 id="什么是ARP？"><a href="#什么是ARP？" class="headerlink" title="什么是ARP？"></a>什么是ARP？</h3><p>解决<strong>同一个局域网</strong>上的主机或路由器的IP地址和硬件地址的映射问题。是局域网内通信。<br>由于数据发送在数据链路层和物理层上，也就是说必须是硬件到硬件的数据发送，因此如果不是一个局域网，地址解析也是没有意义的。</p>
+<h3 id="什么时候用ARP？"><a href="#什么时候用ARP？" class="headerlink" title="什么时候用ARP？"></a>什么时候用ARP？</h3><p>主机准备封装MAC帧的时候发现他不知道(同一个局域网内)另一台主机的MAC地址或第一跳(局域网路由器)的MAC地址。具体是哪一种情况，主机<strong>根据目的IP识别</strong>。</p>
+<h3 id="主机为什么会不知道MAC地址？"><a href="#主机为什么会不知道MAC地址？" class="headerlink" title="主机为什么会不知道MAC地址？"></a>主机为什么会不知道MAC地址？</h3><p>主机有一个ARP高速缓存记录IP-MAC对(高速缓存可以极大减少网络信息量)，每一个映射地址项目都有生存时间(10-20min)，如果目的主机换了网络适配器，主机找不到目的主机，生存时间之后，ARP高速缓存就删除了原先的目的主机硬件地址。</p>
+<h3 id="ARP到底是在网络层还是在数据链路层？"><a href="#ARP到底是在网络层还是在数据链路层？" class="headerlink" title="ARP到底是在网络层还是在数据链路层？"></a>ARP到底是在网络层还是在数据链路层？</h3><p>IP协议使用了ARP协议解析其物理地址，所以通常来讲将他放在网络层。但是解析出来的MAC地址实在数据链路层使用。因此也有将其划分在数据链路层，只要明白原理，其在哪一层不重要。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>每经过一个硬件设备，MAC帧首部的地址就会变化，但IP数据报首部的地址不会变化。</p>
+<h3 id="ARP协议怎么使用"><a href="#ARP协议怎么使用" class="headerlink" title="ARP协议怎么使用"></a>ARP协议怎么使用</h3><ol>
+<li>主机A想局域网上的主机B(主机或者路由器，取决于A的IP数据报首部的目的IP)发送数据报时，在ARP高速缓存中查看IP-MAC映射；</li>
+<li>若没有，ARP进程在本局域网发送ARP广播请求(WLAN协议(CSMA/CA)或广播信道CSMA/CD协议)，本局域网上所有主机运行的ARP进程都会收到这个请求；</li>
+<li>主机B的IP地址与请求的IP一致，则接受请求，并向A单播发送ARP请求响应(在其中写入自己的MAC地址)</li>
+<li>主机A收到ARP请求响应，将IP-MAC写入ARP高速缓存，并填入MAC帧，发送数据报。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/05/局域网通信/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

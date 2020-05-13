@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>中继器、集线器、网桥、交换机、路由器和网关 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="计算机网络,">
+  
+
+  <meta name="description" content="首先这些设备运行在不同层上：    OSI模型 设备    应用层 应用网关   传输层 传输网关   网络层 路由器   数据链路层 网桥、交换机   物理层 中继器、集线器   另外需要特别说明的是，无线路由器是AP(Access Point)，路由功能和交换机的集合体。  他是AP,有ip地址，可以访问； 他是路由，可以访问网络； 他是交换机，可以建立无线局域网。   中继器(又称转发器，放">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中继器、集线器、网桥、交换机、路由器和网关">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/17/中继器、集线器、网桥、交换机、路由器和网关/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="首先这些设备运行在不同层上：    OSI模型 设备    应用层 应用网关   传输层 传输网关   网络层 路由器   数据链路层 网桥、交换机   物理层 中继器、集线器   另外需要特别说明的是，无线路由器是AP(Access Point)，路由功能和交换机的集合体。  他是AP,有ip地址，可以访问； 他是路由，可以访问网络； 他是交换机，可以建立无线局域网。   中继器(又称转发器，放">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中继器、集线器、网桥、交换机、路由器和网关">
+<meta name="twitter:description" content="首先这些设备运行在不同层上：    OSI模型 设备    应用层 应用网关   传输层 传输网关   网络层 路由器   数据链路层 网桥、交换机   物理层 中继器、集线器   另外需要特别说明的是，无线路由器是AP(Access Point)，路由功能和交换机的集合体。  他是AP,有ip地址，可以访问； 他是路由，可以访问网络； 他是交换机，可以建立无线局域网。   中继器(又称转发器，放">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#中继器-又称转发器，放大器"><span class="toc-text">中继器(又称转发器，放大器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集线器"><span class="toc-text">集线器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网桥"><span class="toc-text">网桥</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交换机"><span class="toc-text">交换机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由器"><span class="toc-text">路由器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传输网关"><span class="toc-text">传输网关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用网关"><span class="toc-text">应用网关</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-中继器、集线器、网桥、交换机、路由器和网关" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">中继器、集线器、网桥、交换机、路由器和网关</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.17</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/17/中继器、集线器、网桥、交换机、路由器和网关/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>首先这些设备运行在不同层上：</p>
+<table>
+<thead>
+<tr>
+<th align="center">OSI模型</th>
+<th align="center">设备</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">应用层</td>
+<td align="center">应用网关</td>
+</tr>
+<tr>
+<td align="center">传输层</td>
+<td align="center">传输网关</td>
+</tr>
+<tr>
+<td align="center">网络层</td>
+<td align="center">路由器</td>
+</tr>
+<tr>
+<td align="center">数据链路层</td>
+<td align="center">网桥、交换机</td>
+</tr>
+<tr>
+<td align="center">物理层</td>
+<td align="center">中继器、集线器</td>
+</tr>
+</tbody></table>
+<p>另外需要<strong>特别说明</strong>的是，无线路由器是AP(Access Point)，路由功能和交换机的集合体。</p>
+<ol>
+<li>他是AP,有ip地址，可以访问；</li>
+<li>他是路由，可以访问网络；</li>
+<li>他是交换机，可以建立无线局域网。</li>
+</ol>
+<hr>
+<h2 id="中继器-又称转发器，放大器"><a href="#中继器-又称转发器，放大器" class="headerlink" title="中继器(又称转发器，放大器)"></a>中继器(又称转发器，放大器)</h2><p>信号放大。</p>
+<ol>
+<li>他是模拟设备(处理连续变化的序列而不是脉冲)，用于连接两个电缆线；</li>
+<li>在一段上出现的信号被放大后放到另一段，他只理解电压值，不理解帧、分组、头的概念；</li>
+<li>经典以太网中电缆长度从500m扩展到2500米，以太网允许4个中继器。</li>
+</ol>
+<hr>
+<h2 id="集线器"><a href="#集线器" class="headerlink" title="集线器"></a>集线器</h2><p>连接输入线路，CSMA/CD。</p>
+<ol>
+<li>使用集线器的局域网是一个总线网，各站共享逻辑上的<strong>总线</strong>(各站的适配器执行CSMA/CD协议)；</li>
+<li>很像一个<strong>多接口</strong>的中继器，但通常不会放大信号，一般会再生整形并重新定时；</li>
+<li>他简单的转发比特，不进行碰撞检测(冲突域)，如果信号碰撞，所有接口都将收不到正确的帧，因此所有线路必须运行在同样的速度上。</li>
+<li>采用自适应串音回波抵消防止接口转发的较强信号干扰接口接收到的较弱信号；</li>
+<li>现在堆叠式集线器由4-8个集线器堆叠起来使用；</li>
+<li>有少量的容错能力(断开故障适配器连线)和网络管理能力(指示灯显示网络故障)。</li>
+</ol>
+<hr>
+<h2 id="网桥"><a href="#网桥" class="headerlink" title="网桥"></a>网桥</h2><p>连接两个或多个LAN，基于帧地址路由。</p>
+<ol>
+<li>内部软件从帧头提取目标地址，在一张表中查询地址以确定该把这一帧发送到哪里去；</li>
+<li>一个网桥可以有多个线卡处理不同网络类型和不用速度的网络(比如分别处理以太网和令牌环)；</li>
+<li>与集线器不同的是，往桥上的每条线路都有自己的冲突域。</li>
+</ol>
+<hr>
+<h2 id="交换机"><a href="#交换机" class="headerlink" title="交换机"></a>交换机</h2><p>(一般)连接独立计算机，基于帧地址路由。</p>
+<ol>
+<li>假如A和B在同一LAN,网桥拿到A发送B的帧要丢弃，但是交换机需要转发；</li>
+<li>显然交换机永远不会因为冲突而丢失帧；</li>
+<li>需要比网桥更多的线卡，每块线卡的缓冲区空间将在他端口上到达的帧缓存起来。</li>
+<li>为了防止线卡缓冲区溢出，采用直通型交换机而不是“存储-转发”交换方式(目标头域进来就转发)。</li>
+</ol>
+<hr>
+<h2 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h2><p>通过互联网把信息从源地址传输到目的地址。</p>
+<ol>
+<li>一个分组到达路由器的时候，帧头帧尾被剥掉，净荷域中的分组被传递给路由软件，其利用分组头信息选择一条输出线路；</li>
+<li>路由软件不会看到该分组源地址的任何信息。</li>
+</ol>
+<hr>
+<h2 id="传输网关"><a href="#传输网关" class="headerlink" title="传输网关"></a>传输网关</h2><p>将两台使用不同的面向连接的传输协议连接起来。</p>
+<ol>
+<li>将分组从一个连接复制到另一个连接中，根据需要重新格式化；</li>
+<li>面向连接的TCP/IP协议与面向连接的ATM传输协议通话。</li>
+</ol>
+<hr>
+<h2 id="应用网关"><a href="#应用网关" class="headerlink" title="应用网关"></a>应用网关</h2><p>消息格式转化。</p>
+<ol>
+<li>理解数据内容，将消息从一种格式转译为另一种格式。</li>
+<li>电子邮件网关将Internet消息转以为移动电话的SMS消息。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/17/中继器、集线器、网桥、交换机、路由器和网关/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

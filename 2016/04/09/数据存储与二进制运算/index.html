@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>数据存储与二进制运算 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="数据存储为什么需要反码和补码(2016.5.23添加)之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，1+-1=0在内存中怎么计算? 123400000001+10000001=10000010;1+-1=-2? WTF?\therefore00000001+11111110(反码)=11111111;11111111+">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据存储与二进制运算">
+<meta property="og:url" content="applefishsky009.github.io/2016/04/09/数据存储与二进制运算/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="数据存储为什么需要反码和补码(2016.5.23添加)之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，1+-1=0在内存中怎么计算? 123400000001+10000001=10000010;1+-1=-2? WTF?\therefore00000001+11111110(反码)=11111111;11111111+">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.025Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据存储与二进制运算">
+<meta name="twitter:description" content="数据存储为什么需要反码和补码(2016.5.23添加)之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，1+-1=0在内存中怎么计算? 123400000001+10000001=10000010;1+-1=-2? WTF?\therefore00000001+11111110(反码)=11111111;11111111+">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储"><span class="toc-text">数据存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么需要反码和补码-2016-5-23添加"><span class="toc-text">为什么需要反码和补码(2016.5.23添加)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#原、反、补码"><span class="toc-text">原、反、补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#消失的原码"><span class="toc-text">消失的原码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据扩充和缩窄"><span class="toc-text">数据扩充和缩窄</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><span class="toc-text">二进制运算（移位得到CHAR_MAX和CHAR_MIN）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编译器的困惑"><span class="toc-text">编译器的困惑</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-数据存储与二进制运算" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">数据存储与二进制运算</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/04/09/数据存储与二进制运算/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h2><h3 id="为什么需要反码和补码-2016-5-23添加"><a href="#为什么需要反码和补码-2016-5-23添加" class="headerlink" title="为什么需要反码和补码(2016.5.23添加)"></a>为什么需要反码和补码(2016.5.23添加)</h3><p>之前几乎在所有的课本上看到为了方便计算，所以有了反码和补码，但是为什么?这两天在看斯坦福的公开课的时候恍然大悟，一个例子说明，<code>1+-1=0</code>在内存中怎么计算?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">00000001+10000001=10000010;1+-1=-2? WTF?</span><br><span class="line">\therefore</span><br><span class="line">00000001+11111110(反码)=11111111;</span><br><span class="line">11111111+00000001=0;</span><br></pre></td></tr></table></figure>
+
+<p>因此很显然，反码存在就是和原码相加之后得到所有位都是1，然后加1就得到了0。<br>多么美妙的二进制运算,以前太多孤陋寡闻,居然不知道这个道理。</p>
+<h3 id="原、反、补码"><a href="#原、反、补码" class="headerlink" title="原、反、补码"></a>原、反、补码</h3><p>计算机为方便计算，内存中的数据都是以补码的形式储存、运算。</p>
+<table>
+<thead>
+<tr>
+<th align="center">数</th>
+<th align="center">原码</th>
+<th align="center">反码</th>
+<th align="center">补码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">正数</td>
+<td align="center">二进制表示</td>
+<td align="center">与原码相同</td>
+<td align="center">与原码相同</td>
+</tr>
+<tr>
+<td align="center">负数</td>
+<td align="center">对应正数符号位（最高位）置1</td>
+<td align="center">负数原码<strong>非符号位</strong>按位取反</td>
+<td align="center">负数反码加1</td>
+</tr>
+</tbody></table>
+<p>举个例子，数据类型为<code>char</code>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">原数字</th>
+<th align="center">原码</th>
+<th align="center">反码</th>
+<th align="center">补码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>+3</code></td>
+<td align="center"><code>00000011</code></td>
+<td align="center"><code>00000011</code></td>
+<td align="center"><code>00000011</code></td>
+</tr>
+<tr>
+<td align="center"><code>-3</code></td>
+<td align="center"><code>10000011</code></td>
+<td align="center"><code>11111100</code></td>
+<td align="center"><code>11111101</code></td>
+</tr>
+<tr>
+<td align="center">值得注意的是，如果这个数据为<code>unsigned char</code>，<code>11111101</code>对应的是253，这里涉及到溢出，详细讨论见下一博客。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="消失的原码"><a href="#消失的原码" class="headerlink" title="消失的原码"></a>消失的原码</h3><p>对于<code>unsigned char</code>原反补相同，计算机存储的补码就是原码，原码二进制经典编码有256个；但是对于<code>signed char</code>，最高位是符号位，因此原码的取值范围是-127-127，只有<strong>255个编码</strong>，但是对内存来说，8bits可以编码256个，那多余的补码与消失的原码去了哪里？</p>
+<p>考虑到编码效率，补码与原码必须是一一对应的关系。很容易想到在有符号数中有<code>00000000</code>、<code>10000000</code>两个原码表示+0与-0，而这是没有意义的。我们保证<code>00000000</code>这个原码与<code>00000000</code>这个补码相对应来表示0就可以。这样找到了消失的原码：<code>10000000</code>。</p>
+<p>在这个基于256的数值域中，观察补码的<strong>重置点（溢出中非常重要的概念）</strong>127的补码<code>01111111</code>，-127的补码<code>10000001</code>，那么可以清楚的看到<code>127+1=？</code>、<code>？+1=127</code>。因此很好理解，多余的补码是<code>10000000</code>（与消失的原码相同，通过计算他的原码可以得到验证）。那么剩下的事情就是设置重置点了，有两个选择，128或者-128。考虑到符号位是1，我们人为规定-128是重置点。即<strong>-128的原码</strong>是<code>10000000</code>，<strong>补码</strong>也是<code>10000000</code>（显然它的<strong>反码</strong>是<code>01111111</code>）。</p>
+<h3 id="数据扩充和缩窄"><a href="#数据扩充和缩窄" class="headerlink" title="数据扩充和缩窄"></a>数据扩充和缩窄</h3><ol>
+<li>数据扩充在之前<a href="http://rylcode.cn/2016/04/08/LeetCodeC1%E7%BC%96%E7%A8%8B%E6%8A%80%E5%B7%A7%E8%AF%B4%E6%98%8E/" target="_blank" rel="noopener">LeetCode编程技巧说明</a>提到过，有符号扩充符号位，无符号扩充0;</li>
+<li>数据缩窄，编译器认为你只对低位感兴趣，因此会丢掉高位(栈中从变量开始字节访问固定的字节结束)。列表初始化和枚举是不允许缩窄的。</li>
+</ol>
+<hr>
+<h2 id="二进制运算（移位得到CHAR-MAX和CHAR-MIN）"><a href="#二进制运算（移位得到CHAR-MAX和CHAR-MIN）" class="headerlink" title="二进制运算（移位得到CHAR_MAX和CHAR_MIN）"></a>二进制运算（移位得到CHAR_MAX和CHAR_MIN）</h2><p>明白上述数据存储概念之后，可以通过位运算来获得<code>char</code>的最大最小值。注意，其实在<code>climit</code>文件中有各种宏定义的最大最小值，比如<code>CHAR_MAX = 127</code>;<code>UCHAR_MAX = 0xff</code>;等。但是这里想利用位运算来实现这一目标(注意重置点)：</p>
+<table>
+<thead>
+<tr>
+<th align="center">CHAR_MAX</th>
+<th align="center">CHAR_MIN</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>unsigned char max = 0-1</code></td>
+<td align="center"><code>unsigned char min = 0</code>;</td>
+</tr>
+<tr>
+<td align="center"><code>char max = (1&lt;&lt;7)-1</code></td>
+<td align="center"><code>char min = 1&lt;&lt;7</code>(得到<code>10000000</code>);</td>
+</tr>
+<tr>
+<td align="center">1. 上述表格中<code>unsigned char max</code>本质为<code>signed char = -1</code>的强制类型转化</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. <code>char max</code> 是利用重置点<code>CHAR_MIN</code>得到<code>01111111</code></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">3. <code>char min</code> 是利用-128的特殊补码(而且与原码相同)赋值的</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4. <code>+</code>、<code>-</code>运算的优先级是高于<code>&lt;&lt;</code>、<code>&gt;&gt;</code>的，因此<code>1&lt;&lt;7</code>要加括号</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">注意右值中运算表达式中的数字默认都是<code>int</code>类型的，这与C++整型提升有关，详情见另一篇博客。</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>另，由以上解读可以很容易的得出<code>abs(int_X)</code>的工作原理，正数不变，负数求得原码后符号位取反，即原码也是补码。但是有<strong>例外</strong>：<code>abs(INT_MIN) = INT_MIN</code>。他是不变的。</p>
+<p>解读下边两式的区别（使用中<code>unsigned</code>与<code>signed</code>操作注意符号位扩充）：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><code>char a = abs((char)(1&lt;&lt;7)-1)</code></th>
+<th align="center"><code>char b = abs((1&lt;&lt;7)-1)</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>(char)(1&lt;&lt;7)-1 = (int)-129</code></td>
+<td align="center"><code>(1&lt;&lt;7)-1 = (int)127</code></td>
+</tr>
+<tr>
+<td align="center"><code>1·</code></td>
+<td align="center"><code>2·</code></td>
+</tr>
+<tr>
+<td align="center"><code>a = -127</code></td>
+<td align="center"><code>b = 127</code></td>
+</tr>
+<tr>
+<td align="center">1. <code>11111111 11111111 11111111 10000000</code>+<code>11111111 11111111 11111111 11111111</code>=<code>11111111 11111111 11111111 01111111</code>(<code>char</code> 原码<code>10000001</code>)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. <code>00000000 00000000 00000000 1000000</code>-<code>00000000 00000000 00000000 0000001</code>=<code>00000000 00000000 00000000 01111111</code></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="编译器的困惑"><a href="#编译器的困惑" class="headerlink" title="编译器的困惑"></a>编译器的困惑</h2><p>在编程过程中碰到了<a href="http://www.hankcs.com/program/cpp/error-c4146-%E4%B8%80%E5%85%83%E8%B4%9F%E8%BF%90%E7%AE%97%E7%AC%A6%E5%BA%94%E7%94%A8%E4%BA%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B%EF%BC%8C%E7%BB%93%E6%9E%9C%E4%BB%8D%E4%B8%BA%E6%97%A0.html" target="_blank" rel="noopener">这个疑惑</a>,后来发现，明明 int 最小值是 -2147483648，但我们就是<strong>无法</strong>用<code>int n = -2147483648</code>;表示。这是因为这个语句会让编译器产生困惑：</p>
+<ol>
+<li>判断2147483648 &gt; INT_MAX，编译器决定用unsigned int;</li>
+<li>编译器发现负号，对2147483648取反(<em>编译器取反原理是将从高位到第一个1之间的位取反</em>)来尝试表达-2147483648；</li>
+<li>那么在圆图中可以发现，取反操作对2147483648来说依然表达原值。</li>
+</ol>
+<p>因此编译器会提示error:一元负运算符应用于无符号类型，结果仍为无符号类型。那么对-2147483648有两种可用的赋值：</p>
+<ol>
+<li>int n = INT_MIN;</li>
+<li>int n = (-2147483647 - 1);</li>
+</ol>
+<p><font color="red">但是</font>，如果涉及到取反操作<code>-n</code>的计算,对于<code>n=INT_MIN</code>依然存在这个问题，因此需要分解’-n = INT_MAX+1’来分别计算<code>INT_MAX</code>与1的情况并组合。例如[这里][中括号很烦]<br>[中括号很烦]:<a href="https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp" target="_blank" rel="noopener">https://github.com/applefishsky009/LeetCode/blob/master/50%20-%20Pow(x%2C%20n)/50%20-%20Pow(x%2C%20n)%20.cpp</a></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/04/09/数据存储与二进制运算/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

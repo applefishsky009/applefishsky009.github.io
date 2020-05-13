@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门2-数字 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="数字篇  更新他的更新与删除在Python对象介绍中已经说过，注意只缓存简单整型。  类型 布尔型 整型(类似于C中长整型) 浮点(类似于C中双精度浮点型) 复数,属性如下： num.real 返回实部 num.imag 返回虚部 num.conjugate 返回共轭复数     操作符类型转换 如果有一个操作数是复数，另一个操作数被转换为复数； 否则，如果有一个操作数是浮点型，另一个操作数被转化">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门2-数字">
+<meta property="og:url" content="applefishsky009.github.io/2016/12/10/Python入门2-数字/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="数字篇  更新他的更新与删除在Python对象介绍中已经说过，注意只缓存简单整型。  类型 布尔型 整型(类似于C中长整型) 浮点(类似于C中双精度浮点型) 复数,属性如下： num.real 返回实部 num.imag 返回虚部 num.conjugate 返回共轭复数     操作符类型转换 如果有一个操作数是复数，另一个操作数被转换为复数； 否则，如果有一个操作数是浮点型，另一个操作数被转化">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门2-数字">
+<meta name="twitter:description" content="数字篇  更新他的更新与删除在Python对象介绍中已经说过，注意只缓存简单整型。  类型 布尔型 整型(类似于C中长整型) 浮点(类似于C中双精度浮点型) 复数,属性如下： num.real 返回实部 num.imag 返回虚部 num.conjugate 返回共轭复数     操作符类型转换 如果有一个操作数是复数，另一个操作数被转换为复数； 否则，如果有一个操作数是浮点型，另一个操作数被转化">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#更新"><span class="toc-text">更新</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型"><span class="toc-text">类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作符"><span class="toc-text">操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类型转换"><span class="toc-text">类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#标准类型操作符"><span class="toc-text">标准类型操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算术操作符"><span class="toc-text">算术操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整型的位操作符"><span class="toc-text">整型的位操作符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Funtions"><span class="toc-text">Funtions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#转换工厂函数"><span class="toc-text">转换工厂函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#功能函数"><span class="toc-text">功能函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#仅用于整型的函数"><span class="toc-text">仅用于整型的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#进制转化"><span class="toc-text">进制转化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ASCII转换函数"><span class="toc-text">ASCII转换函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他数字类型"><span class="toc-text">其他数字类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#布尔型"><span class="toc-text">布尔型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十进制浮点型"><span class="toc-text">十进制浮点型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数学相关模块"><span class="toc-text">数学相关模块</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门2-数字" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门2-数字</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.12.10</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/12/10/Python入门2-数字/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>数字篇</p>
+<hr>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><p>他的更新与删除在Python对象介绍中已经说过，注意只缓存<font color="red">简单整型</font>。</p>
+<hr>
+<h2 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h2><ol>
+<li>布尔型</li>
+<li>整型(类似于C中长整型)</li>
+<li>浮点(类似于C中双精度浮点型)</li>
+<li>复数,属性如下：<ul>
+<li>num.real 返回实部</li>
+<li>num.imag 返回虚部</li>
+<li>num.conjugate 返回共轭复数</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><ol>
+<li>如果有一个操作数是复数，另一个操作数被转换为复数；</li>
+<li>否则，如果有一个操作数是浮点型，另一个操作数被转化为浮点型；</li>
+<li>否则，如果一个操作数是长整型，则另一个操作数被转化为长整型；</li>
+<li>否则，两者必然普通整型，无需类型转化。</li>
+</ol>
+<h3 id="标准类型操作符"><a href="#标准类型操作符" class="headerlink" title="标准类型操作符"></a>标准类型操作符</h3><p><code>==</code>,<code>&gt;=</code>,<code>&lt;=</code>,<code>&lt;</code>,<code>&gt;</code>,<code>!=</code>,and,or</p>
+<h3 id="算术操作符"><a href="#算术操作符" class="headerlink" title="算术操作符"></a>算术操作符</h3><p><code>+</code>,<code>-</code>,<code>*</code>,<code>/</code>,<code>%</code>,<code>//</code>,<code>**</code></p>
+<ol>
+<li>取余运算的本质：x/y的余数 = x - x//y*y</li>
+</ol>
+<h3 id="整型的位操作符"><a href="#整型的位操作符" class="headerlink" title="整型的位操作符"></a>整型的位操作符</h3><p><code>~</code>,<code>&lt;&lt;</code>,<code>&gt;&gt;</code>,<code>&amp;</code>,<code>^</code>,<code>|</code></p>
+<hr>
+<h2 id="Funtions"><a href="#Funtions" class="headerlink" title="Funtions"></a>Funtions</h2><p>以前叫做内建函数，这以后统一为工厂函数。</p>
+<h3 id="转换工厂函数"><a href="#转换工厂函数" class="headerlink" title="转换工厂函数"></a>转换工厂函数</h3><ol>
+<li>bool(obj)</li>
+<li>int(obj,base = 10),(Python3中取消了函数工厂long()，因为逐渐不区分整型和长整型)、</li>
+<li>float(obj)</li>
+<li>complex(str) or complex(real, imag = 0.0)</li>
+</ol>
+<h3 id="功能函数"><a href="#功能函数" class="headerlink" title="功能函数"></a>功能函数</h3><ol>
+<li>abs() 返回绝对值</li>
+<li>coerce(num1, num2) 转换为同一类型并返回元组</li>
+<li>divmod(num1, num2) 除法-取余运算的结合，返回一个元组(num1/num2, num1%num2)</li>
+<li>pow(num1, num2, mod = 1) 幂函数，提供余数时候效率比<code>**</code>高</li>
+<li>round(flt,ndig = 0) 返回最接近原数的整型(浮点型)，可以设置小数点位数<ul>
+<li>int()直接截去小数部分，返回整型</li>
+<li>math.floor()，得到的是最接近原数但小于原数的整型</li>
+</ul>
+</li>
+</ol>
+<h3 id="仅用于整型的函数"><a href="#仅用于整型的函数" class="headerlink" title="仅用于整型的函数"></a>仅用于整型的函数</h3><h4 id="进制转化"><a href="#进制转化" class="headerlink" title="进制转化"></a>进制转化</h4><ol>
+<li>八进制oct()，返回一个对应值的字符串对象</li>
+<li>十进制hex()</li>
+</ol>
+<h4 id="ASCII转换函数"><a href="#ASCII转换函数" class="headerlink" title="ASCII转换函数"></a>ASCII转换函数</h4><ol>
+<li>返回字符串chr()</li>
+<li>返回整型值ord()</li>
+</ol>
+<hr>
+<h2 id="其他数字类型"><a href="#其他数字类型" class="headerlink" title="其他数字类型"></a>其他数字类型</h2><h3 id="布尔型"><a href="#布尔型" class="headerlink" title="布尔型"></a>布尔型</h3><ol>
+<li>布尔型是整型的子类，但不能再被继承而生成他的子类<ul>
+<li><code>True + 100 = 101</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="十进制浮点型"><a href="#十进制浮点型" class="headerlink" title="十进制浮点型"></a>十进制浮点型</h3><p>由于C中二进制浮点型的精度问题，Python提供了十进制浮点型的包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> decimal <span class="keyword">import</span> Decimal</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="数学相关模块"><a href="#数学相关模块" class="headerlink" title="数学相关模块"></a>数学相关模块</h2><ol>
+<li>decimal</li>
+<li>array</li>
+<li>math/cmath</li>
+<li>operator</li>
+<li>random<ul>
+<li>randint() 左闭右闭区间</li>
+<li>randrange() range()函数一样，可以传递起始值(默认为0)，步长(默认为1)，超尾(不可缺少)。</li>
+<li>uniform() 几乎和randint一样，只不过返回的是浮点型</li>
+<li>random() 类似于uniform()，只不过下线恒等于0.0，上限恒等于1.0</li>
+<li>choice() 随机返回给定序列的一个元素<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ol>
+<p><a href="http://stackoverflow.com/questions/4534438/typeerror-module-object-is-not-callable" target="_blank" rel="noopener">TypeError: ‘module’ object is not callable</a></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/12/10/Python入门2-数字/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

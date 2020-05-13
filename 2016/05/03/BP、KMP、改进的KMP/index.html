@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>BP、KMP、改进的KMP | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Algorithm,">
+  
+
+  <meta name="description" content="在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:  BF(Brute-Force)算法(暴力破解); KMP算法; 改进的KMP算法。  这三种算法的代码在这里。  BF算法设主串从i位开始与子串(从0开始)判断是否匹配;到子串的j位置，对应主串的i+j位置失配;将主串左移一位(i++),j回到0位继续匹配。  K">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BP、KMP、改进的KMP">
+<meta property="og:url" content="applefishsky009.github.io/2016/05/03/BP、KMP、改进的KMP/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:  BF(Brute-Force)算法(暴力破解); KMP算法; 改进的KMP算法。  这三种算法的代码在这里。  BF算法设主串从i位开始与子串(从0开始)判断是否匹配;到子串的j位置，对应主串的i+j位置失配;将主串左移一位(i++),j回到0位继续匹配。  K">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BP、KMP、改进的KMP">
+<meta name="twitter:description" content="在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:  BF(Brute-Force)算法(暴力破解); KMP算法; 改进的KMP算法。  这三种算法的代码在这里。  BF算法设主串从i位开始与子串(从0开始)判断是否匹配;到子串的j位置，对应主串的i+j位置失配;将主串左移一位(i++),j回到0位继续匹配。  K">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#BF算法"><span class="toc-text">BF算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP算法"><span class="toc-text">KMP算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么是next-j"><span class="toc-text">为什么是next[j]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何求得next-j"><span class="toc-text">如何求得next[j]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何在编程中求得next-j"><span class="toc-text">如何在编程中求得next[j]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改进的KMP算法"><span class="toc-text">改进的KMP算法</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-BP、KMP、改进的KMP" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">BP、KMP、改进的KMP</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.05.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/05/03/BP、KMP、改进的KMP/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>在主串S中，自low位置开始，查找与模式串T相等的子串。如果这样的子串存在，返回其第一次出现的位置。本文详细介绍三种字符串匹配算法:</p>
+<ol>
+<li>BF(Brute-Force)算法(暴力破解);</li>
+<li>KMP算法;</li>
+<li>改进的KMP算法。</li>
+</ol>
+<p>这三种算法的代码<a href="https://github.com/applefishsky009/Interface/blob/master/BF%E5%92%8CKMP/BF%E5%92%8CKMP.cpp" target="_blank" rel="noopener">在这里</a>。</p>
+<hr>
+<h2 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h2><p>设主串从i位开始与子串(从0开始)判断是否匹配;到子串的j位置，对应主串的i+j位置失配;将主串左移一位(<code>i++</code>),j回到0位继续匹配。</p>
+<hr>
+<h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><h3 id="为什么是next-j"><a href="#为什么是next-j" class="headerlink" title="为什么是next[j]"></a>为什么是next[j]</h3><p>每次失配将i右移一位显然是低效的。<strong>主观上来考虑，如果在失配之前子串有相等的真后缀，那么就可以右移更多的位。</strong>考虑在i+j位失配时将主串左移k位(子串右移k位)，而不是一位。容易得到，这个k只与子串的性质有关。<br>我们使用next[j]来标识当j位失配时子串应向右移j-next[j]位。示例:</p>
+<table>
+<thead>
+<tr>
+<th align="center"><code>abcdefg</code></th>
+<th align="center">0 1 2 3 4 5 6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>next[j]</code></td>
+<td align="center">-1 0 0 0 0 0 0</td>
+</tr>
+<tr>
+<td align="center">offset</td>
+<td align="center">1 1 2 3 4 5 6</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center"><code>abcabcabc</code></th>
+<th align="center">0 1 2 3 4 5 6 7 8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>next[j]</code></td>
+<td align="center">-1 0 0 0 1 2 3 4 5</td>
+</tr>
+<tr>
+<td align="center">offset</td>
+<td align="center">1 1 2 3 3 3 3 3 3</td>
+</tr>
+</tbody></table>
+<h3 id="如何求得next-j"><a href="#如何求得next-j" class="headerlink" title="如何求得next[j]"></a>如何求得next[j]</h3><p>在计算公式中next[j]指的是:j位<strong>以前</strong>字串中真前后缀的最大<strong>公共</strong>元素长度。真前缀、真后缀指的不包含串本身的子串。那么我们可以这样来计算j:<br>tempNext[j]表示j位及以前子串真前缀最大公共元素长度。将tempNext[j]右移一位，初值赋为-1,得到next[j]</p>
+<table>
+<thead>
+<tr>
+<th align="center"><code>xyxyyxxyx</code></th>
+<th align="center">0 1 2 3 4 5 6 7 8</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>tempNext[j]</code></td>
+<td align="center">0 0 1 2 0 1 1 2 3</td>
+</tr>
+<tr>
+<td align="center"><code>next[j]</code></td>
+<td align="center">-1 0 0 1 2 0 1 1 2</td>
+</tr>
+<tr>
+<td align="center">offset</td>
+<td align="center">1 1 2 2 2 5 5 6 6</td>
+</tr>
+</tbody></table>
+<p>tempNext[j]的计算:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//计算j位及之前真前缀以及真后缀的最大公共元素长度</span><br><span class="line">void calTempNext(vector&lt;int&gt;&amp;next)</span><br><span class="line">&#123;</span><br><span class="line">	if (s2.size() == 1)</span><br><span class="line">		return;</span><br><span class="line">	next[0] = 0;</span><br><span class="line">	int k = 0;//前缀指针,j就是后缀指针</span><br><span class="line">	for (int j = 1;j &lt; s2.size();j++)</span><br><span class="line">	&#123;</span><br><span class="line">		while(k &gt; 0 &amp;&amp; s2[j] != s2[k])//k位失配，</span><br><span class="line">			k = next[k-1];//k-1是可靠匹配，next[k-1]记录了上一个真后缀出现的地方</span><br><span class="line">		if (s2[j] == s2[k])//匹配，k++,j++，next[j]赋值</span><br><span class="line">			k++;</span><br><span class="line">		next[j] = k;</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="如何在编程中求得next-j"><a href="#如何在编程中求得next-j" class="headerlink" title="如何在编程中求得next[j]"></a>如何在编程中求得next[j]</h3><p>如果使用上述计算过程，先计算tempNext[j]再计算next[j]，需要两次遍历。将tempNext[j]右移初值赋-1的过程可以直接融入程序中，使用一次遍历就可以得到next[j]，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//直接计算next(时间复杂度O(n))</span><br><span class="line">void cal2Next(vector&lt;int&gt;&amp;next)</span><br><span class="line">&#123;</span><br><span class="line">	int j = -1;		//j,偏移指针</span><br><span class="line">	int i = 0;		//i,next下标（实际上是要计算的next下标-1,因为是先加后赋值）</span><br><span class="line">	next[0] = -1;</span><br><span class="line">	while (i &lt; s2.size()-1)</span><br><span class="line">	&#123;</span><br><span class="line">		if (j == -1 || s2[i]==s2[j])</span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">			next[i] = j;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">			j = next[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="改进的KMP算法"><a href="#改进的KMP算法" class="headerlink" title="改进的KMP算法"></a>改进的KMP算法</h2><p>next[j]值越小，模式匹配所需比较次数越少。next[j]的计算中先判断匹配，i,j自加再赋值。</p>
+<ol>
+<li>若自加之后失配，这时候i失配并不代表j失配，因此留给下次循环回溯后来判断。</li>
+<li>若自加之后匹配，说明i与j位置完全等效，i失配，j一定失配。，而朴素的KMP算法在失配之后要一次一次回溯。因此可以<font color="red">一次回溯到底</font>节约比较次数。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center"><code>abcaabbabcaac</code></th>
+<th align="center">0 1 2  3 4 5 6  7 8 9 10 11 12</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>next[j]</code></td>
+<td align="center">-1 0 0  0 1 1 2  0 1 2  3  4  5</td>
+</tr>
+<tr>
+<td align="center">offset1</td>
+<td align="center">1 1 2  3 3 4 4  7 7 7  7  7  7</td>
+</tr>
+<tr>
+<td align="center"><code>nextVal[j]</code></td>
+<td align="center">-1 0 0 -1 1 0 2 -1 0 0 -1  1  5</td>
+</tr>
+<tr>
+<td align="center">offset2</td>
+<td align="center">1 1 2  4 3 5 4  8 8 9 11 10  7</td>
+</tr>
+</tbody></table>
+<p>[LeetCode代码][中括号很烦]<br>[中括号很烦]:<a href="https://github.com/applefishsky009/LeetCode/blob/master/28-Implement_strStr()/28-Implement_strStr().cpp" target="_blank" rel="noopener">https://github.com/applefishsky009/LeetCode/blob/master/28-Implement_strStr()/28-Implement_strStr().cpp</a></p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/05/03/BP、KMP、改进的KMP/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

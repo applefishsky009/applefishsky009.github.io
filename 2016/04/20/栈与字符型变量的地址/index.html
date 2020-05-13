@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>栈与字符型变量的地址 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="栈的存储机制在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储： 123456int main()&amp;#123;	int a[4] = &amp;#123;1,2,3,4&amp;#125;;	int b[4] = &amp;#123;5,6,7,8&amp;#125;;	int c[4] = &amp;#">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈与字符型变量的地址">
+<meta property="og:url" content="applefishsky009.github.io/2016/04/20/栈与字符型变量的地址/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="栈的存储机制在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储： 123456int main()&amp;#123;	int a[4] = &amp;#123;1,2,3,4&amp;#125;;	int b[4] = &amp;#123;5,6,7,8&amp;#125;;	int c[4] = &amp;#">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://i.imgur.com/r0E1t24.jpg">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.026Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="栈与字符型变量的地址">
+<meta name="twitter:description" content="栈的存储机制在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储： 123456int main()&amp;#123;	int a[4] = &amp;#123;1,2,3,4&amp;#125;;	int b[4] = &amp;#123;5,6,7,8&amp;#125;;	int c[4] = &amp;#">
+<meta name="twitter:image" content="http://i.imgur.com/r0E1t24.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#栈的存储机制"><span class="toc-text">栈的存储机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符型变量的地址"><span class="toc-text">字符型变量的地址</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-栈与字符型变量的地址" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">栈与字符型变量的地址</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.20</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/04/20/栈与字符型变量的地址/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="栈的存储机制"><a href="#栈的存储机制" class="headerlink" title="栈的存储机制"></a>栈的存储机制</h2><p>在之前的内存存储区之中讲过栈，他大概有以下特点：编译器自助管理；空间大小指定；不会产生碎片；向下生长；静态(主要)或动态(不需要人工释放)分配；效率高。这里以下边的语句为例说明栈的存储：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int a[4] = &#123;1,2,3,4&#125;;</span><br><span class="line">	int b[4] = &#123;5,6,7,8&#125;;</span><br><span class="line">	int c[4] = &#123;9,10,11,12&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://i.imgur.com/r0E1t24.jpg" alt="栈"></p>
+<ol>
+<li>数组名称是一个指针，指向数组的第一个元素；</li>
+<li>a[-2]指的是a指针向栈的地址低位移动2个数据元素大小(例子中是int型)，即访问到b[2]，<strong>但是</strong>实际情况与编译器相关，他会做一些对准或者优化，明白访问原理即可；</li>
+<li>每一个元素在栈中的字节序是Little Endian，即低位字节排放在地址的低地址端，高位字节排放在地址的高地址端。与之对应的还有Big Endian，排放次序相反。</li>
+</ol>
+<hr>
+<h2 id="字符型变量的地址"><a href="#字符型变量的地址" class="headerlink" title="字符型变量的地址"></a>字符型变量的地址</h2><p>字符型变量<code>char c</code>的地址不能用<code>cout&lt;&lt;&amp;c；</code>来表示，因为<code>&amp;c</code>实际上是一个<code>char *</code>型的变量，它输出字符串的值，而字符串只有在内存中读到<code>\0</code>才会终止，因此会出现乱码。所以要输出字符变量的地址，应该用以下语句告诉编译器如何解释：</p>
+<ol>
+<li><code>(int *)&amp;c</code>;</li>
+<li><code>(static_cast&lt;void *&gt;(&amp;jc)</code>。</li>
+</ol>
+<p>上述的<code>static_cast</code>用于显式类型转换。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/04/20/栈与字符型变量的地址/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

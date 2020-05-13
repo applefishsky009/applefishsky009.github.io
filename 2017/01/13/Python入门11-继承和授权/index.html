@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python入门11-继承和授权 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Python,">
+  
+
+  <meta name="description" content="继承简介描述基类的属性遗传给派生类。  __doc___类属性不会从基类中遗传过来。 __bases__类属性是包含父类集合的元组。 可以在子类中定义同名函数覆盖父类的函数方法(多态)。可以在子类中显式地(需要知道父类名)或通过super()内建方法(默认传递self)调用父类方法。 需要注意如果覆盖构造器__init__()方法，子类实例化时并不会自动调用父类的构造器，应该在子类中明确地调用父类">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python入门11-继承和授权">
+<meta property="og:url" content="applefishsky009.github.io/2017/01/13/Python入门11-继承和授权/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="继承简介描述基类的属性遗传给派生类。  __doc___类属性不会从基类中遗传过来。 __bases__类属性是包含父类集合的元组。 可以在子类中定义同名函数覆盖父类的函数方法(多态)。可以在子类中显式地(需要知道父类名)或通过super()内建方法(默认传递self)调用父类方法。 需要注意如果覆盖构造器__init__()方法，子类实例化时并不会自动调用父类的构造器，应该在子类中明确地调用父类">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.004Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python入门11-继承和授权">
+<meta name="twitter:description" content="继承简介描述基类的属性遗传给派生类。  __doc___类属性不会从基类中遗传过来。 __bases__类属性是包含父类集合的元组。 可以在子类中定义同名函数覆盖父类的函数方法(多态)。可以在子类中显式地(需要知道父类名)或通过super()内建方法(默认传递self)调用父类方法。 需要注意如果覆盖构造器__init__()方法，子类实例化时并不会自动调用父类的构造器，应该在子类中明确地调用父类">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#继承"><span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#派生标准类型"><span class="toc-text">派生标准类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#不可变类型的派生"><span class="toc-text">不可变类型的派生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可变类型的派生"><span class="toc-text">可变类型的派生</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多重继承"><span class="toc-text">多重继承</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内建函数"><span class="toc-text">内建函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定制类"><span class="toc-text">定制类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#私有化"><span class="toc-text">私有化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类的访问控制"><span class="toc-text">类的访问控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块级访问控制"><span class="toc-text">模块级访问控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权-enabling"><span class="toc-text">授权(enabling)</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Python入门11-继承和授权" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Python入门11-继承和授权</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2017.01.13</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2017/01/13/Python入门11-继承和授权/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>描述基类的属性遗传给派生类。</p>
+<ol>
+<li><code>__doc___</code>类属性不会从基类中遗传过来。</li>
+<li><code>__bases__</code>类属性是包含父类集合的元组。</li>
+<li>可以在子类中定义同名函数覆盖父类的函数方法(多态)。可以在子类中显式地(需要知道父类名)或通过<code>super()</code>内建方法(默认传递<code>self</code>)调用父类方法。</li>
+<li>需要注意如果覆盖构造器<code>__init__()</code>方法，子类实例化时并不会自动调用父类的构造器，应该在子类中明确地调用父类的构造器。<ul>
+<li><code>super(obj, ins)</code>传入两个参数，类和类的实例，Python3中参数默认值是当前类和<code>self</code>(当前类的实例)。</li>
+</ul>
+</li>
+</ol>
+<h3 id="派生标准类型"><a href="#派生标准类型" class="headerlink" title="派生标准类型"></a>派生标准类型</h3><p>正如元类调用<code>type()</code>，是类的类一样，标准类型也可以看做是类型的类，来派生出新的类型。</p>
+<h4 id="不可变类型的派生"><a href="#不可变类型的派生" class="headerlink" title="不可变类型的派生"></a>不可变类型的派生</h4><ol>
+<li>应该覆盖<code>__new__()</code>特殊方法来定制我们的对象，因为这个方法在<code>__init__(self)</code>执行之前执行并返回一个对象传入初始化方法<code>__init__(self)</code>(即这里的<code>self</code>)。</li>
+<li><a href="https://zhuanlan.zhihu.com/p/21379984" target="_blank" rel="noopener">python 类中<strong>new</strong> 和 <strong>init</strong>方法区别</a></li>
+</ol>
+<h4 id="可变类型的派生"><a href="#可变类型的派生" class="headerlink" title="可变类型的派生"></a>可变类型的派生</h4><p>一般情况下，对可变类型继承到的类型的默认行为就是你想要的。</p>
+<h3 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h3><p>多重继承一般有两个问题，第一，找到合适的属性；第二，如何调用父类的方法以发挥他们的作用。</p>
+<ol>
+<li>方法解释顺序MRO(<code>Method Resolution Order</code>)，新式类出现之前是深度优先，之后是广度优先，新式类的<code>__mro__</code>属性会返回查找顺序。<ul>
+<li><a href="http://www.cnblogs.com/lovemo1314/archive/2011/05/03/2035005.html" target="_blank" rel="noopener">python super()</a></li>
+</ul>
+</li>
+<li>菱形效应引起的MRO问题，因为新式类都会从<code>object</code>中派生，如果采用深度优先，会多次回溯到<code>object</code>。这是不期望的。<ul>
+<li>1中的链接很好的说明了这个问题，F的mro顺序FEBCDAob，E的MRO顺序EBCAob，C的MRO顺序CAob。、</li>
+</ul>
+</li>
+</ol>
+<h3 id="内建函数"><a href="#内建函数" class="headerlink" title="内建函数"></a>内建函数</h3><ol>
+<li><code>subclass(sub,sup)</code>判断一个类是不是另一个类的子类或者子孙类。</li>
+<li><code>isinstance(obj,OBJ)</code>判定一个对象是不是另一个给定类的实例。<ul>
+<li>第二个参数是类。</li>
+<li>他不会有性能上的问题，因为他只用来搜索类族集成结构，而且它是用C写的。</li>
+</ul>
+</li>
+<li><code>hasattr(ins,attr)</code> 判断一个对象是否有特定的属性。</li>
+<li><code>getattr(ins,attr)</code> 取得对象的属性。</li>
+<li><code>setattr(ins,attr)</code> 赋值给对象的属性。</li>
+<li><code>delattr(ins,attr)</code> 从一个对象中删除属性。</li>
+<li><code>dir()</code><ul>
+<li>作用于实例上，显示实例变量，还有实例所在类及所有他的基类中定义的方法和类。</li>
+<li>作用于类上，显示类以及他的所有基类的<code>__dict__</code>中的内容。但他不会显示定义在元类(<code>metaclass</code>)中的类属性。</li>
+<li>作用在模块上，显示模块的<code>__dict__</code>内容。</li>
+<li>不带参数时，显示调用者的局部变量。</li>
+</ul>
+</li>
+<li><code>super()</code> 帮助程序员找出相应的父类，然后方便调用相应的属性。<ul>
+<li>使用<code>super()</code>来简化搜索一个合适祖先的任务，其主要是用来查找父类的属性。</li>
+<li>实际上，<code>super()</code>是一个工厂函数，他创造了一个<code>super object</code>，为一个给定的类使用<code>__mro__</code>去查找相应的父类。</li>
+</ul>
+</li>
+<li><code>var()</code> 内建函数与<code>dir()</code>相似，只是给定的对象参数必须有一个<code>__dict__</code>属性。返回一个字典，包含对象存储于其<code>__dict__</code>中的属性(键)和值。<ul>
+<li>如果没有提供参数，他将显示一个包含本地名字空间的属性(键)及其值的字典，也就是<code>locals()</code>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="定制类"><a href="#定制类" class="headerlink" title="定制类"></a>定制类</h3><p>之前的<code>__init__()</code>和<code>__del__()</code>也是自定义特殊方法的一部分，另外，Python的类定制包含：模拟标准类型，重载操作符。</p>
+<ol>
+<li>可以定制的方法有，属性方法，二进制操作符，一元操作符，数值转换，基本表示法，序列类型，映射类型。<ul>
+<li>Python中有两个除法，<code>/</code>真除法<code>__truediv__()</code>是准确的浮点除法，<code>//</code>是<code>__floordiv__()</code>C++中的整型除法。</li>
+<li><a href="http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python" target="_blank" rel="noopener">Difference between <strong>str</strong> and <strong>repr</strong> in Python</a>，<strong>unambiguous v.s. readable</strong>，从编译器角度和从读者角度，另外，如果<code>__repr__()</code>定义了，但<code>__str__()</code>没有定义，默认会有<code>__str__=__repr__</code>。</li>
+<li><code>__str__()</code>只返回一个字符串(这是<code>print()</code>的重载)，如果想要打印多个字符串，请自定义其他类型的打印函数。</li>
+</ul>
+</li>
+<li>重载<code>__iter__</code>和<code>next()</code>方法可以定制迭代器，无穷迭代可以通过随机选择<code>choice()</code>或者处理异常来实现。<ul>
+<li><strong>所谓的安全模式</strong>：只是一个标识flag，在抓取到异常时，采用不同的决策。</li>
+</ul>
+</li>
+<li><code>__nonzeros__()</code>可以为<code>object</code>定义<code>FALSE</code>值。</li>
+<li><code>__cmp__</code>对象比较。</li>
+</ol>
+<hr>
+<h2 id="私有化"><a href="#私有化" class="headerlink" title="私有化"></a>私有化</h2><h3 id="类的访问控制"><a href="#类的访问控制" class="headerlink" title="类的访问控制"></a>类的访问控制</h3><ol>
+<li>在类的属性和方法名字前面加上<strong>双下划线</strong>提供了初步的类的私有化，不允许直接访问。在访问时，要在名字前边加上<strong>单下划线和类名</strong>来指定访问的是哪一个类的变量(<code>self._OBJ__attr</code>)。<ul>
+<li>保证<code>__XXX</code>变量不与父类的名称空间冲突。</li>
+</ul>
+</li>
+</ol>
+<h3 id="模块级访问控制"><a href="#模块级访问控制" class="headerlink" title="模块级访问控制"></a>模块级访问控制</h3><ol>
+<li>之前提到过模块级的私有化，在属性(或方法，因为这是严格基于作用域的)名称前加<strong>单下划线</strong>，这样不会被<code>from XXX import *</code>加载，但是可以显式载入。</li>
+</ol>
+<hr>
+<h2 id="授权-enabling"><a href="#授权-enabling" class="headerlink" title="授权(enabling)"></a>授权(enabling)</h2><p>授权是包装的一个特性，包装一个类型通常是对已存在的类型的一些定制，可以新建、修改、删除原有产品的功能。其他保持原样或保留已存功能或行为。授权的过程，即所有更新的功能都是由新类的某部分来处理，但已存的功能就授权给对象的默认属性。</p>
+<ol>
+<li>关键：<font color="red">覆盖<code>__getattr__()</code></font>方法，代码中包含对<code>getattr()</code>内建函数的访问。<ul>
+<li>引用一个属性时，Python解释器会依次在局部名称空间，类名称空间中搜索，如果都没有找到，搜索对原对象开始授权申请，<code>__getattr__()</code>会被调用。</li>
+<li>对这些属性的访问，是通过<code>getattr(obj,atrr)</code>方法，授权给对象。而且只有已存在的属性是在此代码中授权的。</li>
+<li>在包装中实现<code>get()</code>方法返回一个对象，因为有时需要访问实际对象和他的切片能力。</li>
+</ul>
+</li>
+<li>时间戳。<a href="http://www.cnblogs.com/SRL-Southern/archive/2015/09/30/4848590.html" target="_blank" rel="noopener">2015/9/29 Python基础(20)：类的授权</a></li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2017/01/13/Python入门11-继承和授权/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>VSCode使用指南 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="VSCode,">
+  
+
+  <meta name="description" content="快捷键修改Key Bindings由于经常使用打开文件夹功能，文件 —&amp;gt; 首选项 -&amp;gt; 键盘快捷方式，然后在keybindings.json中添加： 123[    &amp;#123; &quot;key&quot;: &quot;ctrl+a&quot;,                &quot;command&quot;: &quot;workbench.action.files.openFolder&quot; &amp;#125;]  注：command id不知如何">
+<meta name="keywords" content="VSCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VSCode使用指南">
+<meta property="og:url" content="applefishsky009.github.io/2016/11/09/VSCode使用指南/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="快捷键修改Key Bindings由于经常使用打开文件夹功能，文件 —&amp;gt; 首选项 -&amp;gt; 键盘快捷方式，然后在keybindings.json中添加： 123[    &amp;#123; &quot;key&quot;: &quot;ctrl+a&quot;,                &quot;command&quot;: &quot;workbench.action.files.openFolder&quot; &amp;#125;]  注：command id不知如何">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="VSCode使用指南">
+<meta name="twitter:description" content="快捷键修改Key Bindings由于经常使用打开文件夹功能，文件 —&amp;gt; 首选项 -&amp;gt; 键盘快捷方式，然后在keybindings.json中添加： 123[    &amp;#123; &quot;key&quot;: &quot;ctrl+a&quot;,                &quot;command&quot;: &quot;workbench.action.files.openFolder&quot; &amp;#125;]  注：command id不知如何">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#快捷键修改"><span class="toc-text">快捷键修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ctrl-shift-P模式-主命令框"><span class="toc-text">Ctrl + shift + P模式(主命令框)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ctrl-P模式"><span class="toc-text">Ctrl + P模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编辑器和窗口管理"><span class="toc-text">编辑器和窗口管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#同时打开多个窗口"><span class="toc-text">同时打开多个窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同时打开多个编辑器"><span class="toc-text">同时打开多个编辑器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码编辑"><span class="toc-text">代码编辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式调整"><span class="toc-text">格式调整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#光标相关"><span class="toc-text">光标相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重构代码"><span class="toc-text">重构代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找和替换"><span class="toc-text">查找和替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示相关"><span class="toc-text">显示相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#皮肤预留"><span class="toc-text">皮肤预留</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强大的自定义用户代码块"><span class="toc-text">强大的自定义用户代码块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更新"><span class="toc-text">更新</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-VSCode使用指南" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">VSCode使用指南</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.11.09</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/VSCode/">VSCode</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/11/09/VSCode使用指南/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="快捷键修改"><a href="#快捷键修改" class="headerlink" title="快捷键修改"></a>快捷键修改</h2><p><a href="https://code.visualstudio.com/docs/customization/keybindings" target="_blank" rel="noopener">Key Bindings</a><br>由于经常使用<strong>打开文件夹</strong>功能，文件 —&gt; 首选项 -&gt; 键盘快捷方式，然后在<code>keybindings.json</code>中添加：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123; <span class="attr">"key"</span>: <span class="string">"ctrl+a"</span>,                <span class="attr">"command"</span>: <span class="string">"workbench.action.files.openFolder"</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>注：<code>command id</code>不知如何对应，这一条是根据打开文件的设置修改测试而来。</p>
+<p><a href="https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf" target="_blank" rel="noopener">VSCode KeyBindings.pdf</a></p>
+<hr>
+<h2 id="Ctrl-shift-P模式-主命令框"><a href="#Ctrl-shift-P模式-主命令框" class="headerlink" title="Ctrl + shift + P模式(主命令框)"></a>Ctrl + shift + P模式(主命令框)</h2><p>调出命令列表，查看所有的命令/快捷键;<code>ctrl + P</code>模式和他可以切换(<code>&gt;</code>和<code>BackSpace</code>)</p>
+<ol>
+<li><strong>alt</strong><ul>
+<li>显示菜单栏(上方)，平时可以在这个模式下输入<code>view: toggle Mebu Bar</code>来切换正常状态下菜单栏是隐藏的还是显示的;</li>
+</ul>
+</li>
+<li><strong>Toggle Activity Bar Visibility</strong><ul>
+<li>切换活动栏显隐性(左方)，参考资料<a href="https://www.zhihu.com/question/48285162" target="_blank" rel="noopener">vscode怎么隐藏左边栏？</a></li>
+</ul>
+</li>
+<li><strong>Conf</strong><ul>
+<li><a href="http://colobu.com/2016/04/21/use-vscode-to-develop-go-programs/" target="_blank" rel="noopener">调整本地语言</a></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="Ctrl-P模式"><a href="#Ctrl-P模式" class="headerlink" title="Ctrl + P模式"></a>Ctrl + P模式</h2><ol>
+<li>输入<code>&gt;</code>回到主命令框<code>ctrl + shift + p</code>模式；</li>
+<li>直接输入文件名打开文件(可以用<code>ctrl + o</code>打开文件)；</li>
+<li><code>?</code>显示当前可执行操作；</li>
+<li><code>:</code>跳转到行数；</li>
+<li><code>ctrl + shift + m</code>显示errors或warnings(<code>!</code>模式不能用？);</li>
+<li><code>@</code>查找变量(全局)或函数<code>ctrl + shift + o</code>进入。</li>
+<li><code>@:</code>查找函数或者属性。</li>
+<li><code>#</code>查找符号；<ul>
+<li>比<code>ctrl + F</code>更细化。</li>
+</ul>
+</li>
+<li><strong>ctrl + q</strong><ul>
+<li>Quick Open,相当于在<strong>ctrl + p</strong>模式下输入<code>view</code>。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="编辑器和窗口管理"><a href="#编辑器和窗口管理" class="headerlink" title="编辑器和窗口管理"></a>编辑器和窗口管理</h2><h3 id="同时打开多个窗口"><a href="#同时打开多个窗口" class="headerlink" title="同时打开多个窗口"></a>同时打开多个窗口</h3><ol>
+<li><strong>ctrl + shift + N</strong><ul>
+<li>打开新的窗口，注意markdown打开新窗口的快捷键也是这个(虽然没有卵用)，chrome打开新窗口的快捷键是<code>ctrl + N</code>,<code>ctrl + shift + N</code>可以打开新窗口并进入隐身模式。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + W</strong><ul>
+<li>关闭当前窗口。</li>
+</ul>
+</li>
+<li><strong>ctrl + alt + up/down</strong><ul>
+<li>屏幕向上/向下。 </li>
+</ul>
+</li>
+</ol>
+<h3 id="同时打开多个编辑器"><a href="#同时打开多个编辑器" class="headerlink" title="同时打开多个编辑器"></a>同时打开多个编辑器</h3><ol>
+<li>** ctrl + N**<ul>
+<li>新建文件。</li>
+</ul>
+</li>
+<li>** ctrl + tab, alt + left, alt + right**<ul>
+<li>打开文件之间的切换(<code>ctrl + tab</code>)。</li>
+</ul>
+</li>
+<li>** ctrl + **<ul>
+<li>切出一个新的编辑器(最多三个)，也可以<code>ctrl</code> + 点击Explore里边的文件名。</li>
+</ul>
+</li>
+<li>** ctrl + k** + <strong>left/right</strong><ul>
+<li>编辑器换位置。</li>
+</ul>
+</li>
+<li>** ctrl + `**<ul>
+<li>打开集成终端，比如<code>make clean</code>就可以在这里输入，<code>cls</code>指令可以清理屏幕。</li>
+</ul>
+</li>
+<li>** 改变默认的集成终端 **<ul>
+<li><a href="https://github.com/Microsoft/vscode/issues/11785" target="_blank" rel="noopener">Add Powershell as integrated terminal in VSC for Windows?</a></li>
+<li>Put this in your user settings.json:<code>&quot;terminal.integrated.shell.windows&quot;: &quot;\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe&quot;</code>。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + u</strong><ul>
+<li>打开输出面板</li>
+</ul>
+</li>
+<li><strong>win + k</strong><ul>
+<li>清除终端窗口。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="代码编辑"><a href="#代码编辑" class="headerlink" title="代码编辑"></a>代码编辑</h2><h3 id="格式调整"><a href="#格式调整" class="headerlink" title="格式调整"></a>格式调整</h3><ol>
+<li><strong>ctrl + \</strong><ul>
+<li>拆分编辑器。<code>ctrl + 1</code>,<code>ctrl + 2</code>,<code>ctrl + 3</code>左中右三个编辑器的快捷键。</li>
+</ul>
+</li>
+<li><strong>alt + shift + F</strong><ul>
+<li>代码段自动对齐！！！</li>
+</ul>
+</li>
+<li><strong>ctrl + /</strong><ul>
+<li>注释光标所在行。</li>
+</ul>
+</li>
+<li><strong>alt + up/down</strong><ul>
+<li>将光标所在的代码上移或者下移一行。</li>
+</ul>
+</li>
+<li><strong>shift + alt + up/down</strong><ul>
+<li>向上向下复制一行。</li>
+</ul>
+</li>
+<li><strong>ctrl + enter</strong><ul>
+<li>在当前行下方插入一行。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + enter</strong><ul>
+<li>在当前行上方插入一行。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + [/]</strong><ul>
+<li>打开/折叠代码块。</li>
+</ul>
+</li>
+<li><strong>ctrl + [/]</strong><ul>
+<li>代码行缩进(注意很方便的一点就是光标不需要在这一行首)。</li>
+</ul>
+</li>
+<li><strong>ctrl + c/v</strong><ul>
+<li>如果不选中，默认复制或者粘贴一整行。</li>
+</ul>
+</li>
+</ol>
+<h3 id="光标相关"><a href="#光标相关" class="headerlink" title="光标相关"></a>光标相关</h3><ol>
+<li><strong>home/end</strong><ul>
+<li>移动到行首/行尾。</li>
+</ul>
+</li>
+<li><strong>ctrl + home/end</strong><ul>
+<li>移动到文件开头/结尾。</li>
+</ul>
+</li>
+<li><strong>ctrl + i</strong><ul>
+<li>选中当前行。</li>
+</ul>
+</li>
+<li><strong>shift + home/end</strong>\<ul>
+<li>选中从光标处到行首/行尾。</li>
+</ul>
+</li>
+<li><strong>ctrl + delete</strong><ul>
+<li>删除光标右侧所有的字(以单词为单位)。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + l</strong><ul>
+<li>同时选中所有匹配的( = <strong>ctrl + F2</strong>)。</li>
+</ul>
+</li>
+<li><strong>ctrl + u</strong><ul>
+<li>回退上一个光标操作。</li>
+</ul>
+</li>
+<li><strong>ctrl + d</strong><ul>
+<li>下一个匹配的也被选中。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + left/right</strong><ul>
+<li>光标的左右扩展。</li>
+</ul>
+</li>
+<li><strong>alt + click</strong><ul>
+<li>添加多个光标，连续选择多处一起修改。</li>
+</ul>
+</li>
+</ol>
+<h3 id="重构代码"><a href="#重构代码" class="headerlink" title="重构代码"></a>重构代码</h3><ol>
+<li><strong>F5</strong><ul>
+<li>调试。</li>
+</ul>
+</li>
+<li><strong>F9</strong><ul>
+<li>加断点。</li>
+</ul>
+</li>
+<li><strong>F10</strong><ul>
+<li>逐行运行。</li>
+</ul>
+</li>
+<li><strong>F11</strong><ul>
+<li>进入该行的函数内部调试(step into)。</li>
+</ul>
+</li>
+<li><strong>F12</strong><ul>
+<li>跳转到定义处。</li>
+</ul>
+</li>
+<li><strong>alt + F12</strong><ul>
+<li>预览定义而不是跳转。</li>
+</ul>
+</li>
+</ol>
+<h3 id="查找和替换"><a href="#查找和替换" class="headerlink" title="查找和替换"></a>查找和替换</h3><ol>
+<li><strong>ctrl + F/H</strong><ul>
+<li>查找/替换。</li>
+</ul>
+</li>
+</ol>
+<h3 id="显示相关"><a href="#显示相关" class="headerlink" title="显示相关"></a>显示相关</h3><ol>
+<li><strong>F11</strong><ul>
+<li>全屏。</li>
+</ul>
+</li>
+<li><strong>ctrl + =/-</strong><ul>
+<li>视距放大/缩小(Zoom In/Out)。</li>
+</ul>
+</li>
+<li><strong>ctrl + b</strong><ul>
+<li>侧边栏显/隐。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + e/f/g/d/x</strong><ul>
+<li>侧边栏五大功能，资源管理器/搜索/git/调试/扩展。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + v</strong><ul>
+<li>预览<code>markdown</code>。</li>
+</ul>
+</li>
+<li><strong>ctrl + shift + u</strong><ul>
+<li>显示输出窗口。</li>
+</ul>
+</li>
+<li><strong>ctrl + K Z</strong><ul>
+<li>window.fullScreenZenMode,(更好的代码，阅读模式)。</li>
+</ul>
+</li>
+</ol>
+<p>参考资料：<br><a href="http://www.jianshu.com/p/1b7b8760504c" target="_blank" rel="noopener">Vscode中一些方便的快捷键</a><br><a href="https://nshen.net/article/2015-11-20/vscode/" target="_blank" rel="noopener">学会用好 Visual Studio Code</a></p>
+<hr>
+<h2 id="皮肤预留"><a href="#皮肤预留" class="headerlink" title="皮肤预留"></a>皮肤预留</h2><p>在<strong>ctrl + shift + p</strong>模式下输入<code>theme</code>选择文件图标主题韩式编译器颜色主题，然后上下移动光标可以预览。</p>
+<hr>
+<h2 id="强大的自定义用户代码块"><a href="#强大的自定义用户代码块" class="headerlink" title="强大的自定义用户代码块"></a>强大的自定义用户代码块</h2><p>在 文件 -&gt; 首选项 -&gt; 用户代码片段 -&gt; 选择语言，配置弹出的<code>.json</code>可以自定义用户代码块块，比如我的配置的一部分：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//add Ryl module</span></span><br><span class="line">"include RylModule": &#123;</span><br><span class="line">	"prefix": "#include",</span><br><span class="line">	"body": [</span><br><span class="line">			"#include &lt;E:\\RylModule\\show.h&gt;\n",	//单斜杠转义，比如\n</span><br><span class="line">			<span class="string">"$1"</span>	<span class="comment">//$id(id = 1,2,...)表示插入代码块后可快速编辑的位置，可用tab切换</span></span><br><span class="line">	],</span><br><span class="line">	"description": "RylModule"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考资料：<a href="http://www.jianshu.com/p/85e707cc5c5c" target="_blank" rel="noopener">Visual Studio Code自定义用户代码块</a></p>
+<hr>
+<h2 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h2><ol>
+<li>File &gt; Preferences &gt; Keymap Extensions.<ul>
+<li>键盘映射扩展。</li>
+</ul>
+</li>
+<li>cannot read property ‘substring’ of undefined<ul>
+<li>最简单的解决方案，在文件最后加一行空的代码。</li>
+</ul>
+</li>
+<li>expected unqualified-id before ‘int’ || expected primary-expression before ‘union’<ul>
+<li>这是由一些变量有歧义造成的，也许有自定义的变量和std名称空间冲突。</li>
+</ul>
+</li>
+</ol>
+<hr>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/11/09/VSCode使用指南/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

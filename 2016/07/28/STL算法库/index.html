@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>STL算法库 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Algorithm,">
+  
+
+  <meta name="description" content="这里主要是指&amp;lt;algorithm&amp;gt;和&amp;lt;numeric&amp;gt;头文件。STL算法库包含一些处理容器的非成员函数，查阅参考文档得到详细信息。这些算法函数设计，思路主要是两个通用部分：  使用模板来提供泛型； 使用迭代器来提供访问容器中的数据的通用表示。  这些容器设计使不同类型的容器之间有明显的联系，比如：  不同容器之间的copy(); 不同容器之间的==。  使用STL时应尽可能">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL算法库">
+<meta property="og:url" content="applefishsky009.github.io/2016/07/28/STL算法库/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="这里主要是指&amp;lt;algorithm&amp;gt;和&amp;lt;numeric&amp;gt;头文件。STL算法库包含一些处理容器的非成员函数，查阅参考文档得到详细信息。这些算法函数设计，思路主要是两个通用部分：  使用模板来提供泛型； 使用迭代器来提供访问容器中的数据的通用表示。  这些容器设计使不同类型的容器之间有明显的联系，比如：  不同容器之间的copy(); 不同容器之间的==。  使用STL时应尽可能">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.009Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STL算法库">
+<meta name="twitter:description" content="这里主要是指&amp;lt;algorithm&amp;gt;和&amp;lt;numeric&amp;gt;头文件。STL算法库包含一些处理容器的非成员函数，查阅参考文档得到详细信息。这些算法函数设计，思路主要是两个通用部分：  使用模板来提供泛型； 使用迭代器来提供访问容器中的数据的通用表示。  这些容器设计使不同类型的容器之间有明显的联系，比如：  不同容器之间的copy(); 不同容器之间的==。  使用STL时应尽可能">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法组分类"><span class="toc-text">算法组分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#就地算法和复制算法"><span class="toc-text">就地算法和复制算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STL与string类兼容"><span class="toc-text">STL与string类兼容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数和容器方法"><span class="toc-text">函数和容器方法</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-STL算法库" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">STL算法库</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.07.28</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/07/28/STL算法库/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>这里主要是指<code>&lt;algorithm&gt;</code>和<code>&lt;numeric&gt;</code>头文件。<br>STL算法库包含一些处理容器的非成员函数，查阅<a href="http://www.cplusplus.com/reference/algorithm/" target="_blank" rel="noopener">参考文档</a>得到详细信息。这些算法函数设计，思路主要是两个通用部分：</p>
+<ol>
+<li>使用模板来提供泛型；</li>
+<li>使用迭代器来提供访问容器中的数据的通用表示。</li>
+</ol>
+<p>这些容器设计使不同类型的容器之间有明显的联系，比如：</p>
+<ol>
+<li>不同容器之间的<code>copy()</code>;</li>
+<li>不同容器之间的<code>==</code>。</li>
+</ol>
+<p>使用STL时应尽可能减少要编写的代码，STL算法是经过仔细选择的，并且是内联的。</p>
+<hr>
+<h2 id="算法组分类"><a href="#算法组分类" class="headerlink" title="算法组分类"></a>算法组分类</h2><ol>
+<li>非修改式序列操作(Non-modifying sequence operations);</li>
+<li>修改式序列操作(Modifying sequence operations);</li>
+<li>排序和相关操作(Sorting,Partitions,Merge等);</li>
+<li>通用数字计算(<numeric>)</numeric></li>
+</ol>
+<hr>
+<h2 id="就地算法和复制算法"><a href="#就地算法和复制算法" class="headerlink" title="就地算法和复制算法"></a>就地算法和复制算法</h2><p>就地算法(in-place algorithm)就地完成工作(如<code>sort()</code>)，复制算法(copy algirithm)创建拷贝(如<code>copy()</code>)。有的可以以两种方式工作(如<code>transform()</code>，他的输出迭代器可以指向输入区间)</p>
+<p>STL约定：</p>
+<ol>
+<li>复制版本的名称以<code>_copy</code>结尾，他仅仅是只读只写，因此输入输出迭代器足够了(如<code>replace_copy()</code>)；</li>
+<li>就地版本，同时需要读写数据，因此至少需要正向迭代器(如<code>replace()</code>)；</li>
+<li><code>_if</code>变体：根据 将函数应用于容器元素得到的结果 来执行操作(如<code>replace_if()</code>)。</li>
+</ol>
+<hr>
+<h2 id="STL与string类兼容"><a href="#STL与string类兼容" class="headerlink" title="STL与string类兼容"></a>STL与string类兼容</h2><p><code>string</code>类不是STL组件，但是他设计时考虑了STL，包含<code>begin()</code>,<code>end()</code>,<code>rbegin()</code>,<code>rend()</code>等成员，因此可以使用STL接口；<br>得到字符串的所有组合(两个方法都体现兼容性)：</p>
+<ol>
+<li><code>next_permutation()</code>得到下一种排列方式；</li>
+<li><code>sort()</code>得到最初的排列方式，二者组合即能得到所有组合。</li>
+</ol>
+<hr>
+<h2 id="函数和容器方法"><a href="#函数和容器方法" class="headerlink" title="函数和容器方法"></a>函数和容器方法</h2><p>STL方法和STL函数对比而言，方法是更好的选择，因为方法是针对特定容器设计的，一般使用可能的最低需求。<br><code>remove()</code>方法和函数：</p>
+<ol>
+<li><code>remove()</code>方法删除容器中指定值的元素；</li>
+<li><code>renmove()</code>函数调整 指定值所在结点值 为 下一个非指定值的值 ，并返回新的超尾；因此重要的一点是容器大小不变，之后<code>erase()</code>新超尾和原超尾区间才能达到<code>remove()</code>方法的效果。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/07/28/STL算法库/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

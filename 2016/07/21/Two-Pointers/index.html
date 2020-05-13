@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Two Pointers | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Algorithm,">
+  
+
+  <meta name="description" content="关于Two Pointers一直以来致力于总结算法，方法。正如某些算法书作者所说，这个工作确实不好做，按数据结构显得大而空(精细的方法优化必然是很有针对性的)，而按照方法显得好很多，但是感觉必然总有一些问题徘徊于体系之外(或者说自成体系)，LeetCode上的Tags其实做的很好,一般来说是，数据结构+方法(技巧)。除去基本的数据结构，这些方法/技巧很具有启发意义。 遇到很多巧妙地利用Two Po">
+<meta name="keywords" content="Algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Two Pointers">
+<meta property="og:url" content="applefishsky009.github.io/2016/07/21/Two-Pointers/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="关于Two Pointers一直以来致力于总结算法，方法。正如某些算法书作者所说，这个工作确实不好做，按数据结构显得大而空(精细的方法优化必然是很有针对性的)，而按照方法显得好很多，但是感觉必然总有一些问题徘徊于体系之外(或者说自成体系)，LeetCode上的Tags其实做的很好,一般来说是，数据结构+方法(技巧)。除去基本的数据结构，这些方法/技巧很具有启发意义。 遇到很多巧妙地利用Two Po">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.010Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Two Pointers">
+<meta name="twitter:description" content="关于Two Pointers一直以来致力于总结算法，方法。正如某些算法书作者所说，这个工作确实不好做，按数据结构显得大而空(精细的方法优化必然是很有针对性的)，而按照方法显得好很多，但是感觉必然总有一些问题徘徊于体系之外(或者说自成体系)，LeetCode上的Tags其实做的很好,一般来说是，数据结构+方法(技巧)。除去基本的数据结构，这些方法/技巧很具有启发意义。 遇到很多巧妙地利用Two Po">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于Two-Pointers"><span class="toc-text">关于Two Pointers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Two-Pointer的实例"><span class="toc-text">Two Pointer的实例</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Two-Pointers" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Two Pointers</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.07.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/07/21/Two-Pointers/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="关于Two-Pointers"><a href="#关于Two-Pointers" class="headerlink" title="关于Two Pointers"></a>关于Two Pointers</h2><p>一直以来致力于总结算法，方法。正如某些算法书作者所说，这个工作确实不好做，按数据结构显得大而空(精细的方法优化必然是很有针对性的)，而按照方法显得好很多，但是感觉必然总有一些问题徘徊于体系之外(或者说自成体系)，LeetCode上的Tags其实做的很好,一般来说是，数据结构+方法(技巧)。除去基本的数据结构，这些方法/技巧很具有启发意义。</p>
+<p>遇到很多巧妙地利用<code>Two Pointers</code>的题目，感觉无法按照经典分类，这里使其自成体系，这绝对不过分，题目以后会慢慢填充，一般来说其具有以下几个特点：</p>
+<ol>
+<li>针对数组或链表</li>
+<li>针对数组一般是夹逼，begin指针，back指针。</li>
+<li>针对链表一般是记录位置，需要回溯。</li>
+</ol>
+<p>举几个必要的例子，找单链表倒数第k个节点，水的最大容积，有序数组移除重复元素，三色排序，合并有序数组等。</p>
+<hr>
+<h2 id="Two-Pointer的实例"><a href="#Two-Pointer的实例" class="headerlink" title="Two Pointer的实例"></a>Two Pointer的实例</h2><ol>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/15%20-%203Sum/15%20-%203Sum.cpp" target="_blank" rel="noopener">3Sum</a><ul>
+<li>先排序，注意跳过重复值，且遍历后再跳以便于第三个指针可以跳到前两个指针的重复值(如果有的话)；</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/19%20-%20Remove%20Nth%20Node%20From%20End%20of%20List/19%20-%20Remove%20Nth%20Node%20From%20End%20of%20List.cpp" target="_blank" rel="noopener">Remove Nth Node From End of List</a><ul>
+<li>使用头结点不必对第一个逻辑结点单独处理。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/16%20-%203Sum%20Closest/16%20-%203Sum%20Closest.cpp" target="_blank" rel="noopener">3Sum Closest</a><ul>
+<li>夹逼的精髓是两侧逼近，如水的容积，正数组和为k的最长长度；</li>
+<li>注意迭代器方法的使用可以简化编程。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/18%20-%204Sum/18%20-%204Sum.cpp" target="_blank" rel="noopener">4Sum</a><ul>
+<li>固定两个位置，两个指针夹逼；</li>
+<li>注意提前减枝，去掉相同解。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/27%20-%20Remove%20Element/27%20-%20Remove%20Element.cpp" target="_blank" rel="noopener">Remove Element</a><ul>
+<li>模拟<code>remove()</code>函数。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/141%20-%20Linked%20List%20Cycle/141%20-%20Linked%20List%20Cycle.cpp" target="_blank" rel="noopener">Linked List Cycle</a><ul>
+<li>快慢指针相遇，说明链表有环。</li>
+</ul>
+</li>
+<li><a href="https://github.com/applefishsky009/LeetCode/blob/master/142%20-%20Linked%20List%20Cycle%20II/142%20-%20Linked%20List%20Cycle%20II.cpp" target="_blank" rel="noopener">Linked List Cycle II</a><ul>
+<li>设快慢指针相遇时慢指针走了\( s \)步，环长为\( r \)，那么对快指针：\( 2s = s+nr \)；即有关系\( s = nr \)；(注意相遇时慢指针一定没有走完链表一次);</li>
+<li>设链表长度为\( L \),链表头到环结点的距离为\( x \),环结点到快慢指针相遇结点的距离为\( a \),那么\( s(x+a) = nr((n-1)*r+L-x) \);</li>
+<li>即有关系：\( x = (n-1)r+(L-x-a) \),\( L-x-a \)在链表上代表相遇结点到环结点的距离！</li>
+<li>记住结论：快慢指针相遇时，两个慢指针，一个从链表头出发，一个从相遇点出发，他们相遇在环入口。</li>
+</ul>
+</li>
+</ol>
+<p>$$$$</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/07/21/Two-Pointers/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+</html>

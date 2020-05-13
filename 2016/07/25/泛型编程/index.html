@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>泛型编程 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。  迭代器简介泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。  迭代器应可以解除引用(*p); 迭代器应可以赋值(p=q); 迭代器应可以比较(p==q,p!=q); 迭代器应可以遍历容器(p++,q++)。  参考i++与++i的区别，">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="泛型编程">
+<meta property="og:url" content="applefishsky009.github.io/2016/07/25/泛型编程/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。  迭代器简介泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。  迭代器应可以解除引用(*p); 迭代器应可以赋值(p=q); 迭代器应可以比较(p==q,p!=q); 迭代器应可以遍历容器(p++,q++)。  参考i++与++i的区别，">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.027Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="泛型编程">
+<meta name="twitter:description" content="面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。  迭代器简介泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。  迭代器应可以解除引用(*p); 迭代器应可以赋值(p=q); 迭代器应可以比较(p==q,p!=q); 迭代器应可以遍历容器(p++,q++)。  参考i++与++i的区别，">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器简介"><span class="toc-text">迭代器简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器概念与层次结构"><span class="toc-text">迭代器概念与层次结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迭代器方法"><span class="toc-text">迭代器方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级迭代器"><span class="toc-text">高级迭代器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常规指针迭代器模型"><span class="toc-text">常规指针迭代器模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出流迭代器"><span class="toc-text">输出流迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输入流迭代器"><span class="toc-text">输入流迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#反向迭代器"><span class="toc-text">反向迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入迭代器"><span class="toc-text">插入迭代器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#容器种类"><span class="toc-text">容器种类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#容器概念"><span class="toc-text">容器概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#序列容器"><span class="toc-text">序列容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关联容器"><span class="toc-text">关联容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无序关联容器"><span class="toc-text">无序关联容器</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-泛型编程" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">泛型编程</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.07.25</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/STL/">STL</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/07/25/泛型编程/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>面向对象编程关注编程数据，泛型编程关注算法。共同点是抽象和创建代码可重用性。<br>模板使得算法独立于存储的数据类型，而迭代器使算法独立于使用的容器类型。</p>
+<hr>
+<h2 id="迭代器简介"><a href="#迭代器简介" class="headerlink" title="迭代器简介"></a>迭代器简介</h2><p>泛型编程旨在使用同一个函数来处理数组、链表或任何其他容器类型。</p>
+<ol>
+<li>迭代器应可以解除引用(<code>*p</code>);</li>
+<li>迭代器应可以赋值(<code>p=q</code>);</li>
+<li>迭代器应可以比较(<code>p==q</code>,<code>p!=q</code>);</li>
+<li>迭代器应可以遍历容器(<code>p++</code>,<code>q++</code>)。</li>
+</ol>
+<p>参考<a href="http://rylcode.cn/2016/05/06/i++%E4%B8%8E++i%E7%9A%84%E5%8C%BA%E5%88%AB/" target="_blank" rel="noopener">i++与++i的区别</a>，为了区分前缀版本和后缀版本，C++将<code>operator++</code>作为前缀版本，将<code>operator++(int)</code>作为后缀版本，其中的参数永远不会用到，因此不必指定其名称，列出<code>iterator</code>中<code>p++</code>和<code>++p</code>的实现：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">iterator&amp; <span class="keyword">operator</span>++()&#123;	<span class="comment">//++p</span></span><br><span class="line">	pt = pt-&gt;next;</span><br><span class="line">	<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iterator&amp; <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;	<span class="comment">//p++</span></span><br><span class="line">	iterator tmp = *<span class="keyword">this</span>;</span><br><span class="line">	pt = pt-&gt;next;</span><br><span class="line">	<span class="keyword">return</span> tmp; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>对容器类要求都有超尾；</li>
+<li>使用自动类型推断<code>auto</code>来进一步简化代码；</li>
+<li>形成避免直接使用迭代器的编程风格，尽可能使用STL函数。</li>
+</ol>
+<hr>
+<h2 id="迭代器概念与层次结构"><a href="#迭代器概念与层次结构" class="headerlink" title="迭代器概念与层次结构"></a>迭代器概念与层次结构</h2><p><a href="http://www.cplusplus.com/reference/iterator/" target="_blank" rel="noopener">5种迭代器类型</a>：</p>
+<ol>
+<li>输入迭代器 - 单向，只读 - 不保证第二次遍历时顺序不变；</li>
+<li>输出迭代器 - 单向，只写 - 不保证第二次遍历时顺序不变；</li>
+<li>正向迭代器 - 单向，读写或只读 - 输入迭代器+输出迭代器+保证相同顺序遍历；</li>
+<li>双向迭代器 - 双向，读写或只读 - 正向迭代器+两种递减运算符；</li>
+<li>随机访问迭代器 - 双向迭代器+随机访问功能(比如<code>a+n</code>，<code>a&lt;b</code>)等)；</li>
+</ol>
+<p>在编写算法时，尽可能使用要求最低的迭代器，并让他适用于容器的最大区别。举例：</p>
+<ol>
+<li><code>vector&lt;int&gt;</code>使用随机访问迭代器；</li>
+<li><code>list&lt;int&gt;</code>使用双向迭代器。</li>
+</ol>
+<p>注意这是一系列概念而不是类型。，概念可以具有类型继承的关系，概念的具体实现被称为模型。例如指向<code>int</code>的常规指针是一个随机访问迭代器模型。</p>
+<hr>
+<h2 id="迭代器方法"><a href="#迭代器方法" class="headerlink" title="迭代器方法"></a>迭代器方法</h2><p><code>next()</code>,<code>prev()</code>,<code>advance()</code>,<code>distance()</code>详见<a href="http://www.cplusplus.com/reference/iterator/" target="_blank" rel="noopener">参考文档</a>,提供这些方法简化程序。他们是用<code>+</code>(随机访问迭代器)或者<code>++</code>(双向迭代器)来实现的，因此，n越界时程序会异常终止。</p>
+<hr>
+<h2 id="高级迭代器"><a href="#高级迭代器" class="headerlink" title="高级迭代器"></a>高级迭代器</h2><p><code>copy()</code>方法在迭代器的使用中非常重要。</p>
+<h3 id="常规指针迭代器模型"><a href="#常规指针迭代器模型" class="headerlink" title="常规指针迭代器模型"></a>常规指针迭代器模型</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> SIZE = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">double</span> r[SIZE];</span><br><span class="line">sort(r, r + SIZE);</span><br></pre></td></tr></table></figure>
+
+<h3 id="输出流迭代器"><a href="#输出流迭代器" class="headerlink" title="输出流迭代器"></a>输出流迭代器</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line">ostream_iterator&lt;int, char&gt; out_iter(cout," ");	//用cout类将int输出为char</span><br><span class="line">copy(r.<span class="built_in">begin</span>(), r.<span class="built_in">end</span>(), out_iter);</span><br><span class="line"></span><br><span class="line">copy(r.<span class="built_in">begin</span>(), r.<span class="built_in">end</span>(), ostream_iterator&lt;<span class="keyword">int</span>, <span class="keyword">char</span>&gt;(<span class="built_in">cout</span>,<span class="string">" "</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="输入流迭代器"><a href="#输入流迭代器" class="headerlink" title="输入流迭代器"></a>输入流迭代器</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy(istream_iterator&lt;<span class="keyword">int</span>, <span class="keyword">char</span>&gt;(<span class="built_in">cin</span>), istream_iterator&lt;<span class="keyword">int</span>, <span class="keyword">char</span>&gt;(), r.<span class="built_in">begin</span>());	<span class="comment">//使用cin类将char存为int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="反向迭代器"><a href="#反向迭代器" class="headerlink" title="反向迭代器"></a>反向迭代器</h3><p>容器中的<code>rbegin()</code>,<code>rend()</code>都是反向迭代器，执行递增操作将导致他被递减，由于容器头部没有超尾，因此反向迭代器通过先递减，再解除引用解决问题。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line">ostream_iterator&lt;int, char&gt; out_iter(cout," ");	//用cout类将int输出为char</span><br><span class="line">copy(r.rbegin(), r.rend(), out_iter);	<span class="comment">//反向打印容器</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器"></a>插入迭代器</h3><ol>
+<li><code>insert_iterator</code> - 插入到容器参数指定位置前面;</li>
+<li><code>back_insert_iterator</code> - 常数时间后插;</li>
+<li><code>front_insert_iterator</code> - 常数时间前插。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iterator&gt;</span></span></span><br><span class="line">copy(s1.<span class="built_in">begin</span>(), s1,<span class="built_in">end</span>(), back_insert_iterator&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;(s2));	<span class="comment">//不要用这个迭代器对容器自我复制，可以用for_each()传递函数体，即s1和s2不要是同一个东西！</span></span><br><span class="line"><span class="comment">//这是因为push_back()操作无效化了迭代器，从而只能复制一个元素。因此要合理使用reverse()</span></span><br><span class="line">copy(s1.<span class="built_in">begin</span>(), s1.<span class="built_in">end</span>(), insert_iterator&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt;(s2, s2.<span class="built_in">begin</span>()));</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="容器种类"><a href="#容器种类" class="headerlink" title="容器种类"></a>容器种类</h2><h3 id="容器概念"><a href="#容器概念" class="headerlink" title="容器概念"></a>容器概念</h3><p>存储同质对象，可复制构造，可赋值。复杂度要求是STL特征，可以隐藏细节，但必须公开规格。C++11中的移动构造，移动赋值和复制构造，复制赋值的区别是：</p>
+<ol>
+<li>复制操作保留源对象，移动操作可以修改源对象，还可能转让所有权而不做任何复制；</li>
+<li>如果源对象是临时的，移动操作的效率高。</li>
+</ol>
+<h3 id="序列容器"><a href="#序列容器" class="headerlink" title="序列容器"></a>序列容器</h3><ol>
+<li><code>vector</code> - 随机访问，尾部插入删除O(1);</li>
+<li><code>deque</code> - 随机访问，头部尾部插入删除O(1)， - 双端队列;</li>
+<li><code>list</code> - 以无法随机访问为代价，任一位置插入删除O(1) - 双向链表;<ul>
+<li><code>insert()</code>是插入(副本)，<code>splice()</code>是移动(原数据)；</li>
+<li><code>unique()方法</code>将相邻的相同值压缩为单个值，如果有必要，可以先执行<code>sort()</code>;</li>
+<li>由于非成员<code>sort()</code>方法(<code>algorithm</code>中)是使用随机访问迭代器实现的(快排)，因此不能用于<code>list</code>，所以<code>list</code>包含了一个使用双向迭代器的<code>sort()</code>方法。</li>
+</ul>
+</li>
+<li><code>forward_list</code> - 不可反转 - 单链表;</li>
+<li><code>queue</code> - 不能随机访问，不能遍历 - 队列;</li>
+<li><code>priority_queue</code> - 最大元素移到对首+<code>queue</code> - 优先级队列;<ul>
+<li>可以接受预定义函数对象；</li>
+<li>用二叉堆实现，数组存储，按二叉树的BFS存放，N的左右孩子为2N和2N+1，删除插入均为O(logn)。</li>
+</ul>
+</li>
+<li><code>stack</code> - 不能随机访问，不能遍历 - 栈。</li>
+<li><code>array</code>(C++11) - 非STL容器，不能动态调整容器大小，但可以使用很多STL标准算法。</li>
+</ol>
+<h3 id="关联容器"><a href="#关联容器" class="headerlink" title="关联容器"></a>关联容器</h3><p>特点：对元素的快速访问，通常是使用某种树来实现，有序的，因此都可以接受预定义函数对象。</p>
+<ol>
+<li><code>set</code> - 键值相同，键唯一，可反转，可排序;</li>
+<li><code>multiset</code> - 值(键)可以不唯一+<code>set</code>;</li>
+<li><code>map</code> - 键值不同，键唯一，可反转，可排序;</li>
+<li><code>multimap</code> - 值可以不唯一+<code>map</code>。</li>
+</ol>
+<h3 id="无序关联容器"><a href="#无序关联容器" class="headerlink" title="无序关联容器"></a>无序关联容器</h3><p>特点：也是将值与键关联，并用键来查找值，但无需关联容器是基于哈斯表的。主要是提高添加和删除元素的速度以及提高查找算法的效率。</p>
+<ol>
+<li><code>unordered_set</code>;</li>
+<li><code>unordered_multiset</code>;</li>
+<li><code>unordered_map</code>;</li>
+<li><code>unordered_multimap</code>。</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/07/25/泛型编程/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

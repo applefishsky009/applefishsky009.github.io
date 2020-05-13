@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>共用体、枚举和浮点数存储 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：  它的长度是最大数据类型长度，可以节省空间； 数据不共存； 关键字union，声明方式与结构体相同；   枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：  可以提升(常到int)，但int不能缩窄到它； 可">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="共用体、枚举和浮点数存储">
+<meta property="og:url" content="applefishsky009.github.io/2016/04/21/共用体、枚举和浮点数存储/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：  它的长度是最大数据类型长度，可以节省空间； 数据不共存； 关键字union，声明方式与结构体相同；   枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：  可以提升(常到int)，但int不能缩窄到它； 可">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.018Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="共用体、枚举和浮点数存储">
+<meta name="twitter:description" content="共用体是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：  它的长度是最大数据类型长度，可以节省空间； 数据不共存； 关键字union，声明方式与结构体相同；   枚举创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：  可以提升(常到int)，但int不能缩窄到它； 可">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#枚举"><span class="toc-text">枚举</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浮点数存储方式"><span class="toc-text">浮点数存储方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点数表示"><span class="toc-text">浮点数表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点整型转化"><span class="toc-text">浮点整型转化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-共用体、枚举和浮点数存储" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">共用体、枚举和浮点数存储</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.04.21</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-基础/">C++基础</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/04/21/共用体、枚举和浮点数存储/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="共用体"><a href="#共用体" class="headerlink" title="共用体"></a>共用体</h2><p>是一种数据格式，简单来说，在同一块内存地址，可以同时起不同数据类型的名字，用这些名字来取值时，名字所对应的数据类型告诉编译器怎么去解释内存中的数据。他的特点：</p>
+<ol>
+<li>它的长度是最大数据类型长度，可以节省空间；</li>
+<li>数据不共存；</li>
+<li>关键字<code>union</code>，声明方式与结构体相同；</li>
+</ol>
+<hr>
+<h2 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h2><p>创建符号常量的方式，简单来说就是将一个“标签”与枚举量对应起来。特点：</p>
+<ol>
+<li>可以提升(常到<code>int</code>)，但<code>int</code>不能缩窄到它；</li>
+<li>可以显式设置枚举量，枚举范围内即使没有枚举量，也合法；</li>
+<li>关键词<code>enum</code>，声明方式与结构体相似；</li>
+<li>他没有算术运算，一般常用于<code>swith</code>语句中的标签。</li>
+</ol>
+<hr>
+<h2 id="浮点数存储方式"><a href="#浮点数存储方式" class="headerlink" title="浮点数存储方式"></a>浮点数存储方式</h2><h3 id="浮点数表示"><a href="#浮点数表示" class="headerlink" title="浮点数表示"></a>浮点数表示</h3><p>不管是什么数据类型，在内存中的表示方式都是一样的(0或者1)，数据类型的作用只是告诉编译器如何去解释内存中的数据，那么编译器是如何解释浮点型的？<br>首先，二进制科学法表示中，一个浮点型S = M*2^N，内存会存储三部分：符号位+阶码(N)+尾数(M)；</p>
+<table>
+<thead>
+<tr>
+<th align="center">数据</th>
+<th align="center">符号位</th>
+<th align="center">阶码</th>
+<th align="center">尾数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>float</code></td>
+<td align="center">1位</td>
+<td align="center">8位</td>
+<td align="center">23位</td>
+</tr>
+<tr>
+<td align="center">内存位</td>
+<td align="center">31</td>
+<td align="center">30-23</td>
+<td align="center">22-0</td>
+</tr>
+<tr>
+<td align="center"><code>double</code></td>
+<td align="center">1位</td>
+<td align="center">11位</td>
+<td align="center">52位</td>
+</tr>
+<tr>
+<td align="center">内存位</td>
+<td align="center">63</td>
+<td align="center">62-52</td>
+<td align="center">51-0</td>
+</tr>
+<tr>
+<td align="center">其次，阶码使用中间偏置(固定量为2^N-1)的移码表示的,M的整数部分为1,不存储，只存储尾数即可。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">例如，</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">1. 125.5f = <code>1111101.1</code> = 1.1111011*2^6 =&gt;移码127+6 = 133 = <code>10000101</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000010 11111101 00000000 0000000</code>。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2. 253.5f = <code>11111101.1</code> = 1.11111011*2^7 =&gt;移码127+7 = 134 = <code>10000110</code> =&gt;正数符号位是0，尾数补0到够23位,那么计算机中：<code>01000011 01111110 10000000 0000000</code>。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="浮点整型转化"><a href="#浮点整型转化" class="headerlink" title="浮点整型转化"></a>浮点整型转化</h3><p>讨论<code>float</code>型与<code>int</code>的相互转化(字节数相等)，值转化使用强制类型转换<code>float(int x)</code>和<code>int(float x)</code>可以完成，这个操作中内存中的位发生了变化，那么，现在不想让位变化，转变编译器解释数据的方式该如何操作?<br>之前提到过，对一个指定的编译器，任何指针的大小都是一定的。因此可以对指针(指针类型可以告诉编译器解释内存的方式)强制类型转化(缩窄转换取低位)来完成。如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">float f = 253.5;</span><br><span class="line">unsigned short s = *(unsigned short*)&amp;f;</span><br><span class="line">short s1 = *(short*)&amp;f;</span><br></pre></td></tr></table></figure>
+
+<p>s = 2**15 = 32768;<br>s1 = <code>10000000 00000000</code> = -32768;</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><ol>
+<li>整型常量默认情况下是int型,浮点常量在默认情况下是<code>double</code>型,如果需要<code>float</code>型，需要这样表示：<code>3.25f</code>；</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/04/21/共用体、枚举和浮点数存储/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

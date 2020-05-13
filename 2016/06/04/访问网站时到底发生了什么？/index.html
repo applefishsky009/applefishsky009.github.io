@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>访问网站时到底发生了什么？ | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="计算机网络,">
+  
+
+  <meta name="description" content="之前有学习过计算机网络，但并没有理解他到底是什么，直到现在，决定重温计算机网络。首先推荐一本书，谢希仁编著的《计算机网络》，还有一个计算机网络总结。直到看了这本书，我才认识到，国内教材还是有可取之处的。。。 第一篇计算机网络的博客，回答这样一个问题，我们访问一个网站的时候经历了怎样的过程？以后的内容基本都是基于这一解释的扩展。  获得网站的IP我知道他的名字，但是不知道他的联系方式，怎么玩耍呢？只">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="访问网站时到底发生了什么？">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/04/访问网站时到底发生了什么？/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="之前有学习过计算机网络，但并没有理解他到底是什么，直到现在，决定重温计算机网络。首先推荐一本书，谢希仁编著的《计算机网络》，还有一个计算机网络总结。直到看了这本书，我才认识到，国内教材还是有可取之处的。。。 第一篇计算机网络的博客，回答这样一个问题，我们访问一个网站的时候经历了怎样的过程？以后的内容基本都是基于这一解释的扩展。  获得网站的IP我知道他的名字，但是不知道他的联系方式，怎么玩耍呢？只">
+<meta property="og:locale" content="Chinese">
+<meta property="og:image" content="http://i.imgur.com/nzqCAKf.jpg">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.032Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="访问网站时到底发生了什么？">
+<meta name="twitter:description" content="之前有学习过计算机网络，但并没有理解他到底是什么，直到现在，决定重温计算机网络。首先推荐一本书，谢希仁编著的《计算机网络》，还有一个计算机网络总结。直到看了这本书，我才认识到，国内教材还是有可取之处的。。。 第一篇计算机网络的博客，回答这样一个问题，我们访问一个网站的时候经历了怎样的过程？以后的内容基本都是基于这一解释的扩展。  获得网站的IP我知道他的名字，但是不知道他的联系方式，怎么玩耍呢？只">
+<meta name="twitter:image" content="http://i.imgur.com/nzqCAKf.jpg">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获得网站的IP"><span class="toc-text">获得网站的IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP链接的三次握手"><span class="toc-text">TCP链接的三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么需要三次握手"><span class="toc-text">为什么需要三次握手</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器访问过程"><span class="toc-text">浏览器访问过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP断开连接的四次握手"><span class="toc-text">TCP断开连接的四次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么要四次握手"><span class="toc-text">为什么要四次握手</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-访问网站时到底发生了什么？" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">访问网站时到底发生了什么？</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.04</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/计算机网络/">计算机网络</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/04/访问网站时到底发生了什么？/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>之前有学习过计算机网络，但并没有理解他到底是什么，直到现在，决定重温计算机网络。首先推荐一本书，谢希仁编著的《计算机网络》，还有一个<a href="https://mp.weixin.qq.com/s?__biz=MzA5ODUxOTA5Mg==&mid=2652549492&idx=1&sn=1ee3f3ac7e3939c2d043475ee94fc84a&scene=0&key=f5c31ae61525f82ee719b6a9891804cfdb17bfef968860d6549e72f709c44f8858691a090c5bb18f36988dc88354c172&ascene=7&uin=MTI5MjI0NzEyMQ%3D%3D&devicetype=android-23&version=26031031&nettype=WIFI&pass_ticket=Y%2F%2FFA4XRBgzEZc7TWnpUSOgilSIZ%2BwlAC7IVjUZZxQ8%2BeVY%2BsyubOhQ6ThMU3jn%2F" target="_blank" rel="noopener">计算机网络总结</a>。直到看了这本书，我才认识到，国内教材还是有可取之处的。。。</p>
+<p>第一篇计算机网络的博客，回答这样一个问题，我们<strong>访问一个网站的时候经历了怎样的过程</strong>？以后的内容基本都是基于这一解释的扩展。</p>
+<hr>
+<h2 id="获得网站的IP"><a href="#获得网站的IP" class="headerlink" title="获得网站的IP"></a>获得网站的IP</h2><p>我知道他的名字，但是不知道他的联系方式，怎么玩耍呢？<br>只有获得网站的IP(联系方式)才能建立TCP连接(通话约好玩耍)，因此第一步就是获得网站的IP。</p>
+<ol>
+<li>查看浏览器DNS缓存有没有URL对应的IP，(还要查看系统缓存)，若没有，浏览器需要向DNS服务器发出DNS请求；<ul>
+<li>简单将DNS服务器理解为：URL转IP(域名解析)；</li>
+</ul>
+</li>
+<li>浏览器向本地DNS模块发出DNS请求，DNS模块生成相关的DNS报文；</li>
+<li>会话层/应用层的DNS模块将生成的DNS报文传递给传输层的UDP协议单元；</li>
+<li>UDP协议单元将数据封装成UDP数据报，传递给网络层的IP协议单元；</li>
+<li>IP单元将数据封装成IP数据包，其中目的IP是电脑设置的默认DNS地址(DNS服务器地址，路由器根据这个IP进行路由选择)，将封装好的数据包传递给数据链路层的协议单元；</li>
+<li>封装好的IP数据包传递给数据链路层，数据链路层需要封装到达目的IP的MAC地址(下一跳地址)，这时候IP协议需要使用ARP协议获得下一跳的MAC地址(路由的MAC)，如ARP缓存没有相关数据，发送ARP广播(WLAN协议(CSMA/CA)或广播信道CSMA/CD协议)请求，等待ARP回应；<ul>
+<li>ARP协议解决同一个局域网上的主机或路由器的IP地址和硬件地址的映射问题。</li>
+</ul>
+</li>
+<li>收到ARP单播回应，将对应信息写入ARP缓存，这时候数据链路层就可以封装IP数据包和下一跳MAC地址(路由器或目的主机)并发送(单播，指定IP)；<ul>
+<li>组播和单播都会侦听信道，<strong>组播表示所有主机都会接收消息，但不一定响应，单播是只有特定IP才会接受消息</strong>。举个例子，广播ARP请求，所有主机接收到信道上的消息，发现是广播(IP)，于是接受消息，再一分析，发现是ARP请求，于是选择响应或者不响应。如果是单播，直接查看IP选择接受或者不接受。</li>
+<li>注意，广播ARP请求所有主机都会收到消息，但是非目标主机不会响应。</li>
+</ul>
+</li>
+<li>多次经过路由器解封/封装MAC帧，DNS请求到达DNS服务器(DNS服务器由IPS提供，通信使用PPP-&gt;IPCP协议(包含NCP协议))的数据链路层(协议单元)-&gt;IP-&gt;UDP-&gt;DNS(-&gt;表示经过协议单元并解析报文)，解析DNS域名，如果DNS服务器有相关数据，则产生DNS回应报文。<ul>
+<li>主机向本地域名服务器采用<strong>递归查询</strong>，就是说，如果这里没有相关数据，由本地域名服务器向其他根域名服务器继续发出DNS请求(每次DNS请求从1开始)；</li>
+<li>本地域名服务器向跟域名服务器采用<strong>迭代查询</strong>，就是说，被查询的根域名服务器产生DNS回应报文，其中要么给出目的IP，要么说：“我不知道，你去问我下边的那个顶级域名服务器吧！”，同理顶级域名服务器如果还是不知道，就会说：“我不知道，你去问我下边的这个权限域名服务器吧”，然后就得到了所需要的DNS回应报文。</li>
+</ul>
+</li>
+<li>DNS回应报文在本地域名服务器上，DNS回应报文-&gt;UDP-&gt;IP-&gt;数据链路层(MAC)。</li>
+<li>本机得到DNS回应报文，数据链路层-&gt;IP-&gt;UDP-&gt;DNS,解析得到URL对应的IP-&gt;浏览器写入DNS缓存表。</li>
+</ol>
+<hr>
+<h2 id="TCP链接的三次握手"><a href="#TCP链接的三次握手" class="headerlink" title="TCP链接的三次握手"></a>TCP链接的三次握手</h2><p>我知道了他的联系方式，现在我需要和他联系约好一起愉快的玩耍。<br>现在浏览器直到了目标URL的IP地址，下一步和这个IP建立TCP连接。</p>
+<ol>
+<li>浏览器向目的IP发送TCP连接请求报文，TCP(SYN=1，ACK=0)-&gt;IP-&gt;ARP(MAC)-&gt;网关-&gt;目的主机；    <font color="red">本机状态：SYN_SEND</font></li>
+<li>目的主机得到TCP请求报文，数据链路层-&gt;IP-&gt;TCP；</li>
+<li>发送请求应答报文，TCP(SYN=1,ACK=1)-&gt;IP-&gt;数据链路层；    <font color="red">主机状态：SYN_RCVD</font></li>
+<li>本机得到请求应答报文，数据链路层-&gt;IP-&gt;TCP；</li>
+<li>本机回应请求确认报文，TCP-&gt;IP-&gt;数据链路层；    <font color="red">本机状态：ESTABLISHED</font></li>
+<li>目的主机得到请求应答报文，数据链路层-&gt;IP-&gt;TCP,连接建立完成。    <font color="red">主机状态：ESTABLISHED</font></li>
+</ol>
+<h3 id="为什么需要三次握手"><a href="#为什么需要三次握手" class="headerlink" title="为什么需要三次握手"></a>为什么需要三次握手</h3><p>如果不是三次握手：</p>
+<ol>
+<li>本机请求报文阻塞时，本机超时后会再次发送连接请求，服务器建立多个响应等待。</li>
+<li>若2次握手，再考虑目的主机回应报文阻塞了(这时候服务器已经响应了)。主机会再次发送连接请求，造成服务器再次响应，依然有服务器资源浪费。</li>
+<li>采用三次握手，如果服务器没有收到确认报文的确认，他会有一个重传次数和半连接存活时间，超过重传次数或半连接存活时间，就知道本机并没有想要建立连接，因此不会响应。</li>
+<li><font color="red">TCP的漏洞</font>,如上所说，有一个重传次数和半连接存活时间,如果有一个主机不停地伪装不存在的IP，对服务器发出连接请求，无法响应确认报文，服务器需要不停重发确认报文直到超时，这些伪造的SYN包长时间占用未连接队列，正常的SYN请求被丢弃，服务器系统会运行缓慢，严重时引起网络堵塞升值系统瘫痪。</li>
+</ol>
+<hr>
+<h2 id="浏览器访问过程"><a href="#浏览器访问过程" class="headerlink" title="浏览器访问过程"></a>浏览器访问过程</h2><p>怎么愉快的玩耍呢？<br>通过HTTP协议的方法来交互，比如：</p>
+<ol>
+<li>HTTP.GET方法报文-&gt;TCP-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;主机；</li>
+<li>主机数据链路层-&gt;IP-&gt;TCP-&gt;HTTP,HTTP协议产生封装好的HTML超文本形式数据；</li>
+<li>HTTP-HTML-&gt;TCP-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;本机；</li>
+<li>本机收到数据帧，数据链路层-&gt;IP-&gt;TCP-&gt;HTTP,浏览器显示HTML超文本。</li>
+</ol>
+<hr>
+<h2 id="TCP断开连接的四次握手"><a href="#TCP断开连接的四次握手" class="headerlink" title="TCP断开连接的四次握手"></a>TCP断开连接的四次握手</h2><p>愉快地玩耍了，各回各家吧！<br>断开连接是也是一个平等的过程，本机需要主机同意，主机也需要本机同意。</p>
+<ol>
+<li>浏览器发送结束请求报文，TCP(FIN=1)-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;主机，本机等待关闭1；    <font color="red">本机状态：FIN-WAIT-1</font></li>
+<li>主机收到数据帧，数据链路层-&gt;IP-&gt;TCP,并回应应答报文，主机等待关闭，TCP(FIN=1,ACK=1)-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;主机，本机等待关闭2。    <font color="red">主机状态：CLOSE-WAIT</font></li>
+<li>主机发送结束请求报文，TCP(FIN=1)-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;本机；<font color="red">主机状态：CLOSE-WAIT -&gt; LAST-ACK</font></li>
+<li>本机收到数据帧，数据链路层-&gt;IP-&gt;TCP,并回应应答报文，关闭连接，TCP(FIN=1,ACK=1)-&gt;IP-&gt;MAC(ARP)-&gt;网关-&gt;主机。    <font color="red">本机状态：TIME-WAIT</font></li>
+<li>主机收到ACK应答报文，关闭连接。    <font color="red">主机状态：CLOSE</font></li>
+</ol>
+<h3 id="为什么要四次握手"><a href="#为什么要四次握手" class="headerlink" title="为什么要四次握手"></a>为什么要四次握手</h3><ol>
+<li>考虑本机将数据发送完了，发送结束请求报文，主机收到了，但是主机没有将需要发送的数据发完，因此会告诉本机，“你先等等，我发完数据再断开”，本机就在等待。</li>
+<li>主机告诉本机，“我发完了，可以关闭了”，本机收到后回应，“好的，那就关闭吧”</li>
+<li>主机收到最后一句话会断开连接，但是，本机发送后不能立刻关闭连接(TIME WAIT)，若回应报文丢失，主机会重新发送结束请求报文，本机还需要响应，因此需要TIME WAIT(一般是30s)。</li>
+</ol>
+<p>图解：<br><img src="http://i.imgur.com/nzqCAKf.jpg" alt></p>
+<hr>
+<p>参考<a href="http://www.voidcn.com/blog/zbuger/article/p-5713349.html" target="_blank" rel="noopener">访问一个网站的过程</a>。至此回答了<strong>访问一个网站经历了哪些过程？</strong>，作为一个入门级的计算机网络，其中每一层都值得深思。以后会慢慢补充。</p>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/04/访问网站时到底发生了什么？/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

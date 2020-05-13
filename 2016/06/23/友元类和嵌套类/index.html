@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>友元类和嵌套类 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="C++,">
+  
+
+  <meta name="description" content="主要介绍友元类，友元成员函数，嵌套类。友元类在本类中声明，友元成员函数是另一个类的成员函数，在本类中声明为友元，嵌套类是在本类中声明并定义的类。友元的声明都要使用friend关键字。  友元类 友元类的所有方法都可以访问原始类的私有成员和保护成员； 友元成员函数是比友元类更明确的用法，因此这另一个类和本类的关系必须是可以被声明为友元类(改变本类中的数据成员，但不是is-a关系)； 哪些函数，成员函">
+<meta name="keywords" content="C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="友元类和嵌套类">
+<meta property="og:url" content="applefishsky009.github.io/2016/06/23/友元类和嵌套类/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="主要介绍友元类，友元成员函数，嵌套类。友元类在本类中声明，友元成员函数是另一个类的成员函数，在本类中声明为友元，嵌套类是在本类中声明并定义的类。友元的声明都要使用friend关键字。  友元类 友元类的所有方法都可以访问原始类的私有成员和保护成员； 友元成员函数是比友元类更明确的用法，因此这另一个类和本类的关系必须是可以被声明为友元类(改变本类中的数据成员，但不是is-a关系)； 哪些函数，成员函">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="友元类和嵌套类">
+<meta name="twitter:description" content="主要介绍友元类，友元成员函数，嵌套类。友元类在本类中声明，友元成员函数是另一个类的成员函数，在本类中声明为友元，嵌套类是在本类中声明并定义的类。友元的声明都要使用friend关键字。  友元类 友元类的所有方法都可以访问原始类的私有成员和保护成员； 友元成员函数是比友元类更明确的用法，因此这另一个类和本类的关系必须是可以被声明为友元类(改变本类中的数据成员，但不是is-a关系)； 哪些函数，成员函">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#友元类"><span class="toc-text">友元类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#友元类-1"><span class="toc-text">友元类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#友元成员函数"><span class="toc-text">友元成员函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#交互式友元类"><span class="toc-text">交互式友元类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#共同的友元类"><span class="toc-text">共同的友元类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌套类"><span class="toc-text">嵌套类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础"><span class="toc-text">基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶"><span class="toc-text">进阶</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-友元类和嵌套类" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">友元类和嵌套类</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2016.06.23</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/C-的类/">C++的类</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2016/06/23/友元类和嵌套类/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>主要介绍友元类，友元成员函数，嵌套类。友元类在本类中声明，友元成员函数是另一个类的成员函数，在本类中声明为友元，嵌套类是在本类中声明并定义的类。友元的声明都要使用<code>friend</code>关键字。</p>
+<hr>
+<h2 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h2><ol>
+<li>友元类的所有方法都可以访问原始类的私有成员和保护成员；</li>
+<li>友元成员函数是比友元类更明确的用法，因此这另一个类和本类的关系必须是可以被声明为友元类(改变本类中的数据成员，但不是is-a关系)；</li>
+<li>哪些函数，成员函数，或者类是本类的友元必须由本类定义，而不能从外部声明为友元(这样本类是不可见的，也不能给予他访问权限)。</li>
+</ol>
+<h3 id="友元类-1"><a href="#友元类-1" class="headerlink" title="友元类"></a>友元类</h3><ol>
+<li>友元类不是本类的一部分(非is-a关系)，但是可以改变本类的状态(如遥控器和电视机)；</li>
+<li>友元声明可以位于公有，私有或者保护部分，其所在的位置无关紧要；</li>
+<li>友元类的私有数据可以用来描述友元类的特性；</li>
+<li>除构造函数外，所有的友元类函数都将一个本类对象作为参数，这表明友元类针对特定的本类对象。</li>
+</ol>
+<p>友元描述一种关系，如果不用友元，必须将本类状态数据设置为公有(不安全)或者用一个大型类来同时包含本类和友元类对象(过于笨拙而且一个友元类对象不能用于多个本类对象)，而使用友元，一个友元类对象可以传入任意本类对象。</p>
+<h3 id="友元成员函数"><a href="#友元成员函数" class="headerlink" title="友元成员函数"></a>友元成员函数</h3><p>仅仅让直接访问本类私有成员的友元类成员成员本类的成员函数，而不必使整个类成为本类的成员类。</p>
+<ol>
+<li>对本类使用前向声明(forward declaration)而不是友元类，如果对友元类前向声明，本类可以看到友元类的声明，但是看不到友元成员函数的声明；</li>
+<li>友元类中只包含方法声明，将实际定义放在本类之后，这是由于内联的友元类中调用的本类方法暂时是不可见的(还未声明，前向声明只是针对类)，放在本类定义之后，将内联函数用<code>inline</code>定义；</li>
+<li>注意函数链接性默认为外部的(外部链接性在其他文件中使用时也要先声明)，内联函数的链接性是内部的；</li>
+<li>使用友元类并不需要前向声明，因为友元语句本身指出友元类是一个类。 </li>
+</ol>
+<h3 id="交互式友元类"><a href="#交互式友元类" class="headerlink" title="交互式友元类"></a>交互式友元类</h3><p>两个类互为友元。</p>
+<ol>
+<li>声明和定义时，保证一个原则：在调用友元类的函数时他是被声明过的。</li>
+</ol>
+<h3 id="共同的友元类"><a href="#共同的友元类" class="headerlink" title="共同的友元类"></a>共同的友元类</h3><p>一个友元成员函数/友元类同时是两个类的友元。</p>
+<ol>
+<li>原则同上，在使用(传参)其中一个类时，保证他是声明过的，因此这里也需要前向声明。</li>
+</ol>
+<hr>
+<h2 id="嵌套类"><a href="#嵌套类" class="headerlink" title="嵌套类"></a>嵌套类</h2><p>在类中声明的类成为嵌套类。</p>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><ol>
+<li>主要作用是提供新的类型以及限制其作用域；</li>
+<li>同数据成员相同，只有声明为公有的才能在类外使用，而且必须使用作用域解析符(只有类或结构体才支持这么使用)；</li>
+<li>结构是一种其成员在默认情况下是公有的类。</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Student</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">int</span> y;</span><br><span class="line">	Student(<span class="keyword">int</span> s, <span class="keyword">int</span> t) :x(s), y(t) &#123;&#125;;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Student1</span> &#123;</span></span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="keyword">int</span> y;</span><br><span class="line">		Student1(<span class="keyword">int</span> s, <span class="keyword">int</span> t) :x(s), y(t) &#123;&#125;;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Student::Student1 <span class="title">k</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; k.x &lt;&lt; k.y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">"pause"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h3><ol>
+<li>类声明的位置(外层类的访问规则)决定类的作用域/可见性，类可见后，访问控制规则(内层类的访问规则)决定程序对嵌套类成员的访问权限；</li>
+<li>一般使用共有枚举来提供供客户程序员使用的类常数；</li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2016/06/23/友元类和嵌套类/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>

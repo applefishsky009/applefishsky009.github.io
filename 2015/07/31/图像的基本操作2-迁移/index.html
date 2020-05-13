@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+
+  <html class="dark page-home">
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>图像的基本操作2-迁移 | 孤云两角，去天一握</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="OPENCV,">
+  
+
+  <meta name="description" content="图像膨胀腐蚀 结构体IplConvKernel:定义形态学操作的结构元素；  nCols，nRows：结构元素的行宽与列高； anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直； nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
+<meta name="keywords" content="OPENCV">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像的基本操作2-迁移">
+<meta property="og:url" content="applefishsky009.github.io/2015/07/31/图像的基本操作2-迁移/index.html">
+<meta property="og:site_name" content="孤云两角，去天一握">
+<meta property="og:description" content="图像膨胀腐蚀 结构体IplConvKernel:定义形态学操作的结构元素；  nCols，nRows：结构元素的行宽与列高； anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直； nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
+<meta property="og:locale" content="Chinese">
+<meta property="og:updated_time" content="2020-05-11T23:57:44.021Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像的基本操作2-迁移">
+<meta name="twitter:description" content="图像膨胀腐蚀 结构体IplConvKernel:定义形态学操作的结构元素；  nCols，nRows：结构元素的行宽与列高； anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直； nShiftR：用于表示结构元素的形状类型。12345678struct _IplConvKernel &amp;#123;    int  nCols;    int  nRows;    int  a">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=32204ee7" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76667484-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+</head>
+</html>
+<body>
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/archives/"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/category/"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/about/"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/tag/"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/link/"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/project/"
+            target="_self"
+            >
+            项目
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="ROUND_RECT"
+            href="/search/"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图像膨胀腐蚀"><span class="toc-text">图像膨胀腐蚀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图像平滑"><span class="toc-text">图像平滑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#颜色空间操作"><span class="toc-text">颜色空间操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边缘与直线检测"><span class="toc-text">边缘与直线检测</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-图像的基本操作2-迁移" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">图像的基本操作2-迁移</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2015.07.31</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>ryl</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/OPENCV/">OPENCV</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="applefishsky009.github.io/2015/07/31/图像的基本操作2-迁移/#disqus_thread"></a>
+        </span>
+      
+
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="图像膨胀腐蚀"><a href="#图像膨胀腐蚀" class="headerlink" title="图像膨胀腐蚀"></a>图像膨胀腐蚀</h2><ol>
+<li><p>结构体IplConvKernel:定义形态学操作的结构元素；</p>
+<ul>
+<li>nCols，nRows：结构元素的行宽与列高；</li>
+<li>anchorX，anchorY：结构元素原点（锚点）的位置坐标，水平，垂直；</li>
+<li>nShiftR：用于表示结构元素的形状类型。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">struct _IplConvKernel &#123;</span><br><span class="line">    int  nCols;</span><br><span class="line">    int  nRows;</span><br><span class="line">    int  anchorX;</span><br><span class="line">    int  anchorY;</span><br><span class="line">    int *values;</span><br><span class="line">    int  nShiftR;</span><br><span class="line">&#125;IplConvKernel;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>图像腐蚀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvErode( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</li>
+</ul>
+</li>
+<li><p>图像膨胀：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvDilate( const CvArr* src, CvArr* dst, IplConvKernel* element=NULL, int iterations=1 );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>结构元素默认为 NULL, 使用 3×3 长方形的结构元素；</li>
+</ul>
+</li>
+<li><p>彩蛋：颜色产生的方法一般采用加色法，因此0代表黑色(什么都没有),255代表白色(所有色彩组合),(另一种叫减色法);</p>
+</li>
+<li><p>彩蛋2：四舍五入，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int cvRound (double value);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<h2 id="图像平滑"><a href="#图像平滑" class="headerlink" title="图像平滑"></a>图像平滑</h2><ol>
+<li>各种方法的图像平滑:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvSmooth( const CvArr* src, CvArr* dst,int smoothtype=CV_GAUSSIAN,int param1=3, int param2=0, double param3=0, double param4=0 );</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<h2 id="颜色空间操作"><a href="#颜色空间操作" class="headerlink" title="颜色空间操作"></a>颜色空间操作</h2><ol>
+<li><p>色彩空间转化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCvtColor( const CvArr* src, CvArr* dst, int code );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>要注意正确制定色彩空间(code参数)。</li>
+</ul>
+</li>
+<li><p>分割多通道图像：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvSplit( const CvArr* src, CvArr* dst0, CvArr* dst1,CvArr* dst2, CvArr* dst3 );</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<h2 id="边缘与直线检测"><a href="#边缘与直线检测" class="headerlink" title="边缘与直线检测"></a>边缘与直线检测</h2><ol>
+<li><p>固定阈值操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvThreshold( const CvArr* src, CvArr* dst, double threshold,double max_value, int threshold_type );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用 Canny 算法做边缘检测：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvCanny( const CvArr* image, CvArr* edges, double threshold1,double threshold2, int aperture_size=3 );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>aperture_size：Sobel算子内核大小。</li>
+<li>如果一个像素的梯度大于上限阈值，则被认为是边缘像素;如果低于下限阈值，则被抛弃;如果介于二者之间，只有当其与高于上限阈值的像素连接时才被接受。</li>
+<li>canny推荐的上下限阈值比是2:1-3:1；</li>
+</ul>
+</li>
+<li><p>自适应阈值方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvAdaptiveThreshold( const CvArr* src, CvArr* dst,double max_value,int adaptive_method=CV_ADAPTIVE_THRESH_MEAN_C,int threshold_type=CV_THRESH_BINARY,int block_size=3, double param1=5 );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>自适应二值化对于光照不均的文字，条码等，效果很好。窗口大小选择，考虑被检测物体尺寸。</li>
+<li>自适应阈值化中的阈值完全是由你所选择的邻域所确定：<ul>
+<li>如果你所选择的邻域非常小（比如3×3），那么很显然阈值的“自适应程度”就非常高，这在结果图像中就表现为边缘检测的效果。</li>
+<li>域选择的比较大（比如31×31），那么阈值的“自适应程度”就比较低，这在结果图像中就表现为二值化的效果。</li>
+</ul>
+</li>
+<li>参数param1与方法有关，主要可以用来控制边缘的类型和粗细。选定合适的block_size后，我们就可以选定一个更大的阈值param1，更好的抑制噪声。</li>
+</ul>
+</li>
+<li><p>利用Hough变换在二值图像中找到直线：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CvSeq* cvHoughLines2( CvArr* image, void* line_storage, int method,double rho, double theta, int threshold,double param1=0, double param2=0 );</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解释比较麻烦，直接上例子:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">lines = cvHoughLines2( dst, storage, CV_HOUGH_PROBABILISTIC, 1, CV_PI/180, 80, 30, 10 );</span><br><span class="line">for( i = 0; i &lt; lines-&gt;total; i++ )&#123;</span><br><span class="line">	CvPoint* line =(CvPoint*)cvGetSeqElem(lines,i);</span><br><span class="line">	cvLine( color_dst, line[0], line[1], CV_RGB(255,0,0), 3, 8 );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>绘制连接两个点的线段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void cvLine( CvArr* img, CvPoint pt1, CvPoint pt2, CvScalar color,int thickness=1, int line_type=8, int shift=0 );</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    
+  </div>
+</article>
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/archives/"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/category/"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/about/"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/tag/"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/link/"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/project/"
+              target="_self"
+              >
+              项目
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="ROUND_RECT"
+              href="/search/"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'rylcode';
+    
+    var disqus_url = 'applefishsky009.github.io/2015/07/31/图像的基本操作2-迁移/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//rylcode.disqus.com/count.js" async></script>
+
+
+
+    
+
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235687', function() {
+      // load success
+    });
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
