@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://rylcode.cn/"/>
+  <link href="https://applefishsky009.github.io/"/>
   <updated>2020-05-13T12:18:58.437Z</updated>
-  <id>http://rylcode.cn/</id>
+  <id>https://applefishsky009.github.io/</id>
   
   <author>
     <name>ryl</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>The Skyline Problem</title>
-    <link href="http://rylcode.cn/2017/04/14/The-Skyline-Problem/"/>
-    <id>http://rylcode.cn/2017/04/14/The-Skyline-Problem/</id>
+    <link href="https://applefishsky009.github.io/2017/04/14/The-Skyline-Problem/"/>
+    <id>https://applefishsky009.github.io/2017/04/14/The-Skyline-Problem/</id>
     <published>2017-04-14T01:54:01.000Z</published>
     <updated>2020-05-13T12:18:58.437Z</updated>
     
@@ -34,42 +34,42 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://applefishsky009.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Algorithm" scheme="http://rylcode.cn/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://applefishsky009.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>再解KMP</title>
-    <link href="http://rylcode.cn/2017/04/06/%E5%86%8D%E8%A7%A3KMP/"/>
-    <id>http://rylcode.cn/2017/04/06/再解KMP/</id>
+    <link href="https://applefishsky009.github.io/2017/04/06/%E5%86%8D%E8%A7%A3KMP/"/>
+    <id>https://applefishsky009.github.io/2017/04/06/再解KMP/</id>
     <published>2017-04-06T02:21:03.000Z</published>
     <updated>2020-05-13T12:18:58.447Z</updated>
     
-    <content type="html"><![CDATA[<p>之前在<a href="http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/">BP、KMP、改进的KMP</a>博文中介绍了计算KMP的方式以及程序理解，经过一段时间的沉淀，现在从算法角度和编程两个角度结合其他算法探求沉思KMP算法的本质。</p><hr><h2 id="算法角度"><a href="#算法角度" class="headerlink" title="算法角度"></a>算法角度</h2><p>结合DP思维，记录了前后缀匹配长度。<br>DP的思想体现首先在于<font color="red"><strong>无后效性</strong></font>，<code>next[j]</code>代表<code>j</code>位以前字符串中真前后缀的最大公共元素长度，即不包含<code>j</code>自身。<code>j</code>位以前的记录和<code>j</code>位以后无关，这就是无后效性。但注意在之前博文中改进的KMP算法使用到了<code>j</code>位的字符比较。<br>其次体现在状态转移上，<code>j</code>位的记录仅由<code>j-1</code>位和当前字符和前缀指针是否匹配来共同决定，这就引出了编程使用双指针fail pointer的决策实现。</p><hr><h2 id="编程角度"><a href="#编程角度" class="headerlink" title="编程角度"></a>编程角度</h2><p>fail pointer问题。在编程实现中，可以用失配指针来解决，双指针一个指向真前缀，失配则回溯，一个指向真后缀，由前一状态和当前是否匹配来共同决定。<br>值得注意的是，在<code>nextTemp[j]</code>的计算中，如果<code>i</code>的值代表了后缀指针，那么<code>nextTemp[i-1]</code>的值就代表了前缀指针，</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(l.<span class="built_in">size</span>(), <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; l.<span class="built_in">size</span>(); i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> j = next[i - <span class="number">1</span>];    <span class="comment">// 前一状态，同时这个值也是相同的真前缀长度</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; l[i] != l[j])   <span class="comment">//失配</span></span><br><span class="line">        j = next[j - <span class="number">1</span>];    <span class="comment">//  回溯，因为next[j]记录了匹配位置</span></span><br><span class="line">    next[i] = (j += l[i] == l[j]);<span class="comment">//回溯后再判断是否匹配</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在<a href="http://www.rudy-yuan.net/archives/182/" target="_blank" rel="noopener">一幅图让你彻底理解KMP算法</a>这个博文中对回溯的过程解释的比较清楚，即在回溯到的子字符串中，其实也经过了前缀后缀的匹配过程，因此需要多次回溯，回溯的跳出条件为回溯到底或者完全匹配为止。因此从<code>nextTemp[j]</code>到<code>next[j]</code>到<code>nextVal[j]</code>的算法优化过程如下：</p><p><code>nextTemp[j]</code></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(l.<span class="built_in">size</span>(), <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; l.<span class="built_in">size</span>(); i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> j = next[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; l[i] != l[j])</span><br><span class="line">        j = next[j - <span class="number">1</span>];</span><br><span class="line">    next[i] = (j += l[i] == l[j]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>next[j]</code>，在这里做了两件事情，将i,j初始值减一，j作为前缀指针进行了更强有力的控制。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">next[<span class="number">0</span>] = <span class="number">-1</span>; </span><br><span class="line"><span class="keyword">while</span>(i &lt; l.<span class="built_in">size</span>() - <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; l[i] != l[j])</span><br><span class="line">j = next[j];</span><br><span class="line">j++;</span><br><span class="line">i++;</span><br><span class="line">next[i] = j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再写<code>next[j]</code>，这里做了两件事情，去掉内层循环仅有外层循环控制，转换判断逻辑。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">next[<span class="number">0</span>] = <span class="number">-1</span>; </span><br><span class="line"><span class="keyword">while</span> (i &lt; s2.<span class="built_in">size</span>() - <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">-1</span> || s2[i]==s2[j])</span><br><span class="line">&#123;</span><br><span class="line">i++;</span><br><span class="line">j++;</span><br><span class="line">next[i] = j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">j = next[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>优化至<code>nextVal[j]</code></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (i &lt; needle.<span class="built_in">size</span>() - <span class="number">1</span>) <span class="comment">//注意i少一个值</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">-1</span> || needle[i] == needle[j]) <span class="comment">//前一次失配 或 当前匹配，真前后缀长度加1</span></span><br><span class="line">&#123;</span><br><span class="line">j++;</span><br><span class="line">i++;</span><br><span class="line"><span class="keyword">if</span> (needle[i] != needle[j])</span><br><span class="line">nextVal[i] = j;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">nextVal[i] = nextVal[j];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">j = nextVal[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>参考题目：<br><a href="https://leetcode.com/problems/shortest-palindrome/#/description" target="_blank" rel="noopener">214. Shortest Palindrome</a><br><a href="https://leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">28. Implement strStr()</a></p>]]></content>
+    <content type="html"><![CDATA[<p>之前在<a href="http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/" target="_blank" rel="noopener">BP、KMP、改进的KMP</a>博文中介绍了计算KMP的方式以及程序理解，经过一段时间的沉淀，现在从算法角度和编程两个角度结合其他算法探求沉思KMP算法的本质。</p><hr><h2 id="算法角度"><a href="#算法角度" class="headerlink" title="算法角度"></a>算法角度</h2><p>结合DP思维，记录了前后缀匹配长度。<br>DP的思想体现首先在于<font color="red"><strong>无后效性</strong></font>，<code>next[j]</code>代表<code>j</code>位以前字符串中真前后缀的最大公共元素长度，即不包含<code>j</code>自身。<code>j</code>位以前的记录和<code>j</code>位以后无关，这就是无后效性。但注意在之前博文中改进的KMP算法使用到了<code>j</code>位的字符比较。<br>其次体现在状态转移上，<code>j</code>位的记录仅由<code>j-1</code>位和当前字符和前缀指针是否匹配来共同决定，这就引出了编程使用双指针fail pointer的决策实现。</p><hr><h2 id="编程角度"><a href="#编程角度" class="headerlink" title="编程角度"></a>编程角度</h2><p>fail pointer问题。在编程实现中，可以用失配指针来解决，双指针一个指向真前缀，失配则回溯，一个指向真后缀，由前一状态和当前是否匹配来共同决定。<br>值得注意的是，在<code>nextTemp[j]</code>的计算中，如果<code>i</code>的值代表了后缀指针，那么<code>nextTemp[i-1]</code>的值就代表了前缀指针，</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(l.<span class="built_in">size</span>(), <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; l.<span class="built_in">size</span>(); i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> j = next[i - <span class="number">1</span>];    <span class="comment">// 前一状态，同时这个值也是相同的真前缀长度</span></span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; l[i] != l[j])   <span class="comment">//失配</span></span><br><span class="line">        j = next[j - <span class="number">1</span>];    <span class="comment">//  回溯，因为next[j]记录了匹配位置</span></span><br><span class="line">    next[i] = (j += l[i] == l[j]);<span class="comment">//回溯后再判断是否匹配</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在<a href="http://www.rudy-yuan.net/archives/182/" target="_blank" rel="noopener">一幅图让你彻底理解KMP算法</a>这个博文中对回溯的过程解释的比较清楚，即在回溯到的子字符串中，其实也经过了前缀后缀的匹配过程，因此需要多次回溯，回溯的跳出条件为回溯到底或者完全匹配为止。因此从<code>nextTemp[j]</code>到<code>next[j]</code>到<code>nextVal[j]</code>的算法优化过程如下：</p><p><code>nextTemp[j]</code></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">next</span><span class="params">(l.<span class="built_in">size</span>(), <span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; l.<span class="built_in">size</span>(); i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> j = next[i - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; l[i] != l[j])</span><br><span class="line">        j = next[j - <span class="number">1</span>];</span><br><span class="line">    next[i] = (j += l[i] == l[j]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>next[j]</code>，在这里做了两件事情，将i,j初始值减一，j作为前缀指针进行了更强有力的控制。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">next[<span class="number">0</span>] = <span class="number">-1</span>; </span><br><span class="line"><span class="keyword">while</span>(i &lt; l.<span class="built_in">size</span>() - <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; l[i] != l[j])</span><br><span class="line">j = next[j];</span><br><span class="line">j++;</span><br><span class="line">i++;</span><br><span class="line">next[i] = j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>再写<code>next[j]</code>，这里做了两件事情，去掉内层循环仅有外层循环控制，转换判断逻辑。</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">-1</span>;</span><br><span class="line">next[<span class="number">0</span>] = <span class="number">-1</span>; </span><br><span class="line"><span class="keyword">while</span> (i &lt; s2.<span class="built_in">size</span>() - <span class="number">1</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">-1</span> || s2[i]==s2[j])</span><br><span class="line">&#123;</span><br><span class="line">i++;</span><br><span class="line">j++;</span><br><span class="line">next[i] = j;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">j = next[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>优化至<code>nextVal[j]</code></p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (i &lt; needle.<span class="built_in">size</span>() - <span class="number">1</span>) <span class="comment">//注意i少一个值</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">if</span> (j == <span class="number">-1</span> || needle[i] == needle[j]) <span class="comment">//前一次失配 或 当前匹配，真前后缀长度加1</span></span><br><span class="line">&#123;</span><br><span class="line">j++;</span><br><span class="line">i++;</span><br><span class="line"><span class="keyword">if</span> (needle[i] != needle[j])</span><br><span class="line">nextVal[i] = j;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">nextVal[i] = nextVal[j];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">j = nextVal[j];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><p>参考题目：<br><a href="https://leetcode.com/problems/shortest-palindrome/#/description" target="_blank" rel="noopener">214. Shortest Palindrome</a><br><a href="https://leetcode.com/problems/implement-strstr/" target="_blank" rel="noopener">28. Implement strStr()</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;之前在&lt;a href=&quot;http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/&quot;&gt;BP、KMP、改进的KMP&lt;/a&gt;博文中介绍了计算KMP的方式以及程序理解，经过
+        &lt;p&gt;之前在&lt;a href=&quot;http://rylcode.cn/2016/05/03/BP%E3%80%81KMP%E3%80%81%E6%94%B9%E8%BF%9B%E7%9A%84KMP/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;BP、KMP、改进
       
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://applefishsky009.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Algorithm" scheme="http://rylcode.cn/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://applefishsky009.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>前缀树的实现</title>
-    <link href="http://rylcode.cn/2017/03/30/%E5%89%8D%E7%BC%80%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
-    <id>http://rylcode.cn/2017/03/30/前缀树的实现/</id>
+    <link href="https://applefishsky009.github.io/2017/03/30/%E5%89%8D%E7%BC%80%E6%A0%91%E7%9A%84%E5%AE%9E%E7%8E%B0/"/>
+    <id>https://applefishsky009.github.io/2017/03/30/前缀树的实现/</id>
     <published>2017-03-30T02:42:08.000Z</published>
     <updated>2020-05-13T12:18:58.448Z</updated>
     
@@ -84,17 +84,17 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://applefishsky009.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Algorithm" scheme="http://rylcode.cn/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://applefishsky009.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>基本图算法和拓扑排序</title>
-    <link href="http://rylcode.cn/2017/02/10/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
-    <id>http://rylcode.cn/2017/02/10/基本图算法和拓扑排序/</id>
+    <link href="https://applefishsky009.github.io/2017/02/10/%E5%9F%BA%E6%9C%AC%E5%9B%BE%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/"/>
+    <id>https://applefishsky009.github.io/2017/02/10/基本图算法和拓扑排序/</id>
     <published>2017-02-10T06:24:17.000Z</published>
     <updated>2020-05-13T12:18:58.450Z</updated>
     
@@ -111,17 +111,17 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://applefishsky009.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Algorithm" scheme="http://rylcode.cn/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://applefishsky009.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>VSCode配置Python环境</title>
-    <link href="http://rylcode.cn/2017/01/19/VSCode%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83/"/>
-    <id>http://rylcode.cn/2017/01/19/VSCode配置Python环境/</id>
+    <link href="https://applefishsky009.github.io/2017/01/19/VSCode%E9%85%8D%E7%BD%AEPython%E7%8E%AF%E5%A2%83/"/>
+    <id>https://applefishsky009.github.io/2017/01/19/VSCode配置Python环境/</id>
     <published>2017-01-19T09:11:03.000Z</published>
     <updated>2020-05-13T12:18:58.438Z</updated>
     
@@ -138,17 +138,17 @@
     
     </summary>
     
-      <category term="VSCode" scheme="http://rylcode.cn/categories/VSCode/"/>
+      <category term="VSCode" scheme="https://applefishsky009.github.io/categories/VSCode/"/>
     
     
-      <category term="VSCode" scheme="http://rylcode.cn/tags/VSCode/"/>
+      <category term="VSCode" scheme="https://applefishsky009.github.io/tags/VSCode/"/>
     
   </entry>
   
   <entry>
     <title>并查集-不相交集合算法</title>
-    <link href="http://rylcode.cn/2017/01/18/%E5%B9%B6%E6%9F%A5%E9%9B%86-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86%E5%90%88%E7%AE%97%E6%B3%95/"/>
-    <id>http://rylcode.cn/2017/01/18/并查集-不相交集合算法/</id>
+    <link href="https://applefishsky009.github.io/2017/01/18/%E5%B9%B6%E6%9F%A5%E9%9B%86-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E9%9B%86%E5%90%88%E7%AE%97%E6%B3%95/"/>
+    <id>https://applefishsky009.github.io/2017/01/18/并查集-不相交集合算法/</id>
     <published>2017-01-18T08:33:53.000Z</published>
     <updated>2020-05-13T12:18:58.452Z</updated>
     
@@ -163,17 +163,17 @@
     
     </summary>
     
-      <category term="数据结构与算法" scheme="http://rylcode.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+      <category term="数据结构与算法" scheme="https://applefishsky009.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     
-      <category term="Algorithm" scheme="http://rylcode.cn/tags/Algorithm/"/>
+      <category term="Algorithm" scheme="https://applefishsky009.github.io/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>Python入门12-执行环境</title>
-    <link href="http://rylcode.cn/2017/01/17/Python%E5%85%A5%E9%97%A812-%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/"/>
-    <id>http://rylcode.cn/2017/01/17/Python入门12-执行环境/</id>
+    <link href="https://applefishsky009.github.io/2017/01/17/Python%E5%85%A5%E9%97%A812-%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/"/>
+    <id>https://applefishsky009.github.io/2017/01/17/Python入门12-执行环境/</id>
     <published>2017-01-17T10:10:32.000Z</published>
     <updated>2020-05-13T12:18:58.431Z</updated>
     
@@ -189,17 +189,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门11-类的高级特性</title>
-    <link href="http://rylcode.cn/2017/01/15/Python%E5%85%A5%E9%97%A811-%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/"/>
-    <id>http://rylcode.cn/2017/01/15/Python入门11-类的高级特性/</id>
+    <link href="https://applefishsky009.github.io/2017/01/15/Python%E5%85%A5%E9%97%A811-%E7%B1%BB%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/"/>
+    <id>https://applefishsky009.github.io/2017/01/15/Python入门11-类的高级特性/</id>
     <published>2017-01-15T02:07:53.000Z</published>
     <updated>2020-05-13T12:18:58.429Z</updated>
     
@@ -215,17 +215,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门11-继承和授权</title>
-    <link href="http://rylcode.cn/2017/01/13/Python%E5%85%A5%E9%97%A811-%E7%BB%A7%E6%89%BF%E5%92%8C%E6%8E%88%E6%9D%83/"/>
-    <id>http://rylcode.cn/2017/01/13/Python入门11-继承和授权/</id>
+    <link href="https://applefishsky009.github.io/2017/01/13/Python%E5%85%A5%E9%97%A811-%E7%BB%A7%E6%89%BF%E5%92%8C%E6%8E%88%E6%9D%83/"/>
+    <id>https://applefishsky009.github.io/2017/01/13/Python入门11-继承和授权/</id>
     <published>2017-01-13T03:48:46.000Z</published>
     <updated>2020-05-13T12:18:58.429Z</updated>
     
@@ -240,17 +240,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python的实例方法，类方法，静态方法</title>
-    <link href="http://rylcode.cn/2017/01/11/Python%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
-    <id>http://rylcode.cn/2017/01/11/Python的实例方法，类方法，静态方法/</id>
+    <link href="https://applefishsky009.github.io/2017/01/11/Python%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/"/>
+    <id>https://applefishsky009.github.io/2017/01/11/Python的实例方法，类方法，静态方法/</id>
     <published>2017-01-11T07:14:06.000Z</published>
     <updated>2020-05-13T12:18:58.436Z</updated>
     
@@ -267,21 +267,21 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门11-面向对象编程</title>
-    <link href="http://rylcode.cn/2017/01/10/Python%E5%85%A5%E9%97%A811-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"/>
-    <id>http://rylcode.cn/2017/01/10/Python入门11-面向对象编程/</id>
+    <link href="https://applefishsky009.github.io/2017/01/10/Python%E5%85%A5%E9%97%A811-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/"/>
+    <id>https://applefishsky009.github.io/2017/01/10/Python入门11-面向对象编程/</id>
     <published>2017-01-10T12:22:02.000Z</published>
     <updated>2020-05-13T12:18:58.431Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="类简介"><a href="#类简介" class="headerlink" title="类简介"></a>类简介</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ol><li>类是对象的定义(蓝图)，而实例是真正的实物。<ul><li>类的定义：<code>class A(object):</code>，类就像一个Python类型容器；</li><li>通过继承来创建子类，子类继承基类的属性和方法，每个子类最好定义它自己的构造器，不然基类的构造器就会被调用(<code>__init__()</code>没有被覆盖)。</li><li>标准惯例：类名通常大写大头。</li><li>尽管类是对象，但正被定义时他还不是对象的实现(实例化才是)。</li></ul></li><li>所有的新式类必须继承至少一个类，<code>object</code>是所有类之母，如果一个类没有继承任何其他类，<code>object</code>将作为默认的父类，他位于所有类结构的最上层。一定在类名称后边加上<code>(object)</code>！<ul><li><code>__doc__</code>属性是类的文档字符串，他必须紧跟头行，并且不能被派生类继承，默认情况下派生类的这个属性为<code>None</code>。</li></ul></li><li>创建一个实例的过程称为实例化，通过函数操作符，以<strong>函数调用</strong>的形式出现。<ul><li>实例化认为是对<code>__init__()</code>的一种隐式的调用；</li><li>函数有下划线表示一般情况下这个函数不是直接供调用的。</li></ul></li><li>最简单的类可以仅作为容器来共享容器空间。</li><li>实例的属性是动态的，不需要在任何地方预先声明或者赋值。<ul><li>通过句点标识符访问类的属性。</li></ul></li></ol><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>通常的实例方法调用：定义类；创建实例；通过实例调用方法。</p><ol><li>实例方法传<code>self</code>(约定俗成，相当于<code>this指针)，类方法传</code>cls`(约定俗成)，静态方法不需要强制传任何参数。</li><li>类方法和类属性不能重名。</li></ol><p><a href="http://rylcode.cn/2017/01/11/Python%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/">Python的实例方法，类方法，静态方法</a></p><hr><h2 id="面对对象"><a href="#面对对象" class="headerlink" title="面对对象"></a>面对对象</h2><p><a href="http://rylcode.cn/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/">OOP特性</a></p><ol><li>抽象：对现实世界和实体的本质表现、行为和特征建模。<ul><li>对模型接口以及抽象数据的现实化(<code>realization</code>)</li></ul></li><li>封装/接口：对数据/信息进行隐藏，对数据属性提供接口和访问函数。<ul><li>限制不规范的操作对数据属性的访问。</li></ul></li><li>合成：扩充了对类的描述，使得多个不同类合成为一个大的类，来解决现实问题。</li><li>派生/继承/继承结构：子类保存父类中所有需要的数据和类型，但允许修改或定义其他的自定义操作，但不会修改父类的定义。</li><li>泛化/特化：子类与其父类以及祖先类有一样的特点，即<code>is-a</code>关系。</li><li>多态：对象通过共同的属性或动作来操作访问，不需要考虑具体的类。即动态(运行时)绑定，允许重载以及运行时类型确定和验证。</li><li>自省/反射：对象在运行时取得自身信息。即Java中的反射，C++中的运行阶段类型推断RTTI。<ul><li><code>type()</code>判断类型。</li><li><code>dir()</code>返回对象的属性列表。</li><li><code>var(obj)</code>返回实例属性构成的字典，即<code>__dict__</code>特殊属性。</li></ul></li></ol><hr><h2 id="类属性，实例，实例属性"><a href="#类属性，实例，实例属性" class="headerlink" title="类属性，实例，实例属性"></a>类属性，实例，实例属性</h2><h3 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h3><ol><li>属性就是属于一个对象的数据或者函数元素，属性同时也是一个对象，他拥有自己的属性，因此会有属性链这一现象。</li><li>主要使用的属性是实例属性，当且仅当需要更加静态的数据时才会使用类数据属性，即静态变量，静态数据。</li><li>通常的方法必须绑定(<code>binding</code>)才能被直接调用，非绑定方法可以被调用，但实例对象一定要明确给出，才能确保调用成功(派生类构造函数通过基类调用基类的构造函数)。</li><li>使用<code>dir()</code>和特殊类属性<code>__dict__</code>来查看类的属性。<ul><li><code>dir()</code>内建函数可接受模块，类，实例对象。如果不传入参数，和<code>locals()</code>一样。</li></ul></li><li><code>type()</code>被调用对象的类型，他的类型是<code>type</code>，被调用对象的类型<code>type().__name__</code>来访问。</li><li><code>__doc__</code>特殊属性，不能被派生类继承。</li><li><code>__bases__</code>用来处理继承，包含由所有父类组成的元组。</li><li><code>__module__</code>返回类所有模块的字符串表示。</li></ol><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ol><li>类是一种数据结构定义类型，实例则声明了一个这种类型的变量。当你定义了一个类后，已经创建了一个新的类型。</li><li>定义或覆盖<code>__init__()</code>方法。缺省时不进行任何操作，注意对于不可变类型的类属性，同名的实例属性会覆盖他，但对于可变类型的类属性，二者是同一个对象，这样类、所有实例都可以修改这个属性。</li><li><code>__new__()</code>方法来继承不可变数据类型(<code>int</code>,<code>str</code>,<code>tuple</code>等)来定制数据类型；或者用在元类，定制创建类对象。<ul><li><code>__new__()</code>方法是一个静态方法，他在<code>__init__(self)</code>执行之前执行并返回一个对象传入初始化方法<code>__init__(self)</code>(即这里的<code>self</code>)</li><li><a href="https://zhuanlan.zhihu.com/p/21379984" target="_blank" rel="noopener">python 类中<strong>new</strong> 和 <strong>init</strong>方法区别</a></li><li><a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">深刻理解Python中的元类(metaclass)</a></li><li><a href="http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank" rel="noopener">What is a metaclass in Python?</a></li></ul></li><li><code>__del__()</code>解构器方法，由于Python的垃圾回收机制是靠引用计数的，这个函数要直到该实例对象所有的引用计数都被清除掉后才会执行。<ul><li>也就是说这个函数只会被调用一次(引用计数为0的时候)；</li><li>在子类<code>__del__()</code>中不要忘记调用父类的<code>__del__()</code>;</li><li><code>del x</code>表示引用计数减1，不表示结构器方法被调用。</li></ul></li></ol><h3 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><ol><li>实例属性是与实例相关联的数据值，构造器<code>__init__()</code>是设置这些属性的关键点。</li><li>可以使用默认参数来设置默认的实例属性(注意默认参数应该是不变的对象)。</li><li><code>__init__()</code>应该返回<code>None</code>，因为实例对象是在实例化调用后返回的，如果返回其他值会产生冲突。</li><li><code>dir()</code>内建函数和<code>__dict__</code>属性可以查看所有的属性。<ul><li>不要修改<code>__dict__</code>字典，使用句点标识符来修改属性；</li><li>内建类型也是类，他可以<code>dir()</code>，但不存在<code>__dict__</code>属性(因为这个属性只有通过类工厂<code>type()</code>产生的类才有)。</li></ul></li></ol><h3 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h3><ol><li>类属性可通过类或实例来访问，但是任何对实例属性的赋值都会创建一个实例属性(如果不存在)并且对其赋值(这里指不可变对象，因为不可变对象在赋值时会创建一个新的对象)。</li><li>但是在类属性是可变类型的情况下会不同，可变对象在赋值过程中并没有必要产生新的对象，这样会造成实例和类的数据污染。</li><li>类属性是静态成员，当一个实例被修改后才创建，那么更新的值就将生效，类属性的修改会影响到所有的实例。</li></ol><hr><h2 id="绑定，组合"><a href="#绑定，组合" class="headerlink" title="绑定，组合"></a>绑定，组合</h2><h3 id="绑定"><a href="#绑定" class="headerlink" title="绑定"></a>绑定</h3><ol><li>实例方法是绑定在实例上的，只有通过实例才能调用这种绑定方法。没有实例时方法就是未绑定的。<code>self</code>变量用于在实例中引用方法所绑定的实例。</li><li>没有实例调用非绑定方法，例如在子类中覆盖父类的构造方法，这时没有父类实例，需要将子类中的<code>self</code>传入父类的构造方法，因为这时子类对象没有进行任何定制，可用来代替父类对象，构造后再进行定制。</li></ol><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><ol><li>通过组合(<code>composition</code>)让不同的类混合并加入到其他类中，来增加功能和可重用性。这是<code>has-a</code>关系(这在C++中通过包含或者私有/保护继承来体现)，因为这些类都不相同，每一个类管理他们自己的名字空间和行为。</li><li>另一种方法通过派生(<code>derived</code>)，它们具有更接近的关系，强调<code>is-a</code>关系，用于当你需要一些相似的对象，但却有少许不同不同功能的时候。</li></ol><hr>]]></content>
+    <content type="html"><![CDATA[<h2 id="类简介"><a href="#类简介" class="headerlink" title="类简介"></a>类简介</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><ol><li>类是对象的定义(蓝图)，而实例是真正的实物。<ul><li>类的定义：<code>class A(object):</code>，类就像一个Python类型容器；</li><li>通过继承来创建子类，子类继承基类的属性和方法，每个子类最好定义它自己的构造器，不然基类的构造器就会被调用(<code>__init__()</code>没有被覆盖)。</li><li>标准惯例：类名通常大写大头。</li><li>尽管类是对象，但正被定义时他还不是对象的实现(实例化才是)。</li></ul></li><li>所有的新式类必须继承至少一个类，<code>object</code>是所有类之母，如果一个类没有继承任何其他类，<code>object</code>将作为默认的父类，他位于所有类结构的最上层。一定在类名称后边加上<code>(object)</code>！<ul><li><code>__doc__</code>属性是类的文档字符串，他必须紧跟头行，并且不能被派生类继承，默认情况下派生类的这个属性为<code>None</code>。</li></ul></li><li>创建一个实例的过程称为实例化，通过函数操作符，以<strong>函数调用</strong>的形式出现。<ul><li>实例化认为是对<code>__init__()</code>的一种隐式的调用；</li><li>函数有下划线表示一般情况下这个函数不是直接供调用的。</li></ul></li><li>最简单的类可以仅作为容器来共享容器空间。</li><li>实例的属性是动态的，不需要在任何地方预先声明或者赋值。<ul><li>通过句点标识符访问类的属性。</li></ul></li></ol><h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>通常的实例方法调用：定义类；创建实例；通过实例调用方法。</p><ol><li>实例方法传<code>self</code>(约定俗成，相当于<code>this指针)，类方法传</code>cls`(约定俗成)，静态方法不需要强制传任何参数。</li><li>类方法和类属性不能重名。</li></ol><p><a href="http://rylcode.cn/2017/01/11/Python%E7%9A%84%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95%EF%BC%8C%E7%B1%BB%E6%96%B9%E6%B3%95%EF%BC%8C%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">Python的实例方法，类方法，静态方法</a></p><hr><h2 id="面对对象"><a href="#面对对象" class="headerlink" title="面对对象"></a>面对对象</h2><p><a href="http://rylcode.cn/2016/05/21/%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD%E4%B8%8E%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0/" target="_blank" rel="noopener">OOP特性</a></p><ol><li>抽象：对现实世界和实体的本质表现、行为和特征建模。<ul><li>对模型接口以及抽象数据的现实化(<code>realization</code>)</li></ul></li><li>封装/接口：对数据/信息进行隐藏，对数据属性提供接口和访问函数。<ul><li>限制不规范的操作对数据属性的访问。</li></ul></li><li>合成：扩充了对类的描述，使得多个不同类合成为一个大的类，来解决现实问题。</li><li>派生/继承/继承结构：子类保存父类中所有需要的数据和类型，但允许修改或定义其他的自定义操作，但不会修改父类的定义。</li><li>泛化/特化：子类与其父类以及祖先类有一样的特点，即<code>is-a</code>关系。</li><li>多态：对象通过共同的属性或动作来操作访问，不需要考虑具体的类。即动态(运行时)绑定，允许重载以及运行时类型确定和验证。</li><li>自省/反射：对象在运行时取得自身信息。即Java中的反射，C++中的运行阶段类型推断RTTI。<ul><li><code>type()</code>判断类型。</li><li><code>dir()</code>返回对象的属性列表。</li><li><code>var(obj)</code>返回实例属性构成的字典，即<code>__dict__</code>特殊属性。</li></ul></li></ol><hr><h2 id="类属性，实例，实例属性"><a href="#类属性，实例，实例属性" class="headerlink" title="类属性，实例，实例属性"></a>类属性，实例，实例属性</h2><h3 id="类属性"><a href="#类属性" class="headerlink" title="类属性"></a>类属性</h3><ol><li>属性就是属于一个对象的数据或者函数元素，属性同时也是一个对象，他拥有自己的属性，因此会有属性链这一现象。</li><li>主要使用的属性是实例属性，当且仅当需要更加静态的数据时才会使用类数据属性，即静态变量，静态数据。</li><li>通常的方法必须绑定(<code>binding</code>)才能被直接调用，非绑定方法可以被调用，但实例对象一定要明确给出，才能确保调用成功(派生类构造函数通过基类调用基类的构造函数)。</li><li>使用<code>dir()</code>和特殊类属性<code>__dict__</code>来查看类的属性。<ul><li><code>dir()</code>内建函数可接受模块，类，实例对象。如果不传入参数，和<code>locals()</code>一样。</li></ul></li><li><code>type()</code>被调用对象的类型，他的类型是<code>type</code>，被调用对象的类型<code>type().__name__</code>来访问。</li><li><code>__doc__</code>特殊属性，不能被派生类继承。</li><li><code>__bases__</code>用来处理继承，包含由所有父类组成的元组。</li><li><code>__module__</code>返回类所有模块的字符串表示。</li></ol><h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ol><li>类是一种数据结构定义类型，实例则声明了一个这种类型的变量。当你定义了一个类后，已经创建了一个新的类型。</li><li>定义或覆盖<code>__init__()</code>方法。缺省时不进行任何操作，注意对于不可变类型的类属性，同名的实例属性会覆盖他，但对于可变类型的类属性，二者是同一个对象，这样类、所有实例都可以修改这个属性。</li><li><code>__new__()</code>方法来继承不可变数据类型(<code>int</code>,<code>str</code>,<code>tuple</code>等)来定制数据类型；或者用在元类，定制创建类对象。<ul><li><code>__new__()</code>方法是一个静态方法，他在<code>__init__(self)</code>执行之前执行并返回一个对象传入初始化方法<code>__init__(self)</code>(即这里的<code>self</code>)</li><li><a href="https://zhuanlan.zhihu.com/p/21379984" target="_blank" rel="noopener">python 类中<strong>new</strong> 和 <strong>init</strong>方法区别</a></li><li><a href="http://blog.jobbole.com/21351/" target="_blank" rel="noopener">深刻理解Python中的元类(metaclass)</a></li><li><a href="http://stackoverflow.com/questions/100003/what-is-a-metaclass-in-python" target="_blank" rel="noopener">What is a metaclass in Python?</a></li></ul></li><li><code>__del__()</code>解构器方法，由于Python的垃圾回收机制是靠引用计数的，这个函数要直到该实例对象所有的引用计数都被清除掉后才会执行。<ul><li>也就是说这个函数只会被调用一次(引用计数为0的时候)；</li><li>在子类<code>__del__()</code>中不要忘记调用父类的<code>__del__()</code>;</li><li><code>del x</code>表示引用计数减1，不表示结构器方法被调用。</li></ul></li></ol><h3 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><ol><li>实例属性是与实例相关联的数据值，构造器<code>__init__()</code>是设置这些属性的关键点。</li><li>可以使用默认参数来设置默认的实例属性(注意默认参数应该是不变的对象)。</li><li><code>__init__()</code>应该返回<code>None</code>，因为实例对象是在实例化调用后返回的，如果返回其他值会产生冲突。</li><li><code>dir()</code>内建函数和<code>__dict__</code>属性可以查看所有的属性。<ul><li>不要修改<code>__dict__</code>字典，使用句点标识符来修改属性；</li><li>内建类型也是类，他可以<code>dir()</code>，但不存在<code>__dict__</code>属性(因为这个属性只有通过类工厂<code>type()</code>产生的类才有)。</li></ul></li></ol><h3 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h3><ol><li>类属性可通过类或实例来访问，但是任何对实例属性的赋值都会创建一个实例属性(如果不存在)并且对其赋值(这里指不可变对象，因为不可变对象在赋值时会创建一个新的对象)。</li><li>但是在类属性是可变类型的情况下会不同，可变对象在赋值过程中并没有必要产生新的对象，这样会造成实例和类的数据污染。</li><li>类属性是静态成员，当一个实例被修改后才创建，那么更新的值就将生效，类属性的修改会影响到所有的实例。</li></ol><hr><h2 id="绑定，组合"><a href="#绑定，组合" class="headerlink" title="绑定，组合"></a>绑定，组合</h2><h3 id="绑定"><a href="#绑定" class="headerlink" title="绑定"></a>绑定</h3><ol><li>实例方法是绑定在实例上的，只有通过实例才能调用这种绑定方法。没有实例时方法就是未绑定的。<code>self</code>变量用于在实例中引用方法所绑定的实例。</li><li>没有实例调用非绑定方法，例如在子类中覆盖父类的构造方法，这时没有父类实例，需要将子类中的<code>self</code>传入父类的构造方法，因为这时子类对象没有进行任何定制，可用来代替父类对象，构造后再进行定制。</li></ol><h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><ol><li>通过组合(<code>composition</code>)让不同的类混合并加入到其他类中，来增加功能和可重用性。这是<code>has-a</code>关系(这在C++中通过包含或者私有/保护继承来体现)，因为这些类都不相同，每一个类管理他们自己的名字空间和行为。</li><li>另一种方法通过派生(<code>derived</code>)，它们具有更接近的关系，强调<code>is-a</code>关系，用于当你需要一些相似的对象，但却有少许不同不同功能的时候。</li></ol><hr>]]></content>
     
     <summary type="html">
     
@@ -293,17 +293,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门10-模块</title>
-    <link href="http://rylcode.cn/2017/01/09/Python%E5%85%A5%E9%97%A810-%E6%A8%A1%E5%9D%97/"/>
-    <id>http://rylcode.cn/2017/01/09/Python入门10-模块/</id>
+    <link href="https://applefishsky009.github.io/2017/01/09/Python%E5%85%A5%E9%97%A810-%E6%A8%A1%E5%9D%97/"/>
+    <id>https://applefishsky009.github.io/2017/01/09/Python入门10-模块/</id>
     <published>2017-01-09T11:38:23.000Z</published>
     <updated>2020-05-13T12:18:58.429Z</updated>
     
@@ -320,17 +320,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门9-函数和函数式编程</title>
-    <link href="http://rylcode.cn/2017/01/06/Python%E5%85%A5%E9%97%A89-%E5%87%BD%E6%95%B0%E5%92%8C%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
-    <id>http://rylcode.cn/2017/01/06/Python入门9-函数和函数式编程/</id>
+    <link href="https://applefishsky009.github.io/2017/01/06/Python%E5%85%A5%E9%97%A89-%E5%87%BD%E6%95%B0%E5%92%8C%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/"/>
+    <id>https://applefishsky009.github.io/2017/01/06/Python入门9-函数和函数式编程/</id>
     <published>2017-01-06T03:09:07.000Z</published>
     <updated>2020-05-13T12:18:58.435Z</updated>
     
@@ -345,17 +345,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门8-错误和异常</title>
-    <link href="http://rylcode.cn/2017/01/04/Python%E5%85%A5%E9%97%A88-%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8/"/>
-    <id>http://rylcode.cn/2017/01/04/Python入门8-错误和异常/</id>
+    <link href="https://applefishsky009.github.io/2017/01/04/Python%E5%85%A5%E9%97%A88-%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8/"/>
+    <id>https://applefishsky009.github.io/2017/01/04/Python入门8-错误和异常/</id>
     <published>2017-01-04T06:24:53.000Z</published>
     <updated>2020-05-13T12:18:58.434Z</updated>
     
@@ -372,17 +372,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>缺月挂疏桐，漏断人初静</title>
-    <link href="http://rylcode.cn/2017/01/03/%E7%BC%BA%E6%9C%88%E6%8C%82%E7%96%8F%E6%A1%90%EF%BC%8C%E6%BC%8F%E6%96%AD%E4%BA%BA%E5%88%9D%E9%9D%99/"/>
-    <id>http://rylcode.cn/2017/01/03/缺月挂疏桐，漏断人初静/</id>
+    <link href="https://applefishsky009.github.io/2017/01/03/%E7%BC%BA%E6%9C%88%E6%8C%82%E7%96%8F%E6%A1%90%EF%BC%8C%E6%BC%8F%E6%96%AD%E4%BA%BA%E5%88%9D%E9%9D%99/"/>
+    <id>https://applefishsky009.github.io/2017/01/03/缺月挂疏桐，漏断人初静/</id>
     <published>2017-01-03T02:05:38.000Z</published>
     <updated>2020-05-13T12:18:58.460Z</updated>
     
@@ -398,17 +398,17 @@
     
     </summary>
     
-      <category term="ryl" scheme="http://rylcode.cn/categories/ryl/"/>
+      <category term="ryl" scheme="https://applefishsky009.github.io/categories/ryl/"/>
     
     
-      <category term="ryl" scheme="http://rylcode.cn/tags/ryl/"/>
+      <category term="ryl" scheme="https://applefishsky009.github.io/tags/ryl/"/>
     
   </entry>
   
   <entry>
     <title>Python入门7-文件</title>
-    <link href="http://rylcode.cn/2016/12/24/Python%E5%85%A5%E9%97%A87-%E6%96%87%E4%BB%B6/"/>
-    <id>http://rylcode.cn/2016/12/24/Python入门7-文件/</id>
+    <link href="https://applefishsky009.github.io/2016/12/24/Python%E5%85%A5%E9%97%A87-%E6%96%87%E4%BB%B6/"/>
+    <id>https://applefishsky009.github.io/2016/12/24/Python入门7-文件/</id>
     <published>2016-12-24T02:51:18.000Z</published>
     <updated>2020-05-13T12:18:58.434Z</updated>
     
@@ -423,17 +423,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门6-条件和循环</title>
-    <link href="http://rylcode.cn/2016/12/21/Python%E5%85%A5%E9%97%A86-%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%BE%AA%E7%8E%AF/"/>
-    <id>http://rylcode.cn/2016/12/21/Python入门6-条件和循环/</id>
+    <link href="https://applefishsky009.github.io/2016/12/21/Python%E5%85%A5%E9%97%A86-%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%BE%AA%E7%8E%AF/"/>
+    <id>https://applefishsky009.github.io/2016/12/21/Python入门6-条件和循环/</id>
     <published>2016-12-21T06:04:04.000Z</published>
     <updated>2020-05-13T12:18:58.434Z</updated>
     
@@ -450,17 +450,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>Python入门5-字典和集合</title>
-    <link href="http://rylcode.cn/2016/12/19/Python%E5%85%A5%E9%97%A85-%E5%AD%97%E5%85%B8%E5%92%8C%E9%9B%86%E5%90%88/"/>
-    <id>http://rylcode.cn/2016/12/19/Python入门5-字典和集合/</id>
+    <link href="https://applefishsky009.github.io/2016/12/19/Python%E5%85%A5%E9%97%A85-%E5%AD%97%E5%85%B8%E5%92%8C%E9%9B%86%E5%90%88/"/>
+    <id>https://applefishsky009.github.io/2016/12/19/Python入门5-字典和集合/</id>
     <published>2016-12-19T01:49:03.000Z</published>
     <updated>2020-05-13T12:18:58.433Z</updated>
     
@@ -477,17 +477,17 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   
   <entry>
     <title>VSCode配置Go环境</title>
-    <link href="http://rylcode.cn/2016/12/16/VSCode%E9%85%8D%E7%BD%AEGo%E7%8E%AF%E5%A2%83/"/>
-    <id>http://rylcode.cn/2016/12/16/VSCode配置Go环境/</id>
+    <link href="https://applefishsky009.github.io/2016/12/16/VSCode%E9%85%8D%E7%BD%AEGo%E7%8E%AF%E5%A2%83/"/>
+    <id>https://applefishsky009.github.io/2016/12/16/VSCode配置Go环境/</id>
     <published>2016-12-16T03:20:12.000Z</published>
     <updated>2020-05-13T12:18:58.438Z</updated>
     
@@ -504,17 +504,17 @@
     
     </summary>
     
-      <category term="VSCode" scheme="http://rylcode.cn/categories/VSCode/"/>
+      <category term="VSCode" scheme="https://applefishsky009.github.io/categories/VSCode/"/>
     
     
-      <category term="VSCode" scheme="http://rylcode.cn/tags/VSCode/"/>
+      <category term="VSCode" scheme="https://applefishsky009.github.io/tags/VSCode/"/>
     
   </entry>
   
   <entry>
     <title>Python入门4-列表和元组</title>
-    <link href="http://rylcode.cn/2016/12/14/Python%E5%85%A5%E9%97%A84-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/"/>
-    <id>http://rylcode.cn/2016/12/14/Python入门4-列表和元组/</id>
+    <link href="https://applefishsky009.github.io/2016/12/14/Python%E5%85%A5%E9%97%A84-%E5%88%97%E8%A1%A8%E5%92%8C%E5%85%83%E7%BB%84/"/>
+    <id>https://applefishsky009.github.io/2016/12/14/Python入门4-列表和元组/</id>
     <published>2016-12-14T07:45:47.000Z</published>
     <updated>2020-05-13T12:18:58.433Z</updated>
     
@@ -531,10 +531,10 @@
     
     </summary>
     
-      <category term="Python" scheme="http://rylcode.cn/categories/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/categories/Python/"/>
     
     
-      <category term="Python" scheme="http://rylcode.cn/tags/Python/"/>
+      <category term="Python" scheme="https://applefishsky009.github.io/tags/Python/"/>
     
   </entry>
   

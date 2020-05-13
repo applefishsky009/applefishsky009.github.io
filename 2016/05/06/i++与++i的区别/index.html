@@ -19,7 +19,7 @@
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="i++与++i的区别">
-<meta property="og:url" content="http://rylcode.cn/2016/05/06/i++与++i的区别/index.html">
+<meta property="og:url" content="https://applefishsky009.github.io/2016/05/06/i++与++i的区别/index.html">
 <meta property="og:site_name" content="孤云两角，去天一握">
 <meta property="og:description" content="一直以来对++i与i++，知道前者效率更高，但是不知道为什么。有人说与寄存器有关，实际上寄存器都执行了一次加法，是一样的。看了这里的博客才恍然大悟，原来是其实现的机制不同。 ++i先加再用，其对i类型(假设为INT)的++运算符重载如下： 12345//++iINT operator ++()&amp;#123;	this-&amp;gt;_value++;	return *this;&amp;#125;  i++先用再">
 <meta property="og:locale" content="Chinese">
@@ -182,7 +182,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="http://www.rylcode.com/2016/05/06/i++与++i的区别/#disqus_thread"></a>
+          <a href="https://applefishsky009.github.io/2016/05/06/i++与++i的区别/#disqus_thread"></a>
         </span>
       
 
@@ -315,7 +315,7 @@ ga('send', 'pageview');
   <script>
     var disqus_shortname = 'rylcode';
     
-    var disqus_url = 'http://rylcode.cn/2016/05/06/i++与++i的区别/';
+    var disqus_url = 'https://applefishsky009.github.io/2016/05/06/i++与++i的区别/';
     
     (function(){
       var dsq = document.createElement('script');
